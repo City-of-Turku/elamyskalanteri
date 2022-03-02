@@ -1,12 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
 import placeholderSlice from "./slices/placeholderSlice";
+import { pokemonApi } from "./services/pokemonApi";
 // ...
 
 export const store = configureStore({
   reducer: {
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
     placeholder: placeholderSlice.reducer
   },
+  // Adding the api middleware enables caching, invalidation, polling,
+  // and other useful features of `rtk-query`.
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(pokemonApi.middleware),
 })
+
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
