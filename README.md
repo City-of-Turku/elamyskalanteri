@@ -1,4 +1,4 @@
-# elamyskalanteri
+# elamyskalenteri
 Event calendar implementation for Varsinais-Suomi
 
 ## Getting started
