@@ -12,7 +12,7 @@ const EventTestList = () => {
       {error && <h2>Something went wrong</h2>}
       {isSuccess && (
         <div>
-          {data?.map((event) => {
+          {data?.data.map((event) => {
             return (
               <div key={event.id}>
                 <span>{event.name.fi}</span>
