@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+interface Data {
+  id: string;
+  name: {
+    fi: string;
+  }
+}
+
 interface GetEventResponse {
   meta: any,
-  data: [
-    {
-      id: string;
-      name: {
-        fi: string;
-      };
-    }
-  ]
+  data: Data[]
 }
 
 export const fetchApi = createApi({
