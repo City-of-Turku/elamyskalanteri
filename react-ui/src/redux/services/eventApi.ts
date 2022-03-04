@@ -1,10 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface GetEventResponse {
-  id: string;
-  name: {
-    fi: string;
-  };
+  meta: any,
+  data: [
+    {
+      id: string;
+      name: {
+        fi: string;
+      };
+    }
+  ]
 }
 
 export const fetchApi = createApi({
@@ -13,7 +18,7 @@ export const fetchApi = createApi({
     baseUrl: "https://testilinkedevents-api.turku.fi/v1",
   }),
   endpoints: (builder) => ({
-    events: builder.query<GetEventResponse[], void>({
+    events: builder.query<GetEventResponse, void>({
       query: () => "/event/",
     }),
   }),
