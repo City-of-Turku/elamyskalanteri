@@ -1,5 +1,5 @@
-function HobbyList() {
-  return <div>Harrastukset</div>;
-}
+const HobbyList = () => {
+  return <div>harrastukset</div>;
+};
 
 export default HobbyList;
