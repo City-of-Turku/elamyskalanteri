@@ -3,6 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import React from "react";
 import EventCard from "../events/EventCard";
+import FilterContainer from "../../filterContainer/filterContainer";
 
 export default class EventList extends React.Component {
   state = {
@@ -32,6 +33,7 @@ export default class EventList extends React.Component {
     const { events, loading, error } = this.state;
     return (
       <Box sx={{ p: 5 }}>
+        <FilterContainer/>
         <Grid sx={{ flexGrow: 1 }} container spacing={5}>
           {loading && (
             <Box

@@ -63,7 +63,7 @@ function EventCard({
               component="div"
               sx={{ textAlign: "center" }}
             >
-              {start_time}
+              {new Date(start_time).toLocaleDateString("fi")}
             </Typography>
             <Typography
               gutterBottom
