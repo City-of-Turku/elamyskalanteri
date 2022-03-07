@@ -4,10 +4,24 @@ import Grid from "@mui/material/Grid";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../filterContainer/filterContainer";
 import EventCard from "../events/EventCard";
+import { useState, useEffect } from "react";
+import {useAppSelector} from "../../../hooks/rtkHooks";
+import {filterByEventType} from "../../../functions/sorters";
 
 const EventList = () => {
   const { data, error, isLoading } = useEventsQuery();
-  console.log("data", data);
+  console.log(data)
+
+  const [filteredData, setFilteredData] = useState<any>([])
+
+  const { filters } = useAppSelector(state => state)
+
+  useEffect(() => {
+    let res: any
+    res = filterByEventType(data?.data, filters.eventTypes)
+    res = res?.filter((r: any) => r.name.fi.toLowerCase().includes(filters.name.toLowerCase()))
+    setFilteredData(res)
+  }, [data, filters])
 
   return (
     <Box sx={{ p: 5 }}>
@@ -31,7 +45,7 @@ const EventList = () => {
         )}
         {!isLoading &&
           !error &&
-          data?.data.map((event: any) => {
+          filteredData?.map((event: any) => {
             return (
               <Grid key={event.id} item>
                 <EventCard {...event} />

@@ -1,6 +1,9 @@
 import { Chip } from "@mui/material"
 import { useState } from "react";
 import styles from "./FilterContainer.module.css"
+import {useAppDispatch, useAppSelector} from "../../hooks/rtkHooks";
+import {bindActionCreators} from "@reduxjs/toolkit";
+import filterSlice from "../../redux/slices/filterSlice";
 
 interface Category {
   fi: string,
@@ -8,6 +11,10 @@ interface Category {
 }
 
 const FilterContainer = () => {
+
+  const dispatch = useAppDispatch()
+  const { setName } = bindActionCreators(filterSlice.actions, dispatch)
+  const { filters } = useAppSelector(state => state)
 
   // These should be ideally fetched from an API...
   const categories = [
@@ -33,6 +40,8 @@ const FilterContainer = () => {
         className={styles.search}
         type="text"
         placeholder={"Hae..."}
+        value={filters.name}
+        onChange={(e) => setName(e.target.value) }
       />
       <div className={styles.chipContainer}>
         {categories.map(category => (
