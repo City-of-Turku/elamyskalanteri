@@ -1,20 +1,22 @@
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
-import {
-  useEventQuery,
-  useEventsQuery
-} from "../../../redux/services/eventApi";
+import { useEventsQuery } from "../../../redux/services/eventApi";
+import FilterContainer from "../../filterContainer/filterContainer";
 import EventCard from "../events/EventCard";
 
 const EventList = () => {
   const { data, error, isLoading } = useEventsQuery();
   console.log("data", data);
 
-
   return (
     <Box sx={{ p: 5 }}>
-      <Grid sx={{ flexGrow: 1 }} container spacing={5}>
+      <FilterContainer />
+      <Grid
+        sx={{ flexGrow: 1, alignItems: "center", justifyContent: "center" }}
+        container
+        spacing={5}
+      >
         {isLoading && (
           <Box
             sx={{
@@ -40,11 +42,6 @@ const EventList = () => {
       </Grid>
     </Box>
   );
-};
-
-export const EventDetail = ({ id }: { id: string }) => {
-  const { data } = useEventQuery(id);
-  return <pre>{JSON.stringify(data, undefined, 2)}</pre>;
 };
 
 export default EventList;
