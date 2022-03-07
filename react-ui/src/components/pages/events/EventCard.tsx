@@ -29,13 +29,13 @@ interface EventProps {
   };
 }
 
-function EventCard({
+const EventCard = ({
   id,
   name,
   short_description,
   start_time,
   location_extra_info,
-}: EventProps) {
+}: EventProps) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -82,6 +82,6 @@ function EventCard({
       <CardActions></CardActions>
     </Card>
   );
-}
+};
 
 export default EventCard;

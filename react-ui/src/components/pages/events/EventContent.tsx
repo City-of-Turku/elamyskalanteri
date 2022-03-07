@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-function EventContent() {
+const EventContent = () => {
   return (
     <div className="CardContent">
       <Box
@@ -64,6 +64,6 @@ function EventContent() {
       </Box>
     </div>
   );
-}
+};
 
 export default EventContent;
