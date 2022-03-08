@@ -1,7 +1,23 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import {useEffect, useState} from "react";
+import {useEventsQuery} from "../../../redux/services/eventApi";
+
+import { useParams } from "react-router-dom";
 
 const EventContent = () => {
+
+  const { data, error, isLoading } = useEventsQuery()
+  const params: any = useParams()
+
+  const [currentEvent, setCurrentEvent] = useState<any>(null)
+
+  useEffect(() => {
+    const curr = data?.data?.find(event => event.id === params?.id)
+    setCurrentEvent(curr)
+  }, [data])
+
+
   return (
     <div className="CardContent">
       <Box
@@ -29,7 +45,7 @@ const EventContent = () => {
           }}
         >
           <Typography variant="h4" gutterBottom component="div">
-            Tapahtuma
+            {currentEvent?.name.fi}
           </Typography>
           <Typography variant="h6" gutterBottom component="div">
             1.1.2022 klo 12:00, Paikka / osoite
