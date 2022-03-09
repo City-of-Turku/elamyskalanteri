@@ -1,4 +1,4 @@
-interface Event {
+export interface Hobby {
   id: string;
   name: {
     fi: string;
@@ -10,12 +10,4 @@ interface Event {
   location_extra_info: {
     fi: string;
   };
-  info_url: {
-    fi: string;
-  };
-}
-
-export interface GetEventResponse {
-  meta: any;
-  data: Event[];
 }

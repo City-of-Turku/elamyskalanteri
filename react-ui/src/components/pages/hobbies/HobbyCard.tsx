@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-interface EventProps {
+interface HobbyProps {
   id: string;
   name: {
     fi: string;
@@ -27,19 +27,15 @@ interface EventProps {
   location_extra_info: {
     fi: string;
   };
-  info_url: {
-    fi: string;
-  };
 }
 
-const EventCard = ({
+const HobbyCard = ({
   id,
   name,
   short_description,
   start_time,
   location_extra_info,
-  info_url,
-}: EventProps) => {
+}: HobbyProps) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -88,4 +84,4 @@ const EventCard = ({
   );
 };
 
-export default EventCard;
+export default HobbyCard;

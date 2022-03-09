@@ -1,22 +1,22 @@
+import LinkIcon from "@mui/icons-material/Link";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import {useEffect, useState} from "react";
-import {useEventsQuery} from "../../../redux/services/eventApi";
-
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useEventsQuery } from "../../../redux/services/eventApi";
 
 const EventContent = () => {
+  const { data } = useEventsQuery();
+  const params: any = useParams();
 
-  const { data, error, isLoading } = useEventsQuery()
-  const params: any = useParams()
-
-  const [currentEvent, setCurrentEvent] = useState<any>(null)
+  const [currentEvent, setCurrentEvent] = useState<any>(null);
 
   useEffect(() => {
-    const curr = data?.data?.find(event => event.id === params?.id)
-    setCurrentEvent(curr)
-  }, [data])
-
+    const curr = data?.data?.find((event) => event.id === params?.id);
+    setCurrentEvent(curr);
+  }, [data]);
 
   return (
     <div className="CardContent">
@@ -44,12 +44,29 @@ const EventContent = () => {
             textAlign: "center",
           }}
         >
+          <Typography variant="h6" gutterBottom component="div">
+            {currentEvent?.start_time}
+          </Typography>
           <Typography variant="h4" gutterBottom component="div">
             {currentEvent?.name.fi}
           </Typography>
-          <Typography variant="h6" gutterBottom component="div">
-            1.1.2022 klo 12:00, Paikka / osoite
+        </Box>
+        <Box
+          component="div"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <LocationOnIcon color="action" fontSize="small" />
+          <Typography sx={{ pl: 2 }} variant="body2" color="text.secondary">
+            {currentEvent?.location_extra_info.fi}
           </Typography>
+
+          <Link href="#" underline="none" variant="body2">
+            <LinkIcon fontSize="small" />
+            {/* {currentEvent?.info_url.fi || null} */}
+          </Link>
         </Box>
         <Box
           sx={{
@@ -59,22 +76,10 @@ const EventContent = () => {
             minWidth: { md: 350 },
           }}
         >
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id
             laoreet metus. Quisque lobortis tristique imperdiet. Ut commodo
             vehicula ipsum, sed euismod turpis laoreet non.
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              py: 3,
-            }}
-          >
-            Ota yhteyttä / Ilmoittaudu tapahtumaan: <br></br>
-            Maija Meikäläinen <br></br>
-            0401234567 <br></br>
-            maija.meikäläinen@email.com
           </Typography>
         </Box>
       </Box>
