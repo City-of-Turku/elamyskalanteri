@@ -107,17 +107,20 @@ const Nav = () => {
               alignItems: "center",
             }}
           >
-            <Button variant="contained" onClick={() => handleButtonClick("/")}>
+            <Button
+              sx={{ color: "primary.contrastText" }}
+              onClick={() => handleButtonClick("/")}
+            >
               Tapahtumat
             </Button>
             <Button
-              variant="contained"
+              sx={{ color: "primary.contrastText" }}
               onClick={() => handleButtonClick("/hobbies")}
             >
               Harrastukset
             </Button>
             <Button
-              variant="contained"
+              sx={{ color: "primary.contrastText" }}
               onClick={() => handleButtonClick("/educations")}
             >
               Koulutukset

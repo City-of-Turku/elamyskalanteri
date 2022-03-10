@@ -27,10 +27,10 @@ const EventList = () => {
   }, [data, filters]);
 
   return (
-    <Box sx={{ p: 5 }}>
+    <Box sx={{ p: 2 }}>
       <FilterContainer />
       <Grid
-        sx={{ flexGrow: 1, alignItems: "center", justifyContent: "center" }}
+        sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
         container
         spacing={5}
       >
@@ -40,7 +40,6 @@ const EventList = () => {
               position: "absolute",
               left: "50%",
               top: "50%",
-              transform: "translate(-50%, -50%)",
             }}
           >
             <CircularProgress />

@@ -13,6 +13,12 @@ interface Event {
   info_url: {
     fi: string;
   };
+  provider: {
+    fi: string;
+  };
+  description: {
+    fi: string;
+  };
 }
 
 export interface GetEventResponse {
