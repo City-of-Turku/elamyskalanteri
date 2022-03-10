@@ -13,7 +13,7 @@ export const eventApi = createApi({
   }),
   endpoints: (builder) => ({
     events: builder.query<GetEventResponse, Options>({
-      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm.length}`,
+      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm}`,
     }),
     event: builder.query<GetEventResponse, string>({
       query: (id) => `/event/${id}/?include=keywords`,
