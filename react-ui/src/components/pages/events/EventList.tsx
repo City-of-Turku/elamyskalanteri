@@ -10,14 +10,15 @@ import EventCard from "../events/EventCard";
 
 const EventList = () => {
 
+  const { filters } = useAppSelector(state => state)
+
   const [page, setPage] = useState(1)
-  const { data, error, isLoading, isFetching } = useEventsQuery(page);
+  const { data, error, isLoading, isFetching } = useEventsQuery({ page: 1, searchTerm: filters.name || ""});
 
   console.log(data);
 
   const [filteredData, setFilteredData] = useState<any>([]);
 
-  const { filters } = useAppSelector((state) => state);
 
   useEffect(() => {
     let res: any;

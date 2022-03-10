@@ -1,5 +1,5 @@
 import { Chip } from "@mui/material"
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import styles from "./FilterContainer.module.css"
 import {useAppDispatch, useAppSelector} from "../../hooks/rtkHooks";
 import {bindActionCreators} from "@reduxjs/toolkit";
@@ -17,6 +17,27 @@ const FilterContainer = () => {
   const dispatch = useAppDispatch()
   const { setName } = bindActionCreators(filterSlice.actions, dispatch)
   const { filters } = useAppSelector(state => state)
+
+  const [searchTerm, setSearchTerm] = useState("")
+
+  useEffect(() => {
+    const sendSearchTerm = () => {
+      if (searchTerm.length > 2) {
+        setName(searchTerm)
+        return
+      }
+      if (searchTerm.length <= 2) {
+        setName("")
+      }
+    }
+    const timer = setTimeout(() => {
+      sendSearchTerm()
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [searchTerm])
 
   // These should be ideally fetched from an API...
   const categories = [
@@ -91,8 +112,11 @@ const FilterContainer = () => {
             className={styles.search}
             type="search"
             placeholder={"Hae (nimi, paikka, aihe)"}
-            value={filters.name}
-            onChange={(e) => setName(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value)
+            }
+            }
           />
         </div>
       </div>
