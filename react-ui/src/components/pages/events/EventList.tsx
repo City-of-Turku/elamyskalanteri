@@ -9,7 +9,9 @@ import FilterContainer from "../../filterContainer/filterContainer";
 import EventCard from "../events/EventCard";
 
 const EventList = () => {
-  const { data, error, isLoading } = useEventsQuery();
+
+  const [page, setPage] = useState(1)
+  const { data, error, isLoading, isFetching } = useEventsQuery(page);
 
   console.log(data);
 
@@ -29,12 +31,13 @@ const EventList = () => {
   return (
     <Box sx={{ p: 5 }}>
       <FilterContainer />
+      <button onClick={() => setPage(page + 1)}>increment</button>
       <Grid
         sx={{ flexGrow: 1, alignItems: "center", justifyContent: "center" }}
         container
         spacing={5}
       >
-        {isLoading && (
+        {isLoading || isFetching && (
           <Box
             sx={{
               position: "absolute",
@@ -46,7 +49,9 @@ const EventList = () => {
             <CircularProgress />
           </Box>
         )}
-        {!isLoading &&
+        {!isLoading
+          && !isFetching
+          &&
           !error &&
           filteredData?.map((event: any) => {
             return (

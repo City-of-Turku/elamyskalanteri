@@ -7,11 +7,11 @@ export const eventApi = createApi({
     baseUrl: "https://testilinkedevents-api.turku.fi/v1",
   }),
   endpoints: (builder) => ({
-    events: builder.query<GetEventResponse, void>({
-      query: () => "/event/",
+    events: builder.query<GetEventResponse, number | void>({
+      query: (page = 1) => `/event/?page=${page}`,
     }),
     event: builder.query<GetEventResponse, string>({
-      query: (id) => `/events/${id}`,
+      query: (id) => `/event/${id}/?include=keywords`,
     }),
   }),
 });

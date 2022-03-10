@@ -3,20 +3,13 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEventsQuery } from "../../../redux/services/eventApi";
+import { useEventQuery } from "../../../redux/services/eventApi";
 
 const EventContent = () => {
-  const { data } = useEventsQuery();
+
   const params: any = useParams();
-
-  const [currentEvent, setCurrentEvent] = useState<any>(null);
-
-  useEffect(() => {
-    const curr = data?.data?.find((event) => event.id === params?.id);
-    setCurrentEvent(curr);
-  }, [data]);
+  const {data, isLoading, isFetching, error} = useEventQuery(params?.id)
 
   return (
     <div className="CardContent">
@@ -45,10 +38,10 @@ const EventContent = () => {
           }}
         >
           <Typography variant="h6" gutterBottom component="div">
-            {currentEvent?.start_time}
+            {data?.start_time}
           </Typography>
           <Typography variant="h4" gutterBottom component="div">
-            {currentEvent?.name.fi}
+            {data?.name?.fi}
           </Typography>
         </Box>
         <Box
@@ -60,7 +53,7 @@ const EventContent = () => {
         >
           <LocationOnIcon color="action" fontSize="small" />
           <Typography sx={{ pl: 2 }} variant="body2" color="text.secondary">
-            {currentEvent?.location_extra_info.fi}
+            {data?.location_extra_info?.fi}
           </Typography>
 
           <Link href="#" underline="none" variant="body2">

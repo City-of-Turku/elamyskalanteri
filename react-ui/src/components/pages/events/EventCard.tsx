@@ -5,6 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks/rtkHooks";
+import eventSlice from "../../../redux/slices/eventSlice";
 
 const useStyles = makeStyles({
   root: {
@@ -59,7 +61,7 @@ const EventCard = ({
               variant="h5"
               component="div"
             >
-              {name.fi}
+              {name?.fi}
             </Typography>
             <Typography
               gutterBottom
@@ -75,10 +77,10 @@ const EventCard = ({
               component="div"
               sx={{ textAlign: "center" }}
             >
-              {location_extra_info.fi}
+              {location_extra_info?.fi}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {short_description.fi}
+              {short_description?.fi}
             </Typography>
           </CardContent>
         </CardActionArea>
