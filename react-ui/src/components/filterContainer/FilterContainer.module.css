@@ -27,9 +27,7 @@
 .search {
     font-size: 20px;
     border: none;
-    padding: 24px 16px;
     outline: none;
-    border-radius: 0 0 16px 16px;
     width: calc(100% - 32px);
 
 }

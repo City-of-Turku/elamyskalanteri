@@ -1,4 +1,4 @@
-import { Chip } from "@mui/material"
+import {Chip, Icon} from "@mui/material"
 import {useEffect, useState} from "react";
 import styles from "./FilterContainer.module.css"
 import {useAppDispatch, useAppSelector} from "../../hooks/rtkHooks";
@@ -6,6 +6,8 @@ import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../redux/slices/filterSlice";
 import Accordion from "../Accordion/Accordion";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SearchIcon from '@mui/icons-material/Search';
+import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 
 interface Category {
   fi: string,
@@ -38,34 +40,41 @@ const FilterContainer = () => {
   ]
 
   const dispatch = useAppDispatch()
-  const { setName, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
   const { filters } = useAppSelector(state => state)
+  const { setName, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
 
   const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
+    // Updates redux store after user has stopped typing (limits API calls..)
     const sendSearchTerm = () => {
+      // Update search terms only when query is longer than 2 chars
       if (searchTerm.length > 2) {
         setName(searchTerm)
         return
       }
+      // If the query is smaller than 3 chars, just make it blank.
       if (searchTerm.length <= 2) {
         setName("")
       }
     }
+    // Controls timeout, after which user's query will be sent to the server
     const timer = setTimeout(() => {
       sendSearchTerm()
     }, 1000)
 
+    // cleans the timeout after component unmounts
     return () => {
       clearTimeout(timer)
     }
   }, [searchTerm])
 
+  // Adds even type to the redux store
   const addFilter = (f: Category) => {
     dispatch(setEventTypes(filters.eventTypes.concat(f.yso)))
   }
 
+  // Filters event type from the redux store
   const removeFilter = (f: Category) => {
     dispatch(setEventTypes(filters.eventTypes.filter(e => e !== f.yso)))
   }
@@ -75,7 +84,7 @@ const FilterContainer = () => {
       <h2 style={{ fontWeight: 300, marginBottom: "16px"}}>Löydä parhaimmat jutut</h2>
       <div className={styles.searchContainer}>
         <div style={{ borderBottom: "1px solid lightgray"}}>
-          <Accordion title={"Mitä?"}>
+          <Accordion title={"Mitä?"} icon={LocalActivityIcon}>
             <p style={{ margin: "0 4px 4px 4px"}}><b>KATEGORIA</b></p>
             <div className={styles.chipContainer}>
               {categories.map(category => (
@@ -90,7 +99,10 @@ const FilterContainer = () => {
           </Accordion>
         </div>
         <div style={{ borderBottom: "1px solid lightgray"}}>
-          <Accordion title={"Missä?"} icon={LocationOnIcon}>
+          <Accordion
+            title={"Missä?"}
+            icon={LocationOnIcon}
+          >
             <p style={{ margin: "0 4px 4px 4px"}}>
               <b>
                 PAIKKAKUNTA
@@ -104,17 +116,15 @@ const FilterContainer = () => {
             ))}
           </Accordion>
         </div>
-        <div>
+        <div style={{ padding: "24px 16px", display: "flex", alignItems: "center"}}>
           <input
             className={styles.search}
             type="search"
             placeholder={"Hae (nimi, paikka, aihe)"}
             value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value)
-            }
-            }
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <Icon component={SearchIcon} style={{fontSize: 32}}/>
         </div>
       </div>
     </div>
@@ -126,6 +136,10 @@ export default FilterContainer
 
 
 const FilterChip = ({label, active, handleClick, handleDelete}: any) => {
+
+  // Displays outlined chip for inactive filter and a deletable for active filter
+  // Had to be done like this because onClick and onDelete control the visuals of the chip
+
   return (
     <>
     {active
