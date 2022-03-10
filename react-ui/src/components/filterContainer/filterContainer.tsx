@@ -9,13 +9,36 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 interface Category {
   fi: string,
-  term: string
+  yso: string
 }
 
 const FilterContainer = () => {
 
+  // These should be ideally fetched from an API...
+  const categories = [
+    {fi: "Musiikki", yso: "yso:p1808"},
+    {fi: "Urheilu", yso: "yso:p965"},
+    {fi: "Näyttelyt", yso: "yso:p5121"},
+    {fi: "Festivaalit", yso: "yso:p1304"},
+    {fi: "Teatteri", yso: "yso:p2625"},
+    {fi: "Tanssi", yso: "yso:p1278"},
+    {fi: "Keskustelutilaisuudet", yso: "tsl:p40"},
+    {fi: "Konsertit", yso: "tsl:p43"}
+  ]
+
+  const places = [
+    {fi: "Kaikki"},
+    {fi: "Turku"},
+    {fi: "Raisio"},
+    {fi: "Naantali"},
+    {fi: "Kaarina"},
+    {fi: "Lieto"},
+    {fi: "Aura"},
+    {fi: "Rusko"}
+  ]
+
   const dispatch = useAppDispatch()
-  const { setName } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setName, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
   const { filters } = useAppSelector(state => state)
 
   const [searchTerm, setSearchTerm] = useState("")
@@ -39,38 +62,12 @@ const FilterContainer = () => {
     }
   }, [searchTerm])
 
-  // These should be ideally fetched from an API...
-  const categories = [
-    {fi: "Kaikki", term: ""},
-    {fi: "Musiikki", term: "music"},
-    {fi: "Urheilu", term: "sports"},
-    {fi: "Näyttelyt", term: "exhibitions"},
-    {fi: "Festivaalit", term: "festival"},
-    {fi: "Teatteri", term: "theater"},
-    {fi: "Tanssi", term: "dance"},
-    {fi: "Keskustelutilaisuudet", term: "talks"},
-    {fi: "Konsertit", term: "conserts"}
-  ]
-
-  const places = [
-    {fi: "Kaikki"},
-    {fi: "Turku"},
-    {fi: "Raisio"},
-    {fi: "Naantali"},
-    {fi: "Kaarina"},
-    {fi: "Lieto"},
-    {fi: "Aura"},
-    {fi: "Rusko"}
-  ]
-
-  const [activeFilters, setActiveFilters] = useState<string[]>([])
-
   const addFilter = (f: Category) => {
-    setActiveFilters(activeFilters.concat(f.term))
+    dispatch(setEventTypes(filters.eventTypes.concat(f.yso)))
   }
 
   const removeFilter = (f: Category) => {
-    setActiveFilters(activeFilters.filter(filter => filter !== f.term))
+    dispatch(setEventTypes(filters.eventTypes.filter(e => e !== f.yso)))
   }
 
   return (
@@ -84,7 +81,7 @@ const FilterContainer = () => {
               {categories.map(category => (
                 <FilterChip
                   label={category.fi}
-                  active={activeFilters.includes(category.term)}
+                  active={filters.eventTypes.includes(category.yso)}
                   handleClick={() => addFilter(category)}
                   handleDelete={() => removeFilter(category)}
                 />
