@@ -9,7 +9,7 @@ export const store = configureStore({
   reducer: {
     [eventApi.reducerPath]: eventApi.reducer,
     [hobbyApi.reducerPath]: hobbyApi.reducer,
-    events: eventReducer,
+    events: eventReducer.reducer,
     hobbies: hobbyReducer,
     filters: filterSlice.reducer,
   },

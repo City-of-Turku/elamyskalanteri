@@ -5,21 +5,13 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useEventsQuery } from "../../../redux/services/eventApi";
+import { useEventQuery } from "../../../redux/services/eventApi";
 dayjs.locale("fi");
 
 const EventContent = () => {
-  const { data } = useEventsQuery();
   const params: any = useParams();
-
-  const [currentEvent, setCurrentEvent] = useState<any>(null);
-
-  useEffect(() => {
-    const curr = data?.data?.find((event) => event.id === params?.id);
-    setCurrentEvent(curr);
-  }, [data]);
+  const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
 
   return (
     <div>
@@ -48,10 +40,10 @@ const EventContent = () => {
 
         <Box component="div" sx={{ textAlign: "center" }}>
           <Typography variant="h6" component="div">
-            {dayjs(currentEvent?.start_time).format("DD.MM.YYYY klo HH:mm")}
+            {dayjs(data?.start_time).format("DD.MM.YYYY klo HH:mm")}
           </Typography>
           <Typography variant="h4" component="div" sx={{ fontWeight: "bold" }}>
-            {currentEvent?.name.fi}
+            {data?.name?.fi}
           </Typography>
 
           <Box
@@ -68,7 +60,7 @@ const EventContent = () => {
               color="text.secondary"
             >
               <LocationOnIcon color="action" fontSize="small" />
-              &nbsp;{currentEvent?.provider.fi}
+              &nbsp;{data?.provider?.fi}
             </Typography>
 
             <Typography
@@ -90,15 +82,11 @@ const EventContent = () => {
             maxWidth: 906,
           }}
         >
-          <Typography variant="body2">
-            {currentEvent?.short_description.fi}
-          </Typography>
+          <Typography variant="body2">{data?.short_description?.fi}</Typography>
           <br></br>
           <Divider variant="middle" />
           <br></br>
-          <Typography variant="body2">
-            {currentEvent?.description.fi}
-          </Typography>
+          <Typography variant="body2">{data?.description?.fi}</Typography>
         </Box>
       </Box>
     </div>

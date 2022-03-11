@@ -9,13 +9,16 @@ import FilterContainer from "../../filterContainer/filterContainer";
 import EventCard from "../events/EventCard";
 
 const EventList = () => {
-  const { data, error, isLoading } = useEventsQuery();
+
+  const { filters } = useAppSelector(state => state)
+
+  const [page, setPage] = useState(1)
+  const { data, error, isLoading, isFetching } = useEventsQuery({ page: 1, searchTerm: filters.name || ""});
 
   console.log(data);
 
   const [filteredData, setFilteredData] = useState<any>([]);
 
-  const { filters } = useAppSelector((state) => state);
 
   useEffect(() => {
     let res: any;
@@ -29,12 +32,13 @@ const EventList = () => {
   return (
     <Box sx={{ p: 2 }}>
       <FilterContainer />
+      <button onClick={() => setPage(page + 1)}>increment</button>
       <Grid
         sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
         container
         spacing={5}
       >
-        {isLoading && (
+        {isLoading || isFetching && (
           <Box
             sx={{
               position: "absolute",
@@ -45,7 +49,9 @@ const EventList = () => {
             <CircularProgress />
           </Box>
         )}
-        {!isLoading &&
+        {!isLoading
+          && !isFetching
+          &&
           !error &&
           filteredData?.map((event: any) => {
             return (

@@ -76,7 +76,7 @@ const EventCard = ({
               component="div"
               sx={{ fontWeight: "bold" }}
             >
-              {name.fi}
+              {name?.fi}
             </Typography>
 
             <Typography
@@ -87,7 +87,7 @@ const EventCard = ({
               sx={{ display: "flex", flexDirection: "row" }}
             >
               <LocationOnIcon color="action" fontSize="small" />
-              {provider.fi}
+              {provider?.fi}
             </Typography>
             <Typography variant="body2">{short_description.fi}</Typography>
           </CardContent>

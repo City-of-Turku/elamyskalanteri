@@ -1,0 +1,16 @@
+.container {
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h3 {
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.childContainer {
+    padding: 0 16px 24px 16px;
+}
