@@ -38,24 +38,28 @@ const EventContent = () => {
           src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
         ></Box>
 
-        <Box component="div" sx={{ textAlign: "center" }}>
+        <Box
+          component="div"
+          sx={{
+            width: "58%",
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: 906,
+          }}
+        >
           <Typography variant="h6" component="div">
             {dayjs(data?.start_time).format("DD.MM.YYYY klo HH:mm")}
           </Typography>
-          <Typography variant="h4" component="div" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{ fontWeight: "bold", pb: 2 }}
+          >
             {data?.name?.fi}
           </Typography>
-
-          <Box
-            component="div"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              m: 2,
-            }}
-          >
+          <Box component="div">
             <Typography
-              sx={{ display: "flex", flexDirection: "row", pb: 2 }}
+              sx={{ display: "flex", flexDirection: "row", pb: 1 }}
               variant="body2"
               color="text.secondary"
             >
@@ -64,7 +68,7 @@ const EventContent = () => {
             </Typography>
 
             <Typography
-              sx={{ display: "flex", flexDirection: "row" }}
+              sx={{ display: "flex", flexDirection: "row", pb: 1 }}
               variant="body2"
               color="text.secondary"
             >
@@ -78,15 +82,19 @@ const EventContent = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            m: 2,
             maxWidth: 906,
+            p: 4,
           }}
         >
-          <Typography variant="body2">{data?.short_description?.fi}</Typography>
+          <Typography sx={{ fontWeight: "bold", fontSize: "default" }}>
+            {data?.short_description?.fi}
+          </Typography>
           <br></br>
-          <Divider variant="middle" />
+          <Divider textAlign="left" />
           <br></br>
-          <Typography variant="body2">{data?.description?.fi}</Typography>
+          <Typography sx={{ fontWeight: "light", fontSize: "default" }}>
+            {data?.description?.fi}
+          </Typography>
         </Box>
       </Box>
     </div>
