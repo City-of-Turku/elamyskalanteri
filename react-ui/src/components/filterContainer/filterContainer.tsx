@@ -1,4 +1,4 @@
-import {Chip, Icon} from "@mui/material"
+import {Chip, Icon, TextField} from "@mui/material"
 import {useEffect, useState} from "react";
 import styles from "./FilterContainer.module.css"
 import {useAppDispatch, useAppSelector} from "../../hooks/rtkHooks";
@@ -8,6 +8,11 @@ import Accordion from "../Accordion/Accordion";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDayjs from "@mui/lab/AdapterDayjs"
+import fi from "dayjs/locale/fi"
+import { StaticDatePicker } from "@mui/lab";
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 interface Category {
   fi: string,
@@ -44,6 +49,7 @@ const FilterContainer = () => {
   const { setName, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
 
   const [searchTerm, setSearchTerm] = useState("")
+  const [date, setDate] = useState<any>(new Date())
 
   useEffect(() => {
     // Updates redux store after user has stopped typing (limits API calls..)
@@ -82,50 +88,77 @@ const FilterContainer = () => {
   return (
     <div className={styles.container}>
       <h2 style={{ fontWeight: 300, marginBottom: "16px"}}>Löydä parhaimmat jutut</h2>
-      <div className={styles.searchContainer}>
-        <div style={{ borderBottom: "1px solid lightgray"}}>
-          <Accordion title={"Mitä?"} icon={LocalActivityIcon}>
-            <p style={{ margin: "0 4px 4px 4px"}}><b>KATEGORIA</b></p>
-            <div className={styles.chipContainer}>
-              {categories.map(category => (
-                <FilterChip
-                  label={category.fi}
-                  active={filters.eventTypes.includes(category.yso)}
-                  handleClick={() => addFilter(category)}
-                  handleDelete={() => removeFilter(category)}
-                />
-              ))}
-            </div>
-          </Accordion>
-        </div>
-        <div style={{ borderBottom: "1px solid lightgray"}}>
-          <Accordion
-            title={"Missä?"}
-            icon={LocationOnIcon}
+      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center"}}>
+        <div style={{ border: "1px solid lightgrey", borderRadius: "16px", padding: "24px 16px"}}>
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+            <h3 style={{ margin: "0 0 0 24px"}}>Milloin?</h3>
+            <Icon component={EventAvailableIcon} style={{ fontSize: 32}} />
+          </div>
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            locale={fi}
           >
-            <p style={{ margin: "0 4px 4px 4px"}}>
-              <b>
-                PAIKKAKUNTA
-              </b>
-            </p>
-            {places.map(place => (
-              <FilterChip
-                label={place.fi}
-                active={false}
-              />
-            ))}
-          </Accordion>
+            <StaticDatePicker
+              displayStaticWrapperAs={"desktop"}
+              openTo={"day"}
+              value={date}
+              onChange={(newVal) => {
+                setDate(newVal)
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
-        <div style={{ padding: "24px 16px", display: "flex", alignItems: "center"}}>
-          <input
-            className={styles.search}
-            type="search"
-            placeholder={"Hae (nimi, paikka, aihe)"}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <Icon component={SearchIcon} style={{fontSize: 32}}/>
-        </div>
+          <div>
+            <div className={styles.searchContainer}>
+              <div style={{ borderBottom: "1px solid lightgray"}}>
+                <Accordion title={"Mitä?"} icon={LocalActivityIcon}>
+                  <p style={{ margin: "0 4px 4px 4px"}}><b>KATEGORIA</b></p>
+                  <div className={styles.chipContainer}>
+                    {categories.map(category => (
+                      <FilterChip
+                        label={category.fi}
+                        active={filters.eventTypes.includes(category.yso)}
+                        handleClick={() => addFilter(category)}
+                        handleDelete={() => removeFilter(category)}
+                      />
+                    ))}
+                  </div>
+                </Accordion>
+              </div>
+              <div style={{ borderBottom: "1px solid lightgray"}}>
+                <Accordion
+                  title={"Missä?"}
+                  icon={LocationOnIcon}
+                >
+                  <p style={{ margin: "0 4px 4px 4px"}}>
+                    <b>
+                      PAIKKAKUNTA
+                    </b>
+                  </p>
+                  {places.map(place => (
+                    <FilterChip
+                      label={place.fi}
+                      active={false}
+                    />
+                  ))}
+                </Accordion>
+              </div>
+              <div className={styles.inputWrapper}>
+                <input
+                  className={styles.search}
+                  type="text"
+                  placeholder={"Hae (nimi, paikka, aihe)"}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Icon
+                  component={SearchIcon}
+                  style={{fontSize: 32}}
+                />
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   )
@@ -147,7 +180,7 @@ const FilterChip = ({label, active, handleClick, handleDelete}: any) => {
       <Chip
         label={label}
         variant={active ? "filled" : "outlined"}
-        sx={{ margin: "4px 4px", backgroundColor: "#C2CEDB"}}
+        sx={{ margin: "4px 4px", backgroundColor: "#C2CEDB" }}
         onDelete={() => handleDelete()}
 
       />

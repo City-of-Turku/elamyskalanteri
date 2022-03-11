@@ -14,7 +14,11 @@ const EventList = () => {
   const { filters } = useAppSelector(state => state)
 
   const [page, setPage] = useState(1)
-  const { data, error, isLoading, isFetching } = useEventsQuery({ page: page, searchTerm: filters.name || "", keyword: filters.eventTypes.join()});
+  const { data, error, isLoading, isFetching } = useEventsQuery({
+    page: page,
+    searchTerm: filters.name || "",
+    keyword: filters.eventTypes.join(),
+  });
 
   useEffect(() => {
     setPage(1)

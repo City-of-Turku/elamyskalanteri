@@ -15,7 +15,7 @@
     flex-direction: column;
     width: 100%;
     /* margin-bottom might be unnecessary in most use cases..*/
-    margin: 0 0 100px 0;
+    margin: 0 0 24px 0;
 }
 
 .chipContainer {
@@ -33,11 +33,17 @@
 }
 
 .searchContainer {
-    width: 40%;
+    margin: 0 32px;
+    width: 600px;
     border-radius: 16px;
     border: 1px solid lightgray;
 }
 
+.inputWrapper {
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
+}
 
 @media only screen and (max-width: 1200px) {
     .chipContainer {
@@ -45,7 +51,6 @@
     }
 
 }
-
 
 @media only screen and (max-width: 769px) {
     .chipContainer, .searchContainer {
