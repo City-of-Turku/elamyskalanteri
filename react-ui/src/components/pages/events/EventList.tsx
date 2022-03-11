@@ -21,7 +21,7 @@ const EventList = () => {
   }, [filters.name, filters.eventTypes])
 
   return (
-    <Box sx={{ p: 5 }}>
+    <Box sx={{ p: 2 }}>
       <FilterContainer />
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "8px 0 24px 0"}}>
         <Button
@@ -43,7 +43,7 @@ const EventList = () => {
         </Button>
       </div>
       <Grid
-        sx={{ flexGrow: 1, alignItems: "center", justifyContent: "center" }}
+        sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
         container
         spacing={5}
       >
@@ -53,7 +53,6 @@ const EventList = () => {
               position: "absolute",
               left: "50%",
               top: "50%",
-              transform: "translate(-50%, -50%)",
             }}
           >
             <CircularProgress />
