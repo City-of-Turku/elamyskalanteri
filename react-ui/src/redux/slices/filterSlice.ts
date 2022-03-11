@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface filterState {
-  eventTypes: any,
+  eventTypes: string[],
   name: string,
 }
 

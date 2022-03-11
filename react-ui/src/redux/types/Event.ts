@@ -6,17 +6,11 @@ interface Event {
   short_description: {
     fi: string;
   };
-  start_time: Date;
+  start_time: string;
   location_extra_info: {
     fi: string;
   };
   info_url: {
-    fi: string;
-  };
-  provider: {
-    fi: string;
-  };
-  description: {
     fi: string;
   };
 }

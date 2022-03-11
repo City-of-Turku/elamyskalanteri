@@ -4,6 +4,7 @@ import { GetEventResponse } from "../types/Event";
 interface Options {
   page: number,
   searchTerm: string,
+  keyword: string,
 }
 
 export const eventApi = createApi({
@@ -12,10 +13,10 @@ export const eventApi = createApi({
     baseUrl: "https://testilinkedevents-api.turku.fi/v1",
   }),
   endpoints: (builder) => ({
-    events: builder.query<GetEventResponse, Options>({
-      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm}`,
+    events: builder.query<any, Options>({
+      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}`,
     }),
-    event: builder.query<GetEventResponse, string>({
+    event: builder.query<any, string>({
       query: (id) => `/event/${id}/?include=keywords`,
     }),
   }),

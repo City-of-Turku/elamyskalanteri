@@ -7,32 +7,41 @@ import { useAppSelector } from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../filterContainer/filterContainer";
 import EventCard from "../events/EventCard";
+import { Button } from "@mui/material";
 
 const EventList = () => {
 
   const { filters } = useAppSelector(state => state)
 
   const [page, setPage] = useState(1)
-  const { data, error, isLoading, isFetching } = useEventsQuery({ page: 1, searchTerm: filters.name || ""});
-
-  console.log(data);
-
-  const [filteredData, setFilteredData] = useState<any>([]);
-
+  const { data, error, isLoading, isFetching } = useEventsQuery({ page: page, searchTerm: filters.name || "", keyword: filters.eventTypes.join()});
 
   useEffect(() => {
-    let res: any;
-    res = filterByEventType(data?.data, filters.eventTypes);
-    res = res?.filter((r: any) =>
-      r.name.fi.toLowerCase().includes(filters.name.toLowerCase())
-    );
-    setFilteredData(res);
-  }, [data, filters]);
+    setPage(1)
+  }, [filters.name, filters.eventTypes])
 
   return (
     <Box sx={{ p: 2 }}>
       <FilterContainer />
-      <button onClick={() => setPage(page + 1)}>increment</button>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "8px 0 24px 0"}}>
+        <Button
+          variant={"contained"}
+          sx={{mx: 1}}
+          onClick={() => setPage(page - 1)}
+          disabled={!data?.meta.previous}
+        >
+          Edellinen sivu
+        </Button>
+        <p>Sivu {page}</p>
+        <Button
+          variant={"contained"}
+          sx={{mx: 1}}
+          onClick={() => setPage(page + 1)}
+          disabled={!data?.meta.next}
+        >
+          Seuraava sivu
+        </Button>
+      </div>
       <Grid
         sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
         container
@@ -53,7 +62,7 @@ const EventList = () => {
           && !isFetching
           &&
           !error &&
-          filteredData?.map((event: any) => {
+          data.data?.map((event: any) => {
             return (
               <Grid key={event.id} item>
                 <EventCard {...event} />
