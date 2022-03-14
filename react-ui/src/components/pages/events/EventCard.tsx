@@ -68,7 +68,7 @@ const EventCard = ({
           />
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div">
-              {dayjs(start_time).format("DD.MM.YYYY klo HH:mm")}
+              {dayjs(start_time).format("LLL")}
             </Typography>
             <Typography
               gutterBottom
