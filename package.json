@@ -4,8 +4,8 @@
   "description": "Elämyskalenteri event calendar",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-react": "pushd react-ui && npm start && popd",
-    "start-embed": "pushd embed && node serve.js && popd"
+    "start-react": "cd react-ui && npm start",
+    "start-embed": "cd embed && node serve.js"
   },
   "repository": {
     "type": "git",
