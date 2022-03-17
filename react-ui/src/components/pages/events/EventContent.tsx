@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import { Link, useParams } from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
@@ -16,7 +17,22 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
+const useStyles = makeStyles({
+  sideInfoTitle: {
+    fontSize: "default",
+    fontWeight: "bold",
+  },
+  sideInfoContent: {
+    fontSize: "subtitle1",
+    fontWeight: "light",
+    lineHeight: 2,
+    letterSpacing: 1,
+    padding: 5,
+  },
+});
+
 const EventContent = () => {
+  const classes = useStyles();
   const params: any = useParams();
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
 
@@ -35,7 +51,10 @@ const EventContent = () => {
       >
         <Img
           alt="complex"
-          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+          src={
+            data?.images[0]?.url ||
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+          }
         />
       </Grid>
       <Grid container spacing={5}>
@@ -63,6 +82,7 @@ const EventContent = () => {
                 <LocationOnIcon color="action" fontSize="small" />
                 &nbsp;{data?.provider?.fi}
               </Typography>
+
               <Typography
                 sx={{
                   display: "flex",
@@ -74,8 +94,14 @@ const EventContent = () => {
                 color="text.secondary"
               >
                 <LinkIcon color="primary" fontSize="small" />
-                {/* {currentEvent?.info_url.fi} */}
-                &nbsp; www.testi.fi
+                &nbsp;{" "}
+                <a
+                  href={`${data?.info_url?.fi}`}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  {data?.info_url?.fi || "www.testi.fi"}
+                </a>
               </Typography>
 
               <Grid item>
@@ -109,34 +135,37 @@ const EventContent = () => {
           </Grid>
 
           <Grid item p={5}>
-            <Typography sx={{ fontWeight: "bold", fontSize: "default" }}>
-              Hinta
+            <Typography className={classes.sideInfoTitle}>Hinta</Typography>
+            <Typography component="div" className={classes.sideInfoContent}>
+              {data?.offers[0]?.price?.fi || "-"}
             </Typography>
-            <Typography variant="subtitle1" component="div">
-              Liput 12€
-            </Typography>
-            <Typography sx={{ fontWeight: "bold", fontSize: "default" }}>
-              Ikäraja
-            </Typography>
-            <Typography variant="subtitle1" component="div">
+            <Typography className={classes.sideInfoTitle}>Ikäraja</Typography>
+            <Typography className={classes.sideInfoContent} component="div">
               Alle 12 v.
             </Typography>
-            <Typography sx={{ fontWeight: "bold", fontSize: "default" }}>
+            <Typography className={classes.sideInfoTitle}>
               Järjestäjä
             </Typography>
-            <Typography variant="subtitle1" component="div">
-              Lorem ipsum Ry.
+            <Typography className={classes.sideInfoContent} component="div">
+              {data?.provider?.fi}
             </Typography>
-            <Typography sx={{ fontWeight: "bold", fontSize: "default" }}>
+            <Typography className={classes.sideInfoTitle}>
               Tutustu lisää
             </Typography>
-            <Typography variant="subtitle1" component="div">
+            <Typography
+              className={classes.sideInfoContent}
+              component="div"
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
               Facebook Instagram Twitter Video
             </Typography>
-            <Typography sx={{ fontWeight: "bold", fontSize: "default" }}>
+            <Typography className={classes.sideInfoTitle}>
               Jaa kaverille
             </Typography>
-            <Typography variant="subtitle1" component="div"></Typography>
+            <Typography
+              className={classes.sideInfoContent}
+              component="div"
+            ></Typography>
           </Grid>
         </Grid>
       </Grid>

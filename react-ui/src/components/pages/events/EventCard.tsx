@@ -31,9 +31,6 @@ interface EventProps {
     fi: string;
   };
   start_time: Date;
-  location_extra_info: {
-    fi: string;
-  };
   info_url: {
     fi: string;
   };
@@ -50,7 +47,6 @@ const EventCard = ({
   name,
   short_description,
   start_time,
-  location_extra_info,
   info_url,
   provider,
 }: EventProps) => {
