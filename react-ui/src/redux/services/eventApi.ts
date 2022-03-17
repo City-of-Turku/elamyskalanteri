@@ -5,6 +5,7 @@ interface Options {
   page: number,
   searchTerm: string,
   keyword: string,
+  features: string,
 }
 
 export const eventApi = createApi({
@@ -14,7 +15,7 @@ export const eventApi = createApi({
   }),
   endpoints: (builder) => ({
     events: builder.query<any, Options>({
-      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}`,
+      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}&${options.features}&bbox=${options.bbox}`,
     }),
     event: builder.query<any, string>({
       query: (id) => `/event/${id}/?include=keywords`,

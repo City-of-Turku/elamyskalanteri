@@ -18,6 +18,8 @@ const EventList = () => {
     page: page,
     searchTerm: filters.name || "",
     keyword: filters.eventTypes.join(),
+    features: filters.eventFeatures.join("&"),
+    bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : ""
   });
 
   useEffect(() => {
