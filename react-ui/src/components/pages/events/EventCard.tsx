@@ -40,6 +40,11 @@ interface EventProps {
   description: {
     fi: string;
   };
+  images: [
+    {
+      url: string;
+    }
+  ];
 }
 
 const EventCard = ({
@@ -49,6 +54,7 @@ const EventCard = ({
   start_time,
   info_url,
   provider,
+  images,
 }: EventProps) => {
   const classes = useStyles();
   return (
@@ -60,7 +66,10 @@ const EventCard = ({
         <CardActionArea>
           <CardMedia
             component="img"
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            src={
+              images[0]?.url ||
+              "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            }
           />
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div">
