@@ -38,7 +38,14 @@ const EventContent = () => {
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
   return (
     <div>
-      <Link href="/" style={{ textDecoration: "none", color: "black" }}>
+      <Link
+        href="/"
+        style={{
+          textDecoration: "none",
+          color: "black",
+        }}
+        sx={{ display: "flex", p: 2 }}
+      >
         <ArrowBackIcon />
       </Link>
       <Grid

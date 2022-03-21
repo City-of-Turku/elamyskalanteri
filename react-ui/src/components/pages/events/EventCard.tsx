@@ -1,6 +1,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { CardActionArea } from "@mui/material";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,8 +15,10 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
+import PropTypes from "prop-types";
 import * as React from "react";
 import { Link } from "react-router-dom";
+
 dayjs.locale("fi");
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -36,7 +39,7 @@ export interface DialogTitleProps {
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    height: 450,
+    height: 460,
     border: "none",
     boxShadow: "none",
   },
@@ -63,6 +66,9 @@ interface EventProps {
   description: {
     fi: string;
   };
+  location_extra_info: {
+    fi: string;
+  };
   images: [
     {
       url: string;
@@ -84,7 +90,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
             position: "absolute",
             right: 8,
             top: 8,
-            color: (theme) => theme.palette.grey[500],
+            color: (theme) => theme.palette.grey[900],
           }}
         >
           <CloseIcon />
@@ -94,12 +100,17 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
+
 const EventCard = ({
   id,
   name,
   short_description,
   start_time,
-  info_url,
+  location_extra_info,
   provider,
   images,
 }: EventProps) => {
@@ -161,15 +172,28 @@ const EventCard = ({
         aria-labelledby="customized-dialog-title"
         open={open}
       >
+        <Box
+          component="img"
+          sx={{}}
+          alt="The house from the offer."
+          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+        />
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
         >
           {name?.fi}
         </BootstrapDialogTitle>
+
         <DialogContent dividers>
-          <Typography gutterBottom>{short_description.fi}</Typography>
-          <Typography gutterBottom></Typography>
+          <Typography gutterBottom sx={{ fontWeight: "bold" }}>
+            {" "}
+            {dayjs(start_time).format("LLL")}
+          </Typography>
+          <Typography gutterBottom>{short_description?.fi}</Typography>
+          <Typography gutterBottom color="text.secondary">
+            {location_extra_info?.fi}
+          </Typography>
           <Typography gutterBottom></Typography>
         </DialogContent>
         <DialogActions></DialogActions>
