@@ -1,38 +1,43 @@
+import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
-import { filterByEventType } from "../../../functions/sorters";
 import { useAppSelector } from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../filterContainer/filterContainer";
 import EventCard from "../events/EventCard";
-import { Button } from "@mui/material";
 
 const EventList = () => {
+  const { filters } = useAppSelector((state) => state);
 
-  const { filters } = useAppSelector(state => state)
-
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
   const { data, error, isLoading, isFetching } = useEventsQuery({
     page: page,
     searchTerm: filters.name || "",
     keyword: filters.eventTypes.join(),
     features: filters.eventFeatures.join("&"),
-    bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : ""
+    bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
   });
 
   useEffect(() => {
-    setPage(1)
-  }, [filters.name, filters.eventTypes])
+    setPage(1);
+  }, [filters.name, filters.eventTypes]);
 
   return (
     <Box sx={{ p: 2 }}>
       <FilterContainer />
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "8px 0 24px 0"}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "8px 0 24px 0",
+        }}
+      >
         <Button
           variant={"contained"}
-          sx={{mx: 1}}
+          sx={{ mx: 1 }}
           onClick={() => setPage(page - 1)}
           disabled={!data?.meta.previous}
         >
@@ -41,7 +46,7 @@ const EventList = () => {
         <p>Sivu {page}</p>
         <Button
           variant={"contained"}
-          sx={{mx: 1}}
+          sx={{ mx: 1 }}
           onClick={() => setPage(page + 1)}
           disabled={!data?.meta.next}
         >
@@ -53,20 +58,20 @@ const EventList = () => {
         container
         spacing={5}
       >
-        {isLoading || isFetching && (
-          <Box
-            sx={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-            }}
-          >
-            <CircularProgress />
-          </Box>
-        )}
-        {!isLoading
-          && !isFetching
-          &&
+        {isLoading ||
+          (isFetching && (
+            <Box
+              sx={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ))}
+        {!isLoading &&
+          !isFetching &&
           !error &&
           data.data?.map((event: any) => {
             return (

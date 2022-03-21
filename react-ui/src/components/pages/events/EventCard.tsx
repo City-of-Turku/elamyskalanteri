@@ -1,14 +1,37 @@
+import CloseIcon from "@mui/icons-material/Close";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea } from "@mui/material";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
+import * as React from "react";
 import { Link } from "react-router-dom";
-
 dayjs.locale("fi");
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
+
+export interface DialogTitleProps {
+  id: string;
+  children?: React.ReactNode;
+  onClose: () => void;
+}
 
 const useStyles = makeStyles({
   root: {
@@ -47,6 +70,30 @@ interface EventProps {
   ];
 }
 
+const BootstrapDialogTitle = (props: DialogTitleProps) => {
+  const { children, onClose, ...other } = props;
+
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+};
+
 const EventCard = ({
   id,
   name,
@@ -56,6 +103,13 @@ const EventCard = ({
   provider,
   images,
 }: EventProps) => {
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -94,11 +148,32 @@ const EventCard = ({
               <LocationOnIcon color="action" fontSize="small" />
               {provider?.fi}
             </Typography>
-            <Typography variant="body2">{short_description.fi}</Typography>
+            <Typography variant="body2"></Typography>
           </CardContent>
         </CardActionArea>
       </Link>
-      <CardActions></CardActions>
+
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open dialog
+      </Button>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <BootstrapDialogTitle
+          id="customized-dialog-title"
+          onClose={handleClose}
+        >
+          {name?.fi}
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+          <Typography gutterBottom>{short_description.fi}</Typography>
+          <Typography gutterBottom></Typography>
+          <Typography gutterBottom></Typography>
+        </DialogContent>
+        <DialogActions></DialogActions>
+      </BootstrapDialog>
     </Card>
   );
 };

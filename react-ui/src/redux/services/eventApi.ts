@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GetEventResponse } from "../types/Event";
 
 interface Options {
-  page: number,
-  searchTerm: string,
-  keyword: string,
-  features: string,
+  page: number;
+  searchTerm: string;
+  keyword: string;
+  features: string;
+  bbox: string;
 }
 
 export const eventApi = createApi({
@@ -15,7 +15,8 @@ export const eventApi = createApi({
   }),
   endpoints: (builder) => ({
     events: builder.query<any, Options>({
-      query: (options) => `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}&${options.features}&bbox=${options.bbox}`,
+      query: (options) =>
+        `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}&${options.features}&bbox=${options.bbox}`,
     }),
     event: builder.query<any, string>({
       query: (id) => `/event/${id}/?include=keywords`,

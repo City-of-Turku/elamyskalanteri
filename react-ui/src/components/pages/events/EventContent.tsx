@@ -3,11 +3,12 @@ import LinkIcon from "@mui/icons-material/Link";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
 
 dayjs.locale("fi");
@@ -35,10 +36,9 @@ const EventContent = () => {
   const classes = useStyles();
   const params: any = useParams();
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
-
   return (
     <div>
-      <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+      <Link href="/" style={{ textDecoration: "none", color: "black" }}>
         <ArrowBackIcon />
       </Link>
       <Grid
@@ -57,9 +57,9 @@ const EventContent = () => {
           }
         />
       </Grid>
-      <Grid container spacing={5}>
+      <Grid component="div" container spacing={5}>
         <Grid item xs={20} sm container>
-          <Grid item xs container direction="column" spacing={2} p={5}>
+          <Grid item xs container direction="column" spacing={2} p={6}>
             <Grid item xs={2}>
               <Typography
                 component="div"
@@ -95,13 +95,14 @@ const EventContent = () => {
               >
                 <LinkIcon color="primary" fontSize="small" />
                 &nbsp;{" "}
-                <a
+                <Link
                   href={`${data?.info_url?.fi}`}
                   target="_blank"
-                  style={{ textDecoration: "none" }}
+                  rel="noopener"
+                  style={{ textDecoration: "none", color: "primary" }}
                 >
                   {data?.info_url?.fi || "www.testi.fi"}
-                </a>
+                </Link>
               </Typography>
 
               <Grid item>
@@ -134,7 +135,7 @@ const EventContent = () => {
             </Grid>
           </Grid>
 
-          <Grid item p={5}>
+          <Grid component="div" item p={6}>
             <Typography className={classes.sideInfoTitle}>Hinta</Typography>
             <Typography component="div" className={classes.sideInfoContent}>
               {data?.offers[0]?.price?.fi || "-"}
