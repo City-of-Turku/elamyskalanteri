@@ -38,13 +38,14 @@ export interface DialogTitleProps {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    height: 460,
+    width: 345,
+    height: 400,
     border: "none",
     boxShadow: "none",
   },
   media: {
-    height: 140,
+    maxWidth: 345,
+    height: 132,
   },
 });
 
@@ -130,6 +131,7 @@ const EventCard = ({
       >
         <CardActionArea>
           <CardMedia
+            className={classes.media}
             component="img"
             src={
               images[0]?.url ||
@@ -176,7 +178,10 @@ const EventCard = ({
           component="img"
           sx={{}}
           alt="The house from the offer."
-          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+          src={
+            images[0]?.url ||
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+          }
         />
         <BootstrapDialogTitle
           id="customized-dialog-title"
