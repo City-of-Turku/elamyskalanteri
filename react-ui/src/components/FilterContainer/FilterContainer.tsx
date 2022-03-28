@@ -6,14 +6,13 @@ import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../redux/slices/filterSlice";
 import Accordion from "../Accordion/Accordion";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SearchIcon from '@mui/icons-material/Search';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import Calendar from "../Calendar/Calendar"
-import { getCoords } from "../../functions/boundingBox";
 import LocationContainer from "./LocationContainer/LocationContainer";
+import SearchBox from "./SearchBox/SearchBox";
 
-interface Category {
+interface ICategory {
   fi: string,
   yso: string
 }
@@ -48,40 +47,15 @@ const FilterContainer = () => {
   const { filters } = useAppSelector(state => state)
   const { setName, setEventTypes, setFeatures, setBbox } = bindActionCreators(filterSlice.actions, dispatch)
 
-  const [searchTerm, setSearchTerm] = useState("")
   //const [features, setFeatures] = useState<string[]>([])
 
-  useEffect(() => {
-    // Updates redux store after user has stopped typing (limits API calls..)
-    const sendSearchTerm = () => {
-      // Update search terms only when query is longer than 2 chars
-      if (searchTerm.length > 2) {
-        setName(searchTerm)
-        return
-      }
-      // If the query is smaller than 3 chars, just make it blank.
-      if (searchTerm.length <= 2) {
-        setName("")
-      }
-    }
-    // Controls timeout, after which user's query will be sent to the server
-    const timer = setTimeout(() => {
-      sendSearchTerm()
-    }, 1000)
-
-    // cleans the timeout after component unmounts
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [searchTerm])
-
   // Adds even type to the redux store
-  const addFilter = (f: Category) => {
+  const addFilter = (f: ICategory) => {
     dispatch(setEventTypes(filters.eventTypes.concat(f.yso)))
   }
 
   // Filters event type from the redux store
-  const removeFilter = (f: Category) => {
+  const removeFilter = (f: ICategory) => {
     dispatch(setEventTypes(filters.eventTypes.filter(e => e !== f.yso)))
   }
 
@@ -93,11 +67,10 @@ const FilterContainer = () => {
     dispatch(setFeatures(filters.eventFeatures.filter(feature => feature !== e.target.value)))
   }
 
-
   return (
     <div className={styles.container}>
       <h2 style={{ fontWeight: 300, marginBottom: "16px"}}>Löydä parhaimmat jutut</h2>
-      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", flexWrap: "wrap"}}>
+      <div className={styles.innerContainer}>
         <div style={{ border: "1px solid lightgrey", borderRadius: "16px", padding: "24px 16px"}}>
           <TitleRow/>
           <Calendar/>
@@ -108,7 +81,7 @@ const FilterContainer = () => {
                 <Accordion title={"Mitä?"} icon={LocalActivityIcon}>
                   <p style={{ margin: "0 4px 4px 4px"}}><b>KATEGORIA</b></p>
                   <div className={styles.chipContainer}>
-                    {categories.map(category => (
+                    {categories.map((category: ICategory) => (
                       <FilterChip
                         label={category.fi}
                         active={filters.eventTypes.includes(category.yso)}
@@ -198,19 +171,7 @@ const FilterContainer = () => {
                   <LocationContainer />
                 </Accordion>
               </div>
-              <div className={styles.inputWrapper}>
-                <input
-                  className={styles.search}
-                  type="text"
-                  placeholder={"Hae (nimi, paikka, aihe)"}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <Icon
-                  component={SearchIcon}
-                  style={{fontSize: 32}}
-                />
-              </div>
+              <SearchBox />
             </div>
           </div>
       </div>
@@ -225,10 +186,7 @@ const TitleRow = () => {
   return (
     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
       <h3 style={{ margin: "0 0 0 24px"}}>Milloin?</h3>
-      <Icon
-        component={EventAvailableIcon}
-        style={{ fontSize: 32}}
-      />
+      <EventAvailableIcon sx={{ fontSize: 32 }} />
     </div>
   )
 }

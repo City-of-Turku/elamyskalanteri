@@ -1,4 +1,18 @@
-export const getCoords = (pos: { coords: any }, d: number) => {
+interface IPos {
+    coords: {
+      latitude: number,
+      longitude: number,
+    }
+}
+
+interface ICoords {
+  west: number
+  south: number
+  east: number,
+  north: number
+}
+
+export const getCoords = (pos: IPos, d: number): ICoords  => {
 
   const R = 6378.1 // Radius of the Earth, KM
   const bearingN = 0 // Bearing North
@@ -22,8 +36,8 @@ export const getCoords = (pos: { coords: any }, d: number) => {
   //const lng2S = lng1 + Math.atan2(Math.sin(bearingS) * Math.sin(d / R) * Math.cos(lat1), Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2S))
   const lng2W = lng1 + Math.atan2(Math.sin(bearingW) * Math.sin(d / R) * Math.cos(lat1), Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2W))
 
-  console.log("original: ", pos.coords.latitude, pos.coords.longitude)
-  console.log("N: ",rad2Deg(lat2N), " E: ", rad2Deg(lng2E ), " S: ", rad2Deg(lat2S), " W: ", rad2Deg(lng2W))
+  //console.log("original: ", pos.coords.latitude, pos.coords.longitude)
+  //console.log("N: ",rad2Deg(lat2N), " E: ", rad2Deg(lng2E ), " S: ", rad2Deg(lat2S), " W: ", rad2Deg(lng2W))
 
   return {
     west: rad2Deg(lng2W),

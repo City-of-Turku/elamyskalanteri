@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
-import FilterContainer from "../../filterContainer/filterContainer";
+import FilterContainer from "../../FilterContainer/FilterContainer";
 import ToggleButtons from "../../toggleButton/toggleButtons";
 import EventCard from "./EventCard";
 import List from "./List";

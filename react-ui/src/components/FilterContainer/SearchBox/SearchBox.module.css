@@ -1,0 +1,12 @@
+.inputWrapper {
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    width: calc(100% - 32px);
+}

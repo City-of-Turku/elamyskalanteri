@@ -1,9 +1,9 @@
 import AdapterDayjs from "@mui/lab/AdapterDayjs";
-import {StaticDatePicker} from "@mui/lab";
-import {TextField} from "@mui/material";
+import { StaticDatePicker } from "@mui/lab";
+import { TextField } from "@mui/material";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import fi from "dayjs/locale/fi"
-import {useState} from "react";
+import { useState } from "react";
 
 const Calendar = () => {
 

@@ -18,18 +18,19 @@
     margin: 0 0 24px 0;
 }
 
+.innerContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
 .chipContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.search {
-    font-size: 20px;
-    border: none;
-    outline: none;
-    width: calc(100% - 32px);
-
 }
 
 .searchContainer {
@@ -37,12 +38,6 @@
     width: 800px;
     border-radius: 16px;
     border: 1px solid lightgray;
-}
-
-.inputWrapper {
-    padding: 24px 16px;
-    display: flex;
-    align-items: center;
 }
 
 @media only screen and (max-width: 1200px) {

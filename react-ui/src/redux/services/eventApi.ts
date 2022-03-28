@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface Options {
+interface IOptions {
   page: number;
   searchTerm: string;
   keyword: string;
@@ -14,12 +14,12 @@ export const eventApi = createApi({
     baseUrl: "https://testilinkedevents-api.turku.fi/v1",
   }),
   endpoints: (builder) => ({
-    events: builder.query<any, Options>({
-      query: (options) =>
+    events: builder.query<any, IOptions>({
+      query: (options: IOptions) =>
         `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}&${options.features}&bbox=${options.bbox}`,
     }),
     event: builder.query<any, string>({
-      query: (id) => `/event/${id}/?include=keywords`,
+      query: (id: any) => `/event/${id}/?include=keywords`,
     }),
   }),
 });
