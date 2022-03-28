@@ -10,7 +10,7 @@ const HobbyList = () => {
   return (
     <Box sx={{ p: 5 }}>
       <Grid
-        sx={{ flexGrow: 1, alignItems: "center", justifyContent: "center" }}
+        sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
         container
         spacing={5}
       >
@@ -20,7 +20,6 @@ const HobbyList = () => {
               position: "absolute",
               left: "50%",
               top: "50%",
-              transform: "translate(-50%, -50%)",
             }}
           >
             <CircularProgress />

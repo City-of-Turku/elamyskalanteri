@@ -1,17 +1,23 @@
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { CardActionArea, CardActions } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
+import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width: 345,
+    height: 400,
+    border: "none",
+    boxShadow: "none",
   },
   media: {
-    height: 140,
+    maxWidth: 345,
+    height: 132,
   },
 });
 
@@ -27,6 +33,14 @@ interface HobbyProps {
   location_extra_info: {
     fi: string;
   };
+  provider: {
+    fi: string;
+  };
+  images: [
+    {
+      url: string;
+    }
+  ];
 }
 
 const HobbyCard = ({
@@ -34,7 +48,8 @@ const HobbyCard = ({
   name,
   short_description,
   start_time,
-  location_extra_info,
+  provider,
+  images,
 }: HobbyProps) => {
   const classes = useStyles();
   return (
@@ -45,36 +60,38 @@ const HobbyCard = ({
       >
         <CardActionArea>
           <CardMedia
+            className={classes.media}
             component="img"
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            src={
+              images[0]?.url ||
+              "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            }
           />
           <CardContent>
+            <Typography gutterBottom variant="subtitle2" component="div">
+              {dayjs(start_time).format("LLL")}
+            </Typography>
             <Typography
-              sx={{ textAlign: "center" }}
               gutterBottom
               variant="h5"
               component="div"
+              sx={{ fontWeight: "bold" }}
             >
-              {name.fi}
+              {name?.fi}
             </Typography>
+
             <Typography
               gutterBottom
-              variant="h6"
-              component="div"
-              sx={{ textAlign: "center" }}
-            >
-              {new Date(start_time).toLocaleDateString("fi")}
-            </Typography>
-            <Typography
-              gutterBottom
+              color="text.secondary"
               variant="body2"
               component="div"
-              sx={{ textAlign: "center" }}
+              sx={{ display: "flex", flexDirection: "row" }}
             >
-              {location_extra_info.fi}
+              <LocationOnIcon color="action" fontSize="small" />
+              {provider?.fi}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {short_description.fi}
+              {/* {short_description?.fi} */}
             </Typography>
           </CardContent>
         </CardActionArea>

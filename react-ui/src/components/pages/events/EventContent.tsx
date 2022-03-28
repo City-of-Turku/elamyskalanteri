@@ -15,10 +15,19 @@ dayjs.locale("fi");
 
 const Img = styled("img")({
   maxWidth: "100%",
-  maxHeight: "100%",
 });
 
 const useStyles = makeStyles({
+  root: {
+    border: "none",
+    boxShadow: "none",
+    // width: 500,
+    // height: 400,
+  },
+  media: {
+    width: 935,
+  },
+  content: {},
   sideInfoTitle: {
     fontSize: "default",
     fontWeight: "bold",
@@ -53,18 +62,25 @@ const EventContent = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: { xs: "center", md: "center" },
         }}
       >
-        <Img
-          alt="complex"
-          src={
-            data?.images[0]?.url ||
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-          }
-        />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Img
+            className={classes.root}
+            alt="complex"
+            src={
+              data?.images[0]?.url ||
+              "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            }
+          />
+        </div>
       </Grid>
-      <Grid component="div" container spacing={5}>
+      <Grid component="div" container spacing={5} className={classes.root}>
         <Grid item xs={20} sm container>
           <Grid item xs container direction="column" spacing={2} p={6}>
             <Grid item xs={2}>

@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../filterContainer/filterContainer";
-import EventCard from "../events/EventCard";
+import ToggleButtons from "../../toggleButton/toggleButtons";
+import EventCard from "./EventCard";
+import List from "./List";
 
 const EventList = () => {
   const { filters } = useAppSelector((state) => state);
@@ -53,6 +55,15 @@ const EventList = () => {
           Seuraava sivu
         </Button>
       </div>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          p: 2,
+        }}
+      >
+        <ToggleButtons />
+      </Box>
       <Grid
         sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
         container
@@ -75,9 +86,18 @@ const EventList = () => {
           !error &&
           data.data?.map((event: any) => {
             return (
-              <Grid key={event.id} item>
-                <EventCard {...event} />
-              </Grid>
+              <div>
+                <div>
+                  <Grid key={event.id} item id="grid">
+                    <EventCard {...event} />
+                  </Grid>
+                </div>
+                <Box p={5}>
+                  <Grid key={event.id}>
+                    <List {...event} />
+                  </Grid>
+                </Box>
+              </div>
             );
           })}
         {error && <h2>Something went wrong</h2>}
