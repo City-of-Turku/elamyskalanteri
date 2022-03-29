@@ -52,8 +52,9 @@ const EventContent = () => {
         style={{
           textDecoration: "none",
           color: "black",
+          display: "flex",
+          padding: "2px",
         }}
-        sx={{ display: "flex", p: 2 }}
       >
         <ArrowBackIcon />
       </Link>
