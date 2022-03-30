@@ -1,27 +1,31 @@
-import {Checkbox, FormControlLabel, FormGroup} from "@mui/material";
-import {getCoords} from "../../../functions/boundingBox";
-import {useAppDispatch} from "../../../hooks/rtkHooks";
+import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { getCoords } from "../../../functions/boundingBox";
+import { useAppDispatch } from "../../../hooks/rtkHooks";
 import filterSlice from "../../../redux/slices/filterSlice";
-import {useState} from "react";
+import { useState } from "react";
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 const LocationContainer = () => {
 
-  const [activeCheckbox, setActiveCheckbox] = useState<number | null>(null)
-
   const dispatch = useAppDispatch()
-  const { setBbox } = filterSlice.actions
+
+  // Bind setBbox to dispatch, so it can be called without dispatch
+  const { setBbox } = bindActionCreators(filterSlice.actions, dispatch)
+
+  const [activeCheckbox, setActiveCheckbox] = useState<number | null>(null)
 
   const handleLocation = (d: number) => {
     const location = navigator.geolocation
-    location.getCurrentPosition((pos) => handleCoords(pos, d), () => console.log("err"), {timeout: 5000})
+    location.getCurrentPosition(
+      (pos) => handleCoords(pos, d),
+      () => console.error("Could not locate"),
+      {timeout: 5000})
 
     const handleCoords = (pos: { coords: any }, d: number) => {
       const coords = getCoords(pos, d)
-      dispatch(setBbox(coords))
+      setBbox(coords)
     }
   }
-
-  console.log(activeCheckbox)
 
   return (
     <div>
@@ -37,7 +41,7 @@ const LocationContainer = () => {
           onChange={(e: any) => {
             if (!e.target.checked) {
               setActiveCheckbox(null)
-              dispatch(setBbox({ north: null, east: null, south: null, west: null}))
+              setBbox({ north: null, east: null, south: null, west: null})
               return;
             }
             setActiveCheckbox(Number(e.target.value))
@@ -54,7 +58,7 @@ const LocationContainer = () => {
           onChange={(e: any) => {
             if (!e.target.checked) {
               setActiveCheckbox(null)
-              dispatch(setBbox({ north: null, east: null, south: null, west: null}))
+              setBbox({ north: null, east: null, south: null, west: null})
               return;
             }
             setActiveCheckbox(Number(e.target.value))
@@ -71,7 +75,7 @@ const LocationContainer = () => {
           onChange={(e: any) => {
             if (!e.target.checked) {
               setActiveCheckbox(null)
-              dispatch(setBbox({ north: null, east: null, south: null, west: null}))
+              setBbox({ north: null, east: null, south: null, west: null})
               return;
             }
             setActiveCheckbox(Number(e.target.value))
@@ -88,7 +92,7 @@ const LocationContainer = () => {
           onChange={(e: any) => {
             if (!e.target.checked) {
               setActiveCheckbox(null)
-              dispatch(setBbox({ north: null, east: null, south: null, west: null}))
+              setBbox({ north: null, east: null, south: null, west: null})
               return;
             }
             setActiveCheckbox(Number(e.target.value))

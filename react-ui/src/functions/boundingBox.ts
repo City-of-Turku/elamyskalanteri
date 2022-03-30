@@ -12,6 +12,13 @@ interface ICoords {
   north: number
 }
 
+/*
+ * Given midpoint coordinates (pos), calculates a square around the midpoint that has a "radius" of d (in KM).
+ * "Radius" here refers to the distance from midpoint to the sides of the square, not corners.
+ * Note that the resulting box can only be used for very rough estimations.
+ * Corners of the square are sqrt(2d^2) KM from the midpoint.
+ */
+
 export const getCoords = (pos: IPos, d: number): ICoords  => {
 
   const R = 6378.1 // Radius of the Earth, KM
@@ -45,9 +52,9 @@ export const getCoords = (pos: IPos, d: number): ICoords  => {
     east: rad2Deg(lng2E),
     north: rad2Deg(lat2N)
   }
-
-
 }
 
+// convert degrees to radians
 const deg2Rad = (deg: number) => deg * (Math.PI / 180)
+// convert radians to degrees
 const rad2Deg = (rad: number) => rad / (Math.PI / 180)

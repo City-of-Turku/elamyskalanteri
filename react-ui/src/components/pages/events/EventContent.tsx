@@ -8,8 +8,9 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
-import { useParams } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
+import * as queryString from "querystring";
 
 dayjs.locale("fi");
 
@@ -44,6 +45,8 @@ const useStyles = makeStyles({
 const EventContent = () => {
   const classes = useStyles();
   const params: any = useParams();
+  const history = useHistory()
+  console.log("hash: ", window.location.hash)
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
   return (
     <div>
