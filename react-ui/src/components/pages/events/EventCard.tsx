@@ -18,6 +18,7 @@ import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import {GetEventResponse} from '../../../redux/types/Event';
 
 dayjs.locale("fi");
 const date = "DD.MM.YYYY"
@@ -51,33 +52,6 @@ const useStyles = makeStyles({
   },
 });
 
-export interface EventProps {
-  id: string;
-  name: {
-    fi: string;
-  };
-  short_description: {
-    fi: string;
-  };
-  start_time: Date;
-  info_url: {
-    fi: string;
-  };
-  provider: {
-    fi: string;
-  };
-  description: {
-    fi: string;
-  };
-  location_extra_info: {
-    fi: string;
-  };
-  images: [
-    {
-      url: string;
-    }
-  ];
-}
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
@@ -116,7 +90,7 @@ const EventCard = ({
   location_extra_info,
   provider,
   images,
-}: EventProps) => {
+}: GetEventResponse) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);

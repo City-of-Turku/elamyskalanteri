@@ -8,7 +8,7 @@ import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import  {date}  from '../events/EventCard';
-import {EventProps} from '../events/EventCard';
+import {GetEventResponse} from '../../../redux/types/Event';
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const List = ({id, name, short_description, start_time, provider}: EventProps) => {
+const List = ({id, name, short_description, start_time, provider}: GetEventResponse) => {
   const classes = useStyles();
   return (
     <div>
