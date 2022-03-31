@@ -1,5 +1,4 @@
 export const parseQuery = (filters: any) => {
-  console.log(filters)
   let validQueries: any[] = []
 
   if (filters.name) {
@@ -11,7 +10,7 @@ export const parseQuery = (filters: any) => {
   }
 
   if (filters.eventFeatures.length) {
-    validQueries = validQueries.concat(filters.eventFeatures.join("&"))
+    validQueries = validQueries.concat(`features=${filters.eventFeatures.join(",")}`)
   }
 
   if (validQueries.length) {

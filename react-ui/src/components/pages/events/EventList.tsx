@@ -27,10 +27,13 @@ const EventList = () => {
   const { setName, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
 
+  console.log("filters: ", filters)
+
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
   useEffect(() => {
     const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
+    console.log(query)
 
     if (Object.keys(query).includes("text")) {
       setName(query.text)
@@ -39,8 +42,10 @@ const EventList = () => {
       let keywordArray = query.keywords.split(',')
       setEventTypes(keywordArray)
     }
-    if (Object.keys(query).includes("eventFeatures")) {
-      setFeatures(query.eventFeatures)
+    if (Object.keys(query).includes("features")) {
+      let featureArray = query.features.split(",")
+      console.log(featureArray)
+      setFeatures(featureArray)
     }
     setFirstLoadDone(true)
   }, [])

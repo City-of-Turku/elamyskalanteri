@@ -117,6 +117,7 @@ const WhatContainer = () => {
                   style={{ width: "140px"}}
                   value={feature.value}
                   onChange={(e: any) => handleFeatureChange(e)}
+                  checked={filters.eventFeatures.includes(feature.value)}
                 />
               ))}
             </FormGroup>
