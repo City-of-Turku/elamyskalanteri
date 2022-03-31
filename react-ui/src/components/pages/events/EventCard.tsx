@@ -21,7 +21,8 @@ import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
 
 dayjs.locale("fi");
-const date = "DD.MM.YYYY"
+const date = "DD.MM.YYYY klo HH:mm "
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
