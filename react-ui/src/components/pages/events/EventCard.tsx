@@ -18,8 +18,11 @@ import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import {GetEventResponse} from '../../../redux/types/Event';
 
 dayjs.locale("fi");
+const date = "DD.MM.YYYY klo HH:mm "
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -42,6 +45,7 @@ const useStyles = makeStyles({
     height: 400,
     border: "none",
     boxShadow: "none",
+    padding: "0.5em"
   },
   media: {
     maxWidth: 345,
@@ -49,33 +53,6 @@ const useStyles = makeStyles({
   },
 });
 
-interface EventProps {
-  id: string;
-  name: {
-    fi: string;
-  };
-  short_description: {
-    fi: string;
-  };
-  start_time: Date;
-  info_url: {
-    fi: string;
-  };
-  provider: {
-    fi: string;
-  };
-  description: {
-    fi: string;
-  };
-  location_extra_info: {
-    fi: string;
-  };
-  images: [
-    {
-      url: string;
-    }
-  ];
-}
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
@@ -114,7 +91,7 @@ const EventCard = ({
   location_extra_info,
   provider,
   images,
-}: EventProps) => {
+}: GetEventResponse) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -140,7 +117,7 @@ const EventCard = ({
           />
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div">
-              {dayjs(start_time).format("LLL")}
+              {dayjs(start_time).format(date)}
             </Typography>
             <Typography
               gutterBottom
@@ -167,7 +144,7 @@ const EventCard = ({
       </Link>
 
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
+        Lue lisää
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -176,7 +153,6 @@ const EventCard = ({
       >
         <Box
           component="img"
-          sx={{}}
           alt="The house from the offer."
           src={
             images[0]?.url ||
@@ -193,7 +169,7 @@ const EventCard = ({
         <DialogContent dividers>
           <Typography gutterBottom sx={{ fontWeight: "bold" }}>
             {" "}
-            {dayjs(start_time).format("LLL")}
+            {dayjs(start_time).format(date)}
           </Typography>
           <Typography gutterBottom>{short_description?.fi}</Typography>
           <Typography gutterBottom color="text.secondary">
@@ -208,3 +184,4 @@ const EventCard = ({
 };
 
 export default EventCard;
+export {date};

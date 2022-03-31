@@ -99,7 +99,7 @@ const EventList = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            margin: "8px 0 24px 0",
+            margin:"2em"
           }}
         >
           <ToggleButtonGroup orientation="horizontal" exclusive>
@@ -124,13 +124,13 @@ const EventList = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            p: 2,
+            p: 0.5,
           }}
         ></Box>
         <Grid
-          sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center" }}
+          sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center"}}
           container
-          spacing={5}
+          
         >
           {isLoading ||
             (isFetching && (
@@ -161,7 +161,7 @@ const EventList = () => {
                       </Grid>
                     )}
                   </div>
-                  <Box p={5}></Box>
+                  <Box p={1}></Box>
                 </div>
               );
             })}

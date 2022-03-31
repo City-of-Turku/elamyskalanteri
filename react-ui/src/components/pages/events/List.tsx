@@ -7,29 +7,17 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import  {date}  from '../events/EventCard';
+import {GetEventResponse} from '../../../redux/types/Event';
 
 const useStyles = makeStyles({
   root: {
-    width: 1200,
-    height: 200,
+    maxWidth: 1200,
+    maxHeight: 200,
   },
 });
 
-interface Props {
-  id: string;
-  name: {
-    fi: string;
-  };
-  short_description: {
-    fi: string;
-  };
-  start_time: Date;
-  provider: {
-    fi: string;
-  };
-}
-
-const List = ({ id, name, short_description, start_time, provider }: Props) => {
+const List = ({id, name, short_description, start_time, provider}: GetEventResponse) => {
   const classes = useStyles();
   return (
     <div>
@@ -97,7 +85,7 @@ const List = ({ id, name, short_description, start_time, provider }: Props) => {
               }}
             >
               <EventIcon />
-              {dayjs(start_time).format("LLL")}
+              {dayjs(start_time).format(date)}
             </Box>
           </Box>
           <Box
@@ -112,7 +100,6 @@ const List = ({ id, name, short_description, start_time, provider }: Props) => {
           >
             <Typography sx={{ textAlign: "left", mr: 10 }}>
               {short_description?.fi}
-              Tapahtuman kuvaus
             </Typography>
           </Box>
           <Box component="div">

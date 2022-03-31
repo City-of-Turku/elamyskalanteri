@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import {useHistory, useParams} from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
 import * as queryString from "querystring";
+import  {date}  from '../events/EventCard';
 
 dayjs.locale("fi");
 
@@ -92,7 +93,7 @@ const EventContent = () => {
                 component="div"
                 sx={{ fontSize: 18, pb: 2, fontWeight: "bold" }}
               >
-                {dayjs(data?.start_time).format("LLL")}
+                {dayjs(data?.start_time).format(date)}
               </Typography>
               <Typography
                 variant="h4"
