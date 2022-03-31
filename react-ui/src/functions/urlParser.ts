@@ -1,62 +1,23 @@
-export const removeQueryParam = (hash: string, string: string): string => {
+export const parseQuery = (filters: any) => {
+  console.log(filters)
+  let validQueries: any[] = []
 
-  // Index where the query starts
-  const queryStartIndex = hash.indexOf("?")
-
-  // Find the start index of the query string
-  const stringIndex = hash.indexOf(string, queryStartIndex + 1)
-
-  // If string is not present => return the hash
-  if (stringIndex === -1) {
-    return hash
-  }
-  // Find out where the query string ends
-  const nextParamIndex = hash.indexOf("&", stringIndex + 1)
-
-  // If the string is the first query param
-  const isFirstQueryParam = hash.charAt(stringIndex - 1) === "?"
-
-  // The query string is the only query
-  if (isFirstQueryParam && nextParamIndex === -1) {
-    // substring should contain the query and the question mark at the beginning
-    let substring = hash.substring(stringIndex - 1)
-    return hash.replace(substring, "")
+  if (filters.name) {
+    validQueries = validQueries.concat(`text=${filters.name}`)
   }
 
-  // Is first query param and there is more than one
-  if (isFirstQueryParam) {
-    let substring = hash.substring(stringIndex, nextParamIndex + 1)
-    return hash.replace(substring, "")
+  if (filters.eventTypes.length) {
+    validQueries = validQueries.concat(`keywords=${filters.eventTypes.join(",")}`)
   }
 
-  // If there is no next query param
-  if (nextParamIndex === -1 ) {
-    let substring = hash.substring(stringIndex - 1)
-    return hash.replace(substring, "")
+  if (filters.eventFeatures.length) {
+    validQueries = validQueries.concat(filters.eventFeatures.join("&"))
   }
 
-  let substring = hash.substring(stringIndex, nextParamIndex + 1)
-  return hash.replace(substring, "")
-
-}
-
-export const addQueryParam = (hash: string, string: string): string => {
-  const queryStartIndex = hash.indexOf("?")
-
-  const term = string.substring(0, string.indexOf("="))
-
-  if (hash.indexOf(term) !== -1) {
-    return updateQueryParam(hash, string, term)
+  if (validQueries.length) {
+    return(`?${validQueries.join("&")}`)
   }
-
-  if (queryStartIndex === -1) {
-    return hash + "?" + string
+  else {
+    return("")
   }
-  return hash + "&" + string
-}
-
-const updateQueryParam = (hash: string, string: string, term: string): string => {
-  let substring = hash.substring(hash.indexOf(term, hash.indexOf("&")))
-  return hash.replace(substring, string)
-
 }
