@@ -6,17 +6,55 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../../hooks/rtkHooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../FilterContainer/FilterContainer";
 import EventCard from "./EventCard";
 import List from "./List";
+import { useHistory } from "react-router-dom";
+import { parseQuery } from "../../../functions/urlParser";
+import queryString from "query-string";
+import {bindActionCreators} from "@reduxjs/toolkit";
+import filterSlice from "../../../redux/slices/filterSlice";
 
 const EventList = () => {
-  console.log("hash: ", window.location.hash)
+
+  const history = useHistory()
+  const queryString = require('query-string')
+  const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
+  const { setName, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
+
+  console.log("filters: ", filters)
+
+  const [firstLoadDone, setFirstLoadDone] = useState(false)
+
+  useEffect(() => {
+    const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
+    console.log(query)
+
+    if (Object.keys(query).includes("text")) {
+      setName(query.text)
+    }
+    if (Object.keys(query).includes("keywords")) {
+      let keywordArray = query.keywords.split(',')
+      setEventTypes(keywordArray)
+    }
+    if (Object.keys(query).includes("features")) {
+      let featureArray = query.features.split(",")
+      console.log(featureArray)
+      setFeatures(featureArray)
+    }
+    setFirstLoadDone(true)
+  }, [])
+
+  useEffect(() => {
+    if (!firstLoadDone) return
+    history.push(parseQuery(filters))
+  }, [filters])
+
 
   const [page, setPage] = useState(1);
   const { data, error, isLoading, isFetching } = useEventsQuery({

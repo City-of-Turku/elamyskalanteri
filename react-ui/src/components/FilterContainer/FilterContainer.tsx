@@ -4,13 +4,8 @@ import Calendar from "../Calendar/Calendar"
 import SearchBox from "./SearchBox/SearchBox";
 import WhatContainer from "./WhatContainer/WhatContainer";
 import WhereContainer from "./WhereContainer/WhereContainer";
-import { useHistory } from "react-router-dom";
-import { addQueryParam } from "../../functions/urlParser";
 
 const FilterContainer = () => {
-
-  const history = useHistory()
-  const queryString = require('query-string');
 
   return (
     <div className={styles.container}>
@@ -28,7 +23,6 @@ const FilterContainer = () => {
             </div>
           </>
       </div>
-      <button onClick={() => history.push(addQueryParam(window.location.hash, "text=abc"))}>klikkka minua</button>
     </div>
   )
 }

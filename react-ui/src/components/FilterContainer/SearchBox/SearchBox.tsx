@@ -4,8 +4,7 @@ import filterSlice from "../../../redux/slices/filterSlice";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import styles from "./SearchBox.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import {useHistory} from "react-router-dom";
-import {addQueryParam, removeQueryParam} from "../../../functions/urlParser";
+
 
 /*
  * Renders an input box with borders and padding. (The style is very specific...)
@@ -27,7 +26,6 @@ const SearchBox = () => {
   const MIN_CHARS = 3
 
   const dispatch = useAppDispatch()
-  const history = useHistory()
 
   // Destruct state to const
   const { filters } = useAppSelector(state => state)
@@ -35,21 +33,23 @@ const SearchBox = () => {
   // Destruct slice's actions to const
   const { setName } = bindActionCreators(filterSlice.actions, dispatch)
 
-  const [searchTerm, setSearchTerm] = useState(filters.name || "")
+  const [searchTerm, setSearchTerm] = useState(filters.name)
 
   useEffect(() => {
+    setSearchTerm(filters.name)
+  }, [filters.name])
 
+
+  useEffect(() => {
     const updateSearchTerm = () => {
       // If the search term is at least the length of specified chars, dispatch it
       if (searchTerm.length >= MIN_CHARS) {
         // Search does not like whitespace at either end so trim those away
         setName(searchTerm.trim())
-        history.push(addQueryParam(window.location.hash, ("text=" +searchTerm)))
       }
       // If the search term is less than specified, dispatch empty search term
       else {
         setName("")
-        history.push(removeQueryParam(window.location.hash, "text"))
       }
     }
 
