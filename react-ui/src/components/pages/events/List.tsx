@@ -9,11 +9,12 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import  {date}  from '../events/EventCard';
 import {GetEventResponse} from '../../../redux/types/Event';
+import Card from "@mui/material/Card";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 1200,
-    maxHeight: 200,
+    width: 1200,
+    height: 200,
   },
 });
 
@@ -25,7 +26,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
         to={`/eventlist/${id}`}
         style={{ textDecoration: "none", color: "black" }}
       >
-        <Box
+        <Card
           className={classes.root}
           sx={{
             display: "flex",
@@ -105,7 +106,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
           <Box component="div">
             <Button></Button>
           </Box>
-        </Box>
+        </Card>
       </Link>
     </div>
   );

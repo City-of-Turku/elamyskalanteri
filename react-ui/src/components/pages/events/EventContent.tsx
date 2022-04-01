@@ -12,22 +12,19 @@ import {useHistory, useParams} from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
 import * as queryString from "querystring";
 import  {date}  from '../events/EventCard';
+import { CardMedia } from "@mui/material";
 
 dayjs.locale("fi");
-
-const Img = styled("img")({
-  maxWidth: "100%",
-});
 
 const useStyles = makeStyles({
   root: {
     border: "none",
     boxShadow: "none",
-    // width: 500,
-    // height: 400,
+   
   },
   media: {
-    width: 935,
+    maxWidth: 600,
+    height: 200,
   },
   content: {},
   sideInfoTitle: {
@@ -75,9 +72,9 @@ const EventContent = () => {
             justifyContent: "center",
           }}
         >
-          <Img
-            className={classes.root}
-            alt="complex"
+          <CardMedia
+            className={classes.media}
+            component="img"
             src={
               data?.images[0]?.url ||
               "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
