@@ -6,26 +6,19 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/rtkHooks";
 import FilterChip from "../FilterChip/FilterChip";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
+import { useTopicsQuery } from "../../../redux/services/keywordApi";
+import { useEffect, useState } from "react";
 
 interface ICategory {
-  fi: string,
+  name: {
+    fi: string,
+  }
   yso: string
 }
 
 const WhatContainer = () => {
-  // YSO categories
-  // These should be ideally fetched from an API...
-  const categories = [
-    {fi: "Musiikki", yso: "yso:p1808"},
-    {fi: "Urheilu", yso: "yso:p965"},
-    {fi: "Näyttelyt", yso: "yso:p5121"},
-    {fi: "Festivaalit", yso: "yso:p1304"},
-    {fi: "Teatteri", yso: "yso:p2625"},
-    {fi: "Tanssi", yso: "yso:p1278"},
-    {fi: "Keskustelutilaisuudet", yso: "tsl:p40"},
-    {fi: "Konsertit", yso: "tsl:p43"},
-    {fi: "Historia", yso: "tsl:p43"}
-  ]
+  // @ts-ignore
+  const { data } = useTopicsQuery()
 
   // Not a great place for these either...
   const features = [
@@ -42,6 +35,8 @@ const WhatContainer = () => {
 
   // Bind setFeatures to dispatch, so it can be called without dispatch
   const { setFeatures, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
+
+  const [categories, setCategories ] = useState([])
 
   // Adds category to the redux store
   const addFilter = (category: ICategory) => {
@@ -69,6 +64,20 @@ const WhatContainer = () => {
     }
   }
 
+  useEffect(() => {
+    if (data) {
+      console.log("DATA: ", data)
+      const topics = data.data[0].keywords
+      let tmpCategories = topics.map((topic: any) => (
+        {
+          name: topic.name,
+          yso: topic.id
+        }
+      ))
+      setCategories(tmpCategories)
+    }
+  }, [data])
+
   return (
     <div style={{ borderBottom: "1px solid lightgray"}}>
       <Accordion title={"Mitä?"} icon={LocalActivityIcon}>
@@ -76,7 +85,7 @@ const WhatContainer = () => {
         <div className={styles.chipContainer}>
           {categories.map((category: ICategory) => (
             <FilterChip
-              label={category.fi}
+              label={category.name.fi}
               active={filters.eventTypes.includes(category.yso)}
               handleClick={() => addFilter(category)}
               handleDelete={() => removeFilter(category)}

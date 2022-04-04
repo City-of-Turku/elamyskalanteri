@@ -27,8 +27,6 @@ const EventList = () => {
   const { setName, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
 
-  console.log("filters: ", filters)
-
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
   useEffect(() => {
@@ -48,7 +46,7 @@ const EventList = () => {
       setFeatures(featureArray)
     }
     setFirstLoadDone(true)
-  }, [])
+  }, [window.location.hash])
 
   useEffect(() => {
     if (!firstLoadDone) return
