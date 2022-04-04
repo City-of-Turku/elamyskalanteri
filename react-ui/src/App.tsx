@@ -1,15 +1,15 @@
-import { ThemeProvider } from "@mui/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Route, Switch, HashRouter } from "react-router-dom";
 import Nav from "./components/nav/Nav";
 import EducationList from "./components/pages/educations/EducationList";
 import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import HobbyList from "./components/pages/hobbies/HobbyList";
-import { theme }from './styles/styles';
+import { theme, vinkTheme }  from './styles/styles';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={vinkTheme}>
     <HashRouter hashType={"noslash"}>
       <Route component={Nav} />
       <Switch>
@@ -19,7 +19,7 @@ function App() {
         <Route path="/educations" component={EducationList} />
       </Switch>
     </HashRouter>
-    </ThemeProvider>
+     </ThemeProvider>
   );
 }
 

@@ -23,7 +23,6 @@ import {GetEventResponse} from '../../../redux/types/Event';
 dayjs.locale("fi");
 const date = "DD.MM.YYYY klo HH:mm "
 
-
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -52,7 +51,6 @@ const useStyles = makeStyles({
     height: 132,
   },
 });
-
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
@@ -135,7 +133,7 @@ const EventCard = ({
               component="div"
               sx={{ display: "flex", flexDirection: "row" }}
             >
-              <LocationOnIcon color="action" fontSize="small" />
+              <LocationOnIcon color="primary" fontSize="small" />
               {provider?.fi}
             </Typography>
             <Typography variant="body2"></Typography>
