@@ -10,8 +10,20 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  title: {
+    color: "dark", 
+    fontWeight: '900'
+  },
+  customizeToolbar: {
+    minHeight: 50
+  }
+});
 
 const Nav = () => {
+  const classes = useStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -51,9 +63,9 @@ const Nav = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters className={classes.customizeToolbar}>
           <Typography
-            variant="h5"
+            variant="h4"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", md: "block", fontWeight: 'bold', fontStyle:' italic', letterSpacing: 2} }}
@@ -108,19 +120,19 @@ const Nav = () => {
             }}
           >
             <Button
-              sx={{ color: "primary.contrastText" }}
+              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px', lineHeight: '19px' }}
               onClick={() => handleButtonClick("/")}
             >
               Tapahtumat
             </Button>
             <Button
-              sx={{ color: "primary.contrastText" }}
+              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px' }}
               onClick={() => handleButtonClick("/hobbies")}
             >
               Harrastukset
             </Button>
             <Button
-              sx={{ color: "primary.contrastText" }}
+              sx={{ color: "primary.dark", fontWeight: '900',fontSize: '18px' }}
               onClick={() => handleButtonClick("/educations")}
             >
               Koulutukset

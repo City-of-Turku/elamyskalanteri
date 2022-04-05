@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import CardActions from '@mui/material/CardActions';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -49,6 +50,7 @@ const useStyles = makeStyles({
   media: {
     maxWidth: 345,
     height: 132,
+
   },
 });
 
@@ -89,6 +91,7 @@ const EventCard = ({
   location_extra_info,
   provider,
   images,
+  description,
 }: GetEventResponse) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -99,13 +102,14 @@ const EventCard = ({
   };
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }}>
       <Link
         to={`/eventlist/${id}`}
         style={{ textDecoration: "none", color: "black" }}
       >
         <CardActionArea>
           <CardMedia
+          sx={{  boxShadow: 2 }}
             className={classes.media}
             component="img"
             src={
@@ -131,17 +135,17 @@ const EventCard = ({
               color="text.secondary"
               variant="body2"
               component="div"
-              sx={{ display: "flex", flexDirection: "row" }}
+              sx={{ display: "flex", flexDirection: "row", color: "primary.dark", letterSpacing: '0.01em', lineHeight: '28px' }}
             >
-              <LocationOnIcon color="primary" fontSize="small" />
+              <LocationOnIcon fontSize="small" />
               {provider?.fi}
             </Typography>
-            <Typography variant="body2"></Typography>
+            <Typography sx={{overflow: 'hidden', textOverflow:'hidden', p:1}} variant="body2">{short_description?.fi}</Typography>
           </CardContent>
         </CardActionArea>
       </Link>
-
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <CardActions sx={{p:2, display: 'flex', flexDirection: 'flex-start', mb: 5}}>
+      <Button variant="contained" onClick={handleClickOpen} >
         Lue lisää
       </Button>
       <BootstrapDialog
@@ -169,7 +173,7 @@ const EventCard = ({
             {" "}
             {dayjs(start_time).format(date)}
           </Typography>
-          <Typography gutterBottom>{short_description?.fi}</Typography>
+          <Typography gutterBottom>{description?.fi}</Typography>
           <Typography gutterBottom color="text.secondary">
             {location_extra_info?.fi}
           </Typography>
@@ -177,6 +181,7 @@ const EventCard = ({
         </DialogContent>
         <DialogActions></DialogActions>
       </BootstrapDialog>
+      </CardActions>
     </Card>
   );
 };
