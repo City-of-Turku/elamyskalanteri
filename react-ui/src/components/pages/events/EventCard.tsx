@@ -20,6 +20,20 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
+import scarf from '../../../svg/scarf.svg';
+import cartoon from '../../../svg/cartoon.svg';
+
+// const defaultImages = [
+//   scarf,
+//   cartoon
+// ]
+let index = 0;
+let defaultImages: string | any[] = [];
+
+defaultImages[0] = scarf;
+defaultImages[1] = cartoon
+
+index = Math.floor(Math.random() * defaultImages.length);
 
 dayjs.locale("fi");
 const date = "DD.MM.YYYY klo HH:mm "
@@ -52,6 +66,7 @@ const useStyles = makeStyles({
     height: 132,
 
   },
+  
 });
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
@@ -102,20 +117,20 @@ const EventCard = ({
   };
   const classes = useStyles();
   return (
-    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }}>
+    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 345 }}>
       <Link
         to={`/eventlist/${id}`}
         style={{ textDecoration: "none", color: "black" }}
       >
-        <CardActionArea>
           <CardMedia
           sx={{  boxShadow: 2 }}
             className={classes.media}
             component="img"
             src={
               images[0]?.url ||
-              "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+              (defaultImages[index])
             }
+          
           />
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div">
@@ -140,12 +155,11 @@ const EventCard = ({
               <LocationOnIcon fontSize="small" />
               {provider?.fi}
             </Typography>
-            <Typography sx={{overflow: 'hidden', textOverflow:'hidden', p:1}} variant="body2">{short_description?.fi}</Typography>
+            <Typography sx={{p:1, overflow: 'hidden', lineHeight: '20.8px', maxHeight: 55}} variant="body2">{short_description?.fi}</Typography>
           </CardContent>
-        </CardActionArea>
       </Link>
-      <CardActions sx={{p:1, position: 'absolute'}}>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <CardActions sx={{paddingLeft:2, display: 'block', position:'absolute'}}>
+      <Button variant="contained" onClick={handleClickOpen} >
         Lue lisää
       </Button>
       <BootstrapDialog

@@ -61,9 +61,9 @@ const Nav = () => {
   ];
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters className={classes.customizeToolbar}>
+        <Toolbar disableGutters className={classes.customizeToolbar} style={{height: '140px'}}>
           <Typography
             variant="h4"
             noWrap
