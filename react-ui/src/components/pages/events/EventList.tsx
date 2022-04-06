@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../FilterContainer/FilterContainer";
@@ -26,6 +26,8 @@ const EventList = () => {
   const { filters } = useAppSelector((state) => state);
   const { setName, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
+  const [color, setColor] = useState("primary.dark")
+  const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
 
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
@@ -105,9 +107,10 @@ const EventList = () => {
             margin:"2em"
           }}
         >
-          <ToggleButtonGroup orientation="horizontal" exclusive>
+          <ToggleButtonGroup orientation="horizontal" exclusive onChange={handleColor} value={color}>
             <ToggleButton
-              value="module"
+              sx={{color: 'primary.dark'}} 
+              value="primary.dark"
               aria-label="module"
               onClick={() => setView(true)}
             >
@@ -115,7 +118,8 @@ const EventList = () => {
               <ViewModuleIcon />
             </ToggleButton>
             <ToggleButton
-              value="list"
+              sx={{color: 'primary.dark'}}
+                value="secondary"
               aria-label="list"
               onClick={() => setView(false)}
             >

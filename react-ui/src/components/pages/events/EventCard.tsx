@@ -135,7 +135,7 @@ const EventCard = ({
               color="text.secondary"
               variant="body2"
               component="div"
-              sx={{ display: "flex", flexDirection: "row", color: "primary.dark", letterSpacing: '0.01em', lineHeight: '28px' }}
+              sx={{ display: "flex", flexDirection: "row", color: "primary.dark", letterSpacing: '0.01em' }}
             >
               <LocationOnIcon fontSize="small" />
               {provider?.fi}
@@ -144,8 +144,8 @@ const EventCard = ({
           </CardContent>
         </CardActionArea>
       </Link>
-      <CardActions sx={{p:2, display: 'flex', flexDirection: 'flex-start', mb: 5}}>
-      <Button variant="contained" onClick={handleClickOpen} >
+      <CardActions sx={{p:1, position: 'absolute'}}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Lue lisää
       </Button>
       <BootstrapDialog
