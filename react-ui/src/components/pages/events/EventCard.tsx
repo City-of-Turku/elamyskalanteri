@@ -1,6 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { CardActionArea } from "@mui/material";
+//import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -57,8 +57,6 @@ const useStyles = makeStyles({
   root: {
     width: 345,
     height: 400,
-    border: "none",
-    boxShadow: "none",
     padding: "0.5em"
   },
   media: {
@@ -66,7 +64,6 @@ const useStyles = makeStyles({
     height: 132,
 
   },
-  
 });
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
@@ -169,10 +166,9 @@ const EventCard = ({
       >
         <Box
           component="img"
-          alt="The house from the offer."
           src={
             images[0]?.url ||
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            (defaultImages[index])
           }
         />
         <BootstrapDialogTitle
@@ -201,4 +197,4 @@ const EventCard = ({
 };
 
 export default EventCard;
-export {date};
+export {date, defaultImages, index};

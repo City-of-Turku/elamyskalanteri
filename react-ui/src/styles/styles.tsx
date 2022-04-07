@@ -31,7 +31,7 @@ export const theme = createTheme({
     palette:{
         primary: {
             main: '#fff',
-            dark: '#000',
+            dark: '#808080',
         },
     },
     typography: {

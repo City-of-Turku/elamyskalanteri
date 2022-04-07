@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 import {useHistory, useParams} from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
 import * as queryString from "querystring";
-import  {date}  from '../events/EventCard';
+import  {date, defaultImages, index}  from '../events/EventCard';
 import { CardMedia } from "@mui/material";
 
 dayjs.locale("fi");
@@ -20,16 +20,14 @@ const useStyles = makeStyles({
   root: {
     border: "none",
     boxShadow: "none",
-   
   },
   media: {
-    maxWidth: 600,
-    height: 200,
+    maxWidth: '100%',
+    //height: 400,
   },
-  content: {},
   sideInfoTitle: {
     fontSize: "default",
-    fontWeight: "bold",
+    fontWeight: 900,
   },
   sideInfoContent: {
     fontSize: "subtitle1",
@@ -41,20 +39,20 @@ const useStyles = makeStyles({
 });
 
 const EventContent = () => {
-  const classes = useStyles();
   const params: any = useParams();
   const history = useHistory()
   console.log("hash: ", window.location.hash)
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
+   const classes = useStyles();
   return (
     <div>
       <Link
         href="/"
-        style={{
+        sx={{
           textDecoration: "none",
           color: "black",
           display: "flex",
-          padding: "2px",
+          p:1,
         }}
       >
         <ArrowBackIcon />
@@ -73,11 +71,12 @@ const EventContent = () => {
           }}
         >
           <CardMedia
+            style={{width: 800}}
             className={classes.media}
             component="img"
             src={
               data?.images[0]?.url ||
-              "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+              (defaultImages[index])
             }
           />
         </div>
@@ -181,9 +180,13 @@ const EventContent = () => {
             <Typography
               className={classes.sideInfoContent}
               component="div"
-              sx={{ display: "flex", flexDirection: "column" }}
             >
-              Facebook Instagram Twitter Video
+              <ul style={{listStyle: 'none'}}>
+                <li>Facebook</li>
+                <li>Instagram</li>
+                <li>Twitter</li>
+                <li>Video</li>
+              </ul>
             </Typography>
             <Typography className={classes.sideInfoTitle}>
               Jaa kaverille
