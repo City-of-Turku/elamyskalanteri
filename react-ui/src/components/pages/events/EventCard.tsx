@@ -114,7 +114,8 @@ const EventCard = ({
   };
   const classes = useStyles();
   return (
-    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 345 }}>
+    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 345,  '&:hover': {
+      opacity: [0.9, 0.8, 0.7]}, }}>
       <Link
         to={`/eventlist/${id}`}
         style={{ textDecoration: "none", color: "black" }}
@@ -123,6 +124,7 @@ const EventCard = ({
           sx={{  boxShadow: 2 }}
             className={classes.media}
             component="img"
+            alt={images[0]?.alt_text.fi}
             src={
               images[0]?.url ||
               (defaultImages[index])

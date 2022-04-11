@@ -13,6 +13,8 @@ import { useEventQuery } from "../../../redux/services/eventApi";
 import * as queryString from "querystring";
 import  {date, defaultImages, index}  from '../events/EventCard';
 import { CardMedia } from "@mui/material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
 
 dayjs.locale("fi");
 
@@ -24,17 +26,6 @@ const useStyles = makeStyles({
   media: {
     maxWidth: '100%',
     //height: 400,
-  },
-  sideInfoTitle: {
-    fontSize: "default",
-    fontWeight: 900,
-  },
-  sideInfoContent: {
-    fontSize: "subtitle1",
-    fontWeight: "light",
-    lineHeight: 2,
-    letterSpacing: 1,
-    padding: 5,
   },
 });
 
@@ -71,7 +62,7 @@ const EventContent = () => {
           }}
         >
           <CardMedia
-            style={{width: 800}}
+            style={{width: 983}}
             className={classes.media}
             component="img"
             src={
@@ -81,10 +72,10 @@ const EventContent = () => {
           />
         </div>
       </Grid>
-      <Grid component="div" container spacing={5} className={classes.root}>
-        <Grid item xs={20} sm container>
-          <Grid item xs container direction="column" spacing={2} p={6}>
-            <Grid item xs={2}>
+      <Grid justifyContent="center" alignItems="center" component="div" container spacing={20} className={classes.root}>
+        
+          <Grid item xs={5} container direction="column" spacing={2}>
+            <Grid item xs={0}>
               <Typography
                 component="div"
                 sx={{ fontSize: 18, pb: 2, fontWeight: "bold" }}
@@ -142,7 +133,7 @@ const EventContent = () => {
                 >
                   {data?.short_description?.fi}
                 </Typography>
-                <Divider textAlign="left" />
+                <Divider textAlign="left" sx={{width:143, height: 1}} />
                 <Typography
                   sx={{
                     fontWeight: "light",
@@ -160,43 +151,43 @@ const EventContent = () => {
           </Grid>
 
           <Grid component="div" item p={6}>
-            <Typography className={classes.sideInfoTitle}>Hinta</Typography>
-            <Typography component="div" className={classes.sideInfoContent}>
+            <Box width={364} height={529} sx={{
+                
+                p:2,
+                maxWidth: '384px',
+                maxHeight: '629px',
+                backgroundColor: 'primary.dark'
+      }}>
+            <Typography variant="h6">Hinta</Typography>
+            <Typography component="div" variant="subtitle1">
               {data?.offers[0]?.price?.fi || "-"}
             </Typography>
-            <Typography className={classes.sideInfoTitle}>Ikäraja</Typography>
-            <Typography className={classes.sideInfoContent} component="div">
+            <Typography  variant="h6">Ikäraja</Typography>
+            <Typography component="div" variant="subtitle1">
               Alle 12 v.
             </Typography>
-            <Typography className={classes.sideInfoTitle}>
+            <Typography  variant="h6">
               Järjestäjä
             </Typography>
-            <Typography className={classes.sideInfoContent} component="div">
+            <Typography component="div" variant="subtitle1">
               {data?.provider?.fi}
             </Typography>
-            <Typography className={classes.sideInfoTitle}>
+            <Typography variant="h6"> 
               Tutustu lisää
             </Typography>
             <Typography
-              className={classes.sideInfoContent}
+            variant="subtitle1"
               component="div"
             >
               <ul style={{listStyle: 'none'}}>
-                <li>Facebook</li>
+                <a href="#">Facebook</a>
                 <li>Instagram</li>
                 <li>Twitter</li>
                 <li>Video</li>
               </ul>
             </Typography>
-            <Typography className={classes.sideInfoTitle}>
-              Jaa kaverille
-            </Typography>
-            <Typography
-              className={classes.sideInfoContent}
-              component="div"
-            ></Typography>
+            </Box>
           </Grid>
-        </Grid>
       </Grid>
     </div>
   );

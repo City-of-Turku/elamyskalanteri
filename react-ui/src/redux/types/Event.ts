@@ -54,7 +54,11 @@ export interface GetEventResponse {
   ];
   images: [
     {
-      url: "https://testilinkedevents-api.turku.fi/media/images/987449.jpg";
-    }
+      url: string;
+      alt_text: {
+        fi: string;
+      }
+    },
+    
   ];
 }
