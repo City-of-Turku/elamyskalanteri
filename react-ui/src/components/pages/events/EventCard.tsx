@@ -21,7 +21,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
 import scarf from '../../../svg/scarf.svg';
-import cartoon from '../../../svg/cartoon.svg';
+
 
 // const defaultImages = [
 //   scarf,
@@ -31,7 +31,6 @@ let index = 0;
 let defaultImages: string | any[] = [];
 
 defaultImages[0] = scarf;
-defaultImages[1] = cartoon
 
 index = Math.floor(Math.random() * defaultImages.length);
 
@@ -124,7 +123,7 @@ const EventCard = ({
           sx={{  boxShadow: 2 }}
             className={classes.media}
             component="img"
-            alt={images[0]?.alt_text.fi}
+            // alt={images[0]?.alt_text.fi}
             src={
               images[0]?.url ||
               (defaultImages[index])
