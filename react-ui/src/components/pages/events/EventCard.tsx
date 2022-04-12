@@ -141,7 +141,6 @@ const EventCard = ({
 
             <Typography
               gutterBottom
-              color="text.secondary"
               variant="body2"
               component="div"
               sx={{ display: "flex", flexDirection: "row", color: "primary.dark", letterSpacing: '0.01em' }}

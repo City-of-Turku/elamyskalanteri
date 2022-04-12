@@ -76,11 +76,11 @@ const EventContent = () => {
           />
         </div>
       </Grid>
-      <Grid justifyContent="center" alignItems="center" component="div" container className={classes.root}>
-            <Grid component="div" item p={2}  width={700} height={580}>
+      <Grid p={4} justifyContent="center" alignItems="center" component="div" container className={classes.root} spacing={5}>
+            <Grid component="div" item width={600} height={580} sx={{display: 'inline-table'}} xs={5}>
               <Typography
                 component="div"
-                sx={{ fontSize: 18, pb: 2, fontWeight: "bold" }}
+                sx={{ pb: 2, fontWeight: 400, letterSpacing: 0.01}}
               >
                 {dayjs(data?.start_time).format(date)}
               </Typography>
@@ -92,11 +92,10 @@ const EventContent = () => {
                 {data?.name?.fi}
               </Typography>
               <Typography
-                sx={{ display: "flex", flexDirection: "row", pb: 1 }}
+                sx={{ display: "flex", flexDirection: "row", pb: 1, color: 'primary.dark' }}
                 variant="body2"
-                color="text.secondary"
               >
-                <LocationOnIcon color="action" fontSize="small" />
+                <LocationOnIcon fontSize="small" />
                 &nbsp;{data?.provider?.fi}
               </Typography>
 
@@ -106,41 +105,39 @@ const EventContent = () => {
                   flexDirection: "row",
                   pb: 1,
                   cursor: "pointer",
+                  color: "primary.dark"
                 }}
                 variant="body2"
-                color="text.secondary"
               >
-                <LinkIcon color="primary" fontSize="small" />
+                <LinkIcon fontSize="small" />
                 &nbsp;{" "}
                 <Link
                   href={`${data?.info_url?.fi}`}
                   target="_blank"
                   rel="noopener"
-                  style={{ textDecoration: "none", color: "primary" }}
+                  sx={{color: "primary.dark", textDecoration: "none"}}
                 >
                   {data?.info_url?.fi || "www.testi.fi"}
                 </Link>
               </Typography>
                 <Typography
                   sx={{
-                    fontWeight: "bold",
-                    fontSize: 15,
-                    //maxWidth: 800,
+                    fontWeight: 400,
+                    fontSize: 16,
+                    maxWidth: 700,
                     pb: 2,
-                    letterSpacing: 1,
+                    letterSpacing: 0.01,
                   }}
-                  variant="body2"
                 >
                   {data?.short_description?.fi}
                 </Typography>
-                <Divider textAlign="left"  />
+                <Divider textAlign="left" sx={{width: 143}}  />
                 <Typography
                   sx={{
                     fontWeight: "light",
                     fontSize: "default",
-                    maxWidth: 800,
+                    maxWidth: 623,
                     pt: 2,
-                    letterSpacing: 1,
                   }}
                   variant="body2"
                 >
