@@ -15,6 +15,10 @@ import  {date, defaultImages, index}  from '../events/EventCard';
 import { CardMedia } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 dayjs.locale("fi");
 
@@ -72,10 +76,8 @@ const EventContent = () => {
           />
         </div>
       </Grid>
-      <Grid justifyContent="center" alignItems="center" component="div" container spacing={20} className={classes.root}>
-        
-          <Grid item xs={5} container direction="column" spacing={2}>
-            <Grid item xs={0}>
+      <Grid justifyContent="center" alignItems="center" component="div" container className={classes.root}>
+            <Grid component="div" item p={2}  width={700} height={580}>
               <Typography
                 component="div"
                 sx={{ fontSize: 18, pb: 2, fontWeight: "bold" }}
@@ -119,13 +121,11 @@ const EventContent = () => {
                   {data?.info_url?.fi || "www.testi.fi"}
                 </Link>
               </Typography>
-
-              <Grid item>
                 <Typography
                   sx={{
                     fontWeight: "bold",
                     fontSize: 15,
-                    maxWidth: 800,
+                    //maxWidth: 800,
                     pb: 2,
                     letterSpacing: 1,
                   }}
@@ -133,7 +133,7 @@ const EventContent = () => {
                 >
                   {data?.short_description?.fi}
                 </Typography>
-                <Divider textAlign="left" sx={{width:143, height: 1}} />
+                <Divider textAlign="left"  />
                 <Typography
                   sx={{
                     fontWeight: "light",
@@ -146,18 +146,12 @@ const EventContent = () => {
                 >
                   {data?.description?.fi}
                 </Typography>
-              </Grid>
             </Grid>
-          </Grid>
-
-          <Grid component="div" item p={6}>
-            <Box width={364} height={529} sx={{
-                
+          <Grid component="div" item p={2}>
+            <Box width={294} height={435} sx={{
                 p:2,
-                maxWidth: '384px',
-                maxHeight: '629px',
                 backgroundColor: 'primary.dark'
-      }}>
+              }}>
             <Typography variant="h6">Hinta</Typography>
             <Typography component="div" variant="subtitle1">
               {data?.offers[0]?.price?.fi || "-"}
@@ -180,12 +174,19 @@ const EventContent = () => {
               component="div"
             >
               <ul style={{listStyle: 'none'}}>
-                <a href="#">Facebook</a>
+                <li>Facebook</li>
                 <li>Instagram</li>
                 <li>Twitter</li>
                 <li>Video</li>
               </ul>
             </Typography>
+            <Box sx={{display: 'flex', paddingBottom: 25 }}>
+              <LinkIcon />
+              <WhatsAppIcon/>
+              <FacebookIcon />
+              <TwitterIcon />
+              <LinkedInIcon />
+              </Box>
             </Box>
           </Grid>
       </Grid>

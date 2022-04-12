@@ -23,10 +23,6 @@ import {GetEventResponse} from '../../../redux/types/Event';
 import scarf from '../../../svg/scarf.svg';
 
 
-// const defaultImages = [
-//   scarf,
-//   cartoon
-// ]
 let index = 0;
 let defaultImages: string | any[] = [];
 

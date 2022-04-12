@@ -40,7 +40,7 @@ export const vinkTheme = createTheme({
             fontWeight: 400,
             fontSize: 14,
             fontStyle: 'normal',
-            paddingBottom: 15,
+            paddingBottom: 25,
             letterSpacing: '0.015em'
         },
     }
