@@ -1,24 +1,32 @@
 import Accordion from "../../Accordion/Accordion";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
-import styles from "../FilterContainer.module.css";
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import styles from "./WhatContainer.module.css";
+import { Checkbox, CircularProgress, FormControlLabel, FormGroup } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../hooks/rtkHooks";
 import FilterChip from "../FilterChip/FilterChip";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import { useTopicsQuery } from "../../../redux/services/keywordApi";
 import { useEffect, useState } from "react";
+import { useTheme } from "@mui/styles";
+import {useTranslation} from "react-i18next";
 
 interface ICategory {
   name: {
     fi: string,
+    en: string,
+    sv: string,
   }
   yso: string
 }
 
 const WhatContainer = () => {
+
+  const theme = useTheme()
+  const { t } = useTranslation()
+
   // @ts-ignore
-  const { data } = useTopicsQuery()
+  const { data, isLoading } = useTopicsQuery()
 
   // Not a great place for these either...
   const features = [
@@ -36,7 +44,8 @@ const WhatContainer = () => {
   // Bind setFeatures to dispatch, so it can be called without dispatch
   const { setFeatures, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
 
-  const [categories, setCategories ] = useState([])
+  const [ categories, setCategories ] = useState([])
+  const [ audiences, setAudiences ] = useState([])
 
   // Adds category to the redux store
   const addFilter = (category: ICategory) => {
@@ -66,24 +75,38 @@ const WhatContainer = () => {
 
   useEffect(() => {
     if (data) {
-      console.log("DATA: ", data)
-      const topics = data.data[0].keywords
+      const topics = data.data
+        .find((item: any) => item.id === "turku:topics").keywords
+      const audiences = data.data
+        .find((item: any) => item.id === "turku:audience").keywords
       let tmpCategories = topics.map((topic: any) => (
         {
           name: topic.name,
           yso: topic.id
         }
       ))
+
+      let tmpAudiences = audiences.map((audience: any) => (
+        {
+          name: audience.name,
+          yso: audience.id
+        }
+      ))
       setCategories(tmpCategories)
+      setAudiences(tmpAudiences)
     }
   }, [data])
 
   return (
-    <div style={{ borderBottom: "1px solid lightgray"}}>
-      <Accordion title={"Mitä?"} icon={LocalActivityIcon}>
-        <p style={{ margin: "0 4px 4px 4px"}}><b>KATEGORIA</b></p>
+    <div className={styles.container}>
+      <Accordion title={`${t("what")}?`} icon={LocalActivityIcon}>
+        <p style={{ margin: "0 4px 4px 4px", color: theme.palette.primary.dark}}><b>KATEGORIA</b></p>
         <div className={styles.chipContainer}>
-          {categories.map((category: ICategory) => (
+          {isLoading &&
+            <CircularProgress />
+          }
+          {data &&
+            categories.map((category: ICategory) => (
             <FilterChip
               label={category.name.fi}
               active={filters.eventTypes.includes(category.yso)}
@@ -92,31 +115,19 @@ const WhatContainer = () => {
             />
           ))}
         </div>
-        <div style={{ margin: "32px 0 0 0"}}>
-          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", flexWrap: "wrap"}}>
+          <div className={styles.rowWrap}>
             <p style={{ width: "100px"}}>Kenelle:</p>
             <FormGroup row >
-              <FormControlLabel
-                control={<Checkbox/>}
-                label={"lapsiperheet"}
-                labelPlacement={"end"}
-                style={{ width: "140px"}}
-              />
-              <FormControlLabel
-                control={<Checkbox/>}
-                label={"nuoret"}
-                labelPlacement={"end"}
-                style={{ width: "140px"}}
-              />
-              <FormControlLabel
-                control={<Checkbox/>}
-                label={"seniorit"}
-                labelPlacement={"end"}
-                style={{ width: "140px"}}
-              />
+              {audiences.map((audience: any) => (
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={audience.name.fi}
+                  style={{ width: "250px"}}
+                />
+              ))}
             </FormGroup>
           </div>
-          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", flexWrap: "wrap"}}>
+          <div className={styles.rowWrap}>
             <p style={{ width: "100px"}}>Ominaisuus:</p>
             <FormGroup row>
               {features.map((feature) => (
@@ -131,7 +142,6 @@ const WhatContainer = () => {
               ))}
             </FormGroup>
           </div>
-        </div>
       </Accordion>
     </div>
   )

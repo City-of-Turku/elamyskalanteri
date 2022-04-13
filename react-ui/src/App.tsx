@@ -6,6 +6,7 @@ import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import HobbyList from "./components/pages/hobbies/HobbyList";
 import { theme, vinkTheme }  from './styles/styles';
+import "./translations/i18n"
 
 function App() {
   return (

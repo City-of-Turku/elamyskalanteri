@@ -1,0 +1,17 @@
+.container {
+    border-bottom: 1px solid lightgray;
+}
+
+.chipContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.rowWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}

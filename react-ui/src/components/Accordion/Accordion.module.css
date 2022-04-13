@@ -12,5 +12,8 @@ h3 {
 }
 
 .childContainer {
+    display: flex;
+    flex-direction: column;
     padding: 0 16px 24px 16px;
+    gap: 16px;
 }

@@ -11,6 +11,8 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import {useTranslation} from "react-i18next";
+
 
 const useStyles = makeStyles({
   title: {
@@ -22,12 +24,15 @@ const useStyles = makeStyles({
   }
 });
 
+
 const Nav = () => {
   const classes = useStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+
+  const { i18n } = useTranslation()
 
   const handleMenuClick = (pageURL: string) => {
     history.push(pageURL);
@@ -136,6 +141,32 @@ const Nav = () => {
               onClick={() => handleButtonClick("/educations")}
             >
               Koulutukset
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              alignItems: "center",
+            }}
+          >
+            <Button
+              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px', lineHeight: '19px' }}
+              onClick={() => i18n.changeLanguage("fi")}
+            >
+              FI
+            </Button>
+            <Button
+              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px' }}
+              onClick={() => i18n.changeLanguage("sv")}
+            >
+              SV
+            </Button>
+            <Button
+              sx={{ color: "primary.dark", fontWeight: '900',fontSize: '18px' }}
+              onClick={() => i18n.changeLanguage("en")}
+            >
+              EN
             </Button>
           </Box>
         </Toolbar>

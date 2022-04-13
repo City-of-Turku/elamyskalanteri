@@ -4,6 +4,8 @@ import filterSlice from "../../../redux/slices/filterSlice";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import styles from "./SearchBox.module.css";
 import SearchIcon from "@mui/icons-material/Search";
+import {useTheme} from "@mui/styles";
+import {useTranslation} from "react-i18next";
 
 
 /*
@@ -19,6 +21,9 @@ import SearchIcon from "@mui/icons-material/Search";
  */
 
 const SearchBox = () => {
+
+  const theme = useTheme()
+  const { t } = useTranslation()
 
   // debouncing timeout in ms
   const DEBOUNCE_TIMEOUT = 1000
@@ -70,11 +75,14 @@ const SearchBox = () => {
       <input
         className={styles.search}
         type="text"
-        placeholder={"Hae (nimi, paikka, aihe)"}
+        placeholder={t("search")}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <SearchIcon sx={{ fontSize: 32 }}/>
+      <div style={{ backgroundColor: theme.palette.primary.main, padding: "12px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%"}}>
+        <SearchIcon sx={{ fontSize: 32, color: "#ffffff" }}/>
+      </div>
+
     </div>
   )
 }

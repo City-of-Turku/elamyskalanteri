@@ -1,4 +1,5 @@
 import { Chip } from "@mui/material";
+import {useTheme} from "@mui/styles";
 
 interface IProps {
   label: string,
@@ -14,6 +15,8 @@ interface IProps {
 
 const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
 
+  const theme = useTheme()
+
   return (
     <>
       {active
@@ -21,7 +24,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
         <Chip
           label={label}
           variant={active ? "filled" : "outlined"}
-          sx={{ margin: "4px 4px", backgroundColor: "#C2CEDB" }}
+          sx={{ backgroundColor: theme.palette.primary.dark, color: "#ffffff", borderRadius: 0, clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
           onDelete={() => handleDelete ? handleDelete() : null}
 
         />
@@ -29,8 +32,8 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
         <Chip
           label={label}
           variant={active ? "filled" : "outlined"}
-          sx={{ margin: "4px 4px"}}
           onClick={() => handleClick ? handleClick() : null}
+          sx={{ borderRadius: 0, border: "none", backgroundColor: "rgba(242, 202, 153, 0.2);", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
         />
       }
     </>

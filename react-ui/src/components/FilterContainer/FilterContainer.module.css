@@ -27,10 +27,17 @@
     flex-wrap: wrap;
 }
 
+.calendarContainer {
+    border: 1px solid lightgray;
+    border-radius: 16px;
+    padding: 24px 16px;
+}
+
 .chipContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 8px;
 }
 
 .searchContainer {
@@ -41,15 +48,29 @@
 }
 
 @media only screen and (max-width: 1200px) {
+    .searchContainer {
+        margin: 0;
+    }
+
+    .calendarContainer {
+        width: 90%;
+        margin: 0 0 24px 0;
+    }
+}
+
+/* @media only screen and (max-width: 1200px) {
     .chipContainer {
         width: var(--med);
     }
 
+    .innerContainer {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media only screen and (max-width: 769px) {
     .chipContainer, .searchContainer {
         width: var(--large);
     }
-}
-
+} */

@@ -16,6 +16,7 @@ import { parseQuery } from "../../../functions/urlParser";
 import queryString from "query-string";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
+import {useTranslation} from "react-i18next";
 
 const EventList = () => {
 
@@ -28,6 +29,8 @@ const EventList = () => {
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
+
+  const { t, i18n } = useTranslation()
 
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
