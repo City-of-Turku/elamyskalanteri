@@ -31,6 +31,12 @@ const useStyles = makeStyles({
     maxWidth: '100%',
     //height: 400,
   },
+  box: {
+    clipPath: 'polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)', 
+    backgroundColor: '#fff',
+    padding: '3px 8px 3px 8px',
+    borderRadius: '2px',
+  }
 });
 
 const EventContent = () => {
@@ -178,11 +184,11 @@ const EventContent = () => {
               </ul>
             </Typography>
             <Box sx={{display: 'flex', paddingBottom: 25 }}>
-              <LinkIcon />
-              <WhatsAppIcon/>
-              <FacebookIcon />
-              <TwitterIcon />
-              <LinkedInIcon />
+              <LinkIcon className={classes.box} sx={{color: 'primary.dark'}}/>
+              <WhatsAppIcon className={classes.box} sx={{color: 'primary.dark'}}/>
+              <FacebookIcon className={classes.box} sx={{color: 'primary.dark'}}/>
+              <TwitterIcon className={classes.box}  sx={{color: 'primary.dark'}}/>
+              <LinkedInIcon className={classes.box} sx={{color: 'primary.dark'}}/>
               </Box>
             </Box>
           </Grid>

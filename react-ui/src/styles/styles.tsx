@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { lineHeight } from "@mui/system";
 
 export const vinkTheme = createTheme({
     palette:{
@@ -24,11 +23,11 @@ export const vinkTheme = createTheme({
             fontWeight: 900,
             fontSize: 35,
             letterSpacing: 0.01,
-            color: '#F26835' 
+            color: '#F26835', 
         },
         h6: {
             fontSize: 16,
-            fontWeight: 900,
+            fontWeight: 700,
             color: '#FFF',
             letterSpacing: '0.01em',
           
@@ -69,6 +68,35 @@ export const theme = createTheme({
             //lineHeight: 34,
             fontStyle: 'normal',
             color: '#000',
+        },
+        h4: {
+            fontWeight: 900,
+            fontSize: 35,
+            letterSpacing: 0.01,
+            color: '#000' 
+        },
+        h6: {
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#FFF',
+            letterSpacing: '0.01em',
+          
+        },
+        body2: { //short,long desc, location
+            fontSize: 15,
+            color: '#000',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            letterSpacing: '0.015em',
+            lineHeight: '21px',
+        },
+        subtitle1: {
+            color: '#fff',
+            fontWeight: 400,
+            fontSize: 14,
+            fontStyle: 'normal',
+            paddingBottom: 25,
+            letterSpacing: '0.015em'
         },
     }
 });

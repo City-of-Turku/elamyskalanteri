@@ -29,6 +29,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
         <Card
           className={classes.root}
           sx={{
+            maxWidth: 1200,
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
@@ -36,7 +37,9 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
             overflow: "hidden",
             borderRadius: "12px",
             boxShadow: 2,
-            fontWeight: "bold",
+            fontWeight: "bold", 
+            '&:hover': {
+              opacity: [0.9, 0.8, 0.7]},
           }}
         >
           <Box
