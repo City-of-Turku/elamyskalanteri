@@ -20,13 +20,12 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
-import scarf from '../../../svg/scarf.svg';
-
+import default1 from '../../../svg/default1.svg';
 
 let index = 0;
 let defaultImages: string | any[] = [];
 
-defaultImages[0] = scarf;
+defaultImages[0] = default1;
 
 index = Math.floor(Math.random() * defaultImages.length);
 
@@ -134,8 +133,8 @@ const EventCard = ({
               gutterBottom
               variant="h5"
               component="div"
-              sx={{ fontWeight: "bold" }}
-            >
+              sx={{ }}
+            > 
               {name?.fi}
             </Typography>
 

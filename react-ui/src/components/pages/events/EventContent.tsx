@@ -93,7 +93,7 @@ const EventContent = () => {
               <Typography
                 variant="h4"
                 component="div"
-                sx={{ fontWeight: "bold", pb: 2 }}
+                sx={{ pb: 2 }}
               >
                 {data?.name?.fi}
               </Typography>
