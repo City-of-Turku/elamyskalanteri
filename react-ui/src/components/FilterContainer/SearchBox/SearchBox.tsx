@@ -22,7 +22,7 @@ import {useTranslation} from "react-i18next";
 
 const SearchBox = () => {
 
-  const theme = useTheme()
+  const theme: any = useTheme()
   const { t } = useTranslation()
 
   // debouncing timeout in ms

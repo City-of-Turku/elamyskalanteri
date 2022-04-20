@@ -22,8 +22,8 @@ interface ICategory {
 
 const WhatContainer = () => {
 
-  const theme = useTheme()
-  const { t } = useTranslation()
+  const theme: any = useTheme()
+  const { t, i18n } = useTranslation()
 
   // @ts-ignore
   const { data, isLoading } = useTopicsQuery()
@@ -108,7 +108,7 @@ const WhatContainer = () => {
           {data &&
             categories.map((category: ICategory) => (
             <FilterChip
-              label={category.name.fi}
+              label={category.name[i18n.language as keyof typeof category.name] }
               active={filters.eventTypes.includes(category.yso)}
               handleClick={() => addFilter(category)}
               handleDelete={() => removeFilter(category)}
@@ -121,7 +121,7 @@ const WhatContainer = () => {
               {audiences.map((audience: any) => (
                 <FormControlLabel
                   control={<Checkbox />}
-                  label={audience.name.fi}
+                  label={audience.name[i18n.language]}
                   style={{ width: "250px"}}
                 />
               ))}

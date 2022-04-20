@@ -9,7 +9,7 @@ import {useTranslation} from "react-i18next";
 
 const FilterContainer = () => {
 
-  const theme = useTheme()
+  const theme: any = useTheme()
   const { t, i18n } = useTranslation()
 
   return (

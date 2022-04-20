@@ -11,13 +11,18 @@ interface IProps {
 
 const Accordion = ({ title, children, icon }: IProps) => {
 
-  const theme = useTheme()
+  const theme: any = useTheme()
   const [open, setOpen] = useState(false)
 
   return (
     <div>
       <div className={styles.container} onClick={() => setOpen(!open)}>
-        <h3 style={{ color: theme.palette.primary.dark }}>{title}</h3>
+        <h3 style={{
+          color: theme.palette.primary.dark
+        }}
+        >
+          {title}
+        </h3>
         {icon &&
           <div style={{ backgroundColor: theme.palette.primary.main, padding: "12px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%"}}>
             <Icon

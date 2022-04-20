@@ -15,7 +15,7 @@ interface IProps {
 
 const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
 
-  const theme = useTheme()
+  const theme: any = useTheme()
 
   return (
     <>
@@ -24,6 +24,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
         <Chip
           label={label}
           variant={active ? "filled" : "outlined"}
+          // @ts-ignore
           sx={{ backgroundColor: theme.palette.primary.dark, color: "#ffffff", borderRadius: 0, clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
           onDelete={() => handleDelete ? handleDelete() : null}
 

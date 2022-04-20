@@ -10,7 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
+import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 
 
@@ -33,6 +33,7 @@ const Nav = () => {
   );
 
   const { i18n } = useTranslation()
+  const theme: any = useTheme()
 
   const handleMenuClick = (pageURL: string) => {
     history.push(pageURL);
@@ -73,7 +74,7 @@ const Nav = () => {
             variant="h4"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", md: "block", fontWeight: 'bold', fontStyle:' italic', letterSpacing: 2} }}
+            sx={{ flexGrow: 1, display: { xs: "none", md: "block", fontWeight: 'bold', fontStyle:' italic', letterSpacing: 2, color: "#ffffff"} }}
           >
             VINK
           </Typography>
@@ -150,24 +151,31 @@ const Nav = () => {
               alignItems: "center",
             }}
           >
+            <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
+              <Button
+                sx={{ color: theme.palette.primary.dark, fontWeight: '900', fontSize: '18px', lineHeight: '19px', backgroundColor: i18n.language === 'fi' ? "#ffffff" : "primary.main", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)", borderRadius: 0 }}
+                onClick={() => i18n.changeLanguage("fi")}
+              >
+                Fi
+              </Button>
+            </div>
+
+            <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
-              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px', lineHeight: '19px' }}
-              onClick={() => i18n.changeLanguage("fi")}
-            >
-              FI
-            </Button>
-            <Button
-              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px' }}
+              sx={{ color: theme.palette.primary.dark, fontWeight: '900', fontSize: '18px', lineHeight: '19px', backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)", borderRadius: 0 }}
               onClick={() => i18n.changeLanguage("sv")}
             >
-              SV
+              Sv
             </Button>
+            </div>
+            <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
-              sx={{ color: "primary.dark", fontWeight: '900',fontSize: '18px' }}
+              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px', lineHeight: '19px', backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)", borderRadius: 0 }}
               onClick={() => i18n.changeLanguage("en")}
             >
-              EN
+              En
             </Button>
+            </div>
           </Box>
         </Toolbar>
       </Container>
