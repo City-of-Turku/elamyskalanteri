@@ -16,9 +16,8 @@ import { parseQuery } from "../../../functions/urlParser";
 import queryString from "query-string";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
-import {useTranslation} from "react-i18next";
 
-const EventList = () => {
+const CompactList = () => {
 
   const history = useHistory()
   const queryString = require('query-string')
@@ -29,8 +28,6 @@ const EventList = () => {
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
-
-  const { t, i18n } = useTranslation()
 
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
@@ -75,91 +72,17 @@ const EventList = () => {
   return (
     <div>
       <Box sx={{ p: 2 }}>
-        <FilterContainer />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "8px 0 24px 0",
-          }}
-        >
-          <Button
-            variant={"contained"}
-            sx={{ mx: 1 }}
-            onClick={() => setPage(page - 1)}
-            disabled={!data?.meta.previous}
-          >
-            Edellinen sivu
-          </Button>
-          <p>Sivu {page}</p>
-          <Button
-            variant={"contained"}
-            sx={{ mx: 1 }}
-            onClick={() => setPage(page + 1)}
-            disabled={!data?.meta.next}
-          >
-            Seuraava sivu
-          </Button>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin:"2em"
-          }}
-        >
-          <ToggleButtonGroup orientation="horizontal" exclusive onChange={handleColor} value={color}>
-            <ToggleButton
-              sx={{color: 'primary.dark'}} 
-              value="primary.dark"
-              aria-label="module"
-              onClick={() => setView(true)}
-            >
-              {" "}
-              <ViewModuleIcon />
-            </ToggleButton>
-            <ToggleButton
-              sx={{color: 'primary.dark'}}
-                value="secondary"
-              aria-label="list"
-              onClick={() => setView(false)}
-            >
-              <ViewListIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            p: 0.5,
-          }}
-        ></Box>
         <Grid
           sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center"}}
           container
           
         >
-          {isLoading ||
-            (isFetching && (
-              <Box
-                sx={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "50%",
-                }}
-              >
-                <CircularProgress />
-              </Box>
-            ))}
           {!isLoading &&
             !isFetching &&
             !error &&
-            data.data?.map((event: any) => {
+            data.data?.slice(0,4).map((event: any) => {
               return (
-                <div>
+                <div style={{backgroundColor: '#f0f0f0'}}>
                   <div>
                     {view ? (
                       <Grid key={event.id} item>
@@ -182,4 +105,4 @@ const EventList = () => {
   );
 };
 
-export default EventList;
+export default CompactList;

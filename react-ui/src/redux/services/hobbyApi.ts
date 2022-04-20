@@ -15,7 +15,7 @@ interface GetHobbyResponse {
 export const hobbyApi = createApi({
   reducerPath: "hobbyApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://linkedevents-api.turku.fi/v1",
+    baseUrl: "https://testilinkedevents-api.turku.fi/v1",
   }),
   endpoints: (builder) => ({
     hobbies: builder.query<GetHobbyResponse, void>({
