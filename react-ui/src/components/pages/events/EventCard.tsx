@@ -4,6 +4,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
+import { alpha } from "@mui/material/styles";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from '@mui/material/CardActions';
@@ -21,6 +22,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
 import default1 from '../../../svg/default1.svg';
+import EventIcon from "@mui/icons-material/Event";
 
 let index = 0;
 let defaultImages: string | any[] = [];
@@ -50,7 +52,7 @@ export interface DialogTitleProps {
 const useStyles = makeStyles({
   root: {
     width: 345,
-    height: 400,
+    height: 430,
     padding: "0.5em"
   },
   media: {
@@ -126,7 +128,24 @@ const EventCard = ({
           
           />
           <CardContent>
-            <Typography gutterBottom variant="subtitle2" component="div">
+            <Typography gutterBottom variant="subtitle2" component="div"  sx={{
+                mt: 1.5,
+                p: 0.5,
+                // backgroundColor: (theme) =>
+                //   alpha(theme.palette.primary.main, 0.1),
+                borderRadius: "5px",
+                // color: "primary.main",
+                fontWeight: "medium",
+                display: "flex",
+                fontSize: 15,
+                alignItems: "center",
+                fontFamily: "forma-djr-micro, sans-serif",
+                "& svg": {
+                  fontSize: 21,
+                  mr: 0.5,
+                },
+              }}>
+            <EventIcon />
               {dayjs(start_time).format(date)}
             </Typography>
             <Typography
@@ -174,12 +193,12 @@ const EventCard = ({
         </BootstrapDialogTitle>
 
         <DialogContent dividers>
-          <Typography gutterBottom sx={{ fontWeight: "bold" }}>
+          <Typography gutterBottom sx={{ fontWeight: "bold", fontFamily: "forma-djr-micro, sans-serif" }}>
             {" "}
             {dayjs(start_time).format(date)}
           </Typography>
-          <Typography gutterBottom>{description?.fi}</Typography>
-          <Typography gutterBottom color="text.secondary">
+          <Typography gutterBottom variant="body2">{description?.fi}</Typography>
+          <Typography gutterBottom color="text.secondary" variant="body2">
             {location_extra_info?.fi}
           </Typography>
           <Typography gutterBottom></Typography>

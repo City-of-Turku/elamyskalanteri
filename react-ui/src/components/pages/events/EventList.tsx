@@ -8,7 +8,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
-import FilterContainer from "../../filterContainer/FilterContainer";
+import FilterContainer from "../../FilterContainer/FilterContainer";
 import EventCard from "./EventCard";
 import List from "./List";
 import { useHistory } from "react-router-dom";

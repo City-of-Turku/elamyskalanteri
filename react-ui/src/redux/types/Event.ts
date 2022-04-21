@@ -28,6 +28,8 @@ export interface GetEventResponse {
   id: string;
   name: {
     fi: string;
+    sv: string;
+    en: string;
   };
   short_description: {
     fi: string;

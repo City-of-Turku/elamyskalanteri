@@ -19,6 +19,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import EventIcon from "@mui/icons-material/Event";
 
 dayjs.locale("fi");
 
@@ -86,8 +87,20 @@ const EventContent = () => {
             <Grid component="div" item width={600} height={580} sx={{display: 'inline-table'}} xs={5}>
               <Typography
                 component="div"
-                sx={{ pb: 2, fontWeight: 400, letterSpacing: 0.01}}
+                sx={{  mt: 1.5,
+                  pb: 2,
+                  borderRadius: "5px",
+                  fontWeight: "medium",
+                  display: "flex",
+                  fontSize: 15,
+                  alignItems: "center",
+                  fontFamily: "forma-djr-micro, sans-serif",
+                  "& svg": {
+                    fontSize: 21,
+                    mr: 0.5,
+                  },}}
               >
+                <EventIcon />
                 {dayjs(data?.start_time).format(date)}
               </Typography>
               <Typography
@@ -133,6 +146,8 @@ const EventContent = () => {
                     maxWidth: 700,
                     pb: 2,
                     letterSpacing: 0.01,
+                    fontFamily: "forma-djr-micro, sans-serif",
+                    fontStyle: 'regular'
                   }}
                 >
                   {data?.short_description?.fi}
@@ -144,6 +159,7 @@ const EventContent = () => {
                     fontSize: "default",
                     maxWidth: 623,
                     pt: 2,
+                    fontFamily: "forma-djr-micro, sans-serif",
                   }}
                   variant="body2"
                 >
@@ -151,9 +167,10 @@ const EventContent = () => {
                 </Typography>
             </Grid>
           <Grid component="div" item p={2}>
-            <Box width={294} height={435} sx={{
+            <Box width={340} height={610} sx={{
                 p:2,
-                backgroundColor: 'primary.dark'
+                backgroundColor: 'primary.dark',
+               
               }}>
             <Typography variant="h6">Hinta</Typography>
             <Typography component="div" variant="subtitle1">
