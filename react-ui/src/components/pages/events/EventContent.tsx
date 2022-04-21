@@ -31,6 +31,8 @@ const useStyles = makeStyles({
   media: {
     maxWidth: '100%',
     //height: 400,
+    boxShadow: '0px 40px 40px -40px rgba(25, 55, 115, 0.4)',
+    borderRadius: '2px',
   },
   box: {
     clipPath: 'polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)', 
@@ -83,18 +85,19 @@ const EventContent = () => {
           />
         </div>
       </Grid>
-      <Grid p={4} justifyContent="center" alignItems="center" component="div" container className={classes.root} spacing={5}>
-            <Grid component="div" item width={600} height={580} sx={{display: 'inline-table'}} xs={5}>
+      <Grid p={2} justifyContent="center" alignItems="center" component="div" container className={classes.root} spacing={8}>
+            <Grid component="div" item width={400} height={280} sx={{display: 'inline-table'}} xs={6}>
               <Typography
                 component="div"
                 sx={{  mt: 1.5,
                   pb: 2,
                   borderRadius: "5px",
-                  fontWeight: "medium",
+                  fontWeight: "bold",
                   display: "flex",
                   fontSize: 15,
                   alignItems: "center",
                   fontFamily: "forma-djr-micro, sans-serif",
+                  color: 'primary.dark',
                   "& svg": {
                     fontSize: 21,
                     mr: 0.5,
@@ -106,12 +109,12 @@ const EventContent = () => {
               <Typography
                 variant="h4"
                 component="div"
-                sx={{ pb: 2 }}
+                sx={{ pb: 3 }}
               >
                 {data?.name?.fi}
               </Typography>
               <Typography
-                sx={{ display: "flex", flexDirection: "row", pb: 1, color: 'primary.dark' }}
+                sx={{ display: "flex", flexDirection: "row", pb: 1, color: 'primary.dark', fontWeight: 'bold' }}
                 variant="body2"
               >
                 <LocationOnIcon fontSize="small" />
@@ -122,7 +125,7 @@ const EventContent = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  pb: 1,
+                  pb: 4,
                   cursor: "pointer",
                   color: "primary.dark"
                 }}
@@ -134,7 +137,7 @@ const EventContent = () => {
                   href={`${data?.info_url?.fi}`}
                   target="_blank"
                   rel="noopener"
-                  sx={{color: "primary.dark", textDecoration: "none"}}
+                  sx={{color: "primary.dark", textDecoration: "none", fontWeight: 'bold', pb: 2}}
                 >
                   {data?.info_url?.fi || "www.testi.fi"}
                 </Link>
@@ -144,7 +147,7 @@ const EventContent = () => {
                     fontWeight: 400,
                     fontSize: 16,
                     maxWidth: 700,
-                    pb: 2,
+                    pb: 4,
                     letterSpacing: 0.01,
                     fontFamily: "forma-djr-micro, sans-serif",
                     fontStyle: 'regular'
@@ -158,7 +161,7 @@ const EventContent = () => {
                     fontWeight: "light",
                     fontSize: "default",
                     maxWidth: 623,
-                    pt: 2,
+                    pt: 4,
                     fontFamily: "forma-djr-micro, sans-serif",
                   }}
                   variant="body2"
@@ -166,11 +169,12 @@ const EventContent = () => {
                   {data?.description?.fi}
                 </Typography>
             </Grid>
-          <Grid component="div" item p={2}>
-            <Box width={340} height={610} sx={{
-                p:2,
+          <Grid component="div" item minHeight={280}>
+            <Grid width={340} minHeight={400} sx={{
+                p:4,
                 backgroundColor: 'primary.dark',
-               
+                pt: 5,
+              wordWrap: 'break-word',
               }}>
             <Typography variant="h6">Hinta</Typography>
             <Typography component="div" variant="subtitle1">
@@ -207,7 +211,7 @@ const EventContent = () => {
               <TwitterIcon className={classes.box}  sx={{color: 'primary.dark'}}/>
               <LinkedInIcon className={classes.box} sx={{color: 'primary.dark'}}/>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
       </Grid>
     </div>

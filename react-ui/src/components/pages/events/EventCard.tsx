@@ -21,13 +21,13 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
-import default1 from '../../../svg/default1.svg';
+import default2 from '../../../svg/default2.svg';
 import EventIcon from "@mui/icons-material/Event";
 
 let index = 0;
 let defaultImages: string | any[] = [];
 
-defaultImages[0] = default1;
+defaultImages[0] = default2;
 
 index = Math.floor(Math.random() * defaultImages.length);
 
@@ -135,11 +135,12 @@ const EventCard = ({
                 //   alpha(theme.palette.primary.main, 0.1),
                 borderRadius: "5px",
                 // color: "primary.main",
-                fontWeight: "medium",
+                fontWeight: "bold",
                 display: "flex",
                 fontSize: 15,
                 alignItems: "center",
                 fontFamily: "forma-djr-micro, sans-serif",
+                color: "primary.dark",
                 "& svg": {
                   fontSize: 21,
                   mr: 0.5,

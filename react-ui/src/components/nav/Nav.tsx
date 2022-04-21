@@ -12,7 +12,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
-
+import vinkLogo from "../../svg/vinkLogo1.svg"
 
 const useStyles = makeStyles({
   title: {
@@ -21,6 +21,14 @@ const useStyles = makeStyles({
   },
   customizeToolbar: {
     minHeight: 50
+  },
+  logo: {
+    width: 195,
+    height: 100,
+    clipPath: 'polygon(5px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)', 
+    backgroundColor: '#fff',
+    padding: '1px 25px 1px 25px',
+    transform: 'rotate(-9.28deg)'
   }
 });
 
@@ -69,14 +77,14 @@ const Nav = () => {
   return (
     <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters className={classes.customizeToolbar} style={{height: '140px'}}>
+        <Toolbar disableGutters className={classes.customizeToolbar} style={{height: '180px'}}>
           <Typography
-            variant="h4"
-            noWrap
+            //noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", md: "block", fontWeight: 'bold', fontStyle:' italic', letterSpacing: 2, color: "#ffffff"} }}
+            sx={{ flexGrow: 2, display: {xs: "none", md: "block"} }}
           >
-            VINK
+            <img className={classes.logo}
+            src={vinkLogo}  alt="Logo"/>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
