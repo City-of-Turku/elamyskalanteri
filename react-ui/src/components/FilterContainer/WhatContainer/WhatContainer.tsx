@@ -49,11 +49,13 @@ const WhatContainer = () => {
 
   // Adds category to the redux store
   const addFilter = (category: ICategory) => {
+    // @ts-ignore
     setEventTypes(filters.eventTypes.concat(category.yso))
   }
 
   // Filters category from the redux store
   const removeFilter = (category: ICategory) => {
+    // @ts-ignore
     setEventTypes(filters.eventTypes.filter(e => e !== category.yso))
   }
 
@@ -63,12 +65,14 @@ const WhatContainer = () => {
       // Add feature to existing features
       const updatedFeatures = filters.eventFeatures
         .concat(e.target.value)
+      // @ts-ignore
       setFeatures(updatedFeatures)
     }
     else {
       // Filter e.target.value from existing features
       const filteredFeatures = filters.eventFeatures
         .filter((feature: any) => feature !== e.target.value)
+      // @ts-ignore
       setFeatures(filteredFeatures)
     }
   }

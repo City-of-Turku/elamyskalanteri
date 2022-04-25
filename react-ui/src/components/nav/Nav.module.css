@@ -1,0 +1,12 @@
+.navBtn {
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 19px;
+}
+
+.languageBtn {
+    font-weight: 900;
+    line-height: 19px;
+    font-size: 18px;
+    clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+}

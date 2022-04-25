@@ -1,8 +1,8 @@
 export const parseQuery = (filters: any) => {
   let validQueries: any[] = []
 
-  if (filters.name) {
-    validQueries = validQueries.concat(`text=${filters.name}`)
+  if (filters.search) {
+    validQueries = validQueries.concat(`text=${filters.search}`)
   }
 
   if (filters.eventTypes.length) {

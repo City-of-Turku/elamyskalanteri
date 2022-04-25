@@ -8,7 +8,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
-import FilterContainer from "../../filterContainer/FilterContainer";
+import FilterContainer from "../../FilterContainer/FilterContainer";
 import EventCard from "./EventCard";
 import List from "./List";
 import { useHistory } from "react-router-dom";
@@ -25,7 +25,7 @@ const EventList = () => {
   const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
-  const { setName, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
@@ -39,7 +39,7 @@ const EventList = () => {
     console.log(query)
 
     if (Object.keys(query).includes("text")) {
-      setName(query.text)
+      setSearch(query.text)
     }
     if (Object.keys(query).includes("keywords")) {
       let keywordArray = query.keywords.split(',')
@@ -62,7 +62,7 @@ const EventList = () => {
   const [page, setPage] = useState(1);
   const { data, error, isLoading, isFetching } = useEventsQuery({
     page: page,
-    searchTerm: filters.name || "",
+    searchTerm: filters.search || "",
     keyword: filters.eventTypes.join(),
     features: filters.eventFeatures.join("&"),
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
@@ -70,7 +70,7 @@ const EventList = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [filters.name, filters.eventTypes]);
+  }, [filters.search, filters.eventTypes]);
 
   return (
     <div>

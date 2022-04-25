@@ -12,6 +12,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
+import styles from "./Nav.module.css"
 
 
 const useStyles = makeStyles({
@@ -126,19 +127,22 @@ const Nav = () => {
             }}
           >
             <Button
-              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px', lineHeight: '19px' }}
+              className={styles.navBtn}
+              sx={{ color: "primary.dark" }}
               onClick={() => handleButtonClick("/")}
             >
               Tapahtumat
             </Button>
             <Button
-              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px' }}
+              className={styles.navBtn}
+              sx={{ color: "primary.dark" }}
               onClick={() => handleButtonClick("/hobbies")}
             >
               Harrastukset
             </Button>
             <Button
-              sx={{ color: "primary.dark", fontWeight: '900',fontSize: '18px' }}
+              className={styles.navBtn}
+              sx={{ color: "primary.dark" }}
               onClick={() => handleButtonClick("/educations")}
             >
               Koulutukset
@@ -153,7 +157,12 @@ const Nav = () => {
           >
             <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
               <Button
-                sx={{ color: theme.palette.primary.dark, fontWeight: '900', fontSize: '18px', lineHeight: '19px', backgroundColor: i18n.language === 'fi' ? "#ffffff" : "primary.main", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)", borderRadius: 0 }}
+                className={styles.languageBtn}
+                sx={{
+                  color: theme.palette.primary.dark,
+                  borderRadius: 0,
+                  backgroundColor: i18n.language === 'fi' ? "#ffffff" : "primary.main"
+                }}
                 onClick={() => i18n.changeLanguage("fi")}
               >
                 Fi
@@ -162,7 +171,12 @@ const Nav = () => {
 
             <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
-              sx={{ color: theme.palette.primary.dark, fontWeight: '900', fontSize: '18px', lineHeight: '19px', backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)", borderRadius: 0 }}
+              className={styles.languageBtn}
+              sx={{
+                color: theme.palette.primary.dark,
+                borderRadius: 0,
+                backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main"
+              }}
               onClick={() => i18n.changeLanguage("sv")}
             >
               Sv
@@ -170,7 +184,12 @@ const Nav = () => {
             </div>
             <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
-              sx={{ color: "primary.dark", fontWeight: '900', fontSize: '18px', lineHeight: '19px', backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)", borderRadius: 0 }}
+              sx={{
+                color: "primary.dark",
+                borderRadius: 0,
+                backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main"
+              }}
+              className={styles.languageBtn}
               onClick={() => i18n.changeLanguage("en")}
             >
               En

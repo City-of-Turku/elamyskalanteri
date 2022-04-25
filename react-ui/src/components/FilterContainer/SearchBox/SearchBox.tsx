@@ -36,13 +36,13 @@ const SearchBox = () => {
   const { filters } = useAppSelector(state => state)
 
   // Destruct slice's actions to const
-  const { setName } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch } = bindActionCreators(filterSlice.actions, dispatch)
 
-  const [searchTerm, setSearchTerm] = useState(filters.name)
+  const [searchTerm, setSearchTerm] = useState(filters.search)
 
   useEffect(() => {
-    setSearchTerm(filters.name)
-  }, [filters.name])
+    setSearchTerm(filters.search)
+  }, [filters.search])
 
 
   useEffect(() => {
@@ -50,11 +50,11 @@ const SearchBox = () => {
       // If the search term is at least the length of specified chars, dispatch it
       if (searchTerm.length >= MIN_CHARS) {
         // Search does not like whitespace at either end so trim those away
-        setName(searchTerm.trim())
+        setSearch(searchTerm.trim())
       }
       // If the search term is less than specified, dispatch empty search term
       else {
-        setName("")
+        setSearch("")
       }
     }
 

@@ -18,12 +18,19 @@ export interface AppProps {
 
 const App = (props : AppProps) => {
   const data = props.data;
+  console.log(props.data)
   return (
     <ThemeProvider theme={vinkTheme}>
     <HashRouter hashType={"noslash"}>
       {(data.navbar !== "hidden") && <Route component={Nav} />}
       <Switch>
-        <Route exact path="/" component={(data.type === "normal") ? EventList : CompactList} />
+        <Route exact path={"/"}>
+          {data.type === "normal"
+            ?
+            <EventList />
+            :
+            <CompactList dataAttributes={data} />}
+        </Route>
         <Route path="/eventlist/:id" component={EventContent} />
         <Route path="/hobbies" component={HobbyList} />
         <Route path="/educations" component={EducationList} />

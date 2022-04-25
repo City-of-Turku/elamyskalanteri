@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface filterState {
   eventTypes: string[],
-  name: string,
+  search: string,
   eventFeatures: string[]
   bbox: {
     west: number | null,
@@ -15,7 +15,7 @@ interface filterState {
 const initialState = {
   eventTypes: [],
   eventFeatures: [],
-  name: "",
+  search: "",
   bbox: {north: null, east: null, south: null, west: null}
 } as filterState
 
@@ -26,8 +26,8 @@ export const filterSlice = createSlice({
     setEventTypes: (state, action) => {
       state.eventTypes = action.payload
     },
-    setName: (state, action) => {
-      state.name = action.payload
+    setSearch: (state, action) => {
+      state.search = action.payload
     },
     setFeatures: (state, action) => {
       state.eventFeatures = action.payload
