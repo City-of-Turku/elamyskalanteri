@@ -3,10 +3,7 @@ import Grid from "@mui/material/Grid";
 import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
-<<<<<<< HEAD
-=======
 import FilterContainer from "../../FilterContainer/FilterContainer";
->>>>>>> 9989fb6a54a4e502b01881b0b64f637daef2e121
 import EventCard from "./EventCard";
 import List from "./List";
 import { useHistory } from "react-router-dom";
