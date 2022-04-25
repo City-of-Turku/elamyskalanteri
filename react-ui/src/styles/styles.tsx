@@ -12,6 +12,7 @@ export const vinkTheme = createTheme({
             }
     },
     typography: {
+        fontFamily: "halogen, sans-serif",
         h5: {
             fontWeight: 900,
             //fontSize: 28,
@@ -39,6 +40,7 @@ export const vinkTheme = createTheme({
             fontWeight: 400,
             letterSpacing: '0.015em',
             lineHeight: '21px',
+            fontFamily: "forma-djr-micro, sans-serif",
         },
         subtitle1: {
             color: '#fff',
@@ -46,7 +48,8 @@ export const vinkTheme = createTheme({
             fontSize: 14,
             fontStyle: 'normal',
             paddingBottom: 25,
-            letterSpacing: '0.015em'
+            letterSpacing: '0.015em',
+            fontFamily: "forma-djr-micro, sans-serif",
         },
     }
 });
