@@ -11,11 +11,8 @@
 
 .container {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    width: 100%;
     /* margin-bottom might be unnecessary in most use cases..*/
-    margin: 0 0 24px 0;
 }
 
 .innerContainer {
@@ -25,6 +22,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
+    gap: 24px;
 }
 
 .calendarContainer {
@@ -41,7 +39,6 @@
 }
 
 .searchContainer {
-    margin: 0 32px;
     width: 800px;
     border-radius: 16px;
     border: 1px solid lightgray;

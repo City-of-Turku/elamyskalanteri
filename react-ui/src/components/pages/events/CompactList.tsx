@@ -27,10 +27,11 @@ const CompactList = ({ dataAttributes }: any) => {
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
   useEffect(() => {
-    // If data-attributes are in use, don't use query params at all
+    // If data-attributes are used, set redux state from them
     if (dataAttributes.type === "compact") {
-      console.log(dataAttributes.search)
       setSearch(dataAttributes.search)
+      setEventTypes(dataAttributes.keywords || [])
+      setFeatures(dataAttributes.features || [])
     }
     else {
       const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
@@ -57,7 +58,6 @@ const CompactList = ({ dataAttributes }: any) => {
     history.push(parseQuery(filters))
   }, [filters])
 
-  console.log("fs: ", filters.search)
 
   const [page, setPage] = useState(1);
   const { data, error, isLoading, isFetching } = useEventsQuery({

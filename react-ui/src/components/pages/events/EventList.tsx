@@ -17,6 +17,7 @@ import queryString from "query-string";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import {useTranslation} from "react-i18next";
+import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 
 const EventList = () => {
 
@@ -75,7 +76,8 @@ const EventList = () => {
   return (
     <div>
       <Box sx={{ p: 2 }}>
-        <FilterContainer />
+          <FilterContainer />
+          <EmbedCode />
         <div
           style={{
             display: "flex",

@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 16px auto;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 16px 24px;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+.container Button {
+    margin: 0 8px 0 24px;
+}
+
+.btn {
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .container, .btn{
+        display: none !important;
+    }
+
+}
