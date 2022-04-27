@@ -5,6 +5,14 @@ export const parseQuery = (filters: any) => {
     validQueries = validQueries.concat(`text=${filters.search}`)
   }
 
+  if (filters.startTime) {
+    validQueries = validQueries.concat(`start_time=${filters.startTime}`)
+  }
+
+  if (filters.endTime) {
+    validQueries = validQueries.concat(`end_time=${filters.endTime}`)
+  }
+
   if (filters.eventTypes.length) {
     validQueries = validQueries.concat(`keywords=${filters.eventTypes.join(",")}`)
   }

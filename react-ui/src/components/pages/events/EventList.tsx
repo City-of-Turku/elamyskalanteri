@@ -26,7 +26,7 @@ const EventList = () => {
   const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
-  const { setSearch, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
@@ -51,6 +51,16 @@ const EventList = () => {
         console.log("feature array: ", featureArray)
         setFeatures(featureArray)
       }
+
+      if (Object.keys(query).includes("start_time")) {
+        setStartTime(query.start_time)
+      }
+
+      if (Object.keys(query).includes("end_time")) {
+        setEndTime(query.end_time)
+      }
+
+
       setFirstLoadDone(true)
     }
   }, [window.location.hash])

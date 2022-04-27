@@ -47,6 +47,12 @@ export const filterSlice = createSlice({
     },
     setBbox: (state, action) => {
       state.bbox = action.payload
+    },
+    setStartTime: (state, action) => {
+      state.startTime = action.payload
+    },
+    setEndTime: (state, action) => {
+      state.endTime = action.payload
     }
   }
 })

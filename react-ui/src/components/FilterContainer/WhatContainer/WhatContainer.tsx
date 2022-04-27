@@ -122,6 +122,8 @@ const WhatContainer = () => {
                   control={<Checkbox />}
                   label={audience.name[i18n.language]}
                   style={{ width: "250px"}}
+                  value={audience.yso}
+
                 />
               ))}
             </FormGroup>
