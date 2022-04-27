@@ -18,6 +18,7 @@ import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import {useTranslation} from "react-i18next";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
+import dayjs from "dayjs";
 
 const EventList = () => {
 
@@ -78,6 +79,8 @@ const EventList = () => {
     keyword: filters.eventTypes.join(),
     features: filters.eventFeatures.join("&"),
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
+    start_time: dayjs(filters.startTime).format("YYYY-MM-DD") || "",
+    end_time: dayjs(filters.endTime).format("YYYY-MM-DD") || ""
   });
 
   useEffect(() => {

@@ -6,6 +6,8 @@ interface IOptions {
   keyword: string;
   features: string;
   bbox: string;
+  start_time?: string;
+  end_time?: string;
 }
 
 export const eventApi = createApi({
@@ -16,7 +18,7 @@ export const eventApi = createApi({
   endpoints: (builder) => ({
     events: builder.query<any, IOptions>({
       query: (options: IOptions) =>
-        `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}&${options.features}&bbox=${options.bbox}`,
+        `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword}&${options.features}&bbox=${options.bbox}&start=${options.start_time}&end=${options.end_time}`,
     }),
     event: builder.query<any, string>({
       query: (id: any) => `/event/${id}/?include=keywords`,

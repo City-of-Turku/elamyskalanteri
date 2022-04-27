@@ -1,13 +1,12 @@
-
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import 'react-day-picker/dist/style.css'
 import { useTheme } from "@mui/styles";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import "./CalendarStyle.css"
 import dayjs from "dayjs";
-import {useAppDispatch, useAppSelector} from "../../hooks/rtkHooks";
-import {bindActionCreators} from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../hooks/rtkHooks";
+import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../redux/slices/filterSlice";
 const customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
@@ -18,10 +17,6 @@ const CalendarContainer = () => {
 
   const [date, setDate] = useState<any>([filters.startTime, filters.endTime])
   const theme = useTheme()
-
-  useEffect(() => {
-    console.log("Date: ", date)
-  }, [date])
 
   const dispatch = useAppDispatch()
   const { setStartTime, setEndTime } = bindActionCreators(filterSlice.actions, dispatch)
