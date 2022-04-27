@@ -36,22 +36,23 @@ const EventList = () => {
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
   useEffect(() => {
-    const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
-    console.log(query)
+    if (!firstLoadDone) {
+      const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
 
-    if (Object.keys(query).includes("text")) {
-      setSearch(query.text)
+      if (Object.keys(query).includes("text")) {
+        setSearch(query.text)
+      }
+      if (Object.keys(query).includes("keywords")) {
+        let keywordArray = query.keywords.split(',')
+        setEventTypes(keywordArray)
+      }
+      if (Object.keys(query).includes("features")) {
+        let featureArray = query.features.split(",")
+        console.log("feature array: ", featureArray)
+        setFeatures(featureArray)
+      }
+      setFirstLoadDone(true)
     }
-    if (Object.keys(query).includes("keywords")) {
-      let keywordArray = query.keywords.split(',')
-      setEventTypes(keywordArray)
-    }
-    if (Object.keys(query).includes("features")) {
-      let featureArray = query.features.split(",")
-      console.log(featureArray)
-      setFeatures(featureArray)
-    }
-    setFirstLoadDone(true)
   }, [window.location.hash])
 
   useEffect(() => {

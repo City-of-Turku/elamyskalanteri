@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import * as dayjs from 'dayjs'
+
 
 interface filterState {
   eventTypes: string[],
@@ -9,14 +11,19 @@ interface filterState {
     south: number | null,
     east: number | null,
     north: number | null
-  }
+  },
+  startTime: Date | null,
+  endTime: Date | null,
 }
 
 const initialState = {
   eventTypes: [],
   eventFeatures: [],
   search: "",
-  bbox: {north: null, east: null, south: null, west: null}
+  bbox: {north: null, east: null, south: null, west: null},
+  startTime: null,
+  endTime: null,
+
 } as filterState
 
 export const filterSlice = createSlice({
@@ -28,6 +35,12 @@ export const filterSlice = createSlice({
     },
     setSearch: (state, action) => {
       state.search = action.payload
+    },
+    addFeature: (state, action) => {
+      state.eventFeatures = [...state.eventFeatures, action.payload]
+    },
+    removeFeature: (state, action) => {
+      state.eventFeatures = state.eventFeatures.filter(item => item !== action.payload)
     },
     setFeatures: (state, action) => {
       state.eventFeatures = action.payload

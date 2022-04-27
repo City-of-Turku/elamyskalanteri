@@ -42,7 +42,7 @@ const WhatContainer = () => {
   const { filters } = useAppSelector(state => state)
 
   // Bind setFeatures to dispatch, so it can be called without dispatch
-  const { setFeatures, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
+  const { addFeature, removeFeature, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
 
   const [ categories, setCategories ] = useState([])
   const [ audiences, setAudiences ] = useState([])
@@ -60,21 +60,16 @@ const WhatContainer = () => {
   }
 
   const handleFeatureChange = (e: any) => {
+
     // If the checkbox is checked
     if (e.target.checked) {
-      // Add feature to existing features
-      const updatedFeatures = filters.eventFeatures
-        .concat(e.target.value)
-      // @ts-ignore
-      setFeatures(updatedFeatures)
+      addFeature(e.target.value)
     }
     else {
-      // Filter e.target.value from existing features
-      const filteredFeatures = filters.eventFeatures
-        .filter((feature: any) => feature !== e.target.value)
       // @ts-ignore
-      setFeatures(filteredFeatures)
+      removeFeature(e.target.value)
     }
+
   }
 
   useEffect(() => {

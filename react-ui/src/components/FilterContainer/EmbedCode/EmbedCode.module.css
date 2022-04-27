@@ -1,4 +1,9 @@
 .container {
+    width: 1200px;
+    margin: 24px auto;
+}
+
+.innerContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,14 +13,6 @@
     padding: 16px 24px;
     justify-content: space-between;
     width: 1200px;
-}
-
-.container Button {
-    margin: 0 8px 0 24px;
-}
-
-.btn {
-
 }
 
 @media only screen and (max-width: 1200px) {

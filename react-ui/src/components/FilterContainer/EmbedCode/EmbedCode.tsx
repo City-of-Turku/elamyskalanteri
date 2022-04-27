@@ -31,9 +31,9 @@ const EmbedCode = () => {
   }
 
   return (
-    <div style={{ width: "1200px", margin: "24px auto"}}>
+    <div className={styles.container}>
       <Button className={styles.btn} variant={"outlined"} onClick={() => setOpen(!open)}>{"< >"}</Button>
-      {open && <div className={styles.container}>
+      {open && <div className={styles.innerContainer}>
       <div id={"code"}>
         <p>{'<div'}</p>
         <div style={{ marginLeft: "16px"}}>
