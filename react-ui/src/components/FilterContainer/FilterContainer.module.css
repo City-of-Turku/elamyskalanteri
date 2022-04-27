@@ -15,6 +15,17 @@
     /* margin-bottom might be unnecessary in most use cases..*/
 }
 
+.sloganContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 0 16px 0;
+}
+
+.sloganContainer h2 {
+    font-weight: 300;
+}
+
 .innerContainer {
     display: flex;
     flex-direction: row;
@@ -44,11 +55,31 @@
     border: 1px solid lightgray;
 }
 
+.whenRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.whenRow h3 {
+    margin: 0 0 0 24px;
+    text-transform: capitalize;
+}
+
+.iconWrapper {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 24px 0;
+}
+
 @media only screen and (max-width: 1200px) {
     .searchContainer {
         margin: 0;
         width: 90%;
-        padding: 0 16px;
     }
 
     .calendarContainer {
@@ -56,20 +87,3 @@
         margin: 0 0 24px 0;
     }
 }
-
-/* @media only screen and (max-width: 1200px) {
-    .chipContainer {
-        width: var(--med);
-    }
-
-    .innerContainer {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media only screen and (max-width: 769px) {
-    .chipContainer, .searchContainer {
-        width: var(--large);
-    }
-} */

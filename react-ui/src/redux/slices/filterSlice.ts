@@ -5,7 +5,8 @@ import * as dayjs from 'dayjs'
 interface filterState {
   eventTypes: string[],
   search: string,
-  eventFeatures: string[]
+  eventFeatures: string[],
+  audiences: string[],
   bbox: {
     west: number | null,
     south: number | null,
@@ -19,6 +20,7 @@ interface filterState {
 const initialState = {
   eventTypes: [],
   eventFeatures: [],
+  audiences: [],
   search: "",
   bbox: {north: null, east: null, south: null, west: null},
   startTime: null,
@@ -53,6 +55,12 @@ export const filterSlice = createSlice({
     },
     setEndTime: (state, action) => {
       state.endTime = action.payload
+    },
+    addAudience: (state, action) => {
+      state.audiences = state.audiences.concat(action.payload)
+    },
+    removeAudience: (state, action) => {
+      state.audiences = state.audiences.filter((item) => item !== action.payload)
     }
   }
 })

@@ -1,3 +1,7 @@
+/*
+ * Parses query from all possible filters
+ */
+
 export const parseQuery = (filters: any) => {
   let validQueries: any[] = []
 

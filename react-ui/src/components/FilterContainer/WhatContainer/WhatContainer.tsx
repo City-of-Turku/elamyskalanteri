@@ -42,7 +42,7 @@ const WhatContainer = () => {
   const { filters } = useAppSelector(state => state)
 
   // Bind setFeatures to dispatch, so it can be called without dispatch
-  const { addFeature, removeFeature, setEventTypes } = bindActionCreators(filterSlice.actions, dispatch)
+  const { addFeature, removeFeature, setEventTypes, addAudience, removeAudience } = bindActionCreators(filterSlice.actions, dispatch)
 
   const [ categories, setCategories ] = useState([])
   const [ audiences, setAudiences ] = useState([])
@@ -60,16 +60,27 @@ const WhatContainer = () => {
   }
 
   const handleFeatureChange = (e: any) => {
-
     // If the checkbox is checked
     if (e.target.checked) {
+      // @ts-ignore
       addFeature(e.target.value)
     }
     else {
       // @ts-ignore
       removeFeature(e.target.value)
     }
+  }
 
+  const handleAudienceChange = (e: any) => {
+    console.log("lets roll")
+    if (e.target.checked) {
+      // @ts-ignore
+      addAudience(e.target.value)
+    }
+    else {
+      // @ts-ignore
+      removeAudience(e.target.value)
+    }
   }
 
   useEffect(() => {
@@ -123,6 +134,7 @@ const WhatContainer = () => {
                   label={audience.name[i18n.language]}
                   style={{ width: "250px"}}
                   value={audience.yso}
+                  onChange={(e: any) => handleAudienceChange(e)}
 
                 />
               ))}

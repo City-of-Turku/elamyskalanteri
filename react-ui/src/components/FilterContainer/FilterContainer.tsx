@@ -6,27 +6,27 @@ import WhatContainer from "./WhatContainer/WhatContainer";
 import WhereContainer from "./WhereContainer/WhereContainer";
 import {useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
-import {useAppSelector} from "../../hooks/rtkHooks";
-import EmbedCode from "./EmbedCode/EmbedCode";
 
 const FilterContainer = () => {
 
   const theme: any = useTheme()
   const { t, i18n } = useTranslation()
-  const { filters } = useAppSelector(state => state)
 
   return (
     <div className={styles.container}>
 
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
-        <h2 style={{ fontWeight: 300, marginBottom: "16px"}}>{t("slogan")}</h2>
+      <div className={styles.sloganContainer}>
+        <h2>{t("slogan")}</h2>
       </div>
 
       <div className={styles.innerContainer}>
         <div className={styles.calendarContainer}>
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-            <h3 style={{ margin: "0 0 0 24px", textTransform: "capitalize"}}>{t("when")}?</h3>
-            <div style={{ backgroundColor: theme.palette.primary.main, padding: "12px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%"}}>
+          <div className={styles.whenRow}>
+            <h3>{t("when")}?</h3>
+            <div
+              style={{ backgroundColor: theme.palette.primary.main}}
+              className={styles.iconWrapper}
+            >
               <EventAvailableIcon sx={{ fontSize: 32, color: "#ffffff" }} />
             </div>
           </div>
