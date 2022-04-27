@@ -85,8 +85,8 @@ const EventContent = () => {
           />
         </div>
       </Grid>
-      <Grid p={2} justifyContent="center" alignItems="center" component="div" container className={classes.root} spacing={8}>
-            <Grid component="div" item width={400} height={280} sx={{display: 'inline-table'}} xs={6}>
+      <Grid container p={4} justifyContent="center" component="div" className={classes.root} spacing={8}>
+            <Grid component="div" item xs={5} sx={{display: 'inline-table'}}>
               <Typography
                 component="div"
                 sx={{  mt: 1.5,
@@ -169,8 +169,8 @@ const EventContent = () => {
                   {data?.description?.fi}
                 </Typography>
             </Grid>
-          <Grid component="div" item minHeight={280}>
-            <Grid width={340} minHeight={400} sx={{
+          <Grid component="div" item>
+            <Grid width={340} minHeight={300} sx={{
                 p:4,
                 backgroundColor: 'primary.dark',
                 pt: 5,

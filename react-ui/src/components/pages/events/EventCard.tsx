@@ -171,9 +171,9 @@ const EventCard = ({
           </CardContent>
       </Link>
       <CardActions sx={{paddingLeft:2, display: 'block', position:'absolute'}}>
-      <Button variant="contained" onClick={handleClickOpen} >
+      {/* <Button variant="contained" onClick={handleClickOpen} >
         Lue lisää
-      </Button>
+      </Button> */}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
