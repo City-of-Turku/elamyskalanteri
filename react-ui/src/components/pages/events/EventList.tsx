@@ -79,8 +79,8 @@ const EventList = () => {
     keyword: filters.eventTypes.join(),
     features: filters.eventFeatures.join("&"),
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
-    start_time: dayjs(filters.startTime).format("YYYY-MM-DD") || "",
-    end_time: dayjs(filters.endTime).format("YYYY-MM-DD") || ""
+    start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
+    end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : ""
   });
 
   useEffect(() => {
