@@ -11,6 +11,7 @@ import { parseQuery } from "../../../functions/urlParser";
 import queryString from "query-string";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
+import dayjs from "dayjs";
 
 const CompactList = ({ dataAttributes }: any) => {
 
@@ -19,7 +20,7 @@ const CompactList = ({ dataAttributes }: any) => {
   const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
-  const { setSearch, setEventTypes, setFeatures } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
@@ -27,15 +28,8 @@ const CompactList = ({ dataAttributes }: any) => {
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
   useEffect(() => {
-    // If data-attributes are used, set redux state from them
-    if (dataAttributes.type === "compact") {
-      setSearch(dataAttributes.search)
-      setEventTypes(dataAttributes.keywords || [])
-      setFeatures(dataAttributes.features || [])
-    }
-    else {
+    if (!firstLoadDone) {
       const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
-      console.log(query)
 
       if (Object.keys(query).includes("text")) {
         setSearch(query.text)
@@ -46,8 +40,21 @@ const CompactList = ({ dataAttributes }: any) => {
       }
       if (Object.keys(query).includes("features")) {
         let featureArray = query.features.split(",")
-        console.log(featureArray)
+        console.log("feature array: ", featureArray)
         setFeatures(featureArray)
+      }
+
+      if (Object.keys(query).includes("start_time")) {
+        setStartTime(query.start_time)
+      }
+
+      if (Object.keys(query).includes("end_time")) {
+        setEndTime(query.end_time)
+      }
+
+      if (Object.keys(query).includes("audiences")) {
+        let audienceArray = query.audiences.split(',')
+        audienceArray.forEach((item: string) => addAudience(item))
       }
       setFirstLoadDone(true)
     }
@@ -66,6 +73,9 @@ const CompactList = ({ dataAttributes }: any) => {
     keyword: filters.eventTypes.join(),
     features: filters.eventFeatures.join("&"),
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
+    start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
+    end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : "",
+    audiences: filters.audiences.join()
   });
 
   useEffect(() => {

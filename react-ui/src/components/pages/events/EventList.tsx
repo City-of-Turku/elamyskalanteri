@@ -27,7 +27,7 @@ const EventList = () => {
   const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
-  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
@@ -61,7 +61,10 @@ const EventList = () => {
         setEndTime(query.end_time)
       }
 
-
+      if (Object.keys(query).includes("audiences")) {
+        let audienceArray = query.audiences.split(',')
+        audienceArray.forEach((item: string) => addAudience(item))
+      }
       setFirstLoadDone(true)
     }
   }, [window.location.hash])
@@ -71,7 +74,6 @@ const EventList = () => {
     history.push(parseQuery(filters))
   }, [filters])
 
-
   const [page, setPage] = useState(1);
   const { data, error, isLoading, isFetching } = useEventsQuery({
     page: page,
@@ -80,7 +82,8 @@ const EventList = () => {
     features: filters.eventFeatures.join("&"),
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
     start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
-    end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : ""
+    end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : "",
+    audiences: filters.audiences.join()
   });
 
   useEffect(() => {

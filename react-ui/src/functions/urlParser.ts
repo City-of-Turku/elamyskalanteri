@@ -25,6 +25,10 @@ export const parseQuery = (filters: any) => {
     validQueries = validQueries.concat(`features=${filters.eventFeatures.join(",")}`)
   }
 
+  if (filters.audiences.length) {
+    validQueries = validQueries.concat(`audiences=${filters.audiences.join(",")}`)
+  }
+
   if (validQueries.length) {
     return(`?${validQueries.join("&")}`)
   }

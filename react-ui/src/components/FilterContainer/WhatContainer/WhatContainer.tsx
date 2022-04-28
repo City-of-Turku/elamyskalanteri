@@ -9,7 +9,7 @@ import filterSlice from "../../../redux/slices/filterSlice";
 import { useTopicsQuery } from "../../../redux/services/keywordApi";
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/styles";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 interface ICategory {
   name: {
@@ -72,7 +72,6 @@ const WhatContainer = () => {
   }
 
   const handleAudienceChange = (e: any) => {
-    console.log("lets roll")
     if (e.target.checked) {
       // @ts-ignore
       addAudience(e.target.value)
@@ -135,6 +134,7 @@ const WhatContainer = () => {
                   style={{ width: "250px"}}
                   value={audience.yso}
                   onChange={(e: any) => handleAudienceChange(e)}
+                  checked={filters.audiences.includes(audience.yso)}
 
                 />
               ))}
