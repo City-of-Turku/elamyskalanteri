@@ -56,6 +56,9 @@ export const filterSlice = createSlice({
     setEndTime: (state, action) => {
       state.endTime = action.payload
     },
+    setAudience: (state, action) => {
+      state.audiences = action.payload
+    },
     addAudience: (state, action) => {
       state.audiences = state.audiences.concat(action.payload)
     },

@@ -13,7 +13,6 @@ import EventCard from "./EventCard";
 import List from "./List";
 import { useHistory } from "react-router-dom";
 import { parseQuery } from "../../../functions/urlParser";
-import queryString from "query-string";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import {useTranslation} from "react-i18next";
@@ -78,12 +77,12 @@ const EventList = () => {
   const { data, error, isLoading, isFetching } = useEventsQuery({
     page: page,
     searchTerm: filters.search || "",
-    keyword: filters.eventTypes.join(),
+    keyword: filters.eventTypes,
     features: filters.eventFeatures.join("&"),
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
     start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
     end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : "",
-    audiences: filters.audiences.join()
+    audiences: filters.audiences,
   });
 
   useEffect(() => {
