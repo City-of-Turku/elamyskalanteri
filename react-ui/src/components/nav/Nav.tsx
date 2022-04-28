@@ -12,18 +12,13 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
-
 import styles from "./Nav.module.css"
 import vinkLogo from "../../svg/vinkLogo1.svg"
-
 
 const useStyles = makeStyles({
   title: {
     color: "dark", 
     fontWeight: '900'
-  },
-  customizeToolbar: {
-    minHeight: 50
   },
   logo: {
     width: 195,
@@ -37,13 +32,12 @@ const useStyles = makeStyles({
 
 
 const Nav = () => {
+  const { t, i18n } = useTranslation()
   const classes = useStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-
-  const { i18n } = useTranslation()
   const theme: any = useTheme()
 
   const handleMenuClick = (pageURL: string) => {
@@ -80,7 +74,7 @@ const Nav = () => {
   return (
     <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters className={classes.customizeToolbar} style={{height: '180px'}}>
+        <Toolbar disableGutters className={styles.customizeToolbar} style={{height: 180}}>
           <Typography
             //noWrap
             component="div"
@@ -141,21 +135,21 @@ const Nav = () => {
               sx={{ color: "primary.dark" }}
               onClick={() => handleButtonClick("/")}
             >
-              Tapahtumat
+              {`${t("events")}`}
             </Button>
             <Button
               className={styles.navBtn}
               sx={{ color: "primary.dark" }}
               onClick={() => handleButtonClick("/hobbies")}
             >
-              Harrastukset
+                {`${t("hobbies")}`}
             </Button>
             <Button
               className={styles.navBtn}
               sx={{ color: "primary.dark" }}
               onClick={() => handleButtonClick("/educations")}
             >
-              Koulutukset
+              {`${t("educations")}`}
             </Button>
           </Box>
           <Box

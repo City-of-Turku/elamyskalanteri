@@ -3,5 +3,12 @@
   "when": "when",
   "where": "where",
   "search": "search",
-  "slogan": "find the best things"
+  "slogan": "find the best things",
+  "events": "events",
+  "hobbies": "hobbies",
+  "educations": "educations",
+  "price": "Price",
+  "age": "Age",
+  "provider": "Provider",
+  "more": "Check out more"
 }

@@ -51,10 +51,15 @@ export const vinkTheme = createTheme({
             letterSpacing: '0.015em',
             fontFamily: "forma-djr-micro, sans-serif",
         },
+        subtitle2: {//date
+            color: "#193773",
+            fontFamily: "forma-djr-micro, sans-serif",
+            fontSize: 15
+        }
     }
 });
 
-export const theme = createTheme({
+export const whiteLabelTheme = createTheme({
     palette:{
         primary: {
             main: '#fff',
@@ -101,5 +106,87 @@ export const theme = createTheme({
             paddingBottom: 25,
             letterSpacing: '0.015em'
         },
+    }
+});
+
+export const naantaliTheme = createTheme({
+    palette:{
+        primary: {
+            main: '#fff',
+            dark: '#1D6052',// dark green
+        },
+    },
+    typography: {
+        h6: {
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#FFF',
+            letterSpacing: '0.01em',
+          
+        },
+        h5: {
+            color: '#1D6052', 
+            fontWeight: 700,
+        },
+        h4: {
+            fontWeight: 900,
+            color: '#1D6052', 
+        },
+        subtitle1: {
+            color: '#fff',
+            fontWeight: 400,
+            fontSize: 14,
+            fontStyle: 'normal',
+            paddingBottom: 25,
+            letterSpacing: '0.015em'
+        },
+        subtitle2: {//date
+            color: '#000',
+        }
+    }
+});
+
+export const raisioTheme = createTheme({
+    palette:{
+        primary: {
+            main: '#fff',
+            dark: '#1a3e6f',// dark blue, light green #38b988
+        },
+    },
+});
+
+export const taiTheme = createTheme({
+    palette:{
+        primary: {
+            main: '#ed1a3b',//red
+            dark: '#000',
+        },
+    },
+    typography: {
+        fontFamily: "tussilago, sans-serif",
+        h6: {
+            fontFamily: "tussilago, sans-serif",
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#ed1a3b',
+            letterSpacing: '0.01em',
+          
+        },
+        h5: {
+            fontFamily: "tussilago, sans-serif",
+            fontWeight: 900,
+            fonStyle: 'normal'
+        },
+        subtitle1: {
+            color: '#fff',
+            fontWeight: 400,
+            fontSize: 14,
+            fontStyle: 'normal',
+            paddingBottom: 25,
+            letterSpacing: '0.015em'
+        },
+        subtitle2: {//date
+            color: '#ed1a3b',
+        }
     }
 });

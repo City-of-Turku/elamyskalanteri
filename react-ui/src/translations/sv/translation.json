@@ -3,5 +3,12 @@
   "when": "när",
   "where": "var",
   "search": "sök",
-  "slogan": "hitta de bästa sakerna"
+  "slogan": "hitta de bästa sakerna",
+  "events": "evenemang",
+  "hobbies": "hobbyer",
+  "educations": "träning",
+  "price": "Pris",
+  "age": "Åldersgräns",
+  "provider": "Leverantör",
+  "more": "Kolla in mer"
 }

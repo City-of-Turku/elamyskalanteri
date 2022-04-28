@@ -137,10 +137,7 @@ const EventCard = ({
                 // color: "primary.main",
                 fontWeight: "bold",
                 display: "flex",
-                fontSize: 15,
                 alignItems: "center",
-                fontFamily: "forma-djr-micro, sans-serif",
-                color: "primary.dark",
                 "& svg": {
                   fontSize: 21,
                   mr: 0.5,

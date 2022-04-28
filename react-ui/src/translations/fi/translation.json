@@ -3,5 +3,12 @@
   "when": "milloin",
   "where": "missä",
   "search": "hae",
-  "slogan": "löydä parhaat jutut"
+  "slogan": "löydä parhaat jutut",
+  "events": "tapahtumat",
+  "hobbies": "harrastukset",
+  "educations": "koulutukset",
+  "price": "Hinta",
+  "age": "Ikäraja",
+  "provider": " Järjestäjä",
+  "more": "Tutustu lisää"
 }

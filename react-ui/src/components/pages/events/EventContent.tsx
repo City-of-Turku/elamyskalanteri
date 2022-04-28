@@ -20,6 +20,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import EventIcon from "@mui/icons-material/Event";
+import {useTranslation} from "react-i18next";
 
 dayjs.locale("fi");
 
@@ -43,6 +44,7 @@ const useStyles = makeStyles({
 });
 
 const EventContent = () => {
+  const { t, i18n } = useTranslation()
   const params: any = useParams();
   const history = useHistory()
   console.log("hash: ", window.location.hash)
@@ -87,7 +89,7 @@ const EventContent = () => {
       </Grid>
       <Grid container p={4} justifyContent="center" component="div" className={classes.root} spacing={8}>
             <Grid component="div" item xs={5} sx={{display: 'inline-table'}}>
-              <Typography
+              <Typography variant="subtitle2"
                 component="div"
                 sx={{  mt: 1.5,
                   pb: 2,
@@ -96,8 +98,6 @@ const EventContent = () => {
                   display: "flex",
                   fontSize: 15,
                   alignItems: "center",
-                  fontFamily: "forma-djr-micro, sans-serif",
-                  color: 'primary.dark',
                   "& svg": {
                     fontSize: 21,
                     mr: 0.5,
@@ -176,22 +176,22 @@ const EventContent = () => {
                 pt: 5,
               wordWrap: 'break-word',
               }}>
-            <Typography variant="h6">Hinta</Typography>
+            <Typography variant="h6">{`${t("price")}`}</Typography>
             <Typography component="div" variant="subtitle1">
               {data?.offers[0]?.price?.fi || "-"}
             </Typography>
-            <Typography  variant="h6">Ikäraja</Typography>
+            <Typography  variant="h6">{`${t("age")}`}</Typography>
             <Typography component="div" variant="subtitle1">
               Alle 12 v.
             </Typography>
             <Typography  variant="h6">
-              Järjestäjä
+            {`${t("provider")}`}
             </Typography>
             <Typography component="div" variant="subtitle1">
               {data?.provider?.fi}
             </Typography>
             <Typography variant="h6"> 
-              Tutustu lisää
+            {`${t("more")}`}
             </Typography>
             <Typography
             variant="subtitle1"
