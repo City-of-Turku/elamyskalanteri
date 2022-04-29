@@ -72,9 +72,10 @@ const Nav = () => {
   ];
 
   return (
+    <div className={styles.customizeToolbar}>
     <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters className={styles.customizeToolbar} style={{height: 180}}>
+        <Toolbar disableGutters style={{height: 220}}>
           <Typography
             //noWrap
             component="div"
@@ -203,6 +204,7 @@ const Nav = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </div>
   );
 };
 export default Nav;
