@@ -1,7 +1,7 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import Button, { ButtonProps } from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -14,6 +14,7 @@ import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 import styles from "./Nav.module.css"
 import vinkLogo from "../../svg/vinkLogo1.svg"
+import { styled } from '@mui/material/styles';
 
 const useStyles = makeStyles({
   title: {
@@ -27,8 +28,20 @@ const useStyles = makeStyles({
     backgroundColor: '#fff',
     padding: '1px 25px 1px 25px',
     transform: 'rotate(-9.28deg)'
-  }
+  },
 });
+
+const NavButton = styled(Button)<ButtonProps>(({ theme }) => ({
+  color: theme.palette.primary.dark,
+  //backgroundColor: "primary.dark",
+  '&:hover': {
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.dark,
+  },
+  fontSize: 17,
+  fontWeight: 900,
+ 
+}));
 
 
 const Nav = () => {
@@ -131,27 +144,21 @@ const Nav = () => {
               alignItems: "center",
             }}
           >
-            <Button
-              className={styles.navBtn}
-              sx={{ color: "primary.dark" }}
+            <NavButton
               onClick={() => handleButtonClick("/")}
             >
               {`${t("events")}`}
-            </Button>
-            <Button
-              className={styles.navBtn}
-              sx={{ color: "primary.dark" }}
+            </NavButton>
+            <NavButton
               onClick={() => handleButtonClick("/hobbies")}
             >
                 {`${t("hobbies")}`}
-            </Button>
-            <Button
-              className={styles.navBtn}
-              sx={{ color: "primary.dark" }}
+            </NavButton>
+            <NavButton
               onClick={() => handleButtonClick("/educations")}
             >
               {`${t("educations")}`}
-            </Button>
+            </NavButton>
           </Box>
           <Box
             sx={{
@@ -166,7 +173,11 @@ const Nav = () => {
                 sx={{
                   color: theme.palette.primary.dark,
                   borderRadius: 0,
-                  backgroundColor: i18n.language === 'fi' ? "#ffffff" : "primary.main"
+                  backgroundColor: i18n.language === 'fi' ? "#ffffff" : "primary.main",
+                  '&:hover': {
+                    color: theme.palette.primary.main,
+                    backgroundColor: theme.palette.primary.dark,
+                  },
                 }}
                 onClick={() => i18n.changeLanguage("fi")}
               >
@@ -180,7 +191,11 @@ const Nav = () => {
               sx={{
                 color: theme.palette.primary.dark,
                 borderRadius: 0,
-                backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main"
+                backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main",
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                  backgroundColor: theme.palette.primary.dark,
+                },
               }}
               onClick={() => i18n.changeLanguage("sv")}
             >
@@ -190,9 +205,13 @@ const Nav = () => {
             <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
               sx={{
-                color: "primary.dark",
+                color: theme.palette.primary.dark,
                 borderRadius: 0,
-                backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main"
+                backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main",
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                  backgroundColor: theme.palette.primary.dark,
+                },
               }}
               className={styles.languageBtn}
               onClick={() => i18n.changeLanguage("en")}

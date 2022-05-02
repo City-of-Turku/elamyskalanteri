@@ -18,7 +18,7 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import * as React from "react";
+import * as React from "react"; 
 import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
 import default2 from '../../../svg/default2.svg';
@@ -31,8 +31,8 @@ defaultImages[0] = default2;
 
 index = Math.floor(Math.random() * defaultImages.length);
 
-dayjs.locale("fi");
-const date = "DD.MM.YYYY klo HH:mm "
+require("dayjs/locale/fi");
+const date = "dd DD.MM.YYYY klo HH:mm "
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -111,7 +111,7 @@ const EventCard = ({
   const classes = useStyles();
   return (
     <Card className={classes.root} style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 345,  '&:hover': {
-      opacity: [0.9, 0.8, 0.7]}, }}>
+      opacity: [0.9, 0.8, 0.7]},}}>
       <Link
         to={`/eventlist/${id}`}
         style={{ textDecoration: "none", color: "black" }}
@@ -125,16 +125,12 @@ const EventCard = ({
               images[0]?.url ||
               (defaultImages[index])
             }
-          
           />
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div"  sx={{
                 mt: 1.5,
                 p: 0.5,
-                // backgroundColor: (theme) =>
-                //   alpha(theme.palette.primary.main, 0.1),
                 borderRadius: "5px",
-                // color: "primary.main",
                 fontWeight: "bold",
                 display: "flex",
                 alignItems: "center",
@@ -150,7 +146,6 @@ const EventCard = ({
               gutterBottom
               variant="h5"
               component="div"
-              sx={{ }}
             > 
               {name?.fi}
             </Typography>
@@ -164,7 +159,7 @@ const EventCard = ({
               <LocationOnIcon fontSize="small" />
               {provider?.fi}
             </Typography>
-            <Typography sx={{p:1, overflow: 'hidden', lineHeight: '20.8px', maxHeight: 55}} variant="body2">{short_description?.fi}</Typography>
+            <Typography sx={{p:1, overflow: 'hidden', lineHeight: '20.8px', maxHeight: 55,}} variant="body2">{short_description?.fi}</Typography>
           </CardContent>
       </Link>
       <CardActions sx={{paddingLeft:2, display: 'block', position:'absolute'}}>

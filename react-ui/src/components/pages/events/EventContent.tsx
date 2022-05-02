@@ -174,7 +174,7 @@ const EventContent = () => {
                 p:4,
                 backgroundColor: 'primary.dark',
                 pt: 5,
-              wordWrap: 'break-word',
+                wordWrap: 'break-word',
               }}>
             <Typography variant="h6">{`${t("price")}`}</Typography>
             <Typography component="div" variant="subtitle1">

@@ -150,9 +150,40 @@ export const raisioTheme = createTheme({
     palette:{
         primary: {
             main: '#fff',
-            dark: '#1a3e6f',// dark blue, light green #38b988
+            dark: '#003C71',// dark blue, light green #00C389
+        },
+        background: {
+            default: "#e4f0e2"
+          }
+    },
+    typography: {
+        fontFamily: "museo-sans, sans-serif",
+        h6: {
+            fontFamily: "museo-sans, sans-serif",
+            fontSize: 16,
+            fontWeight: 900,
+            color: '#fff',
+            letterSpacing: '0.01em',
+          
+        },
+        h5: {
+            color: '#003C71', 
+            fontWeight: 700,
+        },
+        h4: {
+            fontWeight: 900,
+            color: '#003C71', 
+        },
+        subtitle1: {
+            color: '#fff',
+            fontWeight: 400,
+            fontSize: 14,
+            fontStyle: 'normal',
+            paddingBottom: 25,
+            letterSpacing: '0.015em'
         },
     },
+
 });
 
 export const taiTheme = createTheme({
@@ -175,7 +206,15 @@ export const taiTheme = createTheme({
         h5: {
             fontFamily: "tussilago, sans-serif",
             fontWeight: 900,
-            fonStyle: 'normal'
+            fonStyle: 'normal',
+            color: '#ed1a3b',
+            fontSize: 20
+        },
+        h4: {
+            fontWeight: 900,
+            fontSize: 35,
+            letterSpacing: 0.01,
+            color: '#ed1a3b', 
         },
         subtitle1: {
             color: '#fff',
@@ -183,10 +222,22 @@ export const taiTheme = createTheme({
             fontSize: 14,
             fontStyle: 'normal',
             paddingBottom: 25,
-            letterSpacing: '0.015em'
+            letterSpacing: '0.015em',
+            fontFamily: 'arial, sans-serif'
         },
         subtitle2: {//date
-            color: '#ed1a3b',
+            color: '#000',
+            fontFamily: 'arial, sans-serif',
+            fontSize: 15
+        },
+        body2: {
+            fontSize: 15,
+            color: '#000',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            letterSpacing: '0.015em',
+            lineHeight: '21px',
+            fontFamily: 'arial, sans-serif'
         }
     }
 });
