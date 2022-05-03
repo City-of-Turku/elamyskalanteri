@@ -22,7 +22,7 @@ const WhereContainer = () => {
   ]
 
   return (
-    <div style={{ borderBottom: "1px solid lightgray"}}>
+    <div>
       <Accordion
         title={`${t("where")}?`}
         icon={LocationOnIcon}

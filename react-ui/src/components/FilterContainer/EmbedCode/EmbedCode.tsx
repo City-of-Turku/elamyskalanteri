@@ -45,6 +45,14 @@ const EmbedCode = () => {
           {!!filters.eventTypes.length &&
             <p>{`data-keywords="${filters.eventTypes.join()}"`}</p>
           }
+          {!!filters.audiences.length &&
+            <p>{`data-audiences="${filters.audiences.join()}"`}</p>}
+          {filters.startTime && filters.endTime &&
+            <>
+              <p>{`data-start-time="${filters.startTime}"`}</p>
+              <p>{`data-end-time="${filters.endTime}"`}</p>
+            </>
+          }
         </div>
         <p>{'></div>'}</p>
       </div>

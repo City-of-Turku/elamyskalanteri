@@ -1,5 +1,6 @@
 import { Chip } from "@mui/material";
-import {useTheme} from "@mui/styles";
+import { useTheme } from "@mui/styles";
+import styles from "./FilterChip.module.css"
 
 interface IProps {
   label: string,
@@ -25,7 +26,8 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           label={label}
           variant={active ? "filled" : "outlined"}
           // @ts-ignore
-          sx={{ backgroundColor: theme.palette.primary.main, color: "#ffffff", borderRadius: 0, clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
+          className={styles.chip}
+          sx={{ backgroundColor: theme.palette.primary.main, color: "#ffffff"}}
           onDelete={() => handleDelete ? handleDelete() : null}
 
         />
@@ -34,7 +36,8 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           label={label}
           variant={active ? "filled" : "outlined"}
           onClick={() => handleClick ? handleClick() : null}
-          sx={{ borderRadius: 0, border: "none", backgroundColor: "rgba(242, 202, 153, 0.2);", clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
+          className={styles.chip}
+          sx={{ color: theme.palette.primary.dark,  backgroundColor: "rgba(242, 202, 153, 0.2);"}}
         />
       }
     </>

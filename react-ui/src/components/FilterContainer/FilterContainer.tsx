@@ -4,8 +4,8 @@ import CalendarContainer from "../Calendar/CalendarContainer"
 import SearchBox from "./SearchBox/SearchBox";
 import WhatContainer from "./WhatContainer/WhatContainer";
 import WhereContainer from "./WhereContainer/WhereContainer";
-import {useTheme} from "@mui/styles";
-import {useTranslation} from "react-i18next";
+import { useTheme } from "@mui/styles";
+import { useTranslation } from "react-i18next";
 
 const FilterContainer = () => {
 
@@ -35,7 +35,9 @@ const FilterContainer = () => {
           <>
             <div className={styles.searchContainer}>
               <WhatContainer />
+              <div className={styles.divider}/>
               <WhereContainer />
+              <div className={styles.divider}/>
               <SearchBox />
             </div>
           </>
