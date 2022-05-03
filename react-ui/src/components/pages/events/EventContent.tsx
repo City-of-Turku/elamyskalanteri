@@ -49,7 +49,7 @@ const EventContent = () => {
   const history = useHistory()
   console.log("hash: ", window.location.hash)
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
-   const classes = useStyles();
+  const classes = useStyles();
   return (
     <div>
       <Link
@@ -91,13 +91,15 @@ const EventContent = () => {
             <Grid component="div" item xs={5} sx={{display: 'inline-table'}}>
               <Typography variant="subtitle2"
                 component="div"
-                sx={{  mt: 1.5,
-                  pb: 2,
+                sx={{  
+                  mt: 1.5,
+                  pb: 0.5,
                   borderRadius: "5px",
                   fontWeight: "bold",
                   display: "flex",
                   fontSize: 15,
                   alignItems: "center",
+                  textTransform: "capitalize",
                   "& svg": {
                     fontSize: 21,
                     mr: 0.5,

@@ -3,9 +3,11 @@ import FilterChip from "../FilterChip/FilterChip";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import Accordion from "../../Accordion/Accordion";
 import {useTranslation} from "react-i18next";
+import { useTheme } from "@mui/styles";
 
 const WhereContainer = () => {
 
+  const theme: any = useTheme()
   const { t } = useTranslation()
 
   const places = [
@@ -25,7 +27,7 @@ const WhereContainer = () => {
         title={`${t("where")}?`}
         icon={LocationOnIcon}
       >
-        <p style={{ margin: "0 4px 4px 4px"}}>
+        <p style={{ margin: "0 4px 4px 4px", color: theme.palette.primary.main}}>
           <b>
             PAIKKAKUNTA
           </b>

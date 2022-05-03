@@ -25,7 +25,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           label={label}
           variant={active ? "filled" : "outlined"}
           // @ts-ignore
-          sx={{ backgroundColor: theme.palette.primary.dark, color: "#ffffff", borderRadius: 0, clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
+          sx={{ backgroundColor: theme.palette.primary.main, color: "#ffffff", borderRadius: 0, clipPath: "polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);", padding: "0 4px" }}
           onDelete={() => handleDelete ? handleDelete() : null}
 
         />

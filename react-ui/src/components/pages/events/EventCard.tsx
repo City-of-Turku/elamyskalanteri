@@ -32,7 +32,7 @@ defaultImages[0] = default2;
 index = Math.floor(Math.random() * defaultImages.length);
 
 require("dayjs/locale/fi");
-const date = "dd DD.MM.YYYY klo HH:mm "
+const date = "dd DD.MM.YYYY | HH:mm "
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -117,7 +117,7 @@ const EventCard = ({
         style={{ textDecoration: "none", color: "black" }}
       >
           <CardMedia
-          sx={{  boxShadow: 2 }}
+          sx={{ boxShadow: 2 }}
             className={classes.media}
             component="img"
             // alt={images[0]?.alt_text.fi}
@@ -127,15 +127,16 @@ const EventCard = ({
             }
           />
           <CardContent>
-            <Typography gutterBottom variant="subtitle2" component="div"  sx={{
-                mt: 1.5,
-                p: 0.5,
+            <Typography gutterBottom variant="subtitle2" component="div" sx={{
+                //mt: 1.5,
+                //p: 0.5,
                 borderRadius: "5px",
                 fontWeight: "bold",
                 display: "flex",
                 alignItems: "center",
+                textTransform: "capitalize",
                 "& svg": {
-                  fontSize: 21,
+                  fontSize: 22,
                   mr: 0.5,
                 },
               }}>
@@ -149,12 +150,11 @@ const EventCard = ({
             > 
               {name?.fi}
             </Typography>
-
             <Typography
               gutterBottom
               variant="body2"
               component="div"
-              sx={{ display: "flex", flexDirection: "row", color: "primary.dark", letterSpacing: '0.01em' }}
+              sx={{ display: "flex", flexDirection: "row", color: "primary.main", letterSpacing: '0.01em' }}
             >
               <LocationOnIcon fontSize="small" />
               {provider?.fi}

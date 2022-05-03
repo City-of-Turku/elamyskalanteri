@@ -28,7 +28,7 @@ const EventList = () => {
   const { filters } = useAppSelector((state) => state);
   const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
-  const [color, setColor] = useState("primary.dark")
+  const [color, setColor] = useState("primary.main")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
 
   const { t, i18n } = useTranslation()
@@ -130,7 +130,7 @@ const EventList = () => {
         >
           <ToggleButtonGroup orientation="horizontal" exclusive onChange={handleColor} value={color}>
             <ToggleButton
-              sx={{color: 'primary.dark'}} 
+              sx={{color: 'primary.main'}} 
               value="primary.dark"
               aria-label="module"
               onClick={() => setView(true)}
@@ -139,7 +139,7 @@ const EventList = () => {
               <ViewModuleIcon />
             </ToggleButton>
             <ToggleButton
-              sx={{color: 'primary.dark'}}
+              sx={{color: 'primary.main'}}
                 value="secondary"
               aria-label="list"
               onClick={() => setView(false)}

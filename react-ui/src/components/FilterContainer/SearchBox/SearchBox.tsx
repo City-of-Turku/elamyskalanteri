@@ -71,7 +71,7 @@ const SearchBox = () => {
   }, [searchTerm])
 
   return (
-    <div className={styles.inputWrapper}>
+    <div className={styles.inputWrapper} style={{color: theme.palette.primary.main}}>
       <input
         className={styles.search}
         type="text"

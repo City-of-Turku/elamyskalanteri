@@ -22,7 +22,7 @@ const FilterContainer = () => {
       <div className={styles.innerContainer}>
         <div className={styles.calendarContainer}>
           <div className={styles.whenRow}>
-            <h3>{t("when")}?</h3>
+            <h3 style={{color: theme.palette.primary.main }}>{t("when")}?</h3>
             <div
               style={{ backgroundColor: theme.palette.primary.main}}
               className={styles.iconWrapper}

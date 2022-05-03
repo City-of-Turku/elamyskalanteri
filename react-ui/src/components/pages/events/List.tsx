@@ -55,6 +55,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
               {name?.fi}
             </Box>
             <Typography
+            variant="body2"
               component="span"
               sx={{
                 display: "flex",
@@ -102,7 +103,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
               minWidth: { md: 350 },
             }}
           >
-            <Typography sx={{ textAlign: "left", mr: 10 }}>
+            <Typography sx={{ justifyContent:"center", alignContent:"center" }} variant="body2">
               {short_description?.fi}
             </Typography>
           </Box>

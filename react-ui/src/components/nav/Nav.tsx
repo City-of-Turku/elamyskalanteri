@@ -14,7 +14,7 @@ import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 import styles from "./Nav.module.css"
 import vinkLogo from "../../svg/vinkLogo1.svg"
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 
 const useStyles = makeStyles({
   title: {
@@ -33,7 +33,6 @@ const useStyles = makeStyles({
 
 const NavButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.primary.dark,
-  //backgroundColor: "primary.dark",
   '&:hover': {
     color: theme.palette.primary.main,
     backgroundColor: theme.palette.primary.dark,
@@ -42,7 +41,6 @@ const NavButton = styled(Button)<ButtonProps>(({ theme }) => ({
   fontWeight: 900,
  
 }));
-
 
 const Nav = () => {
   const { t, i18n } = useTranslation()
@@ -171,12 +169,12 @@ const Nav = () => {
               <Button
                 className={styles.languageBtn}
                 sx={{
-                  color: theme.palette.primary.dark,
                   borderRadius: 0,
-                  backgroundColor: i18n.language === 'fi' ? "#ffffff" : "primary.main",
+                  backgroundColor: i18n.language === 'fi' ? "#fff" : "primary.main",
+                  color: i18n.language === 'fi' ? "primary.main" : "primary.dark",
                   '&:hover': {
-                    color: theme.palette.primary.main,
-                    backgroundColor: theme.palette.primary.dark,
+                  color: theme.palette.primary.main,
+                  backgroundColor: '#fff',
                   },
                 }}
                 onClick={() => i18n.changeLanguage("fi")}
@@ -189,12 +187,12 @@ const Nav = () => {
             <Button
               className={styles.languageBtn}
               sx={{
-                color: theme.palette.primary.dark,
                 borderRadius: 0,
                 backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main",
+                color: i18n.language === 'sv' ? "primary.main" : "primary.dark",
                 '&:hover': {
                   color: theme.palette.primary.main,
-                  backgroundColor: theme.palette.primary.dark,
+                  backgroundColor: '#fff',
                 },
               }}
               onClick={() => i18n.changeLanguage("sv")}
@@ -205,12 +203,12 @@ const Nav = () => {
             <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
               sx={{
-                color: theme.palette.primary.dark,
                 borderRadius: 0,
                 backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main",
+                color: i18n.language === 'en' ? "primary.main" : "primary.dark",
                 '&:hover': {
                   color: theme.palette.primary.main,
-                  backgroundColor: theme.palette.primary.dark,
+                  backgroundColor: '#fff',
                 },
               }}
               className={styles.languageBtn}
