@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { fontWeight } from "@mui/system";
 
 export const vinkTheme = createTheme({
     palette:{
@@ -6,10 +7,9 @@ export const vinkTheme = createTheme({
             main: '#F26835', // dark orange
             dark: '#193773' // dark blue
         },
-            background: {
-                paper: '#fff',
-                default: '#193773'
-            }
+        secondary: {
+            main:'#193773',
+        }
     },
     typography: {
         fontFamily: "halogen, sans-serif",
@@ -57,7 +57,11 @@ export const vinkTheme = createTheme({
         subtitle2: {//date
             color: "#193773",
             fontFamily: "forma-djr-micro, sans-serif",
-            fontSize: 15
+            fontSize: 15,
+            fontWeight: 700
+        },
+        button: {
+            fontWeight: 900
         }
     }
 });
@@ -117,6 +121,7 @@ export const naantaliTheme = createTheme({
         },
     },
     typography: {
+        fontFamily: "arial, sans-serif",
         h6: {
             fontSize: 16,
             fontWeight: 900,
@@ -160,9 +165,6 @@ export const raisioTheme = createTheme({
             main: '#003C71',//dark blue
             dark: '#00C389',// green
         },
-        background: {
-            default: "#e4f0e2"
-          }
     },
     typography: {
         fontFamily: "museo-sans, sans-serif",
@@ -190,6 +192,17 @@ export const raisioTheme = createTheme({
             paddingBottom: 25,
             letterSpacing: '0.015em'
         },
+        subtitle2: {//date
+            color: '#00C389',
+        },
+        body2: {
+            fontSize: 15,
+            color: '#000',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            letterSpacing: '0.015em',
+            lineHeight: '21px',
+        }
     },
 
 });
@@ -198,8 +211,11 @@ export const taiTheme = createTheme({
     palette:{
         primary: {
             main: '#ed1a3b',//red
-            dark: '#000',
+            dark: '#404040',
         },
+        secondary: {
+            main: '#fff'
+        }
     },
     typography: {
         fontFamily: "tussilago, sans-serif",
@@ -207,7 +223,7 @@ export const taiTheme = createTheme({
             fontFamily: "tussilago, sans-serif",
             fontSize: 16,
             fontWeight: 900,
-            color: '#ed1a3b',
+            color: '#fff',
             letterSpacing: '0.01em',
           
         },
@@ -217,6 +233,9 @@ export const taiTheme = createTheme({
             fonStyle: 'normal',
             color: '#ed1a3b',
             fontSize: 20
+        },
+        h2: {
+            color: '#000'
         },
         h4: {
             fontWeight: 900,
@@ -246,6 +265,13 @@ export const taiTheme = createTheme({
             letterSpacing: '0.015em',
             lineHeight: '21px',
             fontFamily: 'arial, sans-serif'
+        },
+        button: {
+            fontSize: 15,
         }
-    }
+    },
 });
+
+export const kaarinaTheme = createTheme({
+   
+})

@@ -1,7 +1,7 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Button, { ButtonProps } from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -14,7 +14,6 @@ import {makeStyles, useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 import styles from "./Nav.module.css"
 import vinkLogo from "../../svg/vinkLogo1.svg"
-import { styled } from '@mui/material/styles'
 
 const useStyles = makeStyles({
   title: {
@@ -30,17 +29,6 @@ const useStyles = makeStyles({
     transform: 'rotate(-9.28deg)'
   },
 });
-
-const NavButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  color: theme.palette.primary.dark,
-  '&:hover': {
-    color: theme.palette.primary.main,
-    backgroundColor: theme.palette.primary.dark,
-  },
-  fontSize: 17,
-  fontWeight: 900,
- 
-}));
 
 const Nav = () => {
   const { t, i18n } = useTranslation()
@@ -87,15 +75,9 @@ const Nav = () => {
     <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters style={{height: 220}}>
-          <Typography
-            //noWrap
-            component="div"
-            sx={{ flexGrow: 2, display: {xs: "none", md: "block"} }}
-          >
-            <img className={classes.logo}
-            src={vinkLogo}  alt="Logo"/>
+          <Typography component="div" sx={{ flexGrow: 2, display: {xs: "none", md: "block"}}}>
+            <img className={classes.logo} src={vinkLogo}  alt="Logo"/>
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -103,8 +85,7 @@ const Nav = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+              color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -121,10 +102,7 @@ const Nav = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
+              sx={{display: { xs: "block", md: "none" }}}>
               {pages.map((page) => {
                 const { menuTitle, pageURL } = page;
                 return (
@@ -135,37 +113,28 @@ const Nav = () => {
               })}
             </Menu>
           </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              alignItems: "center",
-            }}
-          >
-            <NavButton
+          <Box sx={{flexGrow: 1, display: { xs: "none", md: "flex" },alignItems: "center"}}>
+            <Button
+              sx={{color: "secondary.main" }}
               onClick={() => handleButtonClick("/")}
             >
               {`${t("events")}`}
-            </NavButton>
-            <NavButton
+            </Button>
+            <Button
+            sx={{color: "secondary.main" }}
               onClick={() => handleButtonClick("/hobbies")}
             >
                 {`${t("hobbies")}`}
-            </NavButton>
-            <NavButton
+            </Button>
+            <Button
+            sx={{color: "secondary.main" }}
               onClick={() => handleButtonClick("/educations")}
             >
               {`${t("educations")}`}
-            </NavButton>
+            </Button>
           </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              alignItems: "center",
-            }}
-          >
-            <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
+          <Box sx={{flexGrow: 1, display: { xs: "none", md: "flex" }, alignItems: "center"}}>
+            <div style={{ backgroundColor: theme.palette.secondary.main, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
               <Button
                 className={styles.languageBtn}
                 sx={{
@@ -183,7 +152,7 @@ const Nav = () => {
               </Button>
             </div>
 
-            <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
+            <div style={{ backgroundColor: theme.palette.secondary.main, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
               className={styles.languageBtn}
               sx={{
@@ -200,7 +169,7 @@ const Nav = () => {
               Sv
             </Button>
             </div>
-            <div style={{ backgroundColor: theme.palette.primary.dark, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
+            <div style={{ backgroundColor: theme.palette.secondary.main, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
               sx={{
                 borderRadius: 0,
@@ -224,4 +193,5 @@ const Nav = () => {
     </div>
   );
 };
+
 export default Nav;

@@ -15,7 +15,6 @@ import { useHistory } from "react-router-dom";
 import { parseQuery } from "../../../functions/urlParser";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
-import {useTranslation} from "react-i18next";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
 
@@ -30,8 +29,6 @@ const EventList = () => {
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.main")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
-
-  const { t, i18n } = useTranslation()
 
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
@@ -94,81 +91,31 @@ const EventList = () => {
       <Box sx={{ p: 2 }}>
           <FilterContainer />
           <EmbedCode />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "8px 0 24px 0",
-          }}
-        >
-          <Button
-            variant={"contained"}
-            sx={{ mx: 1 }}
-            onClick={() => setPage(page - 1)}
-            disabled={!data?.meta.previous}
-          >
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", margin: "8px 0 24px 0"}}>
+          <Button onClick={() => setPage(page - 1)} variant={"contained"} sx={{ mx: 1 }} disabled={!data?.meta.previous}>
             Edellinen sivu
           </Button>
           <p>Sivu {page}</p>
-          <Button
-            variant={"contained"}
-            sx={{ mx: 1 }}
-            onClick={() => setPage(page + 1)}
-            disabled={!data?.meta.next}
-          >
+          <Button onClick={() => setPage(page + 1)} variant={"contained"} sx={{ mx: 1 }} disabled={!data?.meta.next}>
             Seuraava sivu
           </Button>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin:"2em"
-          }}
-        >
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", margin:"2em"}}>
           <ToggleButtonGroup orientation="horizontal" exclusive onChange={handleColor} value={color}>
-            <ToggleButton
-              sx={{color: 'primary.main'}} 
-              value="primary.dark"
-              aria-label="module"
-              onClick={() => setView(true)}
-            >
+            <ToggleButton onClick={() => setView(true)} sx={{color: 'primary.main'}}  value="primary.dark" aria-label="module">
               {" "}
               <ViewModuleIcon />
             </ToggleButton>
-            <ToggleButton
-              sx={{color: 'primary.main'}}
-                value="secondary"
-              aria-label="list"
-              onClick={() => setView(false)}
-            >
+            <ToggleButton onClick={() => setView(false)} sx={{color: 'primary.main'}} value="secondary" aria-label="list">
               <ViewListIcon />
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            p: 0.5,
-          }}
-        ></Box>
-        <Grid
-          sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center"}}
-          container
-          
-        >
+        <Box sx={{display: "flex", justifyContent: "center", p: 0.5,}}></Box>
+        <Grid sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center"}} container>
           {isLoading ||
             (isFetching && (
-              <Box
-                sx={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "50%",
-                }}
-              >
+              <Box sx={{position: "absolute", left: "50%", top: "50%"}}>
                 <CircularProgress />
               </Box>
             ))}
