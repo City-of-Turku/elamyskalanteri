@@ -19,6 +19,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import EventIcon from "@mui/icons-material/Event";
 import {useTranslation} from "react-i18next";
 
+dayjs.locale("fi");
+
 const useStyles = makeStyles({
   root: {
     border: "none",
