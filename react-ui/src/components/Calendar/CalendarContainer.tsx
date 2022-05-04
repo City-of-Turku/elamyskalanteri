@@ -40,7 +40,6 @@ const CalendarContainer = () => {
 
     const dateArray = [date1, date2]
 
-    console.log("DA: ", dateArray)
     setDate(dateArray)
 
   }, [filters.startTime, filters.endTime])

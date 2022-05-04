@@ -109,7 +109,7 @@ const WhatContainer = () => {
   return (
     <div className={styles.container}>
      <Accordion title={`${t("what")}?`} icon={LocalActivityIcon}>
-        <p style={{ margin: "0 4px 4px 4px", color: theme.palette.primary.main}}><b>KATEGORIA</b></p>
+        <p style={{ color: theme.palette.primary.dark}}><b>KATEGORIA</b></p>
         <div className={styles.chipContainer}>
           {isLoading &&
             <CircularProgress />
@@ -125,7 +125,7 @@ const WhatContainer = () => {
           ))}
         </div>
           <div className={styles.rowWrap}>
-            <p style={{ width: "100px", color: theme.palette.primary.main}}><b>Kenelle:</b></p>
+            <p style={{ width: "100px", color: theme.palette.primary.dark}}><b>Kenelle:</b></p>
             <FormGroup row >
               {audiences.map((audience: any) => (
                 <FormControlLabel
@@ -141,7 +141,7 @@ const WhatContainer = () => {
             </FormGroup>
           </div>
           <div className={styles.rowWrap}>
-            <p style={{ width: "100px", color:theme.palette.primary.main}}><b>Ominaisuus:</b></p>
+            <p style={{ margin: "0 16px 0 0", color:theme.palette.primary.dark}}><b>Ominaisuus:</b></p>
             <FormGroup row>
               {features.map((feature) => (
                 <FormControlLabel

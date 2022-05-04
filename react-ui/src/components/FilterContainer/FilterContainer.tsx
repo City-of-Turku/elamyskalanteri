@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 const FilterContainer = () => {
 
   const theme: any = useTheme()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <div className={styles.container}>
@@ -22,7 +22,7 @@ const FilterContainer = () => {
       <div className={styles.innerContainer}>
         <div className={styles.calendarContainer}>
           <div className={styles.whenRow}>
-            <h3 style={{color: theme.palette.primary.main }}>{t("when")}?</h3>
+            <h3 style={{color: theme.palette.primary.dark }}>{t("when")}?</h3>
             <div
               style={{ backgroundColor: theme.palette.primary.main}}
               className={styles.iconWrapper}
@@ -35,9 +35,9 @@ const FilterContainer = () => {
           <>
             <div className={styles.searchContainer}>
               <WhatContainer />
-              <div className={styles.divider}/>
+              <div className={styles.divider} />
               <WhereContainer />
-              <div className={styles.divider}/>
+              <div className={styles.divider} />
               <SearchBox />
             </div>
           </>

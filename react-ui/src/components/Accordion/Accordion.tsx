@@ -19,7 +19,7 @@ const Accordion = ({ title, children, icon }: IProps) => {
       <div className={styles.container} onClick={() => setOpen(!open)}>
         <h3 style={{
           textTransform: "capitalize",
-          color: theme.palette.primary.main
+          color: theme.palette.primary.dark
         }}
         >
           {title}

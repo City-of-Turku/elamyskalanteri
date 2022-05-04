@@ -9,4 +9,13 @@
     border: none;
     outline: none;
     width: calc(100% - 32px);
+    text-transform: capitalize;
+}
+
+.iconWrapper {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }

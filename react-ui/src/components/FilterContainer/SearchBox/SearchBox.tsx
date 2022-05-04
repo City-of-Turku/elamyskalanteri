@@ -79,7 +79,9 @@ const SearchBox = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div style={{ backgroundColor: theme.palette.primary.main, padding: "12px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%"}}>
+      <div
+        className={styles.iconWrapper}
+        style={{ backgroundColor: theme.palette.primary.main }}>
         <SearchIcon sx={{ fontSize: 32, color: "#ffffff" }}/>
       </div>
 
