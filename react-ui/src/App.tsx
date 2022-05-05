@@ -19,7 +19,7 @@ const App = (props : AppProps) => {
   const data = props.data;
   console.log(props.data)
   return (
-    <ThemeProvider theme={taiTheme}>
+    <ThemeProvider theme={vinkTheme}>
     <HashRouter hashType={"noslash"}>
       {(data.navbar !== "hidden") && <Route component={Nav} />}
       <Switch>
