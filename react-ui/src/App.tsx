@@ -6,7 +6,7 @@ import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import CompactList from "./components/pages/events/CompactList";
 import HobbyList from "./components/pages/hobbies/HobbyList";
-import { whiteLabelTheme, vinkTheme, naantaliTheme, raisioTheme, taiTheme }  from './styles/styles';
+import { whiteLabelTheme, vinkTheme, naantaliTheme, raisioTheme, kaarinaTheme, taiTheme }  from './styles/styles';
 import "./translations/i18n"
 
 export interface AppProps {
@@ -19,7 +19,7 @@ const App = (props : AppProps) => {
   const data = props.data;
   console.log(props.data)
   return (
-    <ThemeProvider theme={vinkTheme}>
+    <ThemeProvider theme={taiTheme}>
     <HashRouter hashType={"noslash"}>
       {(data.navbar !== "hidden") && <Route component={Nav} />}
       <Switch>

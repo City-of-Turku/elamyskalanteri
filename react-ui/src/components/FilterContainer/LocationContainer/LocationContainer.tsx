@@ -34,7 +34,7 @@ const LocationContainer = () => {
       <b style={{color: theme.palette.primary.dark}}><p>Lähellä minua</p></b>
       <FormGroup row>
         <FormControlLabel
-          control={<Checkbox color="secondary"/>}
+          control={<Checkbox />}
           label={"alle 1km"}
           labelPlacement={"end"}
           style={{ width: "140px"}}

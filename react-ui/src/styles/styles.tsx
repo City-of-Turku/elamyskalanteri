@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { fontWeight } from "@mui/system";
 
 export const vinkTheme = createTheme({
     palette:{
@@ -35,11 +34,10 @@ export const vinkTheme = createTheme({
             letterSpacing: '0.01em',
           
         },
-        body2: { //short,long desc, location
+        body2: { //short,long desc, location,
             fontSize: 15,
             color: '#000',
             fontStyle: 'normal',
-            fontWeight: 400,
             letterSpacing: '0.015em',
             lineHeight: '21px',
             fontFamily: "forma-djr-micro, sans-serif",
@@ -61,7 +59,8 @@ export const vinkTheme = createTheme({
             fontWeight: 700
         },
         button: {
-            fontWeight: 900
+            fontWeight: 900,
+            fontSize: 15
         }
     }
 });
@@ -69,15 +68,16 @@ export const vinkTheme = createTheme({
 export const whiteLabelTheme = createTheme({
     palette:{
         primary: {
-            main: '#dcdcdc',
-            dark: '#808080',
+            main: '#707070',
+            dark: '#505050',
         },
+        secondary: {
+            main: '#fff'
+        }
     },
     typography: {
         h5: {
             fontWeight: 900,
-            //fontSize: 28,
-            //lineHeight: 34,
             fontStyle: 'normal',
             color: '#000',
         },
@@ -110,6 +110,16 @@ export const whiteLabelTheme = createTheme({
             paddingBottom: 25,
             letterSpacing: '0.015em'
         },
+        subtitle2: {//date
+            color: "#505050",
+            fontFamily: "forma-djr-micro, sans-serif",
+            fontSize: 15,
+            fontWeight: 700
+        },
+        button:{
+            fontSize: 15,
+            fontWeight: 900
+        }
     }
 });
 
@@ -119,6 +129,9 @@ export const naantaliTheme = createTheme({
             main: '#1D6052',// dark green
             dark: '#CF8097', //pink
         },
+        secondary: {
+            main: '#fff'
+        }
     },
     typography: {
         fontFamily: "arial, sans-serif",
@@ -147,6 +160,7 @@ export const naantaliTheme = createTheme({
         },
         subtitle2: {//date
             color: '#CF8097',
+            fontWeight: 700
         },
         body2: { //short,long desc, location
             fontSize: 15,
@@ -156,6 +170,10 @@ export const naantaliTheme = createTheme({
             letterSpacing: '0.015em',
             lineHeight: '21px',
         },
+        button: {
+            fontSize: 15,
+            fontWeight: 700
+        }
     }
 });
 
@@ -165,6 +183,9 @@ export const raisioTheme = createTheme({
             main: '#003C71',//dark blue
             dark: '#00C389',// green
         },
+        secondary: {
+            main: '#00C389'
+        }
     },
     typography: {
         fontFamily: "museo-sans, sans-serif",
@@ -194,6 +215,7 @@ export const raisioTheme = createTheme({
         },
         subtitle2: {//date
             color: '#00C389',
+            fontWeight: 700
         },
         body2: {
             fontSize: 15,
@@ -202,9 +224,12 @@ export const raisioTheme = createTheme({
             fontWeight: 400,
             letterSpacing: '0.015em',
             lineHeight: '21px',
+        },
+        button: {
+            fontSize: 15,
+            fontWeight: 900,
         }
     },
-
 });
 
 export const taiTheme = createTheme({
@@ -253,9 +278,10 @@ export const taiTheme = createTheme({
             fontFamily: 'arial, sans-serif'
         },
         subtitle2: {//date
-            color: '#000',
+            color: '#404040',
             fontFamily: 'arial, sans-serif',
-            fontSize: 15
+            fontSize: 15,
+            fontWeight: 700
         },
         body2: {
             fontSize: 15,
@@ -267,11 +293,59 @@ export const taiTheme = createTheme({
             fontFamily: 'arial, sans-serif'
         },
         button: {
-            fontSize: 15,
+            fontWeight: 900,
+            fontSize: 16,
         }
     },
 });
 
 export const kaarinaTheme = createTheme({
-   
-})
+   palette: {
+       primary: {
+           main: '#15BEF0',
+           dark: '#0071B4'
+       },
+       secondary: {
+           main: '#fff'
+       }
+   },
+   typography: {
+    h6: {
+        fontSize: 16,
+        fontWeight: 700,
+        color: '#FFF',
+        letterSpacing: '0.01em',
+      
+    },
+    h5: {
+        fontWeight: 900,
+        fontSize: 20,
+        fontStyle: 'normal',
+        color: '#15BEF0',
+    },
+    h4: {
+        fontWeight: 900,
+        fontSize: 30,
+        letterSpacing: 0.01,
+        color: '#15BEF0', 
+    },
+    subtitle1: {
+        color: '#fff',
+        fontWeight: 400,
+        fontSize: 14,
+        fontStyle: 'normal',
+        paddingBottom: 25,
+        letterSpacing: '0.015em',
+    },
+    subtitle2: {//date
+        color: "#0071B4",
+        fontSize: 15,
+        fontWeight: 700
+    },
+    button: {
+        fontSize: 15,
+        fontWeight: 900,
+        color:'red'
+    }
+   }
+});

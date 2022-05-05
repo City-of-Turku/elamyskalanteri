@@ -77,14 +77,14 @@ const EventContent = () => {
                 {data?.name?.fi}
               </Typography>
               <Typography
-                sx={{ display: "flex", flexDirection: "row", pb: 1, fontWeight: 'bold' }} variant="subtitle2">
+                sx={{ display: "flex", flexDirection: "row", pb: 1}} variant="subtitle2">
                 <LocationOnIcon fontSize="small" />
                 &nbsp;{data?.provider?.fi}
               </Typography>
-              <Typography sx={{display: "flex", flexDirection: "row", pb: 4, cursor: "pointer", color: "primary.dark"}} variant="body2">
+              <Typography sx={{display: "flex", flexDirection: "row", pb: 4, cursor: "pointer"}} variant="subtitle2">
                 <LinkIcon fontSize="small" />
                 &nbsp;{" "}
-                <Link href={`${data?.info_url?.fi}`} target="_blank" rel="noopener" sx={{color: "primary.dark", textDecoration: "none", fontWeight: 'bold', pb: 2}}>
+                <Link href={`${data?.info_url?.fi}`} target="_blank" rel="noopener" sx={{textDecoration: "none", pb: 2, color:"primary.dark"}}>
                   {data?.info_url?.fi || "www.testi.fi"}
                 </Link>
               </Typography>
