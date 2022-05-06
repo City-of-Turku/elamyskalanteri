@@ -27,7 +27,7 @@ const EventList = () => {
   const { filters } = useAppSelector((state) => state);
   const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
-  const [color, setColor] = useState("primary.main")
+  const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
 
   const [firstLoadDone, setFirstLoadDone] = useState(false)

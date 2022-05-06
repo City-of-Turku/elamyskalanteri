@@ -65,7 +65,7 @@ const EventContent = () => {
       <Grid container p={4} justifyContent="center" component="div" className={classes.root} spacing={8}>
             <Grid component="div" item xs={5} sx={{display: 'inline-table'}}>
               <Typography variant="subtitle2" component="div"
-                sx={{mt: 1.5, pb: 3, borderRadius: "5px", fontWeight: "bold", display: "flex", fontSize: 15, alignItems: "center", textTransform: "capitalize",
+                sx={{mt: 1.5, pb: 3, borderRadius: "5px", fontWeight: "bold", display: "flex", fontSize: 15, alignItems: "center",
                   "& svg": {
                     fontSize: 21,
                     mr: 0.5,

@@ -103,7 +103,7 @@ const EventCard = ({
       opacity: [0.9, 0.8, 0.7]},}}>
       <Link to={`/eventlist/${id}`} style={{ textDecoration: "none", color: "black" }}>
         <CardMedia sx={{ boxShadow: 2 }} className={classes.media} component="img"
-            src={images[0]?.url || (defaultImages[index])}/>
+            src={images[0]?.url || (defaultImages[index])} alt="Tapahtuman kuva"/>
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div" sx={{
                 //mt: 1.5,
@@ -111,7 +111,6 @@ const EventCard = ({
                 //borderRadius: "4px",
                 display: "flex",
                 alignItems: "center",
-                textTransform: "capitalize",
                 "& svg": {
                   fontSize: 22,
                   mr: 0.5,

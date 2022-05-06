@@ -60,7 +60,7 @@ export const vinkTheme = createTheme({
         },
         button: {
             fontWeight: 900,
-            fontSize: 15
+            fontSize: 16
         }
     }
 });
@@ -68,8 +68,8 @@ export const vinkTheme = createTheme({
 export const whiteLabelTheme = createTheme({
     palette:{
         primary: {
-            main: '#707070',
-            dark: '#505050',
+            main: '#282828',
+            dark: '#696969',
         },
         secondary: {
             main: '#fff'
