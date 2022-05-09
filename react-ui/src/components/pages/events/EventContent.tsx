@@ -47,6 +47,8 @@ const EventContent = () => {
   console.log("hash: ", window.location.hash)
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
   const classes = useStyles();
+
+  console.log("data", data)
   return (
     <div>
       <Link
@@ -105,7 +107,8 @@ const EventContent = () => {
             </Typography>
             <Typography  variant="h6">{`${t("age")}`}</Typography>
             <Typography component="div" variant="subtitle1">
-              Alle 12 v.
+              {data?.audience_min_age === null && <p>Ikärajaton</p>}
+              {data?.audience_min_age && <p>{data?.audience_min_age} vuotta</p>}
             </Typography>
             <Typography  variant="h6">
             {`${t("provider")}`}
