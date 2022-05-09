@@ -44,11 +44,9 @@ const EventContent = () => {
   const { t, i18n } = useTranslation()
   const params: any = useParams();
   const history = useHistory()
-  console.log("hash: ", window.location.hash)
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
   const classes = useStyles();
 
-  console.log("data", data)
   return (
     <div>
       <Link
@@ -114,7 +112,7 @@ const EventContent = () => {
             {`${t("provider")}`}
             </Typography>
             <Typography component="div" variant="subtitle1">
-              {data?.provider?.fi}
+              {data?.provider[i18n.language]}
             </Typography>
             <Typography variant="h6"> 
             {`${t("more")}`}
