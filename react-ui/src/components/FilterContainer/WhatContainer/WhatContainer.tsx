@@ -129,7 +129,7 @@ const WhatContainer = () => {
             <FormGroup row >
               {audiences.map((audience: any) => (
                 <FormControlLabel
-                  control={<Checkbox />}
+                  control={<Checkbox /> }
                   label={audience.name[i18n.language]}
                   style={{ width: "250px"}}
                   value={audience.yso}

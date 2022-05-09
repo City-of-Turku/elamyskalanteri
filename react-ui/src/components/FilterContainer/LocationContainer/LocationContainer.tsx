@@ -4,9 +4,11 @@ import { useAppDispatch } from "../../../hooks/rtkHooks";
 import filterSlice from "../../../redux/slices/filterSlice";
 import { useState } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
+import { useTheme } from "@mui/styles";
 
 const LocationContainer = () => {
 
+  const theme: any = useTheme()
   const dispatch = useAppDispatch()
 
   // Bind setBbox to dispatch, so it can be called without dispatch
@@ -29,10 +31,10 @@ const LocationContainer = () => {
 
   return (
     <div>
-      <p>Lähellä minua</p>
+      <b style={{color: theme.palette.primary.dark}}><p>Lähellä minua</p></b>
       <FormGroup row>
         <FormControlLabel
-          control={<Checkbox/>}
+          control={<Checkbox />}
           label={"alle 1km"}
           labelPlacement={"end"}
           style={{ width: "140px"}}

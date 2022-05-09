@@ -1,10 +1,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-//import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import { alpha } from "@mui/material/styles";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from '@mui/material/CardActions';
@@ -52,7 +49,7 @@ export interface DialogTitleProps {
 const useStyles = makeStyles({
   root: {
     width: 345,
-    height: 430,
+    height: 390,
     padding: "0.5em"
   },
   media: {
@@ -69,16 +66,8 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
       {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[900],
-          }}
-        >
+        <IconButton onClick={onClose} aria-label="close"
+          sx={{position: "absolute", right: 8, top: 8, color: (theme) => theme.palette.grey[900]}}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -110,31 +99,18 @@ const EventCard = ({
   };
   const classes = useStyles();
   return (
-    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 345,  '&:hover': {
+    <Card className={classes.root} style={{ border: "none", boxShadow: "none" }} sx={{   '&:hover': {
       opacity: [0.9, 0.8, 0.7]},}}>
-      <Link
-        to={`/eventlist/${id}`}
-        style={{ textDecoration: "none", color: "black" }}
-      >
-          <CardMedia
-          sx={{ boxShadow: 2 }}
-            className={classes.media}
-            component="img"
-            // alt={images[0]?.alt_text.fi}
-            src={
-              images[0]?.url ||
-              (defaultImages[index])
-            }
-          />
+      <Link to={`/eventlist/${id}`} style={{ textDecoration: "none", color: "black" }}>
+        <CardMedia sx={{ boxShadow: 2 }} className={classes.media} component="img"
+            src={images[0]?.url || (defaultImages[index])} alt="Tapahtuman kuva"/>
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div" sx={{
                 //mt: 1.5,
                 //p: 0.5,
-                borderRadius: "5px",
-                fontWeight: "bold",
+                //borderRadius: "4px",
                 display: "flex",
                 alignItems: "center",
-                textTransform: "capitalize",
                 "& svg": {
                   fontSize: 22,
                   mr: 0.5,
@@ -152,14 +128,14 @@ const EventCard = ({
             </Typography>
             <Typography
               gutterBottom
-              variant="body2"
+              variant="subtitle2"
               component="div"
-              sx={{ display: "flex", flexDirection: "row", color: "primary.main", letterSpacing: '0.01em' }}
+              sx={{ display: "flex", flexDirection: "row", letterSpacing: '0.01em' }}
             >
               <LocationOnIcon fontSize="small" />
               {provider?.fi}
             </Typography>
-            <Typography sx={{p:1, overflow: 'hidden', lineHeight: '20.8px', maxHeight: 55,}} variant="body2">{short_description?.fi}</Typography>
+            <Typography sx={{pt: 1, overflow:'hidden', lineHeight: '20.8px', maxHeight: 65,}} variant="body2">{short_description?.fi}</Typography>
           </CardContent>
       </Link>
       <CardActions sx={{paddingLeft:2, display: 'block', position:'absolute'}}>

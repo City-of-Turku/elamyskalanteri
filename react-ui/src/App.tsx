@@ -6,7 +6,7 @@ import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import CompactList from "./components/pages/events/CompactList";
 import HobbyList from "./components/pages/hobbies/HobbyList";
-import { whiteLabelTheme, vinkTheme, naantaliTheme, raisioTheme, taiTheme }  from './styles/styles';
+import { whiteLabelTheme, vinkTheme, naantaliTheme, raisioTheme, kaarinaTheme, taiTheme }  from './styles/styles';
 import "./translations/i18n"
 
 export interface AppProps {
