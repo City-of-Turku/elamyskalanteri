@@ -18,8 +18,11 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import EventIcon from "@mui/icons-material/Event";
 import {useTranslation} from "react-i18next";
+import {useEffect} from "react";
+import "dayjs/locale/fi"
+import "dayjs/locale/en"
+import "dayjs/locale/sv"
 
-dayjs.locale("fi");
 
 const useStyles = makeStyles({
   root: {
@@ -72,7 +75,7 @@ const EventContent = () => {
                     mr: 0.5,
                   },}}>
                 <EventIcon />
-                {dayjs(data?.start_time).format(date)}
+                {dayjs(data?.start_time).locale(i18n.language).format(date)}
               </Typography>
               <Typography variant="h4" component="div" sx={{ pb: 3 }}>
                 {data?.name?.fi}
