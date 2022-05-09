@@ -4,6 +4,8 @@
 
 .react-calendar__navigation span {
     color: #F16834;
+    font-weight: 900;
+    text-transform: capitalize;
 }
 
 .react-calendar__navigation button {

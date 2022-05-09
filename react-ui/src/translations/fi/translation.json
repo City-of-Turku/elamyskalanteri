@@ -10,5 +10,6 @@
   "price": "Hinta",
   "age": "Ikäraja",
   "provider": " Järjestäjä",
-  "more": "Tutustu lisää"
+  "more": "Tutustu lisää",
+  "back": "takaisin"
 }

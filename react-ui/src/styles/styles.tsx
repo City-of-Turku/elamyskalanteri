@@ -60,7 +60,8 @@ export const vinkTheme = createTheme({
         },
         button: {
             fontWeight: 900,
-            fontSize: 16
+            //fontSize: 19,
+            
         }
     }
 });
@@ -68,8 +69,8 @@ export const vinkTheme = createTheme({
 export const whiteLabelTheme = createTheme({
     palette:{
         primary: {
-            main: '#282828',
-            dark: '#696969',
+            main: '#202020',
+            dark: '#707070',
         },
         secondary: {
             main: '#fff'
@@ -127,7 +128,7 @@ export const naantaliTheme = createTheme({
     palette:{
         primary: {
             main: '#1D6052',// dark green
-            dark: '#CF8097', //pink
+            dark: '#C26E60',
         },
         secondary: {
             main: '#fff'
@@ -172,7 +173,7 @@ export const naantaliTheme = createTheme({
         },
         button: {
             fontSize: 15,
-            fontWeight: 700
+            fontWeight: 900
         }
     }
 });

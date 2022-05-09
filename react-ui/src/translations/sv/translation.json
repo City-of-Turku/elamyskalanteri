@@ -10,5 +10,6 @@
   "price": "Pris",
   "age": "Åldersgräns",
   "provider": "Leverantör",
-  "more": "Kolla in mer"
+  "more": "Kolla in mer",
+  "back":"tillbaka"
 }

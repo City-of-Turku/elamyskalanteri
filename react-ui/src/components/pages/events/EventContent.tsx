@@ -53,13 +53,14 @@ const EventContent = () => {
         href="/"
         sx={{textDecoration: "none", color: "black", display: "flex", p:1}}>
         <ArrowBackIcon />
+       <Typography sx={{pl:1, }}>{`${t("back")}`}</Typography>
       </Link>
       <Grid
         item
         sx={{display: "flex", flexDirection: "column"}}>
         <div style={{display: "flex", justifyContent: "center"}}>
           <CardMedia style={{width: 983}} className={classes.media} component="img"
-            src={data?.images[0]?.url || (defaultImages[index])}/>
+            src={data?.images[0]?.url || (defaultImages[index])} alt="Tapahtuman kuva"/>
         </div>
       </Grid>
       <Grid container p={4} justifyContent="center" component="div" className={classes.root} spacing={8}>

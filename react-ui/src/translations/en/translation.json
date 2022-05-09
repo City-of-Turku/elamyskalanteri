@@ -10,5 +10,6 @@
   "price": "Price",
   "age": "Age",
   "provider": "Provider",
-  "more": "Check out more"
+  "more": "Check out more",
+  "back": "back"
 }
