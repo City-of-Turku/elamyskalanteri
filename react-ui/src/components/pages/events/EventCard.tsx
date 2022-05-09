@@ -50,11 +50,11 @@ const useStyles = makeStyles({
   root: {
     width: 345,
     height: 390,
-    padding: "0.5em"
+    padding: "2em"
   },
   media: {
-    maxWidth: 345,
-    height: 132,
+    maxWidth: 340,
+    height: 130,
 
   },
 });

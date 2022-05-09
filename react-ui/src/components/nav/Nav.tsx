@@ -115,19 +115,19 @@ const Nav = () => {
           </Box>
           <Box sx={{flexGrow: 1, display: { xs: "none", md: "flex" },alignItems: "center"}}>
             <Button
-              sx={{color: "secondary.main" }}
+              sx={{ color: "secondary.main", fontSize:19 }}
               onClick={() => handleButtonClick("/")}
             >
               {`${t("events")}`}
             </Button>
             <Button
-            sx={{color: "secondary.main" }}
+            sx={{color: "secondary.main", fontSize:19 }}
               onClick={() => handleButtonClick("/hobbies")}
             >
                 {`${t("hobbies")}`}
             </Button>
             <Button
-            sx={{color: "secondary.main" }}
+            sx={{color: "secondary.main", fontSize:19 }}
               onClick={() => handleButtonClick("/educations")}
             >
               {`${t("educations")}`}
@@ -138,6 +138,7 @@ const Nav = () => {
               <Button
                 className={styles.languageBtn}
                 sx={{
+                  fontSize:19,
                   borderRadius: 0,
                   backgroundColor: i18n.language === 'fi' ? "#fff" : "primary.main",
                   color: i18n.language === 'fi' ? "primary.main" : "primary.dark",
@@ -156,6 +157,7 @@ const Nav = () => {
             <Button
               className={styles.languageBtn}
               sx={{
+                fontSize:19,
                 borderRadius: 0,
                 backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main",
                 color: i18n.language === 'sv' ? "primary.main" : "primary.dark",
@@ -172,6 +174,7 @@ const Nav = () => {
             <div style={{ backgroundColor: theme.palette.secondary.main, padding: "4px", clipPath: "polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)"}}>
             <Button
               sx={{
+                fontSize:19,
                 borderRadius: 0,
                 backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main",
                 color: i18n.language === 'en' ? "primary.main" : "primary.dark",
