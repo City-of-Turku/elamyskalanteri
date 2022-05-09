@@ -10,5 +10,14 @@
   "price": "Price",
   "age": "Age",
   "provider": "Provider",
-  "more": "Check out more"
+  "more": "Check out more",
+  "category": "category",
+  "whom": "to whom",
+  "feature": "feature",
+  "place": "place",
+  "near": "Near me",
+  "under": "under",
+  "slogan1": "Find the",
+  "slogan2": "best own",
+  "slogan3": "things"
 }

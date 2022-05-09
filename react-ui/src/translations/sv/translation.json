@@ -10,5 +10,14 @@
   "price": "Pris",
   "age": "Åldersgräns",
   "provider": "Leverantör",
-  "more": "Kolla in mer"
+  "more": "Kolla in mer",
+  "category": "kategori",
+  "whom": "till vem",
+  "feature": "egenskap",
+  "place": "ort",
+  "near": "Närä mig",
+  "under": "under",
+  "slogan1": "Löydä ne",
+  "slogan2": "parhaimmat omat",
+  "slogan3": "jutut"
 }

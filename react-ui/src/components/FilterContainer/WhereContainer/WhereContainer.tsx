@@ -28,9 +28,10 @@ const WhereContainer = () => {
         title={`${t("where")}?`}
         icon={LocationOnIcon}
       >
+        {/*
         <p style={{ margin: "0 4px 4px 4px", color: theme.palette.primary.dark}}>
           <b>
-            PAIKKAKUNTA
+            {t("place")}
           </b>
         </p>
         <div className={styles.wrapRow}>
@@ -41,6 +42,7 @@ const WhereContainer = () => {
             />
           ))}
         </div>
+        */}
         <LocationContainer />
       </Accordion>
     </div>

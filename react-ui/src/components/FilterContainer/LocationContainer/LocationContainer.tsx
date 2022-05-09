@@ -5,11 +5,14 @@ import filterSlice from "../../../redux/slices/filterSlice";
 import { useState } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useTheme } from "@mui/styles";
+import {useTranslation} from "react-i18next";
 
 const LocationContainer = () => {
 
   const theme: any = useTheme()
   const dispatch = useAppDispatch()
+
+  const { t } = useTranslation()
 
   // Bind setBbox to dispatch, so it can be called without dispatch
   const { setBbox } = bindActionCreators(filterSlice.actions, dispatch)
@@ -31,11 +34,11 @@ const LocationContainer = () => {
 
   return (
     <div>
-      <b style={{color: theme.palette.primary.dark}}><p>Lähellä minua</p></b>
+      <b style={{color: theme.palette.primary.dark}}><p>{t("near")}</p></b>
       <FormGroup row>
         <FormControlLabel
           control={<Checkbox />}
-          label={"alle 1km"}
+          label={`${t("under")} 1 km`}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={1}
@@ -52,7 +55,7 @@ const LocationContainer = () => {
         />
         <FormControlLabel
           control={<Checkbox/>}
-          label={"alle 3km"}
+          label={`${t("under")} 3 km`}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={2}
@@ -69,7 +72,7 @@ const LocationContainer = () => {
         />
         <FormControlLabel
           control={<Checkbox/>}
-          label={"alle 5km"}
+          label={`${t("under")} 5 km`}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={3}
@@ -86,7 +89,7 @@ const LocationContainer = () => {
         />
         <FormControlLabel
           control={<Checkbox/>}
-          label={"alle 10km"}
+          label={`${t("under")} 10 km`}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={4}

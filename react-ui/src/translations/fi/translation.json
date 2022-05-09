@@ -10,5 +10,14 @@
   "price": "Hinta",
   "age": "Ikäraja",
   "provider": " Järjestäjä",
-  "more": "Tutustu lisää"
+  "more": "Tutustu lisää",
+  "category": "kategoria",
+  "whom": "kenelle",
+  "feature": "ominaisuus",
+  "place": "paikkakunta",
+  "near": "Lähellä minua",
+  "under": "alle",
+  "slogan1": "Löydä ne",
+  "slogan2": "parhaimmat omat",
+  "slogan3": "jutut"
 }

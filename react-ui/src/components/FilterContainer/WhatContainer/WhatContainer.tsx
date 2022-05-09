@@ -30,10 +30,20 @@ const WhatContainer = () => {
 
   // Not a great place for these either...
   const features = [
-    {label: "ilmainen", value: "is_free=true"},
-    {label: "virtuaalinen", value: "internet_based=true"},
-    {label: "esteetön", value: ""},
-    {label: "ulkoilma", value: ""}
+    {
+      label: {
+        fi: "ilmainen",
+        sv: "gratis",
+        en: "free",
+      },
+      value: "is_free=true"},
+    {
+      label: {
+        fi: "virtuaalinen",
+        sv: "virtuell",
+        en: "virtual"
+      },
+      value: "internet_based=true"},
   ]
 
   const dispatch = useAppDispatch()
@@ -109,7 +119,7 @@ const WhatContainer = () => {
   return (
     <div className={styles.container}>
      <Accordion title={`${t("what")}?`} icon={LocalActivityIcon}>
-        <p style={{ color: theme.palette.primary.dark}}><b>KATEGORIA</b></p>
+        <p style={{ color: theme.palette.primary.dark}}><b>{t("category")}</b></p>
         <div className={styles.chipContainer}>
           {isLoading &&
             <CircularProgress />
@@ -125,7 +135,7 @@ const WhatContainer = () => {
           ))}
         </div>
           <div className={styles.rowWrap}>
-            <p style={{ width: "100px", color: theme.palette.primary.dark}}><b>Kenelle:</b></p>
+            <p style={{ width: "100px", color: theme.palette.primary.dark}}><b>{t("whom")}:</b></p>
             <FormGroup row >
               {audiences.map((audience: any) => (
                 <FormControlLabel
@@ -141,12 +151,13 @@ const WhatContainer = () => {
             </FormGroup>
           </div>
           <div className={styles.rowWrap}>
-            <p style={{ margin: "0 16px 0 0", color:theme.palette.primary.dark}}><b>Ominaisuus:</b></p>
+            <p style={{ margin: "0 16px 0 0", color:theme.palette.primary.dark}}><b>{t("feature")}:</b></p>
             <FormGroup row>
               {features.map((feature) => (
                 <FormControlLabel
                   control={<Checkbox />}
-                  label={feature.label}
+                  // @ts-ignore
+                  label={feature.label[i18n.language]}
                   style={{ width: "140px"}}
                   value={feature.value}
                   onChange={(e: any) => handleFeatureChange(e)}

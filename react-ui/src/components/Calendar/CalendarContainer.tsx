@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { useAppDispatch, useAppSelector } from "../../hooks/rtkHooks";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../redux/slices/filterSlice";
+import i18n from "../../translations/i18n";
 const customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
@@ -48,7 +49,7 @@ const CalendarContainer = () => {
       <Calendar
         onChange={setDate}
         value={date}
-        locale={"fi-FI"}
+        locale={i18n.language}
         selectRange
       />
     </>

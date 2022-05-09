@@ -16,7 +16,19 @@ const FilterContainer = () => {
     <div className={styles.container}>
 
       <div className={styles.sloganContainer}>
-        <h2>{t("slogan")}</h2>
+        <h2>
+          <span style={{ color: theme.palette.primary.dark, fontWeight: "bold" }}>
+          {t("slogan1")}
+          </span>
+          <span>&nbsp;</span>
+          <span style={{ color: theme.palette.primary.main, fontWeight: "bold" }}>
+            {t("slogan2")}
+          </span>
+          <span>&nbsp;</span>
+          <span style={{ color: theme.palette.primary.dark, fontWeight: "bold" }}>
+            {t("slogan3")}
+          </span>
+        </h2>
       </div>
 
       <div className={styles.innerContainer}>
