@@ -76,7 +76,9 @@ const Nav = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters style={{height: 220}}>
           <Typography component="div" sx={{ flexGrow: 2, display: {xs: "none", md: "block"}}}>
-            <img className={classes.logo} src={vinkLogo}  alt="Vink logo"/>
+            <a href={"/"}>
+              <img className={classes.logo} src={vinkLogo}  alt="Vink logo"/>
+            </a>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
