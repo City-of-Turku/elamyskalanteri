@@ -14,13 +14,12 @@ dayjs.extend(customParseFormat)
 const CalendarContainer = () => {
 
   const { filters } = useAppSelector(state => state)
-
   const [date, setDate] = useState<any>([filters.startTime, filters.endTime])
-  const theme = useTheme()
-
   const dispatch = useAppDispatch()
   const { setStartTime, setEndTime } = bindActionCreators(filterSlice.actions, dispatch)
 
+
+  // Set start and end date from redux state
   useEffect(() => {
     if (date[0] !== null && date[1] !== null) {
       // @ts-ignore

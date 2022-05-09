@@ -78,7 +78,7 @@ const CompactList = ({ dataAttributes }: any) => {
     page: page,
     searchTerm: filters.search || "",
     keyword: filters.eventTypes,
-    features: filters.eventFeatures.join("&"),
+    features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join("&") : "",
     bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
     start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
     end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : "",

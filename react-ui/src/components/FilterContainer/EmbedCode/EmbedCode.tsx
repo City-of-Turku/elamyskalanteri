@@ -53,6 +53,7 @@ const EmbedCode = () => {
               <p>{`data-end-time="${filters.endTime}"`}</p>
             </>
           }
+          {filters.eventFeatures && <p>{`data-features="${filters.eventFeatures}"`}</p>}
         </div>
         <p>{'></div>'}</p>
       </div>
