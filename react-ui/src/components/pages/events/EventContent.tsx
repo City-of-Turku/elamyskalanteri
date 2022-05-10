@@ -9,7 +9,7 @@ import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import {useHistory, useParams} from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
-import  {date, defaultImages, index}  from '../events/EventCard';
+import  {date, defaultImages, index}  from "../events/EventCard";
 import { CardMedia } from "@mui/material";
 import Box from "@mui/material/Box";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import {GetEventResponse} from '../../../redux/types/Event';
 import default2 from '../../../svg/default2.svg';
 import EventIcon from "@mui/icons-material/Event";
+import {useTranslation} from "react-i18next";
 
 let index = 0;
 let defaultImages: string | any[] = [];
@@ -90,6 +91,8 @@ const EventCard = ({
   images,
   description,
 }: GetEventResponse) => {
+
+  const { i18n } = useTranslation()
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -117,7 +120,7 @@ const EventCard = ({
                 },
               }}>
             <EventIcon />
-              {dayjs(start_time).format(date)}
+              {dayjs(start_time).locale(i18n.language).format(date)}
             </Typography>
             <Typography
               gutterBottom
