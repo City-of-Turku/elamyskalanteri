@@ -169,9 +169,13 @@ const EventCard = ({
             {" "}
             {dayjs(start_time).format(date)}
           </Typography>
-          <Typography gutterBottom variant="body2">{description?.fi}</Typography>
+          <Typography gutterBottom variant="body2">
+            {/* @ts-ignore */}
+            {description[i18n.language]}
+          </Typography>
           <Typography gutterBottom color="text.secondary" variant="body2">
-            {location_extra_info?.fi}
+            {/* @ts-ignore */}
+            {location_extra_info?.[i18n.language]}
           </Typography>
           <Typography gutterBottom></Typography>
         </DialogContent>
