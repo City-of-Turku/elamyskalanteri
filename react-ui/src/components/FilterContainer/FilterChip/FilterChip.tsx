@@ -27,7 +27,8 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           variant={active ? "filled" : "outlined"}
           // @ts-ignore
           className={styles.chip}
-          sx={{ backgroundColor: theme.palette.primary.dark, color: "#ffffff"}}
+          color="secondary"
+          sx={{ backgroundColor: theme.palette.primary.dark, color: "#ffffff", fontSize:16}}
           onDelete={() => handleDelete ? handleDelete() : null}
 
         />
@@ -37,7 +38,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           variant={active ? "filled" : "outlined"}
           onClick={() => handleClick ? handleClick() : null}
           className={styles.chip}
-          sx={{ color: theme.palette.primary.dark,  backgroundColor: "rgba(242, 202, 153, 0.2);"}}
+          sx={{ color: theme.palette.primary.dark,  backgroundColor: "rgba(242, 202, 153, 0.2);", fontSize:16}}
         />
       }
     </>

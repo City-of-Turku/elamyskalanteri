@@ -143,7 +143,7 @@ const Nav = () => {
                   fontSize:19,
                   borderRadius: 0,
                   backgroundColor: i18n.language === 'fi' ? "#fff" : "primary.main",
-                  color: i18n.language === 'fi' ? "primary.main" : "primary.dark",
+                  color: i18n.language === 'fi' ? "primary.main" : "#ffff",
                   '&:hover': {
                   color: theme.palette.primary.main,
                   backgroundColor: '#fff',
@@ -162,7 +162,7 @@ const Nav = () => {
                 fontSize:19,
                 borderRadius: 0,
                 backgroundColor: i18n.language === 'sv' ? "#ffffff" : "primary.main",
-                color: i18n.language === 'sv' ? "primary.main" : "primary.dark",
+                color: i18n.language === 'sv' ? "primary.main" : "#ffff",
                 '&:hover': {
                   color: theme.palette.primary.main,
                   backgroundColor: '#fff',
@@ -179,7 +179,7 @@ const Nav = () => {
                 fontSize:19,
                 borderRadius: 0,
                 backgroundColor: i18n.language === 'en' ? "#ffffff" : "primary.main",
-                color: i18n.language === 'en' ? "primary.main" : "primary.dark",
+                color: i18n.language === 'en' ? "primary.main" : "#ffff",
                 '&:hover': {
                   color: theme.palette.primary.main,
                   backgroundColor: '#fff',

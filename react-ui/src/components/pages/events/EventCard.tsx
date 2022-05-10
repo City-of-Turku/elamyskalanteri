@@ -106,7 +106,7 @@ const EventCard = ({
       opacity: [0.9, 0.8, 0.7]},}}>
       <Link to={`/eventlist/${id}`} style={{ textDecoration: "none", color: "black" }}>
         <CardMedia sx={{ boxShadow: 2 }} className={classes.media} component="img"
-            src={images[0]?.url || (defaultImages[index])} alt="Tapahtuman kuva"/>
+            src={images[0]?.url || (defaultImages[index])} alt={images[0]?.alt_text?.fi}/>
           <CardContent>
             <Typography gutterBottom variant="subtitle2" component="div" sx={{
                 //mt: 1.5,

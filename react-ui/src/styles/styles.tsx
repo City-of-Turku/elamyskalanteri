@@ -128,10 +128,10 @@ export const naantaliTheme = createTheme({
     palette:{
         primary: {
             main: '#1D6052',// dark green
-            dark: '#C26E60',
+            dark: '#007398',
         },
         secondary: {
-            main: '#fff'
+            main: '#ffff'
         }
     },
     typography: {
@@ -151,6 +151,9 @@ export const naantaliTheme = createTheme({
             fontWeight: 900,
             color: '#1D6052', 
         },
+        h3:{
+            color:'black'
+        },
         subtitle1: {
             color: '#fff',
             fontWeight: 400,
@@ -160,7 +163,7 @@ export const naantaliTheme = createTheme({
             letterSpacing: '0.015em'
         },
         subtitle2: {//date
-            color: '#CF8097',
+            color: '#000',
             fontWeight: 700
         },
         body2: { //short,long desc, location
@@ -173,7 +176,8 @@ export const naantaliTheme = createTheme({
         },
         button: {
             fontSize: 15,
-            fontWeight: 900
+            fontWeight: 900,
+            color:'#fff'
         }
     }
 });

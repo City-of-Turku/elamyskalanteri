@@ -1,6 +1,5 @@
 import EventIcon from "@mui/icons-material/Event";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { alpha } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
@@ -35,10 +34,11 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
         className={classes.root}
         sx={{
           maxWidth:{xs:365, md: 990},
-          
           flexDirection: 'column',
           p: 0.5,
           m: 2,
+          '&:hover': {
+            opacity: [0.9, 0.8, 0.7]},
         }}
       >
          <CardContent
@@ -87,12 +87,11 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
             <LocationOnIcon fontSize="small" />
             {provider?.fi}
           </Typography>
-          
             <Typography variant="body2">
               {short_description?.fi}
             </Typography>
           <CardActions>
-            <Button sx={{fontSize:15}}>Lue lisää</Button>
+            {/* <Button sx={{fontSize:15}}>Lue lisää</Button> */}
           </CardActions>
           </CardContent>
       </Card>

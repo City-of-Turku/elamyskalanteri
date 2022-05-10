@@ -63,7 +63,7 @@ const EventContent = () => {
         sx={{display: "flex", flexDirection: "column"}}>
         <div style={{display: "flex", justifyContent: "center"}}>
           <CardMedia style={{width: 983}} className={classes.media} component="img"
-            src={data?.images[0]?.url || (defaultImages[index])} alt="Tapahtuman kuva"/>
+            src={data?.images[0]?.url || (defaultImages[index])} alt={data?.images[0]?.alt_text?.fi}/>
         </div>
       </Grid>
       <Grid container p={4} justifyContent="center" component="div" className={classes.root} spacing={8}>
