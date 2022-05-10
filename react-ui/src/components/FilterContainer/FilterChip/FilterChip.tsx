@@ -27,7 +27,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           variant={active ? "filled" : "outlined"}
           // @ts-ignore
           className={styles.chip}
-          color="secondary"
+          color="primary"
           sx={{ backgroundColor: theme.palette.primary.dark, color: "#ffffff", fontSize:16}}
           onDelete={() => handleDelete ? handleDelete() : null}
 

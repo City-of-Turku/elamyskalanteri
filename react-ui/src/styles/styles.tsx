@@ -186,7 +186,7 @@ export const raisioTheme = createTheme({
     palette:{
         primary: {
             main: '#003C71',//dark blue
-            dark: '#00C389',// green
+            dark: '#003C71',
         },
         secondary: {
             main: '#00C389'
@@ -219,7 +219,7 @@ export const raisioTheme = createTheme({
             letterSpacing: '0.015em'
         },
         subtitle2: {//date
-            color: '#00C389',
+            color: '#000',
             fontWeight: 700
         },
         body2: {
@@ -307,7 +307,7 @@ export const taiTheme = createTheme({
 export const kaarinaTheme = createTheme({
    palette: {
        primary: {
-           main: '#15BEF0',
+           main: '#0071B4',
            dark: '#0071B4'
        },
        secondary: {
@@ -326,13 +326,13 @@ export const kaarinaTheme = createTheme({
         fontWeight: 900,
         fontSize: 20,
         fontStyle: 'normal',
-        color: '#15BEF0',
+        color: '#0071B4',
     },
     h4: {
         fontWeight: 900,
         fontSize: 30,
         letterSpacing: 0.01,
-        color: '#15BEF0', 
+        color: '#0071B4', 
     },
     subtitle1: {
         color: '#fff',
@@ -343,7 +343,7 @@ export const kaarinaTheme = createTheme({
         letterSpacing: '0.015em',
     },
     subtitle2: {//date
-        color: "#0071B4",
+        color: "#000",
         fontSize: 15,
         fontWeight: 700
     },
