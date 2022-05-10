@@ -193,6 +193,10 @@ const Nav = () => {
             </div>
           </Box>
         </Toolbar>
+        <Box sx={{pb: 4, flexGrow: 1, display: { xs: "none", md: "block" }, alignItems: "center", fontSize:35, fontFamily: 'halogen', fontWeight:900, whiteSpace:'nowrap', wordWrap:'break-word'}} style={{textAlign:'center'}}>
+          <span style={{color:"#fffff"}}>Vink </span>
+          <span style={{color: theme.palette.primary.dark}}>- ja löydä tekemistä</span>
+        </Box>
       </Container>
     </AppBar>
     </div>

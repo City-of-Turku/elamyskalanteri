@@ -11,6 +11,10 @@ import {GetEventResponse} from '../../../redux/types/Event';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import {useTranslation} from "react-i18next";
+import "dayjs/locale/fi"
+import "dayjs/locale/en"
+import "dayjs/locale/sv"
 
 
 const useStyles = makeStyles({
@@ -23,7 +27,7 @@ const useStyles = makeStyles({
 
 const List = ({id, name, short_description, start_time, provider}: GetEventResponse) => {
   const classes = useStyles();
-  
+  const { t, i18n } = useTranslation()
   return (
     <div>
     <Link
@@ -67,7 +71,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
             }}
           >
             <EventIcon />
-            {dayjs(start_time).format(date)}
+            {dayjs(start_time).locale(i18n.language).format(date)}
           </Typography>
           <Typography component="span" sx={{ fontSize: 18, mt: 1 }} variant="h5">
             {name?.fi}
