@@ -124,7 +124,8 @@ const EventContent = () => {
               rel="noopener"
               sx={{ textDecoration: "none", pb: 2, color: "primary.dark" }}
             >
-              {data?.info_url?.fi || "www.testi.fi"}
+              {data?.info_url?.fi}
+              {data?.info_url?.fi === null && {display:"none"}}
             </Link>
           </Typography>
           <Typography
