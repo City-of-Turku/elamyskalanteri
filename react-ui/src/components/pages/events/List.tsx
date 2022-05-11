@@ -73,7 +73,7 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
             <EventIcon />
             {dayjs(start_time).locale(i18n.language).format(date)}
           </Typography>
-          <Typography component="span" sx={{ fontSize: 18, mt: 1 }} variant="h5">
+          <Typography component="span" sx={{ fontSize: 19, mt: 1 }} variant="h5">
             {name?.fi}
           </Typography>
           <Typography

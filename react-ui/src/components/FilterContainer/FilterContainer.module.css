@@ -37,7 +37,7 @@
 }
 
 .calendarContainer {
-    border: 1px solid lightgray;
+    border: 2px solid #193773;
     border-radius: 16px;
     padding: 24px 16px;
 }
@@ -52,7 +52,7 @@
 .searchContainer {
     width: 800px;
     border-radius: 16px;
-    border: 1px solid lightgray;
+    border: 2px solid #193773;
     padding: 0 16px;
 }
 

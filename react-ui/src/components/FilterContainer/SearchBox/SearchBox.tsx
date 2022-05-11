@@ -73,6 +73,7 @@ const SearchBox = () => {
   return (
     <div className={styles.inputWrapper} style={{color: theme.palette.primary.main}}>
       <input
+        aria-label={t("search")}
         className={styles.search}
         type="text"
         placeholder={t("search")}
