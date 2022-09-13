@@ -25,7 +25,9 @@ const Accordion = ({ title, children, icon }: IProps) => {
       <div className={styles.container} onClick={() => setOpen(!open)} tabIndex={0} onKeyDown={(e) => handleKeyDown(e)}>
         <h3 style={{
           textTransform: "capitalize",
-          color: theme.palette.primary.dark
+          color: theme.palette.primary.dark,
+          fontSize: 22,
+          fontFamily: 'halogen'
         }}
         >
           {title}

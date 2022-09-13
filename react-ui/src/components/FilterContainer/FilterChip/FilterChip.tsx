@@ -1,4 +1,4 @@
-import { Chip } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 import { useTheme } from "@mui/styles";
 import styles from "./FilterChip.module.css"
 
@@ -23,7 +23,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
       {active
         ?
         <Chip
-          label={label}
+          label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{label}</Typography>}
           variant={active ? "filled" : "outlined"}
           // @ts-ignore
           className={styles.chip}
@@ -34,7 +34,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
         />
         :
         <Chip
-          label={label}
+          label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{label}</Typography>}
           variant={active ? "filled" : "outlined"}
           onClick={() => handleClick ? handleClick() : null}
           className={styles.chip}

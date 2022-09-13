@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
-import { useEventsQuery } from "../../../redux/services/eventApi";
+import { useEventQuery, useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../FilterContainer/FilterContainer";
 import EventCard from "./EventCard";
 import List from "./List";
@@ -17,6 +17,7 @@ import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
+import DialogEvent from './Dialog/EventDialog'
 
 const EventList = () => {
 
@@ -129,6 +130,7 @@ const EventList = () => {
                     {view ? (
                       <Grid key={event.id} item>
                         <EventCard {...event} />
+                        {/* <DialogEvent {...event}/> */}
                       </Grid>
                     ) : (
                       <Grid key={event.id} item>

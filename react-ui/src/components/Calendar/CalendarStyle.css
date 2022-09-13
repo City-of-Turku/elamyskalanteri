@@ -4,20 +4,42 @@
 
 .react-calendar__navigation span {
     color: #F16834;
+    font-family: 'halogen';
     font-weight: 900;
     text-transform: capitalize;
 }
 
 .react-calendar__navigation button {
-    font-size: 20px;
+    font-size: 22px;
 }
+
+.react-calendar__month-view__weekdays {
+    color: #193773;
+    font-family: 'Halogen';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 19px;
+}
+
+.abbr {
+    text-decoration: none;
+}
+
 .react-calendar__tile--now {
     background-color: transparent;
     color: black;
 }
 
-.react-calendar__navigation button:enabled:hover
-{
+.react-calendar__tile {
+    font-family: 'Forma DJR Micro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.react-calendar__navigation button:enabled:hover {
     background-color: #193773;
 }
 
@@ -45,19 +67,26 @@
     background: #193773;
 }
 
-.react-calendar__tile--active:enabled:hover{
+.react-calendar__tile--active:enabled:hover {
     background: #193773;
+    border: 3px solid #193773;
+    border-radius: 2px;
+    width: 16.51px;
+    height: 16.25px;
 }
 
-.react-calendar__navigation__next-button, .react-calendar__navigation__prev-button {
+.react-calendar__navigation__next-button,
+.react-calendar__navigation__prev-button {
     color: #193773;
 }
 
-.react-calendar__navigation__next-button:hover, .react-calendar__navigation__prev-button:hover {
+.react-calendar__navigation__next-button:hover,
+.react-calendar__navigation__prev-button:hover {
     background-color: #19377326 !important;
 }
 
-.react-calendar__navigation__next2-button, .react-calendar__navigation__prev2-button {
+.react-calendar__navigation__next2-button,
+.react-calendar__navigation__prev2-button {
     display: none;
 }
 
@@ -69,13 +98,13 @@
 .react-calendar__tile--now:enabled:focus {
     background-color: #19377326;
 }
+
 .react-calendar__tile--hasActive {
     background: #193773;
     color: #FFFFFF;
 }
 
-.react-calendar__tile--rangeStart
-{
+.react-calendar__tile--rangeStart {
     background-color: #193773 !important;
     border-top: 4px solid #F16834 !important;
 }
@@ -85,3 +114,6 @@
     border-bottom: 4px solid #F16834 !important;
 }
 
+.react-calendar__month-view__days__day--weekend {
+    color: '#F16834'
+}

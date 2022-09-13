@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup, Typography } from "@mui/material";
 import { getCoords } from "../../../functions/boundingBox";
 import { useAppDispatch } from "../../../hooks/rtkHooks";
 import filterSlice from "../../../redux/slices/filterSlice";
@@ -34,11 +34,11 @@ const LocationContainer = () => {
 
   return (
     <div>
-      <b style={{color: theme.palette.primary.dark}}><p>{t("near")}</p></b>
+      <b style={{color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><p>{t("near")}</p></b>
       <FormGroup row>
         <FormControlLabel
           control={<Checkbox />}
-          label={`${t("under")} 1 km`}
+          label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{`${t("under")} 1 km`}</Typography>}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={1}
@@ -55,7 +55,7 @@ const LocationContainer = () => {
         />
         <FormControlLabel
           control={<Checkbox/>}
-          label={`${t("under")} 3 km`}
+          label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{`${t("under")} 3 km`}</Typography>}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={2}
@@ -72,7 +72,7 @@ const LocationContainer = () => {
         />
         <FormControlLabel
           control={<Checkbox/>}
-          label={`${t("under")} 5 km`}
+          label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{`${t("under")} 5 km`}</Typography>}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={3}
@@ -89,7 +89,7 @@ const LocationContainer = () => {
         />
         <FormControlLabel
           control={<Checkbox/>}
-          label={`${t("under")} 10 km`}
+          label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{`${t("under")} 10 km`}</Typography>}
           labelPlacement={"end"}
           style={{ width: "140px"}}
           value={4}

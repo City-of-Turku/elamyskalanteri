@@ -125,19 +125,19 @@ const Nav = () => {
               }}
             >
               <Button
-                sx={{ color: "secondary.main", fontSize: 19 }}
+                sx={{ color: "secondary.main", fontSize: '1.2vw' }}
                 onClick={() => handleButtonClick("/")}
               >
                 {`${t("events")}`}
               </Button>
               <Button
-                sx={{ color: "secondary.main", fontSize: 19 }}
+                sx={{ color: "secondary.main", fontSize: '1.2vw' }}
                 onClick={() => handleButtonClick("/hobbies")}
               >
                 {`${t("hobbies")}`}
               </Button>
               <Button
-                sx={{ color: "secondary.main", fontSize: 19 }}
+                sx={{ color: "secondary.main", fontSize: '1.2vw' }}
                 onClick={() => handleButtonClick("/educations")}
               >
                 {`${t("educations")}`}
@@ -161,7 +161,7 @@ const Nav = () => {
                 <Button
                   className={styles.languageBtn}
                   sx={{
-                    fontSize: 19,
+                    fontSize: '1vw',
                     borderRadius: 0,
                     backgroundColor:
                       i18n.language === "fi" ? "#fff" : "primary.main",
@@ -188,7 +188,7 @@ const Nav = () => {
                 <Button
                   className={styles.languageBtn}
                   sx={{
-                    fontSize: 19,
+                    fontSize: '1vw',
                     borderRadius: 0,
                     backgroundColor:
                       i18n.language === "sv" ? "#ffffff" : "primary.main",
@@ -213,7 +213,7 @@ const Nav = () => {
               >
                 <Button
                   sx={{
-                    fontSize: 19,
+                    fontSize: '1vw',
                     borderRadius: 0,
                     backgroundColor:
                       i18n.language === "en" ? "#ffffff" : "primary.main",

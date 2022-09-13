@@ -14,7 +14,8 @@ export const vinkTheme = createTheme({
     fontFamily: "halogen, sans-serif",
     //card heading
     h5: {
-      fontWeight: 900,
+      fontFamily: "forma-djr-micro, sans-serif",
+      fontWeight: 700,
       fontSize: 20,
       fontStyle: "normal",
       color: "#F16834",
@@ -38,7 +39,7 @@ export const vinkTheme = createTheme({
       fontSize: 15,
       color: "#000",
       fontStyle: "normal",
-      letterSpacing: "0.015em",
+      letterSpacing: 1,
       lineHeight: "21px",
       fontFamily: "forma-djr-micro, sans-serif",
     },
@@ -56,8 +57,9 @@ export const vinkTheme = createTheme({
       //date
       color: "#193773",
       fontFamily: "forma-djr-micro, sans-serif",
-      fontSize: 15,
+      fontSize: 14,
       fontWeight: 700,
+      letterSpacing: 1
     },
     button: {
       fontWeight: 900,

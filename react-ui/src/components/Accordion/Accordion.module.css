@@ -7,8 +7,10 @@
 }
 
 h3 {
+    font-size: 22px;
     font-weight: 900;
     margin-left: 4px;
+    font-family: 'halogen';
 }
 
 .childContainer {

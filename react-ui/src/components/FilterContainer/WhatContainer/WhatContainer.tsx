@@ -1,7 +1,7 @@
 import Accordion from "../../Accordion/Accordion";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import styles from "./WhatContainer.module.css";
-import { Checkbox, CircularProgress, FormControlLabel, FormGroup } from "@mui/material";
+import { Checkbox, CircularProgress, FormControlLabel, FormGroup, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../hooks/rtkHooks";
 import FilterChip from "../FilterChip/FilterChip";
 import { bindActionCreators } from "@reduxjs/toolkit";
@@ -118,16 +118,16 @@ const WhatContainer = () => {
 
   return (
     <div className={styles.container}>
-     <Accordion title={`${t("what")}?`} icon={LocalActivityIcon}>
-        <p style={{ color: theme.palette.primary.dark}}><b>{t("category")}</b></p>
+     <Accordion  title={`${t("what")}?`} icon={LocalActivityIcon}>
+        <p style={{ color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("category")}</b></p>
         <div className={styles.chipContainer}>
           {isLoading &&
             <CircularProgress />
           }
           {data &&
             categories.map((category: ICategory) => (
-            <FilterChip
-              label={category.name[i18n.language as keyof typeof category.name] }
+            <FilterChip 
+              label={category.name[i18n.language as keyof typeof category.name]}
               active={filters.eventTypes.includes(category.yso)}
               handleClick={() => addFilter(category)}
               handleDelete={() => removeFilter(category)}
@@ -135,13 +135,13 @@ const WhatContainer = () => {
           ))}
         </div>
           <div className={styles.rowWrap}>
-            <p style={{ width: "100px", color: theme.palette.primary.dark}}><b>{t("whom")}:</b></p>
-            <FormGroup row >
+            <p style={{ width: "100px", color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("whom")}:</b></p>
+            <FormGroup row>
               {audiences.map((audience: any) => (
                 <FormControlLabel
                   control={<Checkbox /> }
-                  label={audience.name[i18n.language]}
-                  style={{ width: "250px"}}
+                  label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{audience.name[i18n.language]}</Typography>}
+                  style={{ width: "250px" }}
                   value={audience.yso}
                   onChange={(e: any) => handleAudienceChange(e)}
                   checked={filters.audiences.includes(audience.yso)}
@@ -151,14 +151,14 @@ const WhatContainer = () => {
             </FormGroup>
           </div>
           <div className={styles.rowWrap}>
-            <p style={{ margin: "0 16px 0 0", color:theme.palette.primary.dark}}><b>{t("feature")}:</b></p>
+            <p style={{ margin: "0 16px 0 0", color:theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("feature")}:</b></p>
             <FormGroup row>
               {features.map((feature) => (
                 <FormControlLabel
                   control={<Checkbox />}
                   // @ts-ignore
-                  label={feature.label[i18n.language]}
-                  style={{ width: "140px"}}
+                  label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{feature.label[i18n.language]}</Typography>}
+                  style={{ width: "140px" }}
                   value={feature.value}
                   onChange={(e: any) => handleFeatureChange(e)}
                   checked={filters.eventFeatures.includes(feature.value)}
