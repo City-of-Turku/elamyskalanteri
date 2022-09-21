@@ -11,9 +11,8 @@ import default2 from "../../../svg/default2.svg";
 import { useTranslation } from "react-i18next";
 import styles from "./Event.module.css"
 import EventIcon from "@mui/icons-material/Event";
-import { Hidden } from "@mui/material";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import { alpha } from "@mui/material/styles";
 
 let index = 0;
 let defaultImages: string | any[] = [];
@@ -26,11 +25,7 @@ const date = "dd DD.MM.YYYY | HH:mm ";
 const useStyles = makeStyles({
   root: {
     width: 350,
-   height:450,
-  },
-  media: {
-    // maxWidth: 340,
-    // height: 130,
+    height:450,
   },
 });
 
@@ -51,33 +46,34 @@ const EventCard = ({
       style={{ border: "none", overflow:"hidden" }}
       sx={{flexWrap: "wrap", display:"flex", maxWidth:{xs:365, md: 990},
       // p: 0.5,
-      m:1
+      m:1,
+      "&:hover": {
+        boxShadow:6,
+      },
       }}
-      // sx={{
-      //   "&:hover": {
-      //     opacity: [0.9, 0.8, 0.7],
-      //   },
-      // }}
     >
       <Link
         to={`/eventlist/${id}`}
         style={{ textDecoration: "none", color: "black" }}
       >
         <CardMedia
-          sx={{width:350, height:160}}
-          className={classes.media}
+          style={{}}
+          sx={{width:350, height:190}}
           component="img"
           src={images[0]?.url || defaultImages[index]}
           alt={images[0]?.alt_text?.fi}
         />
         <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <CardContent>
+        <CardContent sx={{display:"flex",  flexDirection: "column", alignItems:"flex-start",}}>
           <Typography
             gutterBottom
             variant="subtitle2"
             className={styles.date}
             sx={{
-              "& svg": { fontSize: 22, mr: 0.5 },
+              p: 0.5,
+              backgroundColor: (theme) =>
+              alpha(theme.palette.primary.dark, 0.1),
+              "& svg": { fontSize: 21, },
             }}>
             <EventIcon />
             {dayjs(start_time).locale(i18n.language).format(date)}

@@ -14,6 +14,7 @@ import { makeStyles, useTheme } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import styles from "./Nav.module.css";
 import vinkLogo from "../../svg/vinkLogo1.svg";
+import SearchBar from "../SearchBar/SearchBar";
 
 const useStyles = makeStyles({
   logo: {
@@ -233,11 +234,10 @@ const Nav = () => {
           </Toolbar>
           <Box
             sx={{
-              pb: 4,
-              flexGrow: 1,
+              pb: 6,
               display: { xs: "none", md: "block" },
               alignItems: "center",
-              fontSize: 35,
+              fontSize: 32,
               fontFamily: "halogen",
               fontWeight: 900,
               whiteSpace: "nowrap",
@@ -249,6 +249,9 @@ const Nav = () => {
             <span style={{ color: theme.palette.primary.dark }}>
               - ja löydä tekemistä
             </span>
+          </Box>
+          <Box>
+          <SearchBar />
           </Box>
         </Container>
       </AppBar>

@@ -10,7 +10,6 @@ import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import {useTranslation} from "react-i18next";
 import CardMedia from '@mui/material/CardMedia';
-import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { date, defaultImages, index } from "../events/EventCard";
 
@@ -36,8 +35,9 @@ const List = ({id, name, short_description, start_time, provider, images}: GetEv
           display:"flex",
           maxWidth:{xs:465, md: 990},
           m: 1,
-          '&:hover': {
-            opacity: [0.9, 0.8, 0.7]},
+          "&:hover": {
+            boxShadow:6,
+          },
         }}
       >
         <CardMedia
@@ -61,7 +61,6 @@ const List = ({id, name, short_description, start_time, provider, images}: GetEv
               borderRadius: "5px",
               color: "primary.dark",
               display: "flex",
-              fontSize: 15,
               alignItems: "center",
               "& svg": {
                 fontSize: 21,
