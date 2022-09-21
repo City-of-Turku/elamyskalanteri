@@ -5,12 +5,10 @@
 
 .locationIcon {
     display: flex;
-    letter-spacing: 0.01em;
 }
 
 .shortDesc {
-    padding-top: 1rem;
-    overflow: hidden;
-    line-height: 20.8px;
-    max-height: 65;
+    padding-top: 0.5rem;
+
+
 }

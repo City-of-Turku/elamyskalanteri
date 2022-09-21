@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
-import { useEventQuery, useEventsQuery } from "../../../redux/services/eventApi";
+import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../FilterContainer/FilterContainer";
 import EventCard from "./EventCard";
 import List from "./List";
@@ -17,7 +17,6 @@ import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
-import DialogEvent from './Dialog/EventDialog'
 
 const EventList = () => {
 
@@ -113,7 +112,7 @@ const EventList = () => {
           </ToggleButtonGroup>
         </div>
         <Box sx={{display: "flex", justifyContent: "center", p: 0.5,}}></Box>
-        <Grid sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center"}} container>
+        <Grid sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center", p:6}} container>
           {isLoading ||
             (isFetching && (
               <Box sx={{position: "absolute", left: "50%", top: "50%"}}>
@@ -130,10 +129,9 @@ const EventList = () => {
                     {view ? (
                       <Grid key={event.id} item>
                         <EventCard {...event} />
-                        {/* <DialogEvent {...event}/> */}
                       </Grid>
                     ) : (
-                      <Grid key={event.id} item>
+                      <Grid item key={event.id}>
                         <List {...event} />
                       </Grid>
                     )}

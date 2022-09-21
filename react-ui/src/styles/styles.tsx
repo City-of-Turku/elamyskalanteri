@@ -59,7 +59,8 @@ export const vinkTheme = createTheme({
       fontFamily: "forma-djr-micro, sans-serif",
       fontSize: 14,
       fontWeight: 700,
-      letterSpacing: 1
+      letterSpacing: 0.6,
+      gap: 5
     },
     button: {
       fontWeight: 900,

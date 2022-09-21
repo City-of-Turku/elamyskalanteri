@@ -1,4 +1,3 @@
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LinkIcon from "@mui/icons-material/Link";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Divider from "@mui/material/Divider";
@@ -18,7 +17,6 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EventIcon from "@mui/icons-material/Event";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 import "dayjs/locale/fi";
 import "dayjs/locale/en";
 import "dayjs/locale/sv";
@@ -51,12 +49,6 @@ const EventContent = () => {
 
   return (
     <div>
-      <Link
-        href="/"
-        sx={{ textDecoration: "none", color: "black", display: "flex", p: 1 }}>
-        <ArrowBackIcon />
-        <Typography sx={{ pl: 1 }}>{`${t("back")}`}</Typography>
-      </Link>
       <Grid item sx={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <CardMedia

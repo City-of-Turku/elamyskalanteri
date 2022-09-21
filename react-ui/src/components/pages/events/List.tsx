@@ -1,35 +1,30 @@
 import EventIcon from "@mui/icons-material/Event";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Button from "@mui/material/Button";
 import { alpha } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import  {date}  from '../events/EventCard';
 import {GetEventResponse} from '../../../redux/types/Event';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import {useTranslation} from "react-i18next";
-import "dayjs/locale/fi"
-import "dayjs/locale/en"
-import "dayjs/locale/sv"
-
+import CardMedia from '@mui/material/CardMedia';
+import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
+import { date, defaultImages, index } from "../events/EventCard";
 
 const useStyles = makeStyles({
   root: {
-    width: 795,
-    height: 220,
+    width: 990,
   },
 });
 
-
-const List = ({id, name, short_description, start_time, provider}: GetEventResponse) => {
+const List = ({id, name, short_description, start_time, provider, images}: GetEventResponse) => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
+  const theme = useTheme();
   return (
-    <div>
     <Link
       to={`/eventlist/${id}`}
       style={{ textDecoration: "none", color: "black" }}
@@ -37,20 +32,24 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
       <Card
         className={classes.root}
         sx={{
-          maxWidth:{xs:365, md: 990},
-          flexDirection: 'column',
-          p: 0.5,
-          m: 2,
+          overflow:"hidden",
+          display:"flex",
+          maxWidth:{xs:465, md: 990},
+          m: 1,
           '&:hover': {
             opacity: [0.9, 0.8, 0.7]},
         }}
       >
+        <CardMedia
+        component="img"
+        sx={{ width: 155 }}
+        src={images[0]?.url || defaultImages[index]}
+      />
          <CardContent
           sx={{
-            display: "flex",
+            display:"flex",
             flexDirection: "column",
-            alignItems: { xs: "center", md: "flex-start" },
-            m: 0.5,
+            alignItems:"flex-start",
           }}
         >
         <Typography
@@ -66,22 +65,19 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
               alignItems: "center",
               "& svg": {
                 fontSize: 21,
-                mr: 0.5,
               },
             }}
           >
             <EventIcon />
             {dayjs(start_time).locale(i18n.language).format(date)}
           </Typography>
-          <Typography component="span" sx={{ fontSize: 19, mt: 1 }} variant="h5">
+          <Typography sx={{ fontSize: 19, mt: 1 }} variant="h5">
             {name?.fi}
           </Typography>
           <Typography
             variant="subtitle2"
-            component="span"
             sx={{
               display: "flex",
-              flexDirection: "row",
               pt: 0.5,
               pb: 0.5,
               fontSize: 14,
@@ -94,13 +90,9 @@ const List = ({id, name, short_description, start_time, provider}: GetEventRespo
             <Typography variant="body2">
               {short_description?.fi}
             </Typography>
-          <CardActions>
-            {/* <Button sx={{fontSize:15}}>Lue lisää</Button> */}
-          </CardActions>
           </CardContent>
       </Card>
     </Link>
-    </div>
   );
 };
 
