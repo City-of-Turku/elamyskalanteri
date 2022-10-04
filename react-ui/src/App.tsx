@@ -6,11 +6,12 @@ import {
   HashRouter,
 } from "react-router-dom";
 import Nav from "./components/nav/Nav";
-import EducationList from "./components/pages/educations/EducationList";
 import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import CompactList from "./components/pages/events/CompactList";
-import HobbyList from "./components/pages/hobbies/HobbyList";
+import Hobbies from "./components/pages/events/Hobbies";
+import Educations from "./components/pages/events/Educations";
+
 import {
   whiteLabelTheme,
   vinkTheme,
@@ -37,14 +38,14 @@ const App = (props: AppProps) => {
         <Switch>
           <Route exact path={"/"}>
             {data.type === "normal" ? (
-              <EventList />
+              <EventList typeId="General" />
             ) : (
               <CompactList dataAttributes={data} />
             )}
           </Route>
           <Route path="/eventlist/:id" component={EventContent} />
-          <Route path="/hobbies" component={HobbyList} />
-          <Route path="/educations" component={EducationList} />
+          <Route path="/hobbies" component={Hobbies} />
+          <Route path="/educations" component={Educations} />
         </Switch>
       </HashRouter>
     </ThemeProvider>

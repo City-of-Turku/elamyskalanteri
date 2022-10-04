@@ -18,14 +18,18 @@ import filterSlice from "../../../redux/slices/filterSlice";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
 
-const EventList = () => {
+interface EventListProps {
+  typeId: string;  
+}
+
+const EventList = (props:EventListProps) => {
 
   const history = useHistory()
   const queryString = require('query-string')
   const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
-  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
   const [view, setView] = useState(true);
   const [color, setColor] = useState("primary.dark")
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
@@ -61,6 +65,9 @@ const EventList = () => {
         let audienceArray = query.audiences.split(',')
         audienceArray.forEach((item: string) => addAudience(item))
       }
+
+      setTypeId(props.typeId);
+
       setFirstLoadDone(true)
     }
   }, [window.location.hash])
@@ -80,6 +87,7 @@ const EventList = () => {
     start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
     end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : "",
     audiences: filters.audiences,
+    type_id: filters.typeId ? filters.typeId : "",
   });
 
   useEffect(() => {

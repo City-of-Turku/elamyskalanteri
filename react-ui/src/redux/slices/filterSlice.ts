@@ -15,6 +15,7 @@ interface filterState {
   },
   startTime: Date | null,
   endTime: Date | null,
+  typeId: string | null,
 }
 
 const initialState = {
@@ -25,7 +26,7 @@ const initialState = {
   bbox: {north: null, east: null, south: null, west: null},
   startTime: null,
   endTime: null,
-
+  typeId: null,
 } as filterState
 
 export const filterSlice = createSlice({
@@ -64,6 +65,9 @@ export const filterSlice = createSlice({
     },
     removeAudience: (state, action) => {
       state.audiences = state.audiences.filter((item) => item !== action.payload)
+    },
+    setTypeId: (state, action) => {
+      state.typeId = action.payload
     }
   }
 })

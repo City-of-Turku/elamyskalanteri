@@ -8,7 +8,8 @@ interface IOptions {
   bbox: string,
   start_time?: string,
   end_time?: string,
-  audiences: string[]
+  audiences: string[],
+  type_id?: string,
 }
 
 export const eventApi = createApi({
@@ -19,7 +20,7 @@ export const eventApi = createApi({
   endpoints: (builder) => ({
     events: builder.query<any, IOptions>({
       query: (options: IOptions) =>
-        `/event/?page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword.concat(options.audiences)}&${options.features}&bbox=${options.bbox}&start=${options.start_time}&end=${options.end_time}`,
+        `/event/?type_id=${options.type_id}&page=${options.page}&text=${options.searchTerm}&keyword=${options.keyword.concat(options.audiences)}&${options.features}&bbox=${options.bbox}&start=${options.start_time}&end=${options.end_time}`,
     }),
     event: builder.query<any, string>({
       query: (id: any) => `/event/${id}/?include=keywords`,
