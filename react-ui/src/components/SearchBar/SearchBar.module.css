@@ -1,4 +1,4 @@
-.container {
+.searchBar {
     position: absolute;
     top: 95%;
     left: 50%;
@@ -10,7 +10,7 @@
     border: 6px solid white;
     padding: 5px;
     width: 370px;
-    cursor: pointer;
+    /* cursor: pointer; */
     box-shadow: 0px 20px 52px rgba(25, 55, 115, 0.2);
 
 }
@@ -38,7 +38,7 @@
 }
 
 .searchIcon {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     padding: 10px;
     width: 45px;
     height: 45px;
@@ -50,12 +50,12 @@
     font-size: 1.2em;
 }
 
-.container .searchInput {
+.searchBar .searchInput {
     display: block;
 }
 
 
-.container .searchIcon {
+.searchBar .searchIcon {
     background: #F26835;
     color: white;
 }

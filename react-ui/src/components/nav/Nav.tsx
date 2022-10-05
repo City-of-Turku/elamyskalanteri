@@ -71,7 +71,7 @@ const Nav = () => {
     <div className={styles.customizeToolbar}>
       <AppBar position="static" elevation={0}>
         <Container maxWidth="xl">
-          <Toolbar disableGutters style={{ height: 220 }}>
+          <Toolbar style={{ height: 240 }}>
             <Typography
               component="div"
               sx={{ flexGrow: 2, display: { xs: "none", lg: "flex", md: "flex"  } }}
@@ -234,7 +234,7 @@ const Nav = () => {
           </Toolbar>
           <Box
             sx={{
-              pb: 6,
+              pb: 4,
               display: { xs: "none", md: "block" },
               alignItems: "center",
               fontSize: 32,
@@ -251,7 +251,7 @@ const Nav = () => {
             </span>
           </Box>
           <Box>
-          <SearchBar />
+     
           </Box>
         </Container>
       </AppBar>
