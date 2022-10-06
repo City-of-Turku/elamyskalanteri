@@ -34,7 +34,7 @@ const App = (props: AppProps) => {
   return (
     <ThemeProvider theme={vinkTheme}>
       <HashRouter hashType={"noslash"}>
-        {data.navbar !== "hidden" && <Route component={Nav} />}
+        {/* {data.navbar !== "hidden" && <Route component={Nav} />} */}
         <Switch>
           <Route exact path={"/"}>
             {data.type === "normal" ? (
