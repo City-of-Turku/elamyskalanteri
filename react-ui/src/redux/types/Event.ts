@@ -35,6 +35,7 @@ export interface GetEventResponse {
     fi: string;
   };
   start_time: Date;
+  end_time: Date;
   location_extra_info: {
     fi: string;
   };
@@ -61,6 +62,6 @@ export interface GetEventResponse {
         fi: string;
       }
     },
-    
+
   ];
 }

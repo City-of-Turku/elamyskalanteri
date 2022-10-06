@@ -87,7 +87,7 @@ const EventContent = () => {
             }}
           >
             <EventIcon />
-            {dayjs(data?.start_time).locale(i18n.language).format(date)}
+            {dayjs(data?.start_time).locale(i18n.language).format(date)} - {dayjs(data?.end_time).locale(i18n.language).format('HH:mm')}
           </Typography>
           <Typography variant="h4" component="div" sx={{ pb: 3 }}>
             {data?.name?.fi}

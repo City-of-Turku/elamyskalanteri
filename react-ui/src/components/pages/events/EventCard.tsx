@@ -20,7 +20,7 @@ defaultImages[0] = default2;
 index = Math.floor(Math.random() * defaultImages.length);
 
 require("dayjs/locale/fi");
-const date = "dd DD.MM.YYYY | HH:mm ";
+const date = "dd DD.MM.YYYY | HH:mm";
 
 const useStyles = makeStyles({
   root: {
@@ -34,6 +34,7 @@ const EventCard = ({
   name,
   short_description,
   start_time,
+  end_time,
   provider,
   images,
 }: GetEventResponse) => {
@@ -76,7 +77,7 @@ const EventCard = ({
               "& svg": { fontSize: 21, },
             }}>
             <EventIcon />
-            {dayjs(start_time).locale(i18n.language).format(date)}
+            {dayjs(start_time).locale(i18n.language).format(date)} - {dayjs(end_time).locale(i18n.language).format('HH:mm')}
           </Typography>
           <Typography gutterBottom variant="h5">
             {name?.fi}
