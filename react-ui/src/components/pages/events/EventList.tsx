@@ -66,7 +66,12 @@ const EventList = (props:EventListProps) => {
         audienceArray.forEach((item: string) => addAudience(item))
       }
 
-      setTypeId(props.typeId);
+      if (Object.keys(query).includes("type_id")) {
+        setTypeId(query.type_id);
+      }
+      else {
+        setTypeId(props.typeId);
+      }
 
       setFirstLoadDone(true)
     }

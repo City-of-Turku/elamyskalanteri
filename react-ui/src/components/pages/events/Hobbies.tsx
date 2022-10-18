@@ -1,7 +1,7 @@
 import EventList from './EventList'
 
 const Hobbies = () => (
-    <EventList typeId="General"/>
+    <EventList typeId="eventhobbies"/>
 )
 
 export default Hobbies;

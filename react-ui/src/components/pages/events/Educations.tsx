@@ -1,5 +1,5 @@
 import EventList from './EventList'
 const Educations = () => (
-    <EventList typeId="General"/>
+    <EventList typeId="eventcourse"/>
 )
 export default Educations;

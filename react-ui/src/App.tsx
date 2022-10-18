@@ -10,6 +10,7 @@ import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import CompactList from "./components/pages/events/CompactList";
 import Hobbies from "./components/pages/events/Hobbies";
+import Events from "./components/pages/events/Events";
 import Educations from "./components/pages/events/Educations";
 
 import {
@@ -38,7 +39,7 @@ const App = (props: AppProps) => {
         <Switch>
           <Route exact path={"/"}>
             {data.type === "normal" ? (
-              <EventList typeId="General" />
+              <Events />
             ) : (
               <CompactList dataAttributes={data} />
             )}

@@ -1,7 +1,7 @@
 import Accordion from "../../Accordion/Accordion";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import styles from "./WhatContainer.module.css";
-import { Checkbox, CircularProgress, FormControlLabel, FormGroup, Typography } from "@mui/material";
+import { Checkbox, CircularProgress, FormControlLabel, FormGroup, Typography, RadioGroup, Radio } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../hooks/rtkHooks";
 import FilterChip from "../FilterChip/FilterChip";
 import { bindActionCreators } from "@reduxjs/toolkit";
@@ -52,7 +52,7 @@ const WhatContainer = () => {
   const { filters } = useAppSelector(state => state)
 
   // Bind setFeatures to dispatch, so it can be called without dispatch
-  const { addFeature, removeFeature, setEventTypes, addAudience, removeAudience } = bindActionCreators(filterSlice.actions, dispatch)
+  const { addFeature, removeFeature, setEventTypes, addAudience, removeAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
 
   const [ categories, setCategories ] = useState([])
   const [ audiences, setAudiences ] = useState([])
@@ -119,6 +119,22 @@ const WhatContainer = () => {
   return (
     <div className={styles.container}>
      <Accordion  title={`${t("what")}?`} icon={LocalActivityIcon}>
+        <p style={{ color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900}}><b>{t("eventType")}</b></p>
+        <div className={styles.rowWrap}>
+        <RadioGroup
+          row
+          defaultValue={filters.typeId}
+          name="event-type-group"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setTypeId((event.target as HTMLInputElement).value);
+          }}
+        >
+          <FormControlLabel value="eventgeneral" control={<Radio />} label={t("events")} />
+          <FormControlLabel value="eventhobbies" control={<Radio />} label={t("hobbies")} />
+          <FormControlLabel value="eventcourse" control={<Radio />} label={t("educations")} />
+        </RadioGroup>
+      </div>
+      
         <p style={{ color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("category")}</b></p>
         <div className={styles.chipContainer}>
           {isLoading &&
@@ -134,6 +150,7 @@ const WhatContainer = () => {
             />
           ))}
         </div>
+        
           <div className={styles.rowWrap}>
             <p style={{ width: "100px", color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("whom")}:</b></p>
             <FormGroup row>
