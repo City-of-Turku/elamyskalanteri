@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const List = ({id, name, short_description, start_time, provider, images}: GetEventResponse) => {
+const List = ({id, name, short_description, start_time, provider, images, end_time,}: GetEventResponse) => {
   const classes = useStyles();
   const { i18n } = useTranslation()
   const theme = useTheme();
@@ -68,7 +68,7 @@ const List = ({id, name, short_description, start_time, provider, images}: GetEv
             }}
           >
             <EventIcon />
-            {dayjs(start_time).locale(i18n.language).format(date)}
+            {dayjs(start_time).locale(i18n.language).format(date)} - {dayjs(end_time).locale(i18n.language).format('HH:mm')}
           </Typography>
           <Typography sx={{ fontSize: 19, mt: 1 }} variant="h5">
             {name?.fi}

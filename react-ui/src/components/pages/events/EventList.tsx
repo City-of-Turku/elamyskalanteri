@@ -19,7 +19,8 @@ import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
 
 interface EventListProps {
-  typeId: string;  
+  typeId: string;
+  advancedEditor: boolean; 
 }
 
 const EventList = (props:EventListProps) => {
@@ -103,7 +104,7 @@ const EventList = (props:EventListProps) => {
     <div>
       <Box sx={{ p: 2 }}>
           <FilterContainer />
-          <EmbedCode />
+          <EmbedCode advancedMode={props.advancedEditor} />
         <div style={{display: "flex", justifyContent: "center", alignItems: "center", margin: "8px 0 24px 0"}}>
           <Button onClick={() => setPage(page - 1)} variant={"contained"} sx={{ mx: 1 }} disabled={!data?.meta.previous}>
             Edellinen sivu
