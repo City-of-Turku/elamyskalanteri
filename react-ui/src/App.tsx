@@ -9,10 +9,6 @@ import Nav from "./components/nav/Nav";
 import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
 import CompactList from "./components/pages/events/CompactList";
-import Hobbies from "./components/pages/events/Hobbies";
-import Events from "./components/pages/events/Events";
-import Educations from "./components/pages/events/Educations";
-
 import {
   whiteLabelTheme,
   vinkTheme,
@@ -31,7 +27,7 @@ export interface AppProps {
 
 const App = (props: AppProps) => {
   const data = props.data;
-  console.log(props.data);
+  console.log('advanced',props.data);
   return (
     <ThemeProvider theme={vinkTheme}>
       <HashRouter hashType={"noslash"}>
@@ -39,14 +35,14 @@ const App = (props: AppProps) => {
         <Switch>
           <Route exact path={"/"}>
             {data.type === "normal" ? (
-              <Events />
+              <EventList advancedEditor={data.advancededitor === "true"} typeId="eventgeneral" />
             ) : (
               <CompactList dataAttributes={data} />
             )}
           </Route>
           <Route path="/eventlist/:id" component={EventContent} />
-          <Route path="/hobbies" component={Hobbies} />
-          <Route path="/educations" component={Educations} />
+          <Route path="/hobbies"  />
+          <Route path="/educations"  />
         </Switch>
       </HashRouter>
     </ThemeProvider>

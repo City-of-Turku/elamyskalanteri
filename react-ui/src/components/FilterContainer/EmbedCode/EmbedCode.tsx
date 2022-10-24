@@ -3,9 +3,15 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import styles from "./EmbedCode.module.css"
 
-const EmbedCode = () => {
+interface EmbedCodeProps {
+  advancedMode: boolean
+}
 
-  const [open, setOpen] = useState(false)
+const EmbedCode = (props:EmbedCodeProps) => {
+
+  const advancedMode = props.advancedMode
+
+  const [open, setOpen] = useState(advancedMode)
 
   const { filters } = useAppSelector(state => state)
 
