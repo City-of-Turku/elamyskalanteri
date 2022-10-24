@@ -137,7 +137,7 @@ const EventList = (props:EventListProps) => {
             !error &&
             data.data?.map((event: any) => {
               return (
-                <div>
+                <div key={event.id}>
                   <div>
                     {view ? (
                       <Grid key={event.id} item>
