@@ -19,7 +19,7 @@ import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
 
 interface EventListProps {
-  typeId: string;
+  typeId?: string;
   advancedEditor: boolean; 
 }
 
@@ -70,7 +70,7 @@ const EventList = (props:EventListProps) => {
       if (Object.keys(query).includes("type_id")) {
         setTypeId(query.type_id);
       }
-      else {
+      else if (props.typeId) {
         setTypeId(props.typeId);
       }
 
@@ -178,7 +178,7 @@ const EventList = (props:EventListProps) => {
             <Box sx={{ position: "absolute", left: "50%", top: "50%" }}>
               <CircularProgress />
             </Box>
-          ) : !error ? (
+          ) : error ? (
             <h2>Something went wrong</h2>
           ) : (
             data.data?.map((event: any) => (

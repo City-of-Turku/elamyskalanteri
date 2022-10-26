@@ -36,6 +36,12 @@ export const filterSlice = createSlice({
     setEventTypes: (state, action) => {
       state.eventTypes = action.payload
     },
+    addEventType: (state, action) => {
+      state.eventTypes = [...state.eventTypes, action.payload]
+    },
+    removeEventTypes: (state, action) => {
+      state.eventTypes = state.eventTypes.filter(eventType => !action.payload?.includes(eventType))
+    },
     setSearch: (state, action) => {
       state.search = action.payload
     },

@@ -1,23 +1,27 @@
 import Accordion from "../../Accordion/Accordion";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import styles from "./WhatContainer.module.css";
-import { Checkbox, CircularProgress, FormControlLabel, FormGroup, Typography, RadioGroup, Radio } from "@mui/material";
+import { Checkbox, FormGroup, FormControlLabel, Typography, RadioGroup, Radio } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../hooks/rtkHooks";
-import FilterChip from "../FilterChip/FilterChip";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import { useTopicsQuery } from "../../../redux/services/keywordApi";
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/styles";
 import { useTranslation } from "react-i18next";
+import { CategorySelector, ICategory } from "./CategorySelector"
 
-interface ICategory {
-  name: {
-    fi: string,
-    en: string,
-    sv: string,
+
+type CategoryDescriptor = {
+  title: string
+  categories: Array<ICategory>
+}
+
+type Feature = {
+  label: {
+    [key:string]: string
   }
-  yso: string
+  value: string
 }
 
 const WhatContainer = () => {
@@ -29,7 +33,7 @@ const WhatContainer = () => {
   const { data, isLoading } = useTopicsQuery()
 
   // Not a great place for these either...
-  const features = [
+  const features:Array<Feature> = [
     {
       label: {
         fi: "ilmainen",
@@ -50,23 +54,22 @@ const WhatContainer = () => {
 
   // Destruct const from redux state
   const { filters } = useAppSelector(state => state)
-
   // Bind setFeatures to dispatch, so it can be called without dispatch
-  const { addFeature, removeFeature, setEventTypes, addAudience, removeAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
+  const { addFeature, removeFeature, addEventType, removeEventTypes, addAudience, removeAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
 
-  const [ categories, setCategories ] = useState([])
-  const [ audiences, setAudiences ] = useState([])
+  const [ typeIdState, setTypeIdState ] = useState(filters.typeId)
+  const [ categoryGroups, setCategoryGroups ] = useState<{[key: string]: Array<CategoryDescriptor>}>({})
+  const [ audiences, setAudiences ] = useState<Array<ICategory>>([])
 
-  // Adds category to the redux store
-  const addFilter = (category: ICategory) => {
-    // @ts-ignore
-    setEventTypes(filters.eventTypes.concat(category.yso))
-  }
-
-  // Filters category from the redux store
-  const removeFilter = (category: ICategory) => {
-    // @ts-ignore
-    setEventTypes(filters.eventTypes.filter(e => e !== category.yso))
+  const handleTypeIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const val: string = (event.target as HTMLInputElement).value
+    if (!!typeIdState) {
+      removeEventTypes(categoryGroups[typeIdState]?.reduce((acc: Array<string>, curr) => {
+        return [...acc, ...curr.categories?.map(cat => cat.yso)]
+      }, []));
+    }
+    setTypeIdState(val);
+    setTypeId(val);
   }
 
   const handleFeatureChange = (e: any) => {
@@ -92,97 +95,196 @@ const WhatContainer = () => {
     }
   }
 
+  const addSelectedCategory = (yso: string) => {
+    addEventType(yso);
+  }
+
+  const removeSelectedCategory = (yso: string) => {
+    removeEventTypes([yso]);
+  }
+
   useEffect(() => {
     if (data) {
-      const topics = data.data
-        .find((item: any) => item.id === "turku:topics").keywords
-      const audiences = data.data
-        .find((item: any) => item.id === "turku:audience").keywords
-      let tmpCategories = topics.map((topic: any) => (
-        {
-          name: topic.name,
-          yso: topic.id
-        }
-      ))
+      const createYsoObjects = (keywordObjects:Array<object>): Array<ICategory> => (
+        keywordObjects.map((thing:any) => (
+          {
+            name: thing.name,
+            yso: thing.id  
+          }
+        ))      
+      );
+      
+      const _categoryGroups = {
+        "eventgeneral": [
+          {
+            title: t("content"),
+            categories: createYsoObjects(data.data.find((item: any) => item.id === "turku:topic_content").keywords),
+          },
+          {
+            title: t("eventType"),
+            categories: createYsoObjects(data.data.find((item: any) => item.id === "turku:topic_type").keywords),
+          }
+        ],
+        "eventhobbies": [
+          {
+            title: t("content"),
+            categories: createYsoObjects(data.data.find((item: any) => item.id === "turku:hobbytopics").keywords),
+          }
+        ],
+        "eventcourse": [
+          {
+            title: t("content"),
+            categories: createYsoObjects(data.data.find((item: any) => item.id === "turku:coursetopics").keywords),
+          }
+        ]
+      }       
 
-      let tmpAudiences = audiences.map((audience: any) => (
-        {
-          name: audience.name,
-          yso: audience.id
-        }
-      ))
-      setCategories(tmpCategories)
-      setAudiences(tmpAudiences)
+      const _audiences = createYsoObjects(
+        data.data
+        .find((item: any) => item.id === "turku:audience").keywords
+      );
+
+      setCategoryGroups(_categoryGroups)
+      setAudiences(_audiences)
     }
-  }, [data])
+  }, [data, t])
+
+  useEffect(() => {
+    setTypeIdState(filters.typeId)
+  }, [filters.typeId]);
 
   return (
     <div className={styles.container}>
-     <Accordion  title={`${t("what")}?`} icon={LocalActivityIcon}>
-        <p style={{ color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900}}><b>{t("eventType")}</b></p>
-        <div className={styles.rowWrap}>
-        <RadioGroup
-          row
-          defaultValue={filters.typeId}
-          name="event-type-group"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setTypeId((event.target as HTMLInputElement).value);
+      <Accordion title={`${t("what")}?`} icon={LocalActivityIcon}>
+        <p
+          style={{
+            color: theme.palette.primary.dark,
+            fontSize: 18,
+            fontFamily: "halogen",
+            fontWeight: 900,
           }}
         >
-          <FormControlLabel value="eventgeneral" control={<Radio />} label={t("events")} />
-          <FormControlLabel value="eventhobbies" control={<Radio />} label={t("hobbies")} />
-          <FormControlLabel value="eventcourse" control={<Radio />} label={t("educations")} />
-        </RadioGroup>
-      </div>
-      
-        <p style={{ color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("category")}</b></p>
-        <div className={styles.chipContainer}>
-          {isLoading &&
-            <CircularProgress />
-          }
-          {data &&
-            categories.map((category: ICategory) => (
-            <FilterChip 
-              label={category.name[i18n.language as keyof typeof category.name]}
-              active={filters.eventTypes.includes(category.yso)}
-              handleClick={() => addFilter(category)}
-              handleDelete={() => removeFilter(category)}
+          <b>{t("contentType")}</b>
+        </p>
+        <div className={styles.rowWrap}>
+          <RadioGroup
+            row
+            value={typeIdState}
+            name="event-type-group"
+            onChange={(e: any) => handleTypeIdChange(e)}
+          >
+            <FormControlLabel
+              value="eventgeneral"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "forma-djr-micro, sans-serif" }}>
+                  {t("events")}
+                </Typography>
+              }
             />
-          ))}
+            <FormControlLabel
+              value="eventhobbies"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "forma-djr-micro, sans-serif" }}>
+                  {t("hobbies")}
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              value="eventcourse"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "forma-djr-micro, sans-serif" }}>
+                  {t("educations")}
+                </Typography>
+              }
+            />
+          </RadioGroup>
         </div>
-        
-          <div className={styles.rowWrap}>
-            <p style={{ width: "100px", color: theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("whom")}:</b></p>
-            <FormGroup row>
-              {audiences.map((audience: any) => (
-                <FormControlLabel
-                  control={<Checkbox /> }
-                  label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{audience.name[i18n.language]}</Typography>}
-                  style={{ width: "250px" }}
-                  value={audience.yso}
-                  onChange={(e: any) => handleAudienceChange(e)}
-                  checked={filters.audiences.includes(audience.yso)}
 
-                />
-              ))}
-            </FormGroup>
-          </div>
-          <div className={styles.rowWrap}>
-            <p style={{ margin: "0 16px 0 0", color:theme.palette.primary.dark, fontSize:18, fontFamily:'halogen', fontWeight: 900, textTransform:'capitalize'}}><b>{t("feature")}:</b></p>
-            <FormGroup row>
-              {features.map((feature) => (
-                <FormControlLabel
-                  control={<Checkbox />}
-                  // @ts-ignore
-                  label={<Typography sx={{fontFamily:'forma-djr-micro, sans-serif'}}>{feature.label[i18n.language]}</Typography>}
-                  style={{ width: "140px" }}
-                  value={feature.value}
-                  onChange={(e: any) => handleFeatureChange(e)}
-                  checked={filters.eventFeatures.includes(feature.value)}
-                />
-              ))}
-            </FormGroup>
-          </div>
+        {typeIdState && categoryGroups[typeIdState]?.map((group, index) => (
+          <CategorySelector
+            key={index}
+            categories={group.categories}
+            title={group.title}
+            isLoading={isLoading}
+            handleAdd={(yso) => {
+              addSelectedCategory(yso);
+            }}
+            handleDelete={(yso) => {
+              removeSelectedCategory(yso);
+            }}
+            selected={filters.eventTypes}
+          />
+        ))}
+        <div className={styles.rowWrap}>
+          <p
+            style={{
+              width: "100px",
+              color: theme.palette.primary.dark,
+              fontSize: 18,
+              fontFamily: "halogen",
+              fontWeight: 900,
+              textTransform: "capitalize",
+            }}
+          >
+            <b>{t("whom")}:</b>
+          </p>
+          <FormGroup row>
+            {audiences.map((audience: any) => (
+              <FormControlLabel
+                key={audience.yso}
+                control={<Checkbox />}
+                label={
+                  <Typography
+                    sx={{ fontFamily: "forma-djr-micro, sans-serif" }}
+                  >
+                    {audience.name[i18n.language]}
+                  </Typography>
+                }
+                style={{ width: "250px" }}
+                value={audience.yso}
+                onChange={(e: any) => handleAudienceChange(e)}
+                checked={filters.audiences.includes(audience.yso)}
+              />
+            ))}
+          </FormGroup>
+        </div>
+        <div className={styles.rowWrap}>
+          <p
+            style={{
+              margin: "0 16px 0 0",
+              color: theme.palette.primary.dark,
+              fontSize: 18,
+              fontFamily: "halogen",
+              fontWeight: 900,
+              textTransform: "capitalize",
+            }}
+          >
+            <b>{t("feature")}:</b>
+          </p>
+          <FormGroup row>
+            {features.map((feature) => (
+              <FormControlLabel
+                key={feature.label[i18n.language]}
+                control={<Checkbox />}
+                // @ts-ignore
+                label={
+                  <Typography
+                    sx={{ fontFamily: "forma-djr-micro, sans-serif" }}
+                  >
+                    {feature.label[i18n.language]}
+                  </Typography>
+                }
+                style={{ width: "140px" }}
+                value={feature.value}
+                onChange={(e: any) => handleFeatureChange(e)}
+                checked={filters.eventFeatures.includes(feature.value)}
+              />
+            ))}
+          </FormGroup>
+        </div>
       </Accordion>
     </div>
   )

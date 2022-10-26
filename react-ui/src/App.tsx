@@ -27,7 +27,6 @@ export interface AppProps {
 
 const App = (props: AppProps) => {
   const data = props.data;
-  console.log('advanced',props.data);
   return (
     <ThemeProvider theme={vinkTheme}>
       <HashRouter hashType={"noslash"}>
@@ -35,7 +34,7 @@ const App = (props: AppProps) => {
         <Switch>
           <Route exact path={"/"}>
             {data.type === "normal" ? (
-              <EventList advancedEditor={data.advancededitor === "true"} typeId="eventgeneral" />
+              <EventList advancedEditor={data.advancededitor === "true"} />
             ) : (
               <CompactList dataAttributes={data} />
             )}
