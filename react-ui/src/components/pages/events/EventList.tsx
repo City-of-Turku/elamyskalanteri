@@ -103,58 +103,101 @@ const EventList = (props:EventListProps) => {
   return (
     <div>
       <Box sx={{ p: 2 }}>
-          <FilterContainer />
-          <EmbedCode advancedMode={props.advancedEditor} />
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center", margin: "8px 0 24px 0"}}>
-          <Button onClick={() => setPage(page - 1)} variant={"contained"} sx={{ mx: 1 }} disabled={!data?.meta.previous}>
+        <FilterContainer />
+        <EmbedCode advancedMode={props.advancedEditor} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "8px 0 24px 0",
+          }}
+        >
+          <Button
+            onClick={() => setPage(page - 1)}
+            variant={"contained"}
+            sx={{ mx: 1 }}
+            disabled={!data?.meta.previous}
+          >
             Edellinen sivu
           </Button>
           <p>Sivu {page}</p>
-          <Button onClick={() => setPage(page + 1)} variant={"contained"} sx={{ mx: 1 }} disabled={!data?.meta.next}>
+          <Button
+            onClick={() => setPage(page + 1)}
+            variant={"contained"}
+            sx={{ mx: 1 }}
+            disabled={!data?.meta.next}
+          >
             Seuraava sivu
           </Button>
         </div>
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center", margin:"2em"}}>
-          <ToggleButtonGroup orientation="horizontal" exclusive onChange={handleColor} value={color}>
-            <ToggleButton onClick={() => setView(true)} sx={{color: 'primary.main'}}  value="primary.dark" aria-label="module">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "2em",
+          }}
+        >
+          <ToggleButtonGroup
+            orientation="horizontal"
+            exclusive
+            onChange={handleColor}
+            value={color}
+          >
+            <ToggleButton
+              onClick={() => setView(true)}
+              sx={{ color: "primary.main" }}
+              value="primary.dark"
+              aria-label="module"
+            >
               {" "}
               <ViewModuleIcon />
             </ToggleButton>
-            <ToggleButton onClick={() => setView(false)} sx={{color: 'primary.main'}} value="secondary" aria-label="list">
+            <ToggleButton
+              onClick={() => setView(false)}
+              sx={{ color: "primary.main" }}
+              value="secondary"
+              aria-label="list"
+            >
               <ViewListIcon />
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-        <Box sx={{display: "flex", justifyContent: "center", p: 0.5,}}></Box>
-        <Grid sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center", p:6}} container>
-          {isLoading ||
-            (isFetching && (
-              <Box sx={{position: "absolute", left: "50%", top: "50%"}}>
-                <CircularProgress />
-              </Box>
-            ))}
-          {!isLoading &&
-            !isFetching &&
-            !error &&
-            data.data?.map((event: any) => {
-              return (
-                <div key={event.id}>
-                  <div>
-                    {view ? (
-                      <Grid key={event.id} item>
-                        <EventCard {...event} />
-                      </Grid>
-                    ) : (
-                      <Grid item key={event.id}>
-                        <List {...event} />
-                      </Grid>
-                    )}
-                  </div>
-                  <Box p={1}></Box>
+        <Box sx={{ display: "flex", justifyContent: "center", p: 0.5 }}></Box>
+        <Grid
+          sx={{
+            flexGrow: 1,
+            alignItems: "strech",
+            justifyContent: "center",
+            p: 6,
+          }}
+          container
+        >
+          {isLoading || isFetching ? (
+            <Box sx={{ position: "absolute", left: "50%", top: "50%" }}>
+              <CircularProgress />
+            </Box>
+          ) : !error ? (
+            <h2>Something went wrong</h2>
+          ) : (
+            data.data?.map((event: any) => (
+              <div key={event.id}>
+                <div>
+                  {view ? (
+                    <Grid key={event.id} item>
+                      <EventCard {...event} />
+                    </Grid>
+                  ) : (
+                    <Grid item key={event.id}>
+                      <List {...event} />
+                    </Grid>
+                  )}
                 </div>
-              );
-            })}
-          {error && <h2>Something went wrong</h2>}
+                <Box p={1}></Box>
+              </div>
+            ))
+          )}
         </Grid>
       </Box>
     </div>
