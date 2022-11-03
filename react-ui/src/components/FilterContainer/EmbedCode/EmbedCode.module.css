@@ -15,8 +15,15 @@
     width: 1200px;
 }
 
+.advancedSettings {
+    display: flex;
+    flex-direction: column;
+}
+
 @media only screen and (max-width: 1200px) {
-    .container, .btn{
+
+    .container,
+    .btn {
         display: none !important;
     }
 

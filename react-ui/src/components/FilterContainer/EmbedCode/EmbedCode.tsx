@@ -2,6 +2,7 @@ import {useAppSelector} from "../../../hooks/rtkHooks";
 import Button from "@mui/material/Button";
 import {useState} from "react";
 import styles from "./EmbedCode.module.css"
+import AdvancedSettings from "../../AdvancedSettings/AdvancedSettings";
 
 interface EmbedCodeProps {
   advancedMode: boolean
@@ -39,7 +40,8 @@ const EmbedCode = (props:EmbedCodeProps) => {
   return (
     <div className={styles.container}>
       <Button className={styles.btn} variant={"outlined"} onClick={() => setOpen(!open)}>{"< >"}</Button>
-      {open && <div className={styles.innerContainer}>
+      {open && <div className={styles.advancedSettings}>
+        <div className={styles.innerContainer}>
       <div id={"code"}>
         <p>{'<div'}</p>
         <div style={{ marginLeft: "16px"}}>
@@ -70,7 +72,12 @@ const EmbedCode = (props:EmbedCodeProps) => {
       >
         Kopioi leikepöydälle
       </Button>
+      </div>
+      <div className={styles.advancedSettings}>
+            <AdvancedSettings />
+        </div>
     </div>}
+
     </div>
   )
 }
