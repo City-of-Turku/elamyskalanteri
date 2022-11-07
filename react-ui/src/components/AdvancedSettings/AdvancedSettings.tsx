@@ -1,4 +1,8 @@
 import AdditionalCategories from "./AdditionalCategories/AdditionalCategories"
+import TextFields from "./TextFields/TextFields";
+import Style from "./Style/Style";
+import ListView from "./ListView/ListView";
+import SearchCriteria from "./SearchCriteria/SearchCriteria";
 import styles from "./AdvancedSettings.module.css";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -8,7 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const AdvancedSettings = () => {
 
     return (
-        <div className={styles.container}>
+        <div className={styles.title}>
             <Accordion>
                 <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -19,6 +23,10 @@ const AdvancedSettings = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                 <AdditionalCategories />
+                <TextFields />
+                <Style />
+                <ListView />
+                <SearchCriteria />
                 </AccordionDetails>
             </Accordion>
         </div>

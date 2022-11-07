@@ -11,7 +11,7 @@ export const vinkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "halogen, sans-serif",
+    // fontFamily: "halogen, sans-serif",
     //card heading
     h5: {
       fontFamily: "forma-djr-micro, sans-serif",
