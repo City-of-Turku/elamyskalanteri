@@ -71,7 +71,9 @@ const EmbedCode = (props:EmbedCodeProps) => {
         </div>
         <p>{'></div>'}</p>
       </div>
+      <br></br>
       <Button
+        className={styles.copyBtn}
         variant={"contained"}
         id={"copyBtn"}
         onClick={() => copyToClipBoard()}
@@ -83,7 +85,6 @@ const EmbedCode = (props:EmbedCodeProps) => {
             <AdvancedSettings />
         </div>
     </div>}
-
     </div>
   )
 }

@@ -3,6 +3,8 @@
     margin: 24px auto;
 }
 
+.btn {}
+
 .innerContainer {
     display: flex;
     flex-direction: row;
@@ -15,16 +17,22 @@
     width: 1200px;
 }
 
-.advancedSettings {
-    display: flex;
-    flex-direction: column;
-}
 
-/* @media only screen and (max-width: 1200px) {
-
-    .container,
-    .btn {
-        display: none !important;
+@media only screen and (max-width: 1200px) {
+    .container {
+        width: 100%;
     }
 
-} */
+    .innerContainer {
+        display: block;
+        overflow: scroll;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    .copyBtn {
+        margin: 10px 0px 10px 10px
+    }
+}
