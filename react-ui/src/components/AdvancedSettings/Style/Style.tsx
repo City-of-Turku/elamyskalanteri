@@ -3,7 +3,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import filterSlice from "../../../redux/slices/filterSlice";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../hooks/rtkHooks";
@@ -23,7 +22,7 @@ const Style = () => {
         <p>Tyyli</p>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="vink"
+          // defaultValue="vink"
           name="radio-buttons-group"
         >
           <FormControlLabel value="vink" control={<Radio />} label="Vink" onChange={event => handleChange(event)} /> 

@@ -32,7 +32,7 @@ const ListView = () => {
         <p>Listausnäkymä</p>
         <RadioGroup 
          aria-labelledby="demo-radio-buttons-group-label"
-         defaultValue="grid"
+        //  defaultValue="grid"
          name="radio-buttons-group">
           <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
           <FormControlLabel value="grid" control={<Radio />} label="Grid" onChange={event => handleListViewChange(event)} />
