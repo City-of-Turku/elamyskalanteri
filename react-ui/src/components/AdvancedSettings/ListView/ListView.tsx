@@ -1,46 +1,50 @@
 import * as React from 'react';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
-import { InputLabel } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import filterSlice from "../../../redux/slices/filterSlice";
+import { bindActionCreators } from "@reduxjs/toolkit";
+import { useAppDispatch } from "../../../hooks/rtkHooks";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { Radio, RadioGroup } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 
 const ListView = () => {
+    const dispatch = useAppDispatch()
+    const { setListView, setNumberOfView } = bindActionCreators(filterSlice.actions, dispatch)
+      const handleListViewChange = (e:any) => {
+        if(e.target.checked) {
+          setListView(e.target.value)
+        }
+      }
 
-    const [view, setView] = React.useState('list');
-
-    const handleChange = (event: React.MouseEvent<HTMLElement>, nextView: string) => {
-        setView(nextView);
-      };
+      const handleNumOfView = (e:any) => {
+        if(e.target != null) {
+          setNumberOfView(e.target.value)
+        }
+      }
     
 
     return(
-        <div>
+      <div>
+      <FormControl sx={{padding: 2}}>
         <p>Listausnäkymä</p>
-        <ToggleButtonGroup
-      orientation="vertical"
-      value={view}
-      exclusive
-      onChange={handleChange}
-     
-    >
-      <ToggleButton value="list" aria-label="list">
-        <ViewListIcon />
-        <p>Lista</p>
-      </ToggleButton>
-      <ToggleButton value="module" aria-label="module">
+        <RadioGroup 
+         aria-labelledby="demo-radio-buttons-group-label"
+         defaultValue="grid"
+         name="radio-buttons-group">
+          <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
+          <FormControlLabel value="grid" control={<Radio />} label="Grid" onChange={event => handleListViewChange(event)} />
         <ViewModuleIcon />
-        <p>Grid</p>
-      </ToggleButton>
-      <ToggleButton value="quilt" aria-label="quilt">
+      <FormControlLabel sx={{paddingLeft:2}}  value="vertical" control={<Radio />} label="Lista (pystysuora)" onChange={event => handleListViewChange(event)} />
+      <ViewListIcon />
+        <FormControlLabel sx={{paddingLeft:2}}  value="horizontal" control={<Radio />} label="Lista (vaakasuora)" onChange={event => handleListViewChange(event)} />
         <ViewColumnIcon />
-        <p>Vaaka</p>
-      </ToggleButton>
-    </ToggleButtonGroup>
-
-    <TextField 
+        </div>
+        
+    <TextField
+    onChange={event => handleNumOfView(event)} 
     sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -53,9 +57,10 @@ const ListView = () => {
             max: 100, min: 0 
         }
     }}
-    label="Lukumäärä"
-/>
-
+    label="Näkymien lukumäärä"
+/>  
+    </RadioGroup>
+    </FormControl>
     </div>
     )
 }

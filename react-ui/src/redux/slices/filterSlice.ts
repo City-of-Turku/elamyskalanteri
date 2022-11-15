@@ -16,6 +16,12 @@ interface filterState {
   startTime: Date | null,
   endTime: Date | null,
   typeId: string | null,
+  embedTitle: string,
+  embedDesc: string,
+  style: string,
+  listView: string,
+  viewNum: number | null,
+  searchCriteria: boolean | null
 }
 
 const initialState = {
@@ -23,10 +29,16 @@ const initialState = {
   eventFeatures: [],
   audiences: [],
   search: "",
-  bbox: {north: null, east: null, south: null, west: null},
+  bbox: { north: null, east: null, south: null, west: null },
   startTime: null,
   endTime: null,
   typeId: null,
+  embedTitle: "",
+  embedDesc: "",
+  style: "",
+  listView: "",
+  viewNum: null,
+  searchCriteria: true,
 } as filterState
 
 export const filterSlice = createSlice({
@@ -74,6 +86,24 @@ export const filterSlice = createSlice({
     },
     setTypeId: (state, action) => {
       state.typeId = action.payload
+    },
+    setEmbedTitle: (state, action) => {
+      state.embedTitle = action.payload
+    },
+    setEmbedDesc: (state, action) => {
+      state.embedDesc = action.payload
+    },
+    setStyle: (state, action) => {
+      state.style = action.payload
+    },
+    setListView: (state, action) => {
+      state.listView = action.payload
+    },
+    setNumberOfView: (state, action) => {
+      state.viewNum = action.payload
+    },
+    setSearchCriteria: (state, action) => {
+      state.searchCriteria = action.payload
     }
   }
 })
