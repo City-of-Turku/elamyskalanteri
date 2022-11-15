@@ -9,6 +9,7 @@ import { useAppDispatch } from "../../../hooks/rtkHooks";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Radio, RadioGroup } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
+import styles from '../AdvancedSettings.module.css';
 
 const ListView = () => {
     const dispatch = useAppDispatch()
@@ -34,8 +35,8 @@ const ListView = () => {
          aria-labelledby="demo-radio-buttons-group-label"
         //  defaultValue="grid"
          name="radio-buttons-group">
-          <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
-          <FormControlLabel value="grid" control={<Radio />} label="Grid" onChange={event => handleListViewChange(event)} />
+          <div className={styles.listGroup}>
+          <FormControlLabel value="grid" control={<Radio />} label="Grid (ruudukko)" onChange={event => handleListViewChange(event)} />
         <ViewModuleIcon />
       <FormControlLabel sx={{paddingLeft:2}}  value="vertical" control={<Radio />} label="Lista (pystysuora)" onChange={event => handleListViewChange(event)} />
       <ViewListIcon />
