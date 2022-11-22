@@ -20,11 +20,10 @@ import dayjs from "dayjs";
 
 interface EventListProps {
   typeId?: string;
-  advancedEditor: boolean; 
 }
 
 const EventList = (props:EventListProps) => {
-
+  const options = useAppSelector((state) => state.options)
   const history = useHistory()
   const queryString = require('query-string')
   const dispatch = useAppDispatch()
@@ -103,8 +102,9 @@ const EventList = (props:EventListProps) => {
   return (
     <div>
       <Box sx={{ p: 2 }}>
+        {options.title && <h2>{options.title}</h2>}
         <FilterContainer />
-        <EmbedCode advancedMode={props.advancedEditor} />
+        <EmbedCode />
         <div
           style={{
             display: "flex",

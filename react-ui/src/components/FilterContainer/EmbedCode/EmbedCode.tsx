@@ -4,15 +4,9 @@ import {useState} from "react";
 import styles from "./EmbedCode.module.css"
 import AdvancedSettings from "../../AdvancedSettings/AdvancedSettings";
 
-interface EmbedCodeProps {
-  advancedMode: boolean
-}
+const EmbedCode = () => {
 
-const EmbedCode = (props:EmbedCodeProps) => {
-
-  const advancedMode = props.advancedMode
-
-  const [open, setOpen] = useState(advancedMode)
+  const [open, setOpen] = useState(false)
 
   const { filters } = useAppSelector(state => state)
 

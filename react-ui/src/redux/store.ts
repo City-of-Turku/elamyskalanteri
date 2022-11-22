@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { eventApi } from "./services/eventApi";
 import eventReducer from "./slices/eventSlice";
 import filterSlice from "./slices/filterSlice";
+import optionsSlice from "./slices/optionsSlice";
 import {keywordApi} from "./services/keywordApi";
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     [keywordApi.reducerPath]: keywordApi.reducer,
     events: eventReducer.reducer,
     filters: filterSlice.reducer,
+    options: optionsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(eventApi.middleware, keywordApi.middleware),
