@@ -17,13 +17,13 @@ import {bindActionCreators} from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
+import Title from "../../Title/Title";
 
 interface EventListProps {
   typeId?: string;
 }
 
 const EventList = (props:EventListProps) => {
-  const options = useAppSelector((state) => state.options)
   const history = useHistory()
   const queryString = require('query-string')
   const dispatch = useAppDispatch()
@@ -102,7 +102,7 @@ const EventList = (props:EventListProps) => {
   return (
     <div>
       <Box sx={{ p: 2 }}>
-        {options.title && <h2>{options.title}</h2>}
+        <Title />
         <FilterContainer />
         <EmbedCode />
         <div

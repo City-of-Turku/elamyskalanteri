@@ -15,20 +15,6 @@
     /* margin-bottom might be unnecessary in most use cases..*/
 }
 
-.sloganContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 40px 0 28px 0;
-
-}
-
-.sloganContainer h2 {
-    font-weight: 300;
-    font-family: 'halogen';
-    font-size: 30px;
-}
-
 .innerContainer {
     display: flex;
     flex-direction: row;

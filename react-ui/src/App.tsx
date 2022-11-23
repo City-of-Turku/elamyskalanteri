@@ -34,10 +34,11 @@ const App = (props: AppProps) => {
   const dispatch = useAppDispatch()
   const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria } = bindActionCreators(optionsSlice.actions, dispatch)
   const data = props.data;
+  console.log('data', data)
 
   useEffect(() => {
     setTitle(data.title);
-    setDescription(data.desc);
+    setDescription(data.description);
     setStyle(data.style);
     setListView(data.listview);
     setNumOfView(isNaN(parseInt(data.numOfView)) ? null : parseInt(data.numOfView));

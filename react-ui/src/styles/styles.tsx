@@ -1,3 +1,4 @@
+import { letterSpacing } from "@mui/joy/styles/styleFunctionSx";
 import { createTheme } from "@mui/material/styles";
 
 export const vinkTheme = createTheme({
@@ -12,6 +13,15 @@ export const vinkTheme = createTheme({
   },
   typography: {
     fontFamily: "forma-djr-micro, sans-serif",
+    //slogan title
+    h2: {
+      fontFamily: "halogen",
+      color:"#F26835",
+      fontWeight: 900,
+      fontSize:35,
+      lineHeight:"80px",
+      letterSpacing:1
+    },
     //card heading
     h5: {
       fontFamily: "forma-djr-micro, sans-serif",
@@ -80,6 +90,13 @@ export const whiteLabelTheme = createTheme({
     },
   },
   typography: {
+    h2: {
+      color:"#202020",
+      fontWeight: 900,
+      fontSize: 35,
+      lineHeight: "80px",
+      letterSpacing: 1
+    },
     h5: {
       fontWeight: 900,
       fontStyle: "normal",
@@ -140,6 +157,14 @@ export const naantaliTheme = createTheme({
   },
   typography: {
     fontFamily: "arial, sans-serif",
+  
+    h2: {
+      color:"#1D6052",
+      fontWeight: 900,
+      fontSize: 35,
+      lineHeight: "80px",
+      letterSpacing: 1
+    },
     h6: {
       fontSize: 16,
       fontWeight: 900,
@@ -199,6 +224,13 @@ export const raisioTheme = createTheme({
   },
   typography: {
     fontFamily: "museo-sans, sans-serif",
+    h2: {
+      color:"#003C71",
+      fontWeight: 900,
+      fontSize: 35,
+      lineHeight: "80px",
+      letterSpacing: 1
+    },
     h6: {
       fontFamily: "museo-sans, sans-serif",
       fontSize: 16,
@@ -312,7 +344,7 @@ export const taiTheme = createTheme({
 export const kaarinaTheme = createTheme({
   palette: {
     primary: {
-      main: "#0071B4",
+      main: "#0071B4", //blue
       dark: "#0071B4",
     },
     secondary: {
@@ -320,6 +352,13 @@ export const kaarinaTheme = createTheme({
     },
   },
   typography: {
+    h2: {
+      color:"#0071B4",
+      fontWeight: 900,
+      fontSize: 35,
+      lineHeight: "80px",
+      letterSpacing: 1
+    },
     h6: {
       fontSize: 16,
       fontWeight: 700,

@@ -3,8 +3,6 @@
     margin: 24px auto;
 }
 
-.btn {}
-
 .innerContainer {
     display: flex;
     flex-direction: row;
