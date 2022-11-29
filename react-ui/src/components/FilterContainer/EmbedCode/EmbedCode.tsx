@@ -57,7 +57,7 @@ const EmbedCode = () => {
           }
           {filters.eventFeatures && <p>{`data-features="${filters.eventFeatures}"`}</p>}
           <p>{`data-title="${filters.embedTitle}"`}</p>
-          <p>{`data-desc="${filters.embedDesc}"`}</p>
+          <p>{`data-description="${filters.embedDesc}"`}</p>
           <p>{`data-style="${filters.style}"`}</p>
           <p>{`data-listview="${filters.listView}"`}</p>
           <p>{`data-numOfView="${filters.viewNum}"`}</p>

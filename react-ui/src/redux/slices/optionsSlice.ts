@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface OptionsState {
     title: string | null
     description: string | null
-    style: string 
+    style: string
     listView: string
     numOfView: number | null
     hideSearchCriteria: boolean
@@ -30,7 +30,6 @@ export const optionsSlice = createSlice({
             state.description = action.payload
         },
         setStyle: (state, action: PayloadAction<string>) => {
-            console.log("setStyle", action)
             state.style = action.payload
         },
         setListView: (state, action: PayloadAction<string>) => {

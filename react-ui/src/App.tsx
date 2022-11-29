@@ -6,11 +6,8 @@ import {
   Switch,
   HashRouter,
 } from "react-router-dom";
-import Nav from "./components/nav/Nav";
 import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
-import CompactList from "./components/pages/events/CompactList";
-import { RootState } from './redux/store'
 import optionsSlice from './redux/slices/optionsSlice'
 import { useAppDispatch, useAppSelector } from './hooks/rtkHooks';
 import {
@@ -31,6 +28,7 @@ export interface AppProps {
 }
 
 const App = (props: AppProps) => {
+  
   const dispatch = useAppDispatch()
   const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria } = bindActionCreators(optionsSlice.actions, dispatch)
   const data = props.data;
@@ -44,7 +42,7 @@ const App = (props: AppProps) => {
     setNumOfView(isNaN(parseInt(data.numOfView)) ? null : parseInt(data.numOfView));
     setHideSearchCriteria(data.hideSearchCriteria === "true" ? true : false);
    })
-  
+
   let theme;
   switch(data.style) {
     case "whitelabel":

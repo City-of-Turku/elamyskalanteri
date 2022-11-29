@@ -9,8 +9,6 @@ import { SetStateAction, useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../FilterContainer/FilterContainer";
-import EventCard from "./EventCard";
-import List from "./List";
 import { useHistory } from "react-router-dom";
 import { parseQuery } from "../../../functions/urlParser";
 import {bindActionCreators} from "@reduxjs/toolkit";
@@ -18,15 +16,20 @@ import filterSlice from "../../../redux/slices/filterSlice";
 import EmbedCode from "../../FilterContainer/EmbedCode/EmbedCode";
 import dayjs from "dayjs";
 import Title from "../../Title/Title";
+import GridList from "../../EventList/GridList";
+import VerticalList from "../../EventList/VerticalList";
+import HorizontalList from "../../EventList/HorizontalList";
 
 interface EventListProps {
   typeId?: string;
 }
 
 const EventList = (props:EventListProps) => {
+  const options = useAppSelector((state) => state.options)
+  const dispatch = useAppDispatch()
+  
   const history = useHistory()
   const queryString = require('query-string')
-  const dispatch = useAppDispatch()
 
   const { filters } = useAppSelector((state) => state);
   const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
@@ -99,6 +102,21 @@ const EventList = (props:EventListProps) => {
     setPage(1);
   }, [filters.search, filters.eventTypes]);
 
+  let listComponent;
+  switch(options.listView) {
+    case "grid":
+      listComponent = <GridList events={data?.data}/>
+      break;
+    case "vertical":
+      listComponent = <VerticalList events={data?.data}/>
+      break;
+    case "horizontal":
+      listComponent = <HorizontalList events={data?.data}/>
+      break;
+      default:
+        listComponent = <GridList events={data?.data}/>
+  }
+
   return (
     <div>
       <Box sx={{ p: 2 }}>
@@ -131,7 +149,7 @@ const EventList = (props:EventListProps) => {
             Seuraava sivu
           </Button>
         </div>
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -163,8 +181,8 @@ const EventList = (props:EventListProps) => {
               <ViewListIcon />
             </ToggleButton>
           </ToggleButtonGroup>
-        </div>
-        <Box sx={{ display: "flex", justifyContent: "center", p: 0.5 }}></Box>
+        </div> */}
+      <Box sx={{ display: "flex", justifyContent: "center", p: 0.5 }}></Box>
         <Grid
           sx={{
             flexGrow: 1,
@@ -181,24 +199,14 @@ const EventList = (props:EventListProps) => {
           ) : error ? (
             <h2>Something went wrong</h2>
           ) : (
-            data.data?.map((event: any) => (
-              <div key={event.id}>
-                <div>
-                  {view ? (
-                    <Grid key={event.id} item>
-                      <EventCard {...event} />
-                    </Grid>
-                  ) : (
-                    <Grid item key={event.id}>
-                      <List {...event} />
-                    </Grid>
-                  )}
-                </div>
-                <Box p={1}></Box>
-              </div>
-            ))
+         <div>
+          <div>
+            {listComponent}
+          </div>
+          <Box p={1}></Box>
+         </div>
           )}
-        </Grid>
+       </Grid>
       </Box>
     </div>
   );

@@ -36,13 +36,15 @@ const EventCard = ({
   start_time,
   end_time,
   provider,
-  images,
+  images
 }: GetEventResponse) => {
   const { i18n } = useTranslation();
   const classes = useStyles();
+
   return (
     <Box sx={{padding:2}}>
     <Card
+      component="div"
       className={classes.root}
       style={{ border: "none", overflow:"hidden" }}
       sx={{flexWrap: "wrap", display:"flex", maxWidth:{xs:365, md: 990},
@@ -58,14 +60,13 @@ const EventCard = ({
         style={{ textDecoration: "none", color: "black" }}
       >
         <CardMedia
-          style={{}}
           sx={{width:350, height:190}}
           component="img"
           src={images[0]?.url || defaultImages[index]}
           alt={images[0]?.alt_text?.fi}
         />
         <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <CardContent sx={{display:"flex",  flexDirection: "column", alignItems:"flex-start",}}>
+        <CardContent sx={{display:"flex",  flexDirection: "column", alignItems:"flex-start"}}>
           <Typography
             gutterBottom
             variant="subtitle2"

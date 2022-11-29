@@ -15,7 +15,7 @@ import { date, defaultImages, index } from "../events/EventCard";
 
 const useStyles = makeStyles({
   root: {
-    width: 990,
+    width: 990
   },
 });
 
