@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import {useTranslation} from "react-i18next";
 import CardMedia from '@mui/material/CardMedia';
 import { useTheme } from "@mui/material/styles";
-import { date, defaultImages, index } from "../events/EventCard";
+import { date } from "../events/EventCard";
 
 const useStyles = makeStyles({
   root: {
@@ -23,6 +23,9 @@ const List = ({id, name, short_description, start_time, provider, images, end_ti
   const classes = useStyles();
   const { i18n } = useTranslation()
   const theme = useTheme();
+  let defaultImage2 = "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+
+  const imageUrl = images[0]?.url ? images[0]?.url : defaultImage2;
   return (
     <Link
       to={`/eventlist/${id}`}
@@ -43,7 +46,7 @@ const List = ({id, name, short_description, start_time, provider, images, end_ti
         <CardMedia
         component="img"
         sx={{ width: 155 }}
-        src={images[0]?.url || defaultImages[index]}
+        src={imageUrl}
       />
          <CardContent
           sx={{

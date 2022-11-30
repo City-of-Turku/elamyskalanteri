@@ -1,11 +1,9 @@
-import ViewListIcon from "@mui/icons-material/ViewList";
-import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import { Button, ToggleButton } from "@mui/material";
+import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { SetStateAction, useEffect, useState } from "react";
+import { useTheme } from "@mui/styles";
+import { useEffect, useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
 import { useEventsQuery } from "../../../redux/services/eventApi";
 import FilterContainer from "../../FilterContainer/FilterContainer";
@@ -25,18 +23,14 @@ interface EventListProps {
 }
 
 const EventList = (props:EventListProps) => {
+  const theme: any = useTheme();
   const options = useAppSelector((state) => state.options)
   const dispatch = useAppDispatch()
-  
   const history = useHistory()
   const queryString = require('query-string')
 
   const { filters } = useAppSelector((state) => state);
   const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
-  const [view, setView] = useState(true);
-  const [color, setColor] = useState("primary.dark")
-  const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
-
   const [firstLoadDone, setFirstLoadDone] = useState(false)
 
   useEffect(() => {
@@ -118,12 +112,11 @@ const EventList = (props:EventListProps) => {
   }
 
   return (
-    <div>
       <Box sx={{ p: 2 }}>
         <Title />
         <FilterContainer />
         <EmbedCode />
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -148,47 +141,14 @@ const EventList = (props:EventListProps) => {
           >
             Seuraava sivu
           </Button>
-        </div>
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "2em",
-          }}
-        >
-          <ToggleButtonGroup
-            orientation="horizontal"
-            exclusive
-            onChange={handleColor}
-            value={color}
-          >
-            <ToggleButton
-              onClick={() => setView(true)}
-              sx={{ color: "primary.main" }}
-              value="primary.dark"
-              aria-label="module"
-            >
-              {" "}
-              <ViewModuleIcon />
-            </ToggleButton>
-            <ToggleButton
-              onClick={() => setView(false)}
-              sx={{ color: "primary.main" }}
-              value="secondary"
-              aria-label="list"
-            >
-              <ViewListIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
         </div> */}
-      <Box sx={{ display: "flex", justifyContent: "center", p: 0.5 }}></Box>
+      {/* <Box sx={{ display: "flex", justifyContent: "center"}}></Box> */}
         <Grid
           sx={{
             flexGrow: 1,
             alignItems: "strech",
             justifyContent: "center",
-            p: 6,
+            // p: 6,
           }}
           container
         >
@@ -203,12 +163,19 @@ const EventList = (props:EventListProps) => {
           <div>
             {listComponent}
           </div>
-          <Box p={1}></Box>
          </div>
           )}
        </Grid>
+       <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "8px 0 24px 0",
+          }}
+        >
+       <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark, "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">Näytä lisää</Button>
+       </div>
       </Box>
-    </div>
   );
 };
 

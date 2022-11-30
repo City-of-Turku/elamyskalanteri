@@ -7,17 +7,13 @@ import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { GetEventResponse } from "../../../redux/types/Event";
-import default2 from "../../../svg/default2.svg";
+import default2 from "../../../svg/default1.svg";
 import { useTranslation } from "react-i18next";
 import styles from "./Event.module.css"
 import EventIcon from "@mui/icons-material/Event";
 import Box from "@mui/material/Box";
 import { alpha } from "@mui/material/styles";
-
-let index = 0;
-let defaultImages: string | any[] = [];
-defaultImages[0] = default2;
-index = Math.floor(Math.random() * defaultImages.length);
+import { useEventsQuery } from "../../../redux/services/eventApi";
 
 require("dayjs/locale/fi");
 const date = "dd DD.MM.YYYY | HH:mm";
@@ -25,7 +21,7 @@ const date = "dd DD.MM.YYYY | HH:mm";
 const useStyles = makeStyles({
   root: {
     width: 350,
-    height:450,
+    height:450
   },
 });
 
@@ -40,6 +36,11 @@ const EventCard = ({
 }: GetEventResponse) => {
   const { i18n } = useTranslation();
   const classes = useStyles();
+
+  let defaultImage = "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c"
+  let defaultImage2 = "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+
+  const imageUrl = images[0]?.url ? images[0]?.url : defaultImage2;
 
   return (
     <Box sx={{padding:2}}>
@@ -62,7 +63,7 @@ const EventCard = ({
         <CardMedia
           sx={{width:350, height:190}}
           component="img"
-          src={images[0]?.url || defaultImages[index]}
+          src={imageUrl}
           alt={images[0]?.alt_text?.fi}
         />
         <Box sx={{ display: "flex", flexDirection: "row" }}>
@@ -75,7 +76,7 @@ const EventCard = ({
               p: 0.5,
               backgroundColor: (theme) =>
               alpha(theme.palette.primary.dark, 0.1),
-              "& svg": { fontSize: 21, },
+              "& svg": { fontSize: 21 },
             }}>
             <EventIcon />
             {dayjs(start_time).locale(i18n.language).format(date)} - {dayjs(end_time).locale(i18n.language).format('HH:mm')}
@@ -92,18 +93,18 @@ const EventCard = ({
             {provider?.fi}
           </Typography>
           <Typography
-          sx={{overflow:'hidden'}}
+            sx={{overflow:'hidden'}}
             className={styles.shortDesc}
             variant="body2">
             {short_description?.fi}
           </Typography>
         </CardContent>
-        </Box>
-        </Link>
+      </Box>
+      </Link>
     </Card>
-    </Box>
+  </Box>
   );
 };
 
 export default EventCard;
-export { date, defaultImages, index };
+export { date };

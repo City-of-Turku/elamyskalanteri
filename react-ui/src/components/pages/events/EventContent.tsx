@@ -8,7 +8,7 @@ import { makeStyles } from "@mui/styles";
 import dayjs from "dayjs";
 import { useHistory, useParams } from "react-router-dom";
 import { useEventQuery } from "../../../redux/services/eventApi";
-import { date, defaultImages, index } from "../events/EventCard";
+import { date } from "../events/EventCard";
 import { CardMedia } from "@mui/material";
 import Box from "@mui/material/Box";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -46,6 +46,9 @@ const EventContent = () => {
   const history = useHistory();
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
   const classes = useStyles();
+  let defaultImage2 = "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+
+  const imageUrl = data?.images[0]?.url ? data?.images[0]?.url : defaultImage2;
 
   return (
     <div>
@@ -55,7 +58,7 @@ const EventContent = () => {
             style={{ width: 983 }}
             className={classes.media}
             component="img"
-            src={data?.images[0]?.url || defaultImages[index]}
+            src={imageUrl}
             alt={data?.images[0]?.alt_text?.fi}
           />
         </div>
