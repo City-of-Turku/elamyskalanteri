@@ -114,35 +114,8 @@ const EventList = (props:EventListProps) => {
   return (
       <Box sx={{ p: 2 }}>
         <Title />
-        <FilterContainer />
+      {!options.hideSearchCriteria && <FilterContainer />}
         <EmbedCode />
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "8px 0 24px 0",
-          }}
-        >
-          <Button
-            onClick={() => setPage(page - 1)}
-            variant={"contained"}
-            sx={{ mx: 1 }}
-            disabled={!data?.meta.previous}
-          >
-            Edellinen sivu
-          </Button>
-          <p>Sivu {page}</p>
-          <Button
-            onClick={() => setPage(page + 1)}
-            variant={"contained"}
-            sx={{ mx: 1 }}
-            disabled={!data?.meta.next}
-          >
-            Seuraava sivu
-          </Button>
-        </div> */}
-      {/* <Box sx={{ display: "flex", justifyContent: "center"}}></Box> */}
         <Grid
           sx={{
             flexGrow: 1,
@@ -173,7 +146,8 @@ const EventList = (props:EventListProps) => {
             margin: "8px 0 24px 0",
           }}
         >
-       <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark, "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">Näytä lisää</Button>
+        <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark, 
+          "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">Lataa lisää</Button>
        </div>
       </Box>
   );
