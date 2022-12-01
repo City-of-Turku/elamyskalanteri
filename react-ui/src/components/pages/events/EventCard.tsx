@@ -13,7 +13,6 @@ import styles from "./Event.module.css"
 import EventIcon from "@mui/icons-material/Event";
 import Box from "@mui/material/Box";
 import { alpha } from "@mui/material/styles";
-import { useEventsQuery } from "../../../redux/services/eventApi";
 
 require("dayjs/locale/fi");
 const date = "dd DD.MM.YYYY | HH:mm";

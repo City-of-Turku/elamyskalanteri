@@ -60,7 +60,7 @@ const EmbedCode = () => {
           <p>{`data-description="${filters.embedDesc}"`}</p>
           <p>{`data-style="${filters.style}"`}</p>
           <p>{`data-listview="${filters.listView}"`}</p>
-          <p>{`data-numofview="${filters.viewNum}"`}</p>
+          <p>{`data-numOfView="${filters.viewNum}"`}</p>
           <p>{`data-hidesearchcriteria="${filters.searchCriteria}"`}</p>
         </div>
         <p>{'></div>'}</p>

@@ -32,8 +32,8 @@ const ListView = () => {
       <FormControl sx={{padding: 2}}>
         <p>Listausnäkymä</p>
         <RadioGroup 
-         aria-labelledby="demo-radio-buttons-group-label"
-        //  defaultValue="grid"
+         aria-labelledby="radio-buttons-group-label"
+         defaultValue="grid"
          name="radio-buttons-group">
           <div className={styles.listGroup}>
           <FormControlLabel value="grid" control={<Radio />} label="Grid (ruudukko)" onChange={event => handleListViewChange(event)} />

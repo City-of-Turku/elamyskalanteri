@@ -21,8 +21,8 @@ const Style = () => {
         <FormControl sx={{padding: 2}}>
         <p>Tyyli</p>
         <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          // defaultValue="vink"
+          aria-labelledby="radio-buttons-group-label"
+          defaultValue="vink"
           name="radio-buttons-group"
         >
           <FormControlLabel value="vink" control={<Radio />} label="Vink" onChange={event => handleChange(event)} /> 

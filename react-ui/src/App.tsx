@@ -39,7 +39,7 @@ const App = (props: AppProps) => {
     setDescription(data.description);
     setStyle(data.style);
     setListView(data.listview);
-    setNumOfView(isNaN(parseInt(data.numOfView)) ? null : parseInt(data.numOfView));
+    setNumOfView(isNaN(parseInt(data.numofview)) ? null : parseInt(data.numofview));
     setHideSearchCriteria(data.hideSearchCriteria === "true" ? true : false);
    })
 
