@@ -40,7 +40,7 @@ const App = (props: AppProps) => {
     setStyle(data.style);
     setListView(data.listview);
     setNumOfView(isNaN(parseInt(data.numofview)) ? null : parseInt(data.numofview));
-    setHideSearchCriteria(data.hideSearchCriteria === "true" ? true : false);
+    setHideSearchCriteria(data.hidesearchcriteria === "true" ? true : false);
    })
 
   let theme;
