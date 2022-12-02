@@ -17,13 +17,13 @@ const FilterContainer = () => {
       <div className={styles.innerContainer}>
         <div className={styles.calendarContainer}>
           <div className={styles.whenRow}>
-            <h3 style={{color: theme.palette.primary.dark }}>{t("when")}?</h3>
-            <div
+          <div
               style={{ backgroundColor: theme.palette.primary.main}}
               className={styles.iconWrapper}
             >
               <EventAvailableIcon sx={{ fontSize: 32, color: "#ffffff" }} />
             </div>
+            <h3 style={{color: theme.palette.primary.dark }}>{t("when")}?</h3>
           </div>
           <CalendarContainer />
         </div>

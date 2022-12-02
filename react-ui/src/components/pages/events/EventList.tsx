@@ -115,7 +115,7 @@ const EventList = (props:EventListProps) => {
       <Box sx={{ p: 2 }}>
         <Title />
       {!options.hideSearchCriteria && <FilterContainer />}
-        <EmbedCode />
+      {!options.hideSearchCriteria && <EmbedCode />}
         <Grid
           sx={{
             flexGrow: 1,

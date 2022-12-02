@@ -71,21 +71,20 @@ const SearchBox = () => {
   }, [searchTerm])
 
   return (
-    <div className={styles.inputWrapper} style={{color: theme.palette.primary.main}}>
-      <input
-        aria-label={t("search")}
-        className={styles.search}
-        type="text"
-        placeholder={t("search")}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div
+    <div className={styles.inputWrapper} style={{color: theme.palette.primary.dark}}>
+        <div
         className={styles.iconWrapper}
         style={{ backgroundColor: theme.palette.primary.main }}>
         <SearchIcon sx={{ fontSize: 32, color: "#ffffff" }}/>
       </div>
-
+      <input
+        aria-label={t("search")}
+        className={styles.search}
+        type="text"
+        placeholder={t("search")} 
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
     </div>
   )
 }

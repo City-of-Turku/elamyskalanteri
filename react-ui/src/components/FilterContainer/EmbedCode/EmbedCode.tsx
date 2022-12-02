@@ -3,8 +3,12 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import styles from "./EmbedCode.module.css";
 import AdvancedSettings from "../../AdvancedSettings/AdvancedSettings";
+import ShareIcon from '@mui/icons-material/Share';
+import { useTranslation } from "react-i18next";
+import { Typography } from "@mui/material";
 
 const EmbedCode = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const { filters } = useAppSelector((state) => state);
@@ -35,8 +39,9 @@ const EmbedCode = () => {
         className={styles.btn}
         variant={"outlined"}
         onClick={() => setOpen(!open)}
+        startIcon={<ShareIcon /> }
       >
-        {"< >"}
+     <Typography>{`${t("share")}`}</Typography>
       </Button>
       {open && (
         <div className={styles.advancedSettings}>
