@@ -16,16 +16,9 @@ interface IProps {
 const Accordion = ({ title, children, icon }: IProps) => {
 
   const theme: any = useTheme()
-  const [open, setOpen] = useState(false)
-
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter") {
-      setOpen(!open)
-    }
-  }
 
   return (
-      <div onClick={() => setOpen(!open)} tabIndex={0} onKeyDown={(e) => handleKeyDown(e)}>
+      <div> 
       <Accordions elevation={0} className={styles.accordion}>
       <AccordionSummary
           sx={{padding: "24px 16px"}}
@@ -51,10 +44,10 @@ const Accordion = ({ title, children, icon }: IProps) => {
         </h3>
         </AccordionSummary>
         <AccordionDetails>
-        {open &&
+    
         <div className={styles.childContainer}>
         {children}
-      </div>}
+      </div>
         </AccordionDetails>
       </Accordions>
     </div>
