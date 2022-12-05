@@ -51,6 +51,7 @@ const EmbedCode = () => {
                 {`<script src="${process.env.REACT_APP_EMBED_URL}" type="text/javascript" defer></script>\n`}
                 {`<div\n`}
                 {`    class="event-calendar-embed"\n`}
+                {filters.typeId && `    data-typeid="${filters.typeId}"\n`}
                 {filters.search && `    data-search="${filters.search}"\n`}
                 {!!filters.eventTypes.length &&
                   `    data-keywords="${filters.eventTypes.join()}"\n`}
@@ -58,8 +59,8 @@ const EmbedCode = () => {
                   `    data-audiences="${filters.audiences.join()}"\n`}
                 {filters.startTime &&
                   filters.endTime &&
-                  `   data-start-time="${filters.startTime}\n`.concat(
-                    `   data-end-time="${filters.endTime}"\n`
+                  `    data-start-time="${filters.startTime}\n`.concat(
+                  `    data-end-time="${filters.endTime}"\n`
                   )}
                 {filters.eventFeatures &&
                   `    data-features="${filters.eventFeatures}"\n`}
