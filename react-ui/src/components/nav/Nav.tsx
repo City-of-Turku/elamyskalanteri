@@ -14,7 +14,6 @@ import { makeStyles, useTheme } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import styles from "./Nav.module.css";
 import vinkLogo from "../../svg/vinkLogo1.svg";
-import SearchBar from "../SearchBar/SearchBar";
 
 const useStyles = makeStyles({
   logo: {

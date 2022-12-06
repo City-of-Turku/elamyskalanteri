@@ -3,8 +3,12 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import styles from "./EmbedCode.module.css";
 import AdvancedSettings from "../../AdvancedSettings/AdvancedSettings";
+import ShareIcon from '@mui/icons-material/Share';
+import { useTranslation } from "react-i18next";
+import { Typography } from "@mui/material";
 
 const EmbedCode = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const { filters } = useAppSelector((state) => state);
@@ -35,8 +39,9 @@ const EmbedCode = () => {
         className={styles.btn}
         variant={"outlined"}
         onClick={() => setOpen(!open)}
+        startIcon={<ShareIcon /> }
       >
-        {"< >"}
+     <Typography>{`${t("share")}`}</Typography>
       </Button>
       {open && (
         <div className={styles.advancedSettings}>
@@ -46,6 +51,7 @@ const EmbedCode = () => {
                 {`<script src="${process.env.REACT_APP_EMBED_URL}" type="text/javascript" defer></script>\n`}
                 {`<div\n`}
                 {`    class="event-calendar-embed"\n`}
+                {filters.typeId && `    data-typeid="${filters.typeId}"\n`}
                 {filters.search && `    data-search="${filters.search}"\n`}
                 {!!filters.eventTypes.length &&
                   `    data-keywords="${filters.eventTypes.join()}"\n`}
@@ -53,8 +59,8 @@ const EmbedCode = () => {
                   `    data-audiences="${filters.audiences.join()}"\n`}
                 {filters.startTime &&
                   filters.endTime &&
-                  `   data-start-time="${filters.startTime}\n`.concat(
-                    `   data-end-time="${filters.endTime}"\n`
+                  `    data-start-time="${filters.startTime}\n`.concat(
+                  `    data-end-time="${filters.endTime}"\n`
                   )}
                 {filters.eventFeatures &&
                   `    data-features="${filters.eventFeatures}"\n`}

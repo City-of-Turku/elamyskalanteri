@@ -3,7 +3,7 @@
 }
 
 .react-calendar__navigation span {
-    color: #F16834;
+    color: #193773;
     font-family: 'halogen';
     font-weight: 900;
     text-transform: capitalize;
@@ -15,14 +15,14 @@
 
 .react-calendar__month-view__weekdays {
     color: #193773;
-    font-family: 'Halogen';
+    font-family: 'forma-djr-micro';
     font-style: normal;
     font-weight: 900;
     font-size: 12px;
     line-height: 19px;
 }
 
-.abbr {
+abbr[title] {
     text-decoration: none;
 }
 
