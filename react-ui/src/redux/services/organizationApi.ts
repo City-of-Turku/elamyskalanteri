@@ -28,16 +28,10 @@ export const organizationApi = createApi({
             break;
           }
         }
-        const randomResult = await fetchWithBQ('organization')
-        if (randomResult.error)
-          return { error: randomResult.error as FetchBaseQueryError }
-        const user = randomResult.data as User
-        const result = await fetchWithBQ(`user/${user.id}/posts`)
-        return result.data
-          ? { data: result.data as Post }
-          : { error: result.error as FetchBaseQueryError }
-      },
-    }),
+        return organizations;
+      }
+    })
+  })
 })
 
 export const { useOrganizationsQuery } = organizationApi
