@@ -27,8 +27,8 @@ abbr[title] {
 }
 
 .react-calendar__tile--now {
-    background-color: transparent;
-    color: black;
+    background-color: #193773;
+    color: white;
 }
 
 .react-calendar__tile {
@@ -105,14 +105,14 @@ abbr[title] {
 
 .react-calendar__tile--rangeStart {
     background-color: #193773 !important;
-    border-top: 4px solid #F16834 !important;
+    /* border-top: 4px solid #F16834 !important; */
 }
 
 .react-calendar__tile--rangeEnd {
     background-color: #193773 !important;
-    border-bottom: 4px solid #F16834 !important;
+    /* border-bottom: 4px solid #F16834 !important; */
 }
 
-.react-calendar__month-view__days__day--weekend {
-    color: '#F16834'
-}
+/* .react-calendar__month-view__days__day--weekend {
+    color: '#fff' ;
+} */
