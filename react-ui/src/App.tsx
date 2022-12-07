@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import EventContent from "./components/pages/events/EventContent";
 import EventList from "./components/pages/events/EventList";
+import filterSlice from "./redux/slices/filterSlice";
 import optionsSlice from './redux/slices/optionsSlice'
 import { useAppDispatch, useAppSelector } from './hooks/rtkHooks';
 import {
@@ -31,10 +32,12 @@ const App = (props: AppProps) => {
   
   const dispatch = useAppDispatch()
   const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria } = bindActionCreators(optionsSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
   const data = props.data;
-  console.log('data', data)
 
   useEffect(() => {
+    setTypeId(data.typeid);
+    setSearch(data.search);
     setTitle(data.title);
     setDescription(data.description);
     setStyle(data.style);
