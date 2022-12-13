@@ -17,12 +17,13 @@
   "content": "Sisältö",
   "whom": "kenelle",
   "feature": "ominaisuus",
+  "organizer": "Järjestäjä",
   "place": "paikkakunta",
   "near": "Lähellä minua",
   "under": "alle",
   "slogan1": "Löydä ne",
   "slogan2": "parhaimmat omat",
   "slogan3": "jutut",
-  "back": "takaisin"
-
+  "back": "takaisin",
+  "noOptions": "Ei osumia"
 }

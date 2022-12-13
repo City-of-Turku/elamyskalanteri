@@ -7,28 +7,34 @@ export const organizationApi = createApi({
     baseUrl: process.env.REACT_APP_LINKEDEVENTS_BASE_URL
   }),
   endpoints: (builder) => ({
-    organizations: builder.query({
+    organizations: builder.query<Organization[], void> ({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
         const getOrganizationsPage = async (page: number): Promise<GetOrganizationsResponse> => {
-          const result = await fetchWithBQ(`organization/?page=${page}`) ;
+          const result = await fetchWithBQ(`organization/?page=${page}`)
           if (result.error) {
             return { error: result.error as FetchBaseQueryError }
           }
           const data = result.data as GetOrganizationsResponse
           return data 
         }
-        let organizations : Organization[] = [];
+        let organizations : Organization[] = []
         let page = 1
         while (true) {
-          let data = await getOrganizationsPage(page)
-          if (!!data.data) {
-            organizations = organizations.concat(data.data)
+          let orgResponse = await getOrganizationsPage(page)
+          page = page + 1
+          if (!!orgResponse.data) {
+            organizations = organizations.concat(orgResponse.data)
           }
-          if (!data.meta?.next) {
-            break;
+          else {
+            return orgResponse
+          }
+          if (!orgResponse.meta?.next) {
+            break
           }
         }
-        return organizations;
+        return {
+          data: organizations
+        }
       }
     })
   })

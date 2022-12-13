@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import { CategorySelector, ICategory } from "./CategorySelector"
+import OrganizationContainer from "../OrganizationContainer/OrganizationContainer";
 
 
 type CategoryDescriptor = {
@@ -203,21 +204,22 @@ const WhatContainer = () => {
           </RadioGroup>
         </div>
 
-        {typeIdState && categoryGroups[typeIdState]?.map((group, index) => (
-          <CategorySelector
-            key={index}
-            categories={group.categories}
-            title={group.title}
-            isLoading={isLoading}
-            handleAdd={(yso) => {
-              addSelectedCategory(yso);
-            }}
-            handleDelete={(yso) => {
-              removeSelectedCategory(yso);
-            }}
-            selected={filters.eventTypes}
-          />
-        ))}
+        {typeIdState &&
+          categoryGroups[typeIdState]?.map((group, index) => (
+            <CategorySelector
+              key={index}
+              categories={group.categories}
+              title={group.title}
+              isLoading={isLoading}
+              handleAdd={(yso) => {
+                addSelectedCategory(yso);
+              }}
+              handleDelete={(yso) => {
+                removeSelectedCategory(yso);
+              }}
+              selected={filters.eventTypes}
+            />
+          ))}
         <div className={styles.rowWrap}>
           <p
             style={{
@@ -285,9 +287,12 @@ const WhatContainer = () => {
             ))}
           </FormGroup>
         </div>
+        <div className={styles.rowWrap}>
+          <OrganizationContainer />
+        </div>
       </Accordion>
     </div>
-  )
+  );
 
 }
 

@@ -4,11 +4,13 @@ import eventReducer from "./slices/eventSlice";
 import filterSlice from "./slices/filterSlice";
 import optionsSlice from "./slices/optionsSlice";
 import {keywordApi} from "./services/keywordApi";
+import { organizationApi } from "./services/organizationApi";
 
 export const store = configureStore({
   reducer: {
     [eventApi.reducerPath]: eventApi.reducer,
     [keywordApi.reducerPath]: keywordApi.reducer,
+    [organizationApi.reducerPath]: organizationApi.reducer,
     events: eventReducer.reducer,
     filters: filterSlice.reducer,
     options: optionsSlice.reducer,
