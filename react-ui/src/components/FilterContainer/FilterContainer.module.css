@@ -1,13 +1,8 @@
-:root {
+/* :root {
     --small: 33%;
     --med: 50%;
     --large: 80%;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-}
+} */
 
 .container {
     display: flex;
@@ -74,7 +69,7 @@
     margin-left: -16px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
     .searchContainer {
         margin: 0;
         width: 90%;
