@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Icon } from '@mui/material';
 import styles from "./Accordion.module.css"
 import { useTheme } from "@mui/styles";
@@ -27,24 +26,17 @@ const Accordion = ({ title, children, icon }: IProps) => {
           id="panel1a-header"
         >
         {icon &&
-          <div style={{ backgroundColor: theme.palette.primary.main, padding: "12px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%"}}>
+          <div className={styles.iconWrapper} style={{ backgroundColor: theme.palette.primary.main }}>
             <Icon
               component={icon}
               style={{fontSize: 32, color: "#ffffff"}}
             />
           </div>}
-        <h3 style={{
-          textTransform: "capitalize",
-          color: theme.palette.primary.dark,
-          fontSize: 22,
-          fontFamily: 'halogen',
-        }}
-        >
+       <div style={{fontFamily: 'halogen', color: theme.palette.primary.dark}} className={styles.title}>
           {title}
-        </h3>
+          </div>
         </AccordionSummary>
         <AccordionDetails>
-    
         <div className={styles.childContainer}>
         {children}
       </div>

@@ -7,7 +7,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import {useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 
-
 /*
  * Renders an input box with borders and padding. (The style is very specific...)
  * When the user stops typing (aka "debounce"), dispatches the search query to the redux store
@@ -81,7 +80,7 @@ const SearchBox = () => {
         aria-label={t("search")}
         className={styles.search}
         type="text"
-        placeholder={t("search")} 
+        placeholder={`${t("search")} ${t("searchText")}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />

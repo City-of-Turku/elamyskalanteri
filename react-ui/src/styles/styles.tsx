@@ -1,4 +1,3 @@
-import { letterSpacing } from "@mui/joy/styles/styleFunctionSx";
 import { createTheme } from "@mui/material/styles";
 
 export const vinkTheme = createTheme({
