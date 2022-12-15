@@ -89,6 +89,7 @@ export const whiteLabelTheme = createTheme({
     },
   },
   typography: {
+    fontFamily: "Arial, Helvetica, sans-serif",
     h2: {
       color:"#202020",
       fontWeight: 900,

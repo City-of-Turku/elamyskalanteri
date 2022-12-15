@@ -6,6 +6,8 @@ import styles from "./SearchBox.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import {useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
+import { makeStyles } from '@mui/styles';
+
 
 /*
  * Renders an input box with borders and padding. (The style is very specific...)
@@ -20,8 +22,18 @@ import {useTranslation} from "react-i18next";
  */
 
 const SearchBox = () => {
-
   const theme: any = useTheme()
+  const useStyles = makeStyles({
+  input: {
+    "&::placeholder": {
+       color: theme.palette.primary.dark,
+       fontFamily: theme.palette.typography,
+       fontWeight: 900
+    },
+ },
+});
+  const classes = useStyles();
+  
   const { t } = useTranslation()
 
   // debouncing timeout in ms
@@ -77,8 +89,10 @@ const SearchBox = () => {
         <SearchIcon sx={{ fontSize: 32, color: "#ffffff" }}/>
       </div>
       <input
+        style={{paddingLeft: "20px", fontSize:"18px", border:"none", outline:"none", width:"calc(100% - 32px)", fontFamily:"halogen"}}
+        className={classes.input}
         aria-label={t("search")}
-        className={styles.search}
+        // className={styles.search}
         type="text"
         placeholder={`${t("search")} ${t("searchText")}`}
         value={searchTerm}
