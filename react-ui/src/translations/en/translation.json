@@ -18,11 +18,13 @@
   "contentType": "Type of content",
   "whom": "to whom",
   "feature": "feature",
+  "organizer": "Organizer",
   "place": "place",
   "near": "Near me",
   "under": "under",
   "slogan1": "Find the",
   "slogan2": "best own",
   "slogan3": "things",
-  "back": "back"
+  "back": "back",
+  "noOptions": "No matches"
 }

@@ -18,11 +18,13 @@
   "contentType": "Innehållets typ",
   "whom": "till vem",
   "feature": "egenskap",
+  "organizer": "Arrangör",
   "place": "ort",
   "near": "Nära mig",
   "under": "under",
   "slogan1": "Hitta de",
   "slogan2": "bästa egna",
   "slogan3": "grejerna",
-  "back":"tillbaka"
+  "back":"tillbaka",
+  "noOptions": "Inga träffar"
 }

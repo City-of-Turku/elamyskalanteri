@@ -15,7 +15,7 @@ interface IOptions {
 export const eventApi = createApi({
   reducerPath: "eventApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://testilinkedevents-api.turku.fi/v1",
+    baseUrl: process.env.REACT_APP_LINKEDEVENTS_BASE_URL
   }),
   endpoints: (builder) => ({
     events: builder.query<any, IOptions>({
