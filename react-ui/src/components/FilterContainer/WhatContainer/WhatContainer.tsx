@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/rtkHooks";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import filterSlice from "../../../redux/slices/filterSlice";
 import { useTopicsQuery } from "../../../redux/services/keywordApi";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTheme } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import { CategorySelector, ICategory } from "./CategorySelector"
@@ -61,6 +61,9 @@ const WhatContainer = () => {
   const [ typeIdState, setTypeIdState ] = useState(filters.typeId)
   const [ categoryGroups, setCategoryGroups ] = useState<{[key: string]: Array<CategoryDescriptor>}>({})
   const [ audiences, setAudiences ] = useState<Array<ICategory>>([])
+  const [ organizer, setOrganizer ] = useState<string|null>(null)
+
+  const prevOrganizerRef = useRef<string|null>(null);
 
   const handleTypeIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val: string = (event.target as HTMLInputElement).value
@@ -94,6 +97,10 @@ const WhatContainer = () => {
       // @ts-ignore
       removeAudience(e.target.value)
     }
+  }
+
+  const handleOrganizerChange = (organizerId: string|null) => {
+    setOrganizer(organizerId)
   }
 
   const addSelectedCategory = (yso: string) => {
@@ -153,6 +160,22 @@ const WhatContainer = () => {
   useEffect(() => {
     setTypeIdState(filters.typeId)
   }, [filters.typeId]);
+
+  useEffect(() => {
+    console.log("///////")
+    console.log(prevOrganizerRef.current)
+    console.log(organizer)
+    console.log(`\\\\\\\\\\`)
+    if (organizer !== prevOrganizerRef.current) {
+      if (prevOrganizerRef.current !== null) {
+        removeEventTypes([prevOrganizerRef.current])
+      }
+      if (organizer != null) {
+        addEventType(organizer)
+      }
+      prevOrganizerRef.current = organizer
+    }
+  }, [organizer, addEventType, removeEventTypes])
 
   return (
     <div className={styles.container}>
@@ -288,7 +311,7 @@ const WhatContainer = () => {
           </FormGroup>
         </div>
         <div className={styles.rowWrap}>
-          <OrganizationContainer />
+          <OrganizationContainer onChange={(newId: string|null) => { handleOrganizerChange(newId) }} />
         </div>
       </Accordion>
     </div>

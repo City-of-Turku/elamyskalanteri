@@ -12,29 +12,17 @@ import { useOrganizationsQuery } from "../../../redux/services/organizationApi";
 import { Organization } from "../../../redux/types/Organizations";
 import { FilterOptionsState } from "@mui/material";
 
-const OrganizationContainer = () => {
+const OrganizationContainer = (props: any) => {
   const { t } = useTranslation();
   const theme: any = useTheme();
 
-  const { data, error, isLoading, isFetching } = useOrganizationsQuery();
+  const { data } = useOrganizationsQuery();
 
   const filterOptions = (options: Organization[], { inputValue }: FilterOptionsState<Organization>) => {
     if (!inputValue.length) return [];
     return matchSorter(options, inputValue, {keys: ['name']});
   }
 
-  console.log(data);
-  //   const handleSelectChange = (event: SelectChangeEvent) => {
-  //     //setSelectedOrganization(event.target.value as string);
-  //   };
-
-  //   const handleSearchChange = () => {
-
-  //   }
-
-  //   const handleTextChange = () => {
-
-  //   }
   return (
     <div>
       <p
@@ -52,6 +40,9 @@ const OrganizationContainer = () => {
       <FormGroup row>
         <Autocomplete
           filterOptions={filterOptions}
+          onChange={(event: any, newValue: Organization | null) => {
+            props.onChange(newValue ? newValue.id : null);
+          }}
           disablePortal
           clearOnBlur
           popupIcon={null}

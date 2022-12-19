@@ -48,7 +48,7 @@ const SearchBox = () => {
   useEffect(() => {
     const updateSearchTerm = () => {
       // If the search term is at least the length of specified chars, dispatch it
-      if (searchTerm.length >= MIN_CHARS) {
+      if (searchTerm.length && searchTerm.length >= MIN_CHARS) {
         // Search does not like whitespace at either end so trim those away
         setSearch(searchTerm.trim())
       }
