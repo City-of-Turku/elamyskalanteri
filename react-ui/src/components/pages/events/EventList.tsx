@@ -113,19 +113,21 @@ const EventList = (props:EventListProps) => {
         listComponent = <GridList events={data?.data}/>
   }
 
-  switch(options.languageSelection) {
-    case "fi":
-      i18n.language = "fi"
-      break;
-    case "sv":
-      i18n.language = "sv"
-      break;
-    case "en":
-      i18n.language = "en"
-      break;
-    default:
-      i18n.language = "fi"
-  } 
+  useEffect(() =>  {
+    switch(options.languageSelection) {
+      case "fi":
+        i18n.changeLanguage("fi")
+        break;
+      case "sv":
+        i18n.changeLanguage("sv")
+        break;
+      case "en":
+        i18n.changeLanguage("en")
+        break;
+      default:
+        i18n.changeLanguage("fi")
+    }   
+  })
 
   return (
       <Box sx={{ p: 2 }}>
