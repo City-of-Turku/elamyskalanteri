@@ -4,10 +4,7 @@ import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
 import { useTheme } from "@mui/styles";
 import { matchSorter } from 'match-sorter';
-
-
 import { useTranslation } from "react-i18next";
-
 import { useOrganizationsQuery } from "../../../redux/services/organizationApi";
 import { Organization } from "../../../redux/types/Organizations";
 import { FilterOptionsState } from "@mui/material";

@@ -17,6 +17,7 @@ import Title from "../../Title/Title";
 import GridList from "../../EventList/GridList";
 import VerticalList from "../../EventList/VerticalList";
 import HorizontalList from "../../EventList/HorizontalList";
+import { useTranslation } from "react-i18next";
 
 interface EventListProps {
   typeId?: string;
@@ -24,6 +25,7 @@ interface EventListProps {
 
 const EventList = (props:EventListProps) => {
   const theme: any = useTheme();
+  const { t, i18n } = useTranslation();
   const options = useAppSelector((state) => state.options)
   const dispatch = useAppDispatch()
   const history = useHistory()
@@ -110,6 +112,20 @@ const EventList = (props:EventListProps) => {
       default:
         listComponent = <GridList events={data?.data}/>
   }
+
+  switch(options.languageSelection) {
+    case "fi":
+      i18n.language = "fi"
+      break;
+    case "sv":
+      i18n.language = "sv"
+      break;
+    case "en":
+      i18n.language = "en"
+      break;
+    default:
+      i18n.language = "fi"
+  } 
 
   return (
       <Box sx={{ p: 2 }}>

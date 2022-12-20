@@ -21,7 +21,8 @@ interface filterState {
   style: string,
   listView: string,
   viewNum: number | null,
-  searchCriteria: boolean | null
+  searchCriteria: boolean | null,
+  languageSelection: string
 }
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   listView: "",
   viewNum: null,
   searchCriteria: true,
+  languageSelection: ""
 } as filterState
 
 export const filterSlice = createSlice({
@@ -104,6 +106,9 @@ export const filterSlice = createSlice({
     },
     setSearchCriteria: (state, action) => {
       state.searchCriteria = action.payload
+    },
+    setLanguageSelection: (state, action) => {
+      state.languageSelection = action.payload
     }
   }
 })

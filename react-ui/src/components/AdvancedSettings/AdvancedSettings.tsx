@@ -3,6 +3,7 @@ import TextFields from "./TextFields/TextFields";
 import Style from "./Style/Style";
 import ListView from "./ListView/ListView";
 import SearchCriteria from "./SearchCriteria/SearchCriteria";
+import LanguageSelect from "./LanguageSelect/LanguageSelect";
 import styles from "./AdvancedSettings.module.css";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -27,6 +28,7 @@ const AdvancedSettings = () => {
                 <Style />
                 <ListView />
                 <SearchCriteria />
+                <LanguageSelect />
                 </AccordionDetails>
             </Accordion>
         </div>

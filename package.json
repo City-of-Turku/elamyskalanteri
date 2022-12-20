@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/City-of-Turku/elamyskalenteri/issues"
   },
-  "homepage": "https://github.com/City-of-Turku/elamyskalenteri#readme"
+  "homepage": "https://github.com/City-of-Turku/elamyskalenteri#readme",
+  "dependencies": {
+    "match-sorter": "^6.3.1"
+  }
 }

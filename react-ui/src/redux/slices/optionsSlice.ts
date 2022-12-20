@@ -7,7 +7,8 @@ export interface OptionsState {
     style: string
     listView: string
     numOfView: number | null
-    hideSearchCriteria: boolean
+    hideSearchCriteria: boolean,
+    languageSelection: string
 }
 
 const initialState: OptionsState = {
@@ -17,6 +18,7 @@ const initialState: OptionsState = {
     listView: "grid",
     numOfView: null,
     hideSearchCriteria: false,
+    languageSelection: "fi"
 }
 
 export const optionsSlice = createSlice({
@@ -31,6 +33,7 @@ export const optionsSlice = createSlice({
         },
         setStyle: (state, action: PayloadAction<string>) => {
             state.style = action.payload
+            console.log("style", action.payload)
         },
         setListView: (state, action: PayloadAction<string>) => {
             state.listView = action.payload
@@ -40,6 +43,10 @@ export const optionsSlice = createSlice({
         },
         setHideSearchCriteria: (state, action: PayloadAction<boolean>) => {
             state.hideSearchCriteria = action.payload
+        },
+        setLanguageSelection: (state, action: PayloadAction<string>) => {
+            state.languageSelection = action.payload
+            console.log("lang", action.payload)
         },
     },
 })

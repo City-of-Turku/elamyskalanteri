@@ -70,6 +70,7 @@ const EmbedCode = () => {
                 {`    data-listview="${filters.listView}"\n`}
                 {`    data-numofview="${filters.viewNum}"\n`}
                 {`    data-hidesearchcriteria="${filters.searchCriteria}"\n`}
+                {`    data-languageselection="${filters.languageSelection}"\n`}
                 {`></div>\n`}
               </pre>
             </div>

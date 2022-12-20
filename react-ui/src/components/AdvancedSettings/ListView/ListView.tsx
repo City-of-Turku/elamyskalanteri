@@ -1,4 +1,3 @@
-import * as React from 'react';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';

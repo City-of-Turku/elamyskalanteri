@@ -6,11 +6,13 @@ import WhatContainer from "./WhatContainer/WhatContainer";
 import WhereContainer from "./WhereContainer/WhereContainer";
 import { useTheme } from "@mui/styles";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../hooks/rtkHooks"
 
 const FilterContainer = () => {
 
   const theme: any = useTheme()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const options = useAppSelector((state) => state.options)
 
   return (
     <div className={styles.container}>
