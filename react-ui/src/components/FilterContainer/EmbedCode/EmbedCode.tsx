@@ -71,6 +71,7 @@ const EmbedCode = () => {
                 {`    data-numofview="${filters.viewNum}"\n`}
                 {`    data-hidesearchcriteria="${filters.searchCriteria}"\n`}
                 {`    data-languageselection="${filters.languageSelection}"\n`}
+                {`    data-linkcontainer="${filters.linkContainer}"\n`}
                 {`></div>\n`}
               </pre>
             </div>

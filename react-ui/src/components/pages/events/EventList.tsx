@@ -18,6 +18,7 @@ import GridList from "../../EventList/GridList";
 import VerticalList from "../../EventList/VerticalList";
 import HorizontalList from "../../EventList/HorizontalList";
 import { useTranslation } from "react-i18next";
+import LinkContainer from "../../Link/LinkContainer";
 
 interface EventListProps {
   typeId?: string;
@@ -113,21 +114,21 @@ const EventList = (props:EventListProps) => {
         listComponent = <GridList events={data?.data}/>
   }
 
-  useEffect(() =>  {
-    switch(options.languageSelection) {
-      case "fi":
-        i18n.changeLanguage("fi")
-        break;
-      case "sv":
-        i18n.changeLanguage("sv")
-        break;
-      case "en":
-        i18n.changeLanguage("en")
-        break;
-      default:
-        i18n.changeLanguage("fi")
-    }   
-  })
+  // useEffect(() =>  {
+  //   switch(options.languageSelection) {
+  //     case "fi":
+  //       i18n.changeLanguage("fi")
+  //       break;
+  //     case "sv":
+  //       i18n.changeLanguage("sv")
+  //       break;
+  //     case "en":
+  //       i18n.changeLanguage("en")
+  //       break;
+  //     default:
+  //       i18n.changeLanguage("fi")
+  //   }   
+  // })
 
   return (
       <Box sx={{ p: 2 }}>
@@ -167,6 +168,7 @@ const EventList = (props:EventListProps) => {
         <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark, 
           "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">Lataa lisää</Button>
        </div>
+       <LinkContainer />
       </Box>
   );
 };
