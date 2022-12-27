@@ -30,7 +30,7 @@ export interface AppProps {
 
 const App = (props: AppProps) => {
   const dispatch = useAppDispatch()
-  const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria, setLanguageSelection, setLinkContainer } = bindActionCreators(optionsSlice.actions, dispatch)
+  const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria, setLanguageSelection, setLinkContainer, setLinkText } = bindActionCreators(optionsSlice.actions, dispatch)
   const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
   const data = props.data;
 
@@ -45,6 +45,7 @@ const App = (props: AppProps) => {
     setHideSearchCriteria(data.hidesearchcriteria === "true" ? true : false);
     setLanguageSelection(data.languageselection);
     setLinkContainer(data.linkcontainer);
+    setLinkText (data.linktext);
    })
 
   let theme;

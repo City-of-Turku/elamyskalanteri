@@ -9,7 +9,8 @@ export interface OptionsState {
     numOfView: number | null
     hideSearchCriteria: boolean,
     languageSelection: string,
-    linkContainer: string | null
+    linkContainer: string | null,
+    linkText: string | null
 }
 
 const initialState: OptionsState = {
@@ -20,7 +21,8 @@ const initialState: OptionsState = {
     numOfView: null,
     hideSearchCriteria: false,
     languageSelection: "fi",
-    linkContainer: null
+    linkContainer: null,
+    linkText: null
 }
 
 export const optionsSlice = createSlice({
@@ -47,12 +49,14 @@ export const optionsSlice = createSlice({
         },
         setLanguageSelection: (state, action: PayloadAction<string>) => {
             state.languageSelection = action.payload
-            console.log("lang", action.payload)
         },
         setLinkContainer: (state, action: PayloadAction<string>) => {
             state.linkContainer = action.payload
-            console.log("linkContainer", action.payload)
         },
+        setLinkText: (state, action: PayloadAction<string>) => {
+            state.linkText = action.payload
+            console.log("linkText", action.payload)
+        }
     },
 })
 

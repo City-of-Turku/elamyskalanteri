@@ -23,7 +23,8 @@ interface filterState {
   viewNum: number | null,
   searchCriteria: boolean | null,
   languageSelection: string,
-  linkContainer: string
+  linkContainer: string,
+  linkText: string
 }
 
 const initialState = {
@@ -42,7 +43,8 @@ const initialState = {
   viewNum: null,
   searchCriteria: true,
   languageSelection: "",
-  linkContainer: ""
+  linkContainer: "",
+  linkText: ""
 } as filterState
 
 export const filterSlice = createSlice({
@@ -114,6 +116,9 @@ export const filterSlice = createSlice({
     },
     setLinkContainer: (state, action) => {
       state.linkContainer = action.payload
+    },
+    setLinkText: (state, action) => {
+      state.linkText = action.payload
     }
   }
 })
