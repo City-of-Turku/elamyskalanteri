@@ -149,16 +149,11 @@ const EventList = (props:EventListProps) => {
               <CircularProgress />
             </Box>
           ) : error ? (
-            <h2>Something went wrong</h2>
+            <h2>{`${t("noEventsFound")}`}</h2>
           ) : (
          <div>
-          <div>
             {listComponent}
-          </div>
-         </div>
-          )}
-       </Grid>
-       <div
+            <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -166,8 +161,11 @@ const EventList = (props:EventListProps) => {
           }}
         >
         <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark, 
-          "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">Lataa lisää</Button>
-       </div>
+          "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">{`${t("loadMore")}`}</Button>
+       </div> 
+          </div>
+          )}
+       </Grid>
        <LinkContainer />
       </Box>
   );

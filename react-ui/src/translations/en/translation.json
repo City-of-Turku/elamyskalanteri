@@ -26,5 +26,7 @@
   "slogan2": "best own",
   "slogan3": "things",
   "back": "back",
-  "noOptions": "No matches"
+  "noOptions": "No matches",
+  "noEventsFound": "No events found",
+  "loadMore": "Load more"
 }

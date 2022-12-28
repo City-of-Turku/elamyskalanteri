@@ -26,5 +26,7 @@
   "slogan2": "bästa egna",
   "slogan3": "grejerna",
   "back":"tillbaka",
-  "noOptions": "Inga träffar"
+  "noOptions": "Inga träffar",
+  "noEventsFound": "Inga händelser hittades",
+  "loadMore": "Ladda mer"
 }

@@ -26,5 +26,7 @@
   "slogan2": "parhaimmat omat",
   "slogan3": "jutut",
   "back": "takaisin",
-  "noOptions": "Ei osumia"
+  "noOptions": "Ei osumia",
+  "noEventsFound": "Ei tapahtumia",
+  "loadMore": "Lataa lisää"
 }
