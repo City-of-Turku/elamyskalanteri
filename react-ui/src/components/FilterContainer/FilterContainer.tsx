@@ -17,7 +17,28 @@ const FilterContainer = () => {
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
-        <div className={styles.calendarContainer}>
+        {/* <div className={styles.calendarContainer}>
+          <div className={styles.whenRow}>
+          <div
+              style={{ backgroundColor: theme.palette.primary.main}}
+              className={styles.iconWrapper}
+            >
+              <EventAvailableIcon sx={{ fontSize: 32, color: "#ffffff" }} />
+            </div>
+            <h3 style={{color: theme.palette.primary.dark }}>{t("when")}?</h3>
+          </div>
+          <CalendarContainer />
+        </div> */}
+          <>
+            <div className={styles.searchContainer}>
+              <WhatContainer />
+              <div className={styles.divider} />
+              <WhereContainer />
+              <div className={styles.divider} />
+              <SearchBox />
+            </div>
+          </>
+           <div className={styles.calendarContainer}>
           <div className={styles.whenRow}>
           <div
               style={{ backgroundColor: theme.palette.primary.main}}
@@ -29,15 +50,6 @@ const FilterContainer = () => {
           </div>
           <CalendarContainer />
         </div>
-          <>
-            <div className={styles.searchContainer}>
-              <WhatContainer />
-              <div className={styles.divider} />
-              <WhereContainer />
-              <div className={styles.divider} />
-              <SearchBox />
-            </div>
-          </>
       </div>
     </div>
   )

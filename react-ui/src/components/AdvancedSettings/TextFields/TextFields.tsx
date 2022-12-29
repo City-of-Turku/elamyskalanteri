@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../hooks/rtkHooks";
 import filterSlice from "../../../redux/slices/filterSlice";
@@ -41,8 +40,6 @@ const TextFields = () => {
           rows={4}
           margin="normal" 
         />
-        {/* <TextField id="outlined-basic" label="Linkki tapahtumaan" variant="outlined" margin="normal"  />
-        <TextField id="outlined-basic" label="Linkin teksti" variant="outlined" margin="normal"  /> */}
     </Box>
     )
 }
