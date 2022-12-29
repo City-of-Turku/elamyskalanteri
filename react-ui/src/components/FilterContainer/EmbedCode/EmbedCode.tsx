@@ -82,7 +82,7 @@ const EmbedCode = () => {
               id={"copyBtn"}
               onClick={() => copyToClipBoard()}
             >
-              Kopioi leikepöydälle
+              {`${t("copyButton")}`}
             </Button>
           </div>
           <div className={styles.advancedSettings}>

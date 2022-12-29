@@ -7,8 +7,10 @@ import { useAppDispatch } from "../../../hooks/rtkHooks";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useTranslation } from "react-i18next";
 
 const LanguageSelect = () => {
+  const { t } = useTranslation();
     const dispatch = useAppDispatch()
     const { setLanguageSelection } = bindActionCreators(filterSlice.actions, dispatch)
 
@@ -35,7 +37,7 @@ const LanguageSelect = () => {
         // </FormControl>
         // </div>
         <FormControl sx={{padding: 2}}>
-        <p>Kieli</p>
+        <p>{`${t("language")}`}</p>
         <RadioGroup
           aria-labelledby="radio-buttons-group-label"
           defaultValue="fi"

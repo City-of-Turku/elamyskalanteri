@@ -8,9 +8,10 @@ import styles from "../AdvancedSettings.module.css";
 import filterSlice from "../../../redux/slices/filterSlice";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../hooks/rtkHooks";
-
+import { useTranslation } from "react-i18next";
 
 const SearchCriteria = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch()
     const { setSearchCriteria } = bindActionCreators(filterSlice.actions, dispatch)
 
@@ -24,15 +25,15 @@ const SearchCriteria = () => {
     return (
         <div>
         <FormControl sx={{padding: 2}}>
-        <p>Hakuehtojen piilotus</p>
+        <p>{`${t("hideSearchCriteria")}`}</p>
         <RadioGroup
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
           defaultValue="true"
           name="row-radio-buttons-group"
         >
-          <FormControlLabel value="true" control={<Radio />} label="Kyllä" onChange={event => handleChange(event)}  />
-          <FormControlLabel value="false" control={<Radio />} label="Ei" onChange={event => handleChange(event)}  />
+          <FormControlLabel value="true" control={<Radio />} label={`${t("yes")}`} onChange={event => handleChange(event)}  />
+          <FormControlLabel value="false" control={<Radio />} label={`${t("no")}`} onChange={event => handleChange(event)}  />
         </RadioGroup>
       </FormControl>
       </div>

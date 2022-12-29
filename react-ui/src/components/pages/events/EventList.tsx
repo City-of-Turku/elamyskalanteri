@@ -114,21 +114,21 @@ const EventList = (props:EventListProps) => {
         listComponent = <GridList events={data?.data}/>
   }
 
-  // useEffect(() =>  {
-  //   switch(options.languageSelection) {
-  //     case "fi":
-  //       i18n.changeLanguage("fi")
-  //       break;
-  //     case "sv":
-  //       i18n.changeLanguage("sv")
-  //       break;
-  //     case "en":
-  //       i18n.changeLanguage("en")
-  //       break;
-  //     default:
-  //       i18n.changeLanguage("fi")
-  //   }   
-  // })
+  useEffect(() =>  {
+    switch(options.languageSelection) {
+      case "fi":
+        i18n.changeLanguage("fi")
+        break;
+      case "sv":
+        i18n.changeLanguage("sv")
+        break;
+      case "en":
+        i18n.changeLanguage("en")
+        break;
+      default:
+        i18n.changeLanguage("fi")
+    }   
+  }, [options.languageSelection, i18n])
 
   return (
       <Box sx={{ p: 2 }}>

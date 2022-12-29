@@ -10,9 +10,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LinkContainer from "./LinkContainer/LinkContainer";
+import { useTranslation } from "react-i18next";
 
 const AdvancedSettings = () => {
-
+    const { t } = useTranslation();
     return (
         <div className={styles.title}>
             <Accordion>
@@ -21,15 +22,15 @@ const AdvancedSettings = () => {
                 aria-controls="panel-content"
                 id="panel-id"
                 >
-                    <p>Näytä laajennetut hakuehdot</p>
+                <p>{`${t("showAdvancedSettings")}`}</p>
                 </AccordionSummary>
                 <AccordionDetails>
-                <AdditionalCategories />
                 <TextFields />
                 <Style />
                 <ListView />
                 <SearchCriteria />
                 <LanguageSelect />
+                <AdditionalCategories />
                 <LinkContainer />
                 </AccordionDetails>
             </Accordion>

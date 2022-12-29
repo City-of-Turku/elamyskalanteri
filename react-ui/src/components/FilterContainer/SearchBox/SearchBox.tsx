@@ -94,7 +94,7 @@ const SearchBox = () => {
         aria-label={t("search")}
         // className={styles.search}
         type="text"
-        placeholder={`${t("search")} ${t("searchText")}`}
+        placeholder={`${t("search")}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
