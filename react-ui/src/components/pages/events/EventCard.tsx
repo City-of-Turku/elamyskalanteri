@@ -63,7 +63,7 @@ const EventCard = ({
           sx={{width:350, height:190}}
           component="img"
           src={imageUrl}
-          alt={images[0]?.alt_text?.fi}
+          alt={images[0]?.alt_text?.fi ? images[0]?.alt_text?.fi : "empty-alt-text"}
         />
         <Box sx={{ display: "flex", flexDirection: "row" }}>
         <CardContent sx={{display:"flex",  flexDirection: "column", alignItems:"flex-start"}}>

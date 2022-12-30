@@ -79,9 +79,4 @@
         width: 90%;
         margin: 0;
     }
-
-    .innerContainer {
-        flex-direction: column-reverse;
-    }
-
 }

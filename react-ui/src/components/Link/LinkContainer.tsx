@@ -7,7 +7,7 @@ const LinkContainer = () => {
 
     return (
         <>
-    <div style={{ display: "flex", justifyContent: "center"}}>
+    <div style={{ display: "flex", justifyContent: "center", paddingTop: "4rem"}}>
         {options.linkContainer &&  <Thumbnail width={88} height={33}/>}
         <div style={{padding: "0.2rem"}}>
         {options.linkContainer && <Link href={options.linkContainer} target="_blank">{options.linkText && options.linkText}</Link>}

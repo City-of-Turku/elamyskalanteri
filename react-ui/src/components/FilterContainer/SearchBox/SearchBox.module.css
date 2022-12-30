@@ -1,22 +1,7 @@
 .inputWrapper {
-    padding: 24px 16px;
+    padding: 24px 16px 2px;
     display: flex;
-    cursor: pointer;
 }
-
-/* .search {
-    padding-left: 20px;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    width: calc(100% - 32px);
-}
-
-.search::placeholder {
-    color: #193773;
-    font-family: 'halogen';
-    font-weight: 900;
-} */
 
 .iconWrapper {
     padding: 12px;
@@ -24,4 +9,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+}
+
+.title {
+    padding-top: 15px;
+    padding-left: 20px;
+    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 900;
 }

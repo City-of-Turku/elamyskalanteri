@@ -7,8 +7,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import {useTheme} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 import { makeStyles } from '@mui/styles';
-
-
+import TextField from '@mui/material/TextField';
+import FormGroup from "@mui/material/FormGroup";
 /*
  * Renders an input box with borders and padding. (The style is very specific...)
  * When the user stops typing (aka "debounce"), dispatches the search query to the redux store
@@ -82,22 +82,20 @@ const SearchBox = () => {
   }, [searchTerm])
 
   return (
+    <div>
     <div className={styles.inputWrapper} style={{color: theme.palette.primary.dark}}>
         <div
         className={styles.iconWrapper}
         style={{ backgroundColor: theme.palette.primary.main }}>
         <SearchIcon sx={{ fontSize: 32, color: "#ffffff" }}/>
       </div>
-      <input
-        style={{paddingLeft: "20px", fontSize:"18px", border:"none", outline:"none", width:"calc(100% - 32px)", fontFamily:"halogen"}}
-        className={classes.input}
-        aria-label={t("search")}
-        // className={styles.search}
-        type="text"
-        placeholder={`${t("search")}`}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div style={{fontFamily: 'halogen', color: theme.palette.primary.dark}} className={styles.title}>
+        <p>{`${t("search")}`}</p>
+      </div> 
+    </div> 
+      <FormGroup row>
+      <TextField aria-label={t("search")} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" sx={{paddingLeft: "90px", paddingBottom:"20px", width:"calc(100% - 32px)"}} variant="outlined" />
+      </FormGroup>
     </div>
   )
 }
