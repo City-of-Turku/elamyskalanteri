@@ -94,7 +94,7 @@ const SearchBox = () => {
       </div> 
     </div> 
       <FormGroup row>
-      <TextField aria-label={t("search")} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" sx={{paddingLeft: "90px", paddingBottom:"20px", width:"calc(100% - 32px)"}} variant="outlined" />
+      <TextField aria-label={t("search")} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" sx={{paddingLeft: "90px", paddingBottom:"20px", width:"calc(100% - 32px)"}} variant="standard" />
       </FormGroup>
     </div>
   )
