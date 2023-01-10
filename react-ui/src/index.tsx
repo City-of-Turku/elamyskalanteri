@@ -1,31 +1,36 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import App from "./App";
-import "./index.css";
-import { store } from "./redux/store";
+import IsolatedApp from "./IsolatedApp";
 import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 
-const els = document.querySelectorAll(".event-calendar-embed");
-for (let i = 0; i < els.length; i++) {
-  if (!(els[i] instanceof HTMLElement)) continue;
-  const el = els[i] as HTMLElement;
-  const data: ({ [key: string]: string }) = Object.fromEntries(
-    Object.keys(el.dataset)
-    .filter(key => el.dataset[key] !== undefined)
-    .map((key) => ([[key], el.dataset[key]]))
-  );
-  
+const elements = document.querySelectorAll(".event-calendar-embed");
+
+// Loop through all the embed elements and initialise the app for each of them
+elements.forEach((currentElement) => {
+  if (!(currentElement instanceof HTMLElement)) return;
+
+  const data: Record<string, string> = JSON.parse(JSON.stringify(currentElement.dataset));
+
+  // const data: Record<string, string> = Object.fromEntries(
+  //   Object.keys(currentElement.dataset)
+  //     .filter(key => {
+  //       console.log('key', key);
+  //       return currentElement.dataset[key] !== undefined
+  //     })
+  //     .map((key) => {
+  //       console.log('currentElement.dataset[key]', currentElement.dataset[key]);
+  //       return [[key], currentElement.dataset[key]]
+  //     })
+  // );
+
   ReactDOM.render(
     <React.StrictMode>
-      <Provider store={store}>
-        <App data={data} />
-      </Provider>
+      <IsolatedApp data={data} />
     </React.StrictMode>,
-    el
+    currentElement
   );
-  
-}
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

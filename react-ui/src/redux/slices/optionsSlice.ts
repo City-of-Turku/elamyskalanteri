@@ -55,7 +55,6 @@ export const optionsSlice = createSlice({
         },
         setLinkText: (state, action: PayloadAction<string>) => {
             state.linkText = action.payload
-            console.log("linkText", action.payload)
         }
     },
 })

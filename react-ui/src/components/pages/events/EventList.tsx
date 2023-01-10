@@ -75,7 +75,7 @@ const EventList = (props:EventListProps) => {
 
       setFirstLoadDone(true)
     }
-  }, [window.location.hash])
+  }, [])
 
   useEffect(() => {
     if (!firstLoadDone) return
@@ -127,7 +127,7 @@ const EventList = (props:EventListProps) => {
         break;
       default:
         i18n.changeLanguage("fi")
-    }   
+    }
   }, [options.languageSelection, i18n])
 
   return (
@@ -160,9 +160,9 @@ const EventList = (props:EventListProps) => {
             margin: "8px 0 24px 0",
           }}
         >
-        <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark, 
+        <Button onClick={() => setPage(page + 1)} sx={{backgroundColor: theme.palette.primary.dark,
           "&:hover": {backgroundColor: theme.palette.primary.main},}} variant="contained">{`${t("loadMore")}`}</Button>
-       </div> 
+       </div>
           </div>
           )}
        </Grid>

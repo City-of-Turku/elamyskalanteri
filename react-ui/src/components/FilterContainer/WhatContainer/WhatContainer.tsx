@@ -117,11 +117,11 @@ const WhatContainer = () => {
         keywordObjects.map((thing:any) => (
           {
             name: thing.name,
-            yso: thing.id  
+            yso: thing.id
           }
-        ))      
+        ))
       );
-      
+
       const _categoryGroups = {
         "eventgeneral": [
           {
@@ -145,7 +145,7 @@ const WhatContainer = () => {
             categories: createYsoObjects(data.data.find((item: any) => item.id === "turku:coursetopics").keywords),
           }
         ]
-      }       
+      }
 
       const _audiences = createYsoObjects(
         data.data
@@ -162,10 +162,7 @@ const WhatContainer = () => {
   }, [filters.typeId]);
 
   useEffect(() => {
-    console.log("///////")
-    console.log(prevOrganizerRef.current)
-    console.log(organizer)
-    console.log(`\\\\\\\\\\`)
+    console.log({ organizer }, { prevOrganizer: prevOrganizerRef.current });
     if (organizer !== prevOrganizerRef.current) {
       if (prevOrganizerRef.current !== null) {
         removeEventTypes([prevOrganizerRef.current])

@@ -6,7 +6,7 @@ import optionsSlice from "./slices/optionsSlice";
 import {keywordApi} from "./services/keywordApi";
 import { organizationApi } from "./services/organizationApi";
 
-export const store = configureStore({
+export const store = () => configureStore({
   reducer: {
     [eventApi.reducerPath]: eventApi.reducer,
     [keywordApi.reducerPath]: keywordApi.reducer,
@@ -16,10 +16,18 @@ export const store = configureStore({
     options: optionsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(eventApi.middleware, keywordApi.middleware),
+    getDefaultMiddleware()
+    .concat(
+      eventApi.middleware,
+      keywordApi.middleware,
+      organizationApi.middleware,
+    ),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+const state = store().getState;
+const dispatch = store().dispatch
+
+export type RootState = ReturnType<typeof state>;
+export type AppDispatch = typeof dispatch;
 
 export default store;

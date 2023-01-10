@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GetEventResponse } from "../types/Event";
+// import { GetEventResponse } from "../types/Event";
 
 const initialState = {
   eventID: "",

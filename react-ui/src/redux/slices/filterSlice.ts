@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import * as dayjs from 'dayjs'
+import { createSlice } from '@reduxjs/toolkit'
 
 
 interface filterState {
