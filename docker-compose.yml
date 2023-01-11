@@ -1,0 +1,12 @@
+services:
+  embed:
+    build: embed
+    restart: always
+    ports:
+    - 8001:8001
+  
+  react-ui:
+    build: react-ui
+    restart: always
+    ports:
+    - 3000:3000
