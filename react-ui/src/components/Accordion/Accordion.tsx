@@ -34,7 +34,7 @@ const Accordion = ({ title, children, icon }: IProps) => {
             </div>
           )}
           <div
-            style={{ fontFamily: 'halogen', color: theme.palette.primary.dark }}
+            style={{ fontFamily: 'halogen, sans-serif', color: theme.palette.primary.dark }}
             className={styles.title}
           >
             {title}

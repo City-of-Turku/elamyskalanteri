@@ -30,7 +30,7 @@ const OrganizationContainer = (props: any) => {
           margin: '0 16px 16px 0',
           color: theme.palette.primary.dark,
           fontSize: 18,
-          fontFamily: 'halogen',
+          fontFamily: 'halogen, sans-serif',
           fontWeight: 900,
           textTransform: 'capitalize',
         }}

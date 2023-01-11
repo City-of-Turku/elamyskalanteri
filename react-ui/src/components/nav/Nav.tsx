@@ -229,7 +229,7 @@ const Nav = () => {
               display: { xs: 'none', md: 'block' },
               alignItems: 'center',
               fontSize: 32,
-              fontFamily: 'halogen',
+              fontFamily: 'halogen, sans-serif',
               fontWeight: 900,
               whiteSpace: 'nowrap',
               wordWrap: 'break-word',

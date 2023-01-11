@@ -86,7 +86,7 @@ const SearchBox = () => {
           <SearchIcon sx={{ fontSize: 32, color: '#ffffff' }} />
         </div>
         <div
-          style={{ fontFamily: 'halogen', color: theme.palette.primary.dark }}
+          style={{ fontFamily: 'halogen, sans-serif', color: theme.palette.primary.dark }}
           className={styles.title}
         >
           <p>{`${t('search')}`}</p>

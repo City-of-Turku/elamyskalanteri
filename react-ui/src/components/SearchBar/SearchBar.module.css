@@ -29,7 +29,7 @@
 }
 
 .searchInput::placeholder {
-  font-family: 'halogen';
+  font-family: 'halogen', sans-serif;
   color: #193773;
   font-size: 14px;
   letter-spacing: 1;

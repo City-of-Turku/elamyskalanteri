@@ -14,7 +14,7 @@ export const vinkTheme = createTheme({
     fontFamily: 'forma-djr-micro, sans-serif',
     //slogan title
     h2: {
-      fontFamily: 'halogen',
+      fontFamily: 'halogen, sans-serif',
       color: '#F26835',
       fontWeight: 900,
       fontSize: 35,

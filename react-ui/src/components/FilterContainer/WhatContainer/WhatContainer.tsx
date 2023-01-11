@@ -198,7 +198,7 @@ const WhatContainer = () => {
           style={{
             color: theme.palette.primary.dark,
             fontSize: 18,
-            fontFamily: 'halogen',
+            fontFamily: 'halogen, sans-serif',
             fontWeight: 900,
           }}
         >
@@ -263,7 +263,7 @@ const WhatContainer = () => {
               width: '100px',
               color: theme.palette.primary.dark,
               fontSize: 18,
-              fontFamily: 'halogen',
+              fontFamily: 'halogen, sans-serif',
               fontWeight: 900,
               textTransform: 'capitalize',
             }}
@@ -294,7 +294,7 @@ const WhatContainer = () => {
               margin: '0 16px 0 0',
               color: theme.palette.primary.dark,
               fontSize: 18,
-              fontFamily: 'halogen',
+              fontFamily: 'halogen, sans-serif',
               fontWeight: 900,
               textTransform: 'capitalize',
             }}

@@ -4,7 +4,7 @@
 
 .react-calendar__navigation span {
   color: #193773;
-  font-family: 'halogen';
+  font-family: 'halogen', sans-serif;
   font-weight: 900;
   text-transform: capitalize;
 }
@@ -15,7 +15,7 @@
 
 .react-calendar__month-view__weekdays {
   color: #193773;
-  font-family: 'forma-djr-micro';
+  font-family: 'forma-djr-micro', sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 12px;
@@ -32,7 +32,7 @@ abbr[title] {
 }
 
 .react-calendar__tile {
-  font-family: 'Forma DJR Micro';
+  font-family: 'Forma DJR Micro', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

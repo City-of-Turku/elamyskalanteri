@@ -5,7 +5,7 @@ h3 {
   font-size: 22px;
   font-weight: 900;
   margin-left: 4px;
-  font-family: 'halogen';
+  font-family: 'halogen', sans-serif;
   justify-content: space-between;
 }
 

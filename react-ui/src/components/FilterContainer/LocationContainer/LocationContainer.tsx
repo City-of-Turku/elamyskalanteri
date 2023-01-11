@@ -38,7 +38,7 @@ const LocationContainer = () => {
         style={{
           color: theme.palette.primary.dark,
           fontSize: 18,
-          fontFamily: 'halogen',
+          fontFamily: 'halogen, sans-serif',
           fontWeight: 900,
           textTransform: 'capitalize',
         }}
