@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Provider } from "react-redux";
-import { store as reduxStore } from "./redux/store";
-import App from "./App";
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import App from './App';
+import { store as reduxStore } from './redux/store';
 
 type IsolatedAppProps = {
   data: Record<string, string>;
@@ -23,7 +23,7 @@ class IsolatedApp extends Component<IsolatedAppProps> {
       <Provider store={this.store}>
         <App data={this.props.data} />
       </Provider>
-    )
+    );
   }
 }
 

@@ -1,11 +1,11 @@
-import { useAppSelector } from "../../../hooks/rtkHooks";
-import Button from "@mui/material/Button";
-import { useState } from "react";
-import styles from "./EmbedCode.module.css";
-import AdvancedSettings from "../../AdvancedSettings/AdvancedSettings";
 import ShareIcon from '@mui/icons-material/Share';
-import { useTranslation } from "react-i18next";
-import { Typography } from "@mui/material";
+import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '../../../hooks/rtkHooks';
+import AdvancedSettings from '../../AdvancedSettings/AdvancedSettings';
+import styles from './EmbedCode.module.css';
 
 const EmbedCode = () => {
   const { t } = useTranslation();
@@ -15,20 +15,20 @@ const EmbedCode = () => {
 
   const copyToClipBoard = () => {
     // Find the code block
-    const code = document.getElementById("code");
+    const code = document.getElementById('code');
 
     // Copy code to clipboard
     navigator.clipboard.writeText(code!.innerText);
 
     // Find the copy button
-    const btn = document.getElementById("copyBtn");
+    const btn = document.getElementById('copyBtn');
 
     // Safety check..
     if (btn) {
       // Set text and set it back to original after 1.5s
-      btn.innerText = "Kopioitu!";
+      btn.innerText = 'Kopioitu!';
       setTimeout(() => {
-        btn.innerText = "Kopioi leikepöydälle";
+        btn.innerText = 'Kopioi leikepöydälle';
       }, 1500);
     }
   };
@@ -37,16 +37,16 @@ const EmbedCode = () => {
     <div className={styles.container}>
       <Button
         className={styles.btn}
-        variant={"outlined"}
+        variant={'outlined'}
         onClick={() => setOpen(!open)}
-        startIcon={<ShareIcon /> }
+        startIcon={<ShareIcon />}
       >
-     <Typography>{`${t("share")}`}</Typography>
+        <Typography>{`${t('share')}`}</Typography>
       </Button>
       {open && (
         <div className={styles.advancedSettings}>
           <div className={styles.innerContainer}>
-            <div id={"code"}>
+            <div id={'code'}>
               <pre>
                 {`<script src="${process.env.REACT_APP_EMBED_URL}" type="text/javascript" defer></script>\n`}
                 {`<div\n`}
@@ -55,15 +55,13 @@ const EmbedCode = () => {
                 {filters.search && `    data-search="${filters.search}"\n`}
                 {!!filters.eventTypes.length &&
                   `    data-keywords="${filters.eventTypes.join()}"\n`}
-                {!!filters.audiences.length &&
-                  `    data-audiences="${filters.audiences.join()}"\n`}
+                {!!filters.audiences.length && `    data-audiences="${filters.audiences.join()}"\n`}
                 {filters.startTime &&
                   filters.endTime &&
                   `    data-start-time="${filters.startTime}\n`.concat(
-                  `    data-end-time="${filters.endTime}"\n`
+                    `    data-end-time="${filters.endTime}"\n`,
                   )}
-                {filters.eventFeatures &&
-                  `    data-features="${filters.eventFeatures}"\n`}
+                {filters.eventFeatures && `    data-features="${filters.eventFeatures}"\n`}
                 {`    data-title="${filters.embedTitle}"\n`}
                 {`    data-description="${filters.embedDesc}"\n`}
                 {`    data-style="${filters.style}"\n`}
@@ -78,11 +76,11 @@ const EmbedCode = () => {
             </div>
             <Button
               sx={{ m: 2 }}
-              variant={"contained"}
-              id={"copyBtn"}
+              variant={'contained'}
+              id={'copyBtn'}
               onClick={() => copyToClipBoard()}
             >
-              {`${t("copyButton")}`}
+              {`${t('copyButton')}`}
             </Button>
           </div>
           <div className={styles.advancedSettings}>

@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import IsolatedApp from "./IsolatedApp";
-import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import IsolatedApp from './IsolatedApp';
+import reportWebVitals from './reportWebVitals';
 
-const elements = document.querySelectorAll(".event-calendar-embed");
+const elements = document.querySelectorAll('.event-calendar-embed');
 
 // Loop through all the embed elements and initialise the app for each of them
 elements.forEach((currentElement) => {
@@ -28,7 +28,7 @@ elements.forEach((currentElement) => {
     <React.StrictMode>
       <IsolatedApp data={data} />
     </React.StrictMode>,
-    currentElement
+    currentElement,
   );
 });
 

@@ -1,35 +1,25 @@
-interface IParams {
-  categories: []
-}
-
-
-// @ts-ignore
-export const filterByCategory = (arr, filterParams) => {
+export const filterByCategory = (arr: any[], filterParams: any) => {
   // If no params provided return original array
   if (!filterParams.length) {
-    return arr
+    return arr;
   }
-// @ts-ignore
-  return arr.filter(arrItem => filterParams.includes(arrItem.type_id))
-}
-// @ts-ignore
+  return arr.filter((arrItem) => filterParams.includes(arrItem.type_id));
+};
+
 // WIP, confirm event_type field
-export const filterByEventType = (arr, filterParams) => {
+export const filterByEventType = (arr: any[], filterParams: any) => {
   // If no params provided return original array
   if (!filterParams.length) {
-    return arr
+    return arr;
   }
-  // @ts-ignore
-  return arr.filter(arrItem => filterParams.includes(arrItem.event_type))
-}
+  return arr.filter((arrItem) => filterParams.includes(arrItem.event_type));
+};
 
-// @ts-ignore
 // WIP, confirm content_type field
-export const filterByContentType = (arr, filterParams) => {
+export const filterByContentType = (arr: any[], filterParams: any) => {
   // If no params provided return original array
   if (!filterParams.length) {
-    return arr
+    return arr;
   }
-  // @ts-ignore
-  return arr.filter(arrItem => filterParams.includes(arrItem.content_type))
-}
+  return arr.filter((arrItem) => filterParams.includes(arrItem.content_type));
+};

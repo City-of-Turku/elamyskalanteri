@@ -1,30 +1,29 @@
 .container {
-    width: 1200px;
-    margin: 24px auto;
+  width: 1200px;
+  margin: 24px auto;
 }
 
 .innerContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 16px auto;
-    background-color: whitesmoke;
-    border-radius: 4px;
-    padding: 16px 24px;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 16px auto;
+  background-color: whitesmoke;
+  border-radius: 4px;
+  padding: 16px 24px;
+  justify-content: space-between;
 }
 
-
 @media only screen and (max-width: 1200px) {
-    .container {
-        width: 100%;
-    }
+  .container {
+    width: 100%;
+  }
 
-    .innerContainer {
-        display: block;
-        overflow: scroll;
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-    }
+  .innerContainer {
+    display: block;
+    overflow: scroll;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
 }

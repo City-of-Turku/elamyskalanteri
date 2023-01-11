@@ -1,12 +1,12 @@
 .date {
-    border-radius: 4px;
-    display: flex;
+  border-radius: 4px;
+  display: flex;
 }
 
 .locationIcon {
-    display: flex;
+  display: flex;
 }
 
 .shortDesc {
-    padding-top: 0.5rem;
+  padding-top: 0.5rem;
 }

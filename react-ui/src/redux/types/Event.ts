@@ -53,15 +53,14 @@ export interface GetEventResponse {
       price: {
         fi: string;
       };
-    }
+    },
   ];
   images: [
     {
       url: string;
       alt_text: {
         fi: string;
-      }
+      };
     },
-
   ];
 }

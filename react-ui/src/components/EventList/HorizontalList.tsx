@@ -1,9 +1,7 @@
-const HorizontalList = ({events}: any) => {
-    return (
-        <div>
+import React from 'react';
 
-        </div>
-    )
-}
+const HorizontalList = ({ events }: any) => {
+  return <div></div>;
+};
 
-export default HorizontalList
+export default HorizontalList;

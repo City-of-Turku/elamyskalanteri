@@ -1,88 +1,85 @@
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import { SetStateAction, useEffect, useState } from "react";
-import {useAppDispatch, useAppSelector} from "../../../hooks/rtkHooks";
-import { useEventsQuery } from "../../../redux/services/eventApi";
-import EventCard from "./EventCard";
-import List from "./List";
-import { useHistory } from "react-router-dom";
-import { parseQuery } from "../../../functions/urlParser";
-import {bindActionCreators} from "@reduxjs/toolkit";
-import filterSlice from "../../../redux/slices/filterSlice";
-import dayjs from "dayjs";
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { bindActionCreators } from '@reduxjs/toolkit';
+import dayjs from 'dayjs';
+import React, { SetStateAction, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { parseQuery } from '../../../functions/urlParser';
+import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
+import { useEventsQuery } from '../../../redux/services/eventApi';
+import filterSlice from '../../../redux/slices/filterSlice';
+import EventCard from './EventCard';
+import List from './List';
 
 const CompactList = ({ dataAttributes }: any) => {
-
-  const history = useHistory()
-  const queryString = require('query-string')
-  const dispatch = useAppDispatch()
+  const history = useHistory();
+  const queryString = require('query-string');
+  const dispatch = useAppDispatch();
 
   const { filters } = useAppSelector((state) => state);
-  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, setAudience } = bindActionCreators(filterSlice.actions, dispatch)
+  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, setAudience } =
+    bindActionCreators(filterSlice.actions, dispatch);
   const [view, setView] = useState(true);
-  const [color, setColor] = useState("primary.dark")
+  const [color, setColor] = useState('primary.dark');
   const handleColor = (e: any, value: SetStateAction<string>) => setColor(value);
 
-  const [firstLoadDone, setFirstLoadDone] = useState(false)
+  const [firstLoadDone, setFirstLoadDone] = useState(false);
 
   useEffect(() => {
     // If data-attributes are used, set redux state from them
-    if (dataAttributes.type === "compact") {
-      setSearch(dataAttributes.search)
-      setEventTypes(dataAttributes.keywords || [])
-      setFeatures(dataAttributes.features || [])
-      setAudience([dataAttributes.audiences] || [])
-    }
-    else {
+    if (dataAttributes.type === 'compact') {
+      setSearch(dataAttributes.search);
+      setEventTypes(dataAttributes.keywords || []);
+      setFeatures(dataAttributes.features || []);
+      setAudience([dataAttributes.audiences] || []);
+    } else {
       if (!firstLoadDone) {
-        const query = (queryString.parse(window.location.hash.replaceAll("?", "")))
+        const query = queryString.parse(window.location.hash.replaceAll('?', ''));
 
-        if (Object.keys(query).includes("text")) {
-          setSearch(query.text)
+        if (Object.keys(query).includes('text')) {
+          setSearch(query.text);
         }
-        if (Object.keys(query).includes("keywords")) {
-          let keywordArray = query.keywords.split(',')
-          setEventTypes(keywordArray)
+        if (Object.keys(query).includes('keywords')) {
+          const keywordArray = query.keywords.split(',');
+          setEventTypes(keywordArray);
         }
-        if (Object.keys(query).includes("features")) {
-          let featureArray = query.features.split(",")
-          setFeatures(featureArray)
-        }
-
-        if (Object.keys(query).includes("start_time")) {
-          setStartTime(query.start_time)
+        if (Object.keys(query).includes('features')) {
+          const featureArray = query.features.split(',');
+          setFeatures(featureArray);
         }
 
-        if (Object.keys(query).includes("end_time")) {
-          setEndTime(query.end_time)
+        if (Object.keys(query).includes('start_time')) {
+          setStartTime(query.start_time);
         }
 
-        if (Object.keys(query).includes("audiences")) {
-          let audienceArray = query.audiences.split(',')
-          // @ts-ignore
-          setAudience(audienceArray)
+        if (Object.keys(query).includes('end_time')) {
+          setEndTime(query.end_time);
         }
-        setFirstLoadDone(true)
+
+        if (Object.keys(query).includes('audiences')) {
+          const audienceArray = query.audiences.split(',');
+          setAudience(audienceArray);
+        }
+        setFirstLoadDone(true);
       }
     }
-  }, [window.location.hash])
+  }, [window.location.hash]);
 
   useEffect(() => {
-    if (!firstLoadDone) return
-    history.push(parseQuery(filters))
-  }, [filters])
-
+    if (!firstLoadDone) return;
+    history.push(parseQuery(filters));
+  }, [filters]);
 
   const [page, setPage] = useState(1);
   const { data, error, isLoading, isFetching } = useEventsQuery({
     page: page,
-    searchTerm: filters.search || "",
+    searchTerm: filters.search || '',
     keyword: filters.eventTypes,
-    features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join("&") : "",
-    bbox: filters.bbox.north ? Object.values(filters.bbox).join(",") : "",
-    start_time: filters.startTime ? dayjs(filters.startTime).format("YYYY-MM-DD") : "",
-    end_time: filters.endTime ? dayjs(filters.endTime).format("YYYY-MM-DD") : "",
-    audiences: filters.audiences
+    features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join('&') : '',
+    bbox: filters.bbox.north ? Object.values(filters.bbox).join(',') : '',
+    start_time: filters.startTime ? dayjs(filters.startTime).format('YYYY-MM-DD') : '',
+    end_time: filters.endTime ? dayjs(filters.endTime).format('YYYY-MM-DD') : '',
+    audiences: filters.audiences,
   });
 
   useEffect(() => {
@@ -92,17 +89,13 @@ const CompactList = ({ dataAttributes }: any) => {
   return (
     <div>
       <Box sx={{ p: 2 }}>
-        <Grid
-          sx={{ flexGrow: 1, alignItems: "strech", justifyContent: "center"}}
-          container
-          
-        >
+        <Grid sx={{ flexGrow: 1, alignItems: 'strech', justifyContent: 'center' }} container>
           {!isLoading &&
             !isFetching &&
             !error &&
-            data.data?.slice(0,4).map((event: any) => {
+            data.data?.slice(0, 4).map((event: any) => {
               return (
-                <div style={{backgroundColor: '#f0f0f0'}}>
+                <div key={event.id} style={{ backgroundColor: '#f0f0f0' }}>
                   <div>
                     {view ? (
                       <Grid key={event.id} item>

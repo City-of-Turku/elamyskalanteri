@@ -1,11 +1,12 @@
 # Events Calendar React Components
 
 ## Requirements
+
 Node v16 or newer
 
 ## Configuration
-In the .env file, you should set `REACT_APP_LINKEDEVENTS_BASE_URL` to the LinkedEvents API URL.
 
+In the .env file, you should set `REACT_APP_LINKEDEVENTS_BASE_URL` to the LinkedEvents API URL.
 
 ## Available Scripts
 

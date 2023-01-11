@@ -1,20 +1,21 @@
-import { useTheme, } from "@mui/styles";
-import { CircularProgress } from "@mui/material";
-import styles from "./WhatContainer.module.css";
-import FilterChip from "../FilterChip/FilterChip";
-import { useTranslation } from "react-i18next";
+import { CircularProgress } from '@mui/material';
+import { useTheme } from '@mui/styles';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import FilterChip from '../FilterChip/FilterChip';
+import styles from './WhatContainer.module.css';
 
 export interface ICategory {
   name: {
-    fi: string,
-    en: string,
-    sv: string,
-  }
-  yso: string
+    fi: string;
+    en: string;
+    sv: string;
+  };
+  yso: string;
 }
 
 interface ICategorySelectorProps {
-  title: string
+  title: string;
   categories: ICategory[];
   isLoading: boolean;
   selected: string[];
@@ -23,8 +24,8 @@ interface ICategorySelectorProps {
 }
 
 export const CategorySelector = (props: ICategorySelectorProps) => {
-  const { i18n } = useTranslation()
-  const theme: any = useTheme()
+  const { i18n } = useTranslation();
+  const theme: any = useTheme();
 
   return (
     <>
@@ -32,7 +33,7 @@ export const CategorySelector = (props: ICategorySelectorProps) => {
         style={{
           color: theme.palette.primary.dark,
           fontSize: 18,
-          fontFamily: "halogen",
+          fontFamily: 'halogen',
           fontWeight: 900,
           //textTransform: "capitalize",
         }}

@@ -1,27 +1,27 @@
 .inputWrapper {
-    padding: 24px 16px;
-    display: flex;
-    cursor: pointer;
+  padding: 24px 16px;
+  display: flex;
+  cursor: pointer;
 }
 
 .chipContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .rowWrap {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .iconWrapper {
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }

@@ -1,21 +1,21 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface placeholderState {
-  value: number
+  value: number;
 }
 
 const initialState = {
   value: 0,
-} as placeholderState
+} as placeholderState;
 
 export const placeholderSlice = createSlice({
-  name: "placeholder",
+  name: 'placeholder',
   initialState,
   reducers: {
     incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    }
-  }
-})
+      state.value += action.payload;
+    },
+  },
+});
 
-export default placeholderSlice
+export default placeholderSlice;
