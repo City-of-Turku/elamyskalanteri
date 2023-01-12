@@ -2,4 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 cd react-ui
+npm run translations
 npm run lint
