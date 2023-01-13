@@ -36,7 +36,7 @@ const App = (props: AppProps) => {
   } = bindActionCreators(optionsSlice.actions, dispatch);
   const {
     setSearch,
-    // setEventTypes,
+    setEventTypes,
     // setFeatures,
     // setStartTime,
     // setEndTime,
@@ -46,6 +46,7 @@ const App = (props: AppProps) => {
   const data = props.data;
 
   useEffect(() => {
+    setEventTypes([data.keywords]);
     setTypeId(data.typeid);
     setSearch(data.search);
     setTitle(data.title);
