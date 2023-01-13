@@ -1,7 +1,7 @@
 import ShareIcon from '@mui/icons-material/Share';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../hooks/rtkHooks';
 import AdvancedSettings from '../../AdvancedSettings/AdvancedSettings';
@@ -10,27 +10,39 @@ import styles from './EmbedCode.module.css';
 const EmbedCode = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const copyBtnRef = useRef<HTMLButtonElement>(null);
+  const codeElemRef = useRef<HTMLDivElement>(null);
 
   const { filters } = useAppSelector((state) => state);
 
   const copyToClipBoard = () => {
-    // Find the code block
-    const code = document.getElementById('code');
+    setBtnDisabled(true);
+
+    function getOriginalBtnText() {
+      return setTimeout(() => {
+        if (copyBtnRef.current) {
+          copyBtnRef.current.innerText = t('copyButton');
+          setBtnDisabled(false);
+        }
+      }, 2000);
+    }
 
     // Copy code to clipboard
-    navigator.clipboard.writeText(code!.innerText);
-
-    // Find the copy button
-    const btn = document.getElementById('copyBtn');
-
-    // Safety check..
-    if (btn) {
-      // Set text and set it back to original after 1.5s
-      btn.innerText = 'Kopioitu!';
-      setTimeout(() => {
-        btn.innerText = 'Kopioi leikepöydälle';
-      }, 1500);
-    }
+    navigator.clipboard
+      .writeText(codeElemRef.current?.innerText || '')
+      .then(() => {
+        if (copyBtnRef.current) {
+          copyBtnRef.current.innerText = t('copied');
+        }
+        getOriginalBtnText();
+      })
+      .catch(() => {
+        if (copyBtnRef.current) {
+          copyBtnRef.current.innerText = t('errorWhenCopying');
+        }
+        getOriginalBtnText();
+      });
   };
 
   return (
@@ -41,12 +53,12 @@ const EmbedCode = () => {
         onClick={() => setOpen(!open)}
         startIcon={<ShareIcon />}
       >
-        <Typography>{`${t('share')}`}</Typography>
+        <Typography>{t('share')}</Typography>
       </Button>
       {open && (
         <div className={styles.advancedSettings}>
           <div className={styles.innerContainer}>
-            <div id={'code'}>
+            <div ref={codeElemRef}>
               <pre>
                 {`<script src="${process.env.REACT_APP_EMBED_URL}" type="text/javascript" defer></script>\n`}
                 {`<div\n`}
@@ -79,8 +91,10 @@ const EmbedCode = () => {
               variant={'contained'}
               id={'copyBtn'}
               onClick={() => copyToClipBoard()}
+              ref={copyBtnRef}
+              disabled={btnDisabled}
             >
-              {`${t('copyButton')}`}
+              {t('copyButton')}
             </Button>
           </div>
           <div className={styles.advancedSettings}>
