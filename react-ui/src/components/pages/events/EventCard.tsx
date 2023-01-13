@@ -60,7 +60,7 @@ const EventCard = ({
           },
         }}
       >
-        <Link to={`/eventlist/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={`/event/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
           <CardMedia
             sx={{ width: 350, height: 190 }}
             component="img"

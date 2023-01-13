@@ -36,7 +36,7 @@ const List = ({
 
   const imageUrl = images[0]?.url ? images[0]?.url : defaultImage2;
   return (
-    <Link to={`/eventlist/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+    <Link to={`/event/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
       <Card
         className={classes.root}
         sx={{
