@@ -15,7 +15,7 @@ import {
   vinkTheme,
   whiteLabelTheme,
 } from './styles/styles';
-import './translations/i18n';
+import TranslationProvider from './translations/TranslationProvider';
 
 export interface AppProps {
   data: Record<string, string>;
@@ -84,18 +84,16 @@ const App = (props: AppProps) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <HashRouter hashType={'noslash'}>
-        <Switch>
-          <Route exact path={'/'}>
-            <EventList />
-          </Route>
-          <Route path="/eventlist/:id" component={EventContent} />
-          <Route path="/hobbies" />
-          <Route path="/educations" />
-        </Switch>
-      </HashRouter>
-    </ThemeProvider>
+    <TranslationProvider selectedLanguage={data.languageselection}>
+      <ThemeProvider theme={theme}>
+        <HashRouter hashType={'noslash'}>
+          <Switch>
+            <Route exact path={'/'} component={EventList} />
+            <Route path="/event/:id" component={EventContent} />
+          </Switch>
+        </HashRouter>
+      </ThemeProvider>
+    </TranslationProvider>
   );
 };
 

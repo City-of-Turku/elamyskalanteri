@@ -1,13 +1,13 @@
 import { makeStyles, useTheme } from '@mui/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import 'react-day-picker/dist/style.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/rtkHooks';
 import filterSlice from '../../redux/slices/filterSlice';
-import i18n from '../../translations/i18n';
+import { CurrentLanguageContext } from '../../translations/TranslationProvider';
 import './CalendarStyle.css';
 const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
@@ -21,6 +21,7 @@ const CalendarContainer = () => {
     },
   });
 
+  const currentLang = useContext(CurrentLanguageContext);
   const classes = useStyles();
   const { filters } = useAppSelector((state) => state);
   const [date, setDate] = useState<any>([filters.startTime, filters.endTime]);
@@ -57,7 +58,7 @@ const CalendarContainer = () => {
         className={classes.root}
         onChange={setDate}
         value={date}
-        locale={i18n.language}
+        locale={currentLang}
         selectRange
       />
     </>
