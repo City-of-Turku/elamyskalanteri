@@ -4,17 +4,10 @@ import React, { useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import EventContent from './components/pages/events/EventContent';
 import EventList from './components/pages/events/EventList';
+import { getTheme } from './functions/getTheme';
 import { useAppDispatch } from './hooks/rtkHooks';
 import filterSlice from './redux/slices/filterSlice';
 import optionsSlice from './redux/slices/optionsSlice';
-import {
-  kaarinaTheme,
-  naantaliTheme,
-  raisioTheme,
-  taiTheme,
-  vinkTheme,
-  whiteLabelTheme,
-} from './styles/styles';
 import TranslationProvider from './translations/TranslationProvider';
 
 export interface AppProps {
@@ -60,33 +53,9 @@ const App = (props: AppProps) => {
     setLinkText(data.linktext);
   });
 
-  let theme;
-  switch (data.style) {
-    case 'whitelabel':
-      theme = whiteLabelTheme;
-      break;
-    case 'vink':
-      theme = vinkTheme;
-      break;
-    case 'naantali':
-      theme = naantaliTheme;
-      break;
-    case 'raisio':
-      theme = raisioTheme;
-      break;
-    case 'kaarina':
-      theme = kaarinaTheme;
-      break;
-    case 'tai':
-      theme = taiTheme;
-      break;
-    default:
-      theme = vinkTheme;
-  }
-
   return (
     <TranslationProvider selectedLanguage={data.languageselection}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={getTheme(data.theme)}>
         <HashRouter hashType={'noslash'}>
           <Switch>
             <Route exact path={'/'} component={EventList} />
