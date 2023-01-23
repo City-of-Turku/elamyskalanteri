@@ -1,16 +1,18 @@
-const finalhandler = require('finalhandler');
-const http = require('http');
-const serveStatic = require('serve-static');
+const express = require('express');
+const path = require('path');
 
-// Serve up . folder
-const serve = serveStatic('public', { index: ['index.html'] });
+const app = express();
 
-// Create server
-const server = http.createServer(function onRequest (req, res) {
-    serve(req, res, finalhandler(req, res));
-})
+app.use(express.static('public'));
 
-// Listen
-server.listen(8001, () => {
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.get('/events/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/event_detail.html'));
+});
+
+const server = app.listen(8001, () => {
     console.log("Listening on port 8001");
 });
