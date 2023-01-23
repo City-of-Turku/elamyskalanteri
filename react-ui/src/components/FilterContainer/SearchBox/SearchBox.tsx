@@ -1,6 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
 import FormGroup from '@mui/material/FormGroup';
-// import { makeStyles } from '@mui/styles';
 import TextField from '@mui/material/TextField';
 import { useTheme } from '@mui/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
@@ -23,17 +22,6 @@ import styles from './SearchBox.module.css';
 
 const SearchBox = () => {
   const theme: any = useTheme();
-  // const useStyles = makeStyles({
-  //   input: {
-  //     '&::placeholder': {
-  //       color: theme.palette.primary.dark,
-  //       fontFamily: theme.palette.typography,
-  //       fontWeight: 900,
-  //     },
-  //   },
-  // });
-  // const classes = useStyles();
-
   const { t } = useTranslation();
 
   // debouncing timeout in ms
@@ -49,16 +37,18 @@ const SearchBox = () => {
   // Destruct slice's actions to const
   const { setSearch } = bindActionCreators(filterSlice.actions, dispatch);
 
-  const [searchTerm, setSearchTerm] = useState(filters.search);
+  const [searchTerm, setSearchTerm] = useState(filters.search || '');
 
   useEffect(() => {
-    setSearchTerm(filters.search);
+    if (filters.search) {
+      setSearchTerm(filters.search);
+    }
   }, [filters.search]);
 
   useEffect(() => {
     const updateSearchTerm = () => {
       // If the search term is at least the length of specified chars, dispatch it
-      if (searchTerm.length && searchTerm.length >= MIN_CHARS) {
+      if (searchTerm && searchTerm.length >= MIN_CHARS) {
         // Search does not like whitespace at either end so trim those away
         setSearch(searchTerm.trim());
       }
@@ -77,7 +67,7 @@ const SearchBox = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchTerm]);
+  }, [searchTerm, setSearch]);
 
   return (
     <div>

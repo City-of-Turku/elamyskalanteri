@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });

@@ -11,13 +11,13 @@ const LinkContainer = () => {
   const dispatch = useAppDispatch();
   const { setLinkContainer, setLinkText } = bindActionCreators(filterSlice.actions, dispatch);
 
-  const handleLinkChange = (e: any) => {
+  const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.trim().length >= 0) {
       setLinkContainer(e.target.value.trim());
     }
   };
 
-  const handleTextChange = (e: any) => {
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.trim().length >= 0) {
       setLinkText(e.target.value.trim());
     }
@@ -26,19 +26,20 @@ const LinkContainer = () => {
   return (
     <div>
       <FormControl sx={{ padding: 2 }}>
-        <p>{`${t('showLink')}`}</p>
+        <p>{t('showLink')}</p>
         <div>
           <TextField
-            onChange={(event) => handleLinkChange(event)}
+            onChange={handleLinkChange}
             id="outlined-basic"
-            label={`${t('siteUrl')}`}
+            label={t('siteUrl')}
             variant="outlined"
             margin="normal"
+            sx={{ marginRight: 2 }}
           />
           <TextField
-            onChange={(event) => handleTextChange(event)}
+            onChange={handleTextChange}
             id="outlined-basic"
-            label={`${t('linkText')}`}
+            label={t('linkText')}
             variant="outlined"
             margin="normal"
           />

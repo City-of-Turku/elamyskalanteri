@@ -1,6 +1,7 @@
 import { makeStyles, useTheme } from '@mui/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { useContext, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -9,7 +10,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/rtkHooks';
 import filterSlice from '../../redux/slices/filterSlice';
 import { CurrentLanguageContext } from '../../translations/TranslationProvider';
 import './CalendarStyle.css';
-const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
 
 const CalendarContainer = () => {
@@ -34,7 +34,7 @@ const CalendarContainer = () => {
       setStartTime(dayjs(date[0]).format('YYYY-MM-DD'));
       setEndTime(dayjs(date[1]).format('YYYY-MM-DD'));
     }
-  }, [date]);
+  }, [date, setEndTime, setStartTime]);
 
   useEffect(() => {
     if (date[0] !== null || date[1] !== null) {
@@ -50,7 +50,7 @@ const CalendarContainer = () => {
     const dateArray = [date1, date2];
 
     setDate(dateArray);
-  }, [filters.startTime, filters.endTime]);
+  }, [filters.startTime, filters.endTime, date]);
 
   return (
     <>

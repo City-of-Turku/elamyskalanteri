@@ -1,3 +1,4 @@
+import { SvgIconComponent } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Icon } from '@mui/material';
 import Accordions from '@mui/material/Accordion';
@@ -9,8 +10,8 @@ import styles from './Accordion.module.css';
 
 interface IProps {
   title: string;
-  children: any;
-  icon: any;
+  children: React.ReactNode;
+  icon: SvgIconComponent;
 }
 
 const Accordion = ({ title, children, icon }: IProps) => {

@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
+import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -30,7 +31,6 @@ const EventList = (props: EventListProps) => {
   const options = useAppSelector((state) => state.options);
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const queryString = require('query-string');
 
   const { filters } = useAppSelector((state) => state);
   const {
@@ -52,12 +52,11 @@ const EventList = (props: EventListProps) => {
         setSearch(query.text);
       }
       if (Object.keys(query).includes('keywords')) {
-        const keywordArray = query.keywords.split(',');
+        const keywordArray = typeof query.keywords === 'string' ? query.keywords?.split(',') : [];
         setEventTypes(keywordArray);
       }
       if (Object.keys(query).includes('features')) {
-        const featureArray = query.features.split(',');
-        console.log('feature array: ', featureArray);
+        const featureArray = typeof query.features === 'string' ? query.features?.split(',') : [];
         setFeatures(featureArray);
       }
 
@@ -70,7 +69,8 @@ const EventList = (props: EventListProps) => {
       }
 
       if (Object.keys(query).includes('audiences')) {
-        const audienceArray = query.audiences.split(',');
+        const audienceArray =
+          typeof query.audiences === 'string' ? query.audiences?.split(',') : [];
         audienceArray.forEach((item: string) => addAudience(item));
       }
 

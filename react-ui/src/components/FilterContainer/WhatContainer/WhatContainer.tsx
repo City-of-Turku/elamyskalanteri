@@ -175,11 +175,12 @@ const WhatContainer = () => {
   }, [data, t]);
 
   useEffect(() => {
-    setTypeIdState(filters.typeId);
+    if (filters.typeId) {
+      setTypeIdState(filters.typeId);
+    }
   }, [filters.typeId]);
 
   useEffect(() => {
-    console.log({ organizer }, { prevOrganizer: prevOrganizerRef.current });
     if (organizer !== prevOrganizerRef.current) {
       if (prevOrganizerRef.current !== null) {
         removeEventTypes([prevOrganizerRef.current]);
@@ -211,33 +212,9 @@ const WhatContainer = () => {
             name="event-type-group"
             onChange={(e: any) => handleTypeIdChange(e)}
           >
-            <FormControlLabel
-              value="eventgeneral"
-              control={<Radio />}
-              label={
-                <Typography sx={{ fontFamily: 'forma-djr-micro, sans-serif' }}>
-                  {t('events')}
-                </Typography>
-              }
-            />
-            <FormControlLabel
-              value="eventhobbies"
-              control={<Radio />}
-              label={
-                <Typography sx={{ fontFamily: 'forma-djr-micro, sans-serif' }}>
-                  {t('hobbies')}
-                </Typography>
-              }
-            />
-            <FormControlLabel
-              value="eventcourse"
-              control={<Radio />}
-              label={
-                <Typography sx={{ fontFamily: 'forma-djr-micro, sans-serif' }}>
-                  {t('educations')}
-                </Typography>
-              }
-            />
+            <FormControlLabel value="eventgeneral" control={<Radio />} label={t('events')} />
+            <FormControlLabel value="eventhobbies" control={<Radio />} label={t('hobbies')} />
+            <FormControlLabel value="eventcourse" control={<Radio />} label={t('educations')} />
           </RadioGroup>
         </div>
 

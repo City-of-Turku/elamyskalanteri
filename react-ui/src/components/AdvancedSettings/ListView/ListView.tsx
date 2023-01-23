@@ -16,14 +16,15 @@ const ListView = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { setListView, setNumberOfView } = bindActionCreators(filterSlice.actions, dispatch);
-  const handleListViewChange = (e: any) => {
+
+  const handleListViewChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setListView(e.target.value);
     }
   };
 
-  const handleNumOfView = (e: any) => {
-    if (e.target != null) {
+  const handleNumOfView = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target !== null) {
       setNumberOfView(e.target.value);
     }
   };
@@ -31,56 +32,55 @@ const ListView = () => {
   return (
     <div>
       <FormControl sx={{ padding: 2 }}>
-        <p>{`${t('listView')}`}</p>
+        <p>{t('listView')}</p>
         <RadioGroup
           aria-labelledby="radio-buttons-group-label"
           defaultValue="grid"
           name="radio-buttons-group"
+          onChange={handleListViewChange}
         >
           <div className={styles.listGroup}>
             <FormControlLabel
               value="grid"
               control={<Radio />}
-              label={`${t('grid')}`}
-              onChange={(event) => handleListViewChange(event)}
+              label={t('grid')}
             />
             <ViewModuleIcon />
+          </div>
+          <div className={styles.listGroup}>
             <FormControlLabel
-              sx={{ paddingLeft: 2 }}
               value="vertical"
               control={<Radio />}
-              label={`${t('verticalList')}`}
-              onChange={(event) => handleListViewChange(event)}
+              label={t('verticalList')}
             />
             <ViewListIcon />
+          </div>
+          <div className={styles.listGroup}>
             <FormControlLabel
-              sx={{ paddingLeft: 2 }}
               value="horizontal"
               control={<Radio />}
-              label={`${t('horizontalList')}`}
-              onChange={(event) => handleListViewChange(event)}
+              label={t('horizontalList')}
             />
             <ViewColumnIcon />
           </div>
-
-          <TextField
-            onChange={(event) => handleNumOfView(event)}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              '& .MuiTextField-root': { width: '15ch' },
-            }}
-            type="number"
-            margin="normal"
-            InputProps={{
-              inputProps: {
-                max: 100,
-                min: 0,
-              },
-            }}
-            label={`${t('numberOfViews')}`}
-          />
         </RadioGroup>
+        <TextField
+          onChange={handleNumOfView}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            '& .MuiTextField-root': { width: '15ch' },
+          }}
+          type="number"
+          margin="normal"
+          InputProps={{
+            inputProps: {
+              max: 100,
+              min: 0,
+            },
+          }}
+          label={t('numberOfViews')}
+        />
       </FormControl>
     </div>
   );
