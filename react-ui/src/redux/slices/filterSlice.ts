@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { THEMES } from '../../constants';
+import { DEFAULT_LANGUAGE } from '../../translations/TranslationProvider';
 
 interface filterState {
   eventTypes: string[];
@@ -16,7 +18,7 @@ interface filterState {
   typeId: string | null;
   embedTitle: string;
   embedDesc: string;
-  style: string;
+  theme: string;
   listView: string;
   viewNum: number | null;
   searchCriteria: boolean | null;
@@ -25,7 +27,7 @@ interface filterState {
   linkText: string;
 }
 
-const initialState = {
+const initialState: filterState = {
   eventTypes: [],
   eventFeatures: [],
   audiences: [],
@@ -33,17 +35,17 @@ const initialState = {
   bbox: { north: null, east: null, south: null, west: null },
   startTime: null,
   endTime: null,
-  typeId: null,
+  typeId: '',
   embedTitle: '',
   embedDesc: '',
-  style: '',
-  listView: '',
+  theme: THEMES.VINK,
+  listView: 'grid',
   viewNum: null,
-  searchCriteria: true,
-  languageSelection: '',
+  searchCriteria: false,
+  languageSelection: DEFAULT_LANGUAGE,
   linkContainer: '',
   linkText: '',
-} as filterState;
+};
 
 export const filterSlice = createSlice({
   name: 'event',
@@ -99,8 +101,8 @@ export const filterSlice = createSlice({
     setEmbedDesc: (state, action) => {
       state.embedDesc = action.payload;
     },
-    setStyle: (state, action) => {
-      state.style = action.payload;
+    setTheme: (state, action) => {
+      state.theme = action.payload;
     },
     setListView: (state, action) => {
       state.listView = action.payload;

@@ -10,8 +10,8 @@ import LanguageSelect from './LanguageSelect/LanguageSelect';
 import LinkContainer from './LinkContainer/LinkContainer';
 import ListView from './ListView/ListView';
 import SearchCriteria from './SearchCriteria/SearchCriteria';
-import Style from './Style/Style';
 import TextFields from './TextFields/TextFields';
+import Theme from './Theme/Theme';
 
 const AdvancedSettings = () => {
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ const AdvancedSettings = () => {
         </AccordionSummary>
         <AccordionDetails>
           <TextFields />
-          <Style />
+          <Theme />
           <ListView />
           <SearchCriteria />
           <LanguageSelect />

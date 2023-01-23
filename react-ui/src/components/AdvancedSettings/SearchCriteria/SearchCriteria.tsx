@@ -13,34 +13,23 @@ const SearchCriteria = () => {
   const dispatch = useAppDispatch();
   const { setSearchCriteria } = bindActionCreators(filterSlice.actions, dispatch);
 
-  const handleChange = (e: any) => {
-    if (e.target.checked) {
-      setSearchCriteria(e.target.value);
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchCriteria((event.target as HTMLInputElement).value);
   };
 
   return (
     <div>
       <FormControl sx={{ padding: 2 }}>
-        <p>{`${t('hideSearchCriteria')}`}</p>
+        <p>{`${t('showSearchComponent')}`}</p>
         <RadioGroup
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
-          defaultValue="true"
+          defaultValue="false"
           name="row-radio-buttons-group"
+          onChange={handleChange}
         >
-          <FormControlLabel
-            value="true"
-            control={<Radio />}
-            label={`${t('yes')}`}
-            onChange={(event) => handleChange(event)}
-          />
-          <FormControlLabel
-            value="false"
-            control={<Radio />}
-            label={`${t('no')}`}
-            onChange={(event) => handleChange(event)}
-          />
+          <FormControlLabel value="false" control={<Radio />} label={`${t('no')}`} />
+          <FormControlLabel value="true" control={<Radio />} label={`${t('yes')}`} />
         </RadioGroup>
       </FormControl>
     </div>

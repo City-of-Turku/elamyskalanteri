@@ -1,13 +1,14 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import { THEMES } from '../../constants';
 
 export interface OptionsState {
   title: string | null;
   description: string | null;
-  style: string;
+  theme: string;
   listView: string;
   numOfView: number | null;
-  hideSearchCriteria: boolean;
+  showSearch: boolean;
   languageSelection: string;
   linkContainer: string | null;
   linkText: string | null;
@@ -16,11 +17,11 @@ export interface OptionsState {
 const initialState: OptionsState = {
   title: null,
   description: null,
-  style: 'vinkTheme',
+  theme: THEMES.VINK,
   listView: 'grid',
   numOfView: null,
-  hideSearchCriteria: false,
   languageSelection: 'fi',
+  showSearch: false,
   linkContainer: null,
   linkText: null,
 };
@@ -35,8 +36,8 @@ export const optionsSlice = createSlice({
     setDescription: (state, action: PayloadAction<string | null>) => {
       state.description = action.payload;
     },
-    setStyle: (state, action: PayloadAction<string>) => {
-      state.style = action.payload;
+    setTheme: (state, action: PayloadAction<string>) => {
+      state.theme = action.payload;
     },
     setListView: (state, action: PayloadAction<string>) => {
       state.listView = action.payload;
@@ -44,8 +45,8 @@ export const optionsSlice = createSlice({
     setNumOfView: (state, action: PayloadAction<number | null>) => {
       state.numOfView = action.payload;
     },
-    setHideSearchCriteria: (state, action: PayloadAction<boolean>) => {
-      state.hideSearchCriteria = action.payload;
+    setShowSearch: (state, action: PayloadAction<boolean>) => {
+      state.showSearch = action.payload;
     },
     setLanguageSelection: (state, action: PayloadAction<string>) => {
       state.languageSelection = action.payload;
@@ -60,6 +61,6 @@ export const optionsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-//export const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria } = optionsSlice.actions
+//export const { setTitle, setDescription, setTheme, setListView, setNumOfView, setShowSearch } = optionsSlice.actions
 
 export default optionsSlice;

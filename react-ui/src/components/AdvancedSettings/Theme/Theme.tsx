@@ -8,14 +8,14 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
 
-const Style = () => {
+const Theme = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setStyle } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setTheme } = bindActionCreators(filterSlice.actions, dispatch);
 
   const handleChange = (e: any) => {
     if (e.target.checked) {
-      setStyle(e.target.value);
+      setTheme(e.target.value);
     }
   };
 
@@ -68,4 +68,4 @@ const Style = () => {
   );
 };
 
-export default Style;
+export default Theme;

@@ -283,7 +283,7 @@ const WhatContainer = () => {
                 style={{ width: '250px' }}
                 value={audience.yso}
                 onChange={(e: any) => handleAudienceChange(e)}
-                checked={filters.audiences.includes(audience.yso)}
+                checked={filters.audiences?.includes(audience.yso)}
               />
             ))}
           </FormGroup>
