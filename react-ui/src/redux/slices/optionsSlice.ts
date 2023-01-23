@@ -1,6 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { THEMES } from '../../constants';
+import { DEFAULT_LANGUAGE } from '../../translations/TranslationProvider';
 
 export interface OptionsState {
   title: string | null;
@@ -20,8 +21,8 @@ const initialState: OptionsState = {
   theme: THEMES.VINK,
   listView: 'grid',
   numOfView: null,
-  languageSelection: 'fi',
   showSearch: false,
+  languageSelection: DEFAULT_LANGUAGE,
   linkContainer: null,
   linkText: null,
 };
