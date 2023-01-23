@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import App from './App';
 import { store as reduxStore } from './redux/store';
+import { appDataAttributes } from './types';
 
 type IsolatedAppProps = {
-  data: Record<string, string>;
+  data: appDataAttributes;
 };
 
 class IsolatedApp extends Component<IsolatedAppProps> {

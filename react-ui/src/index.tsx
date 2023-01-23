@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import IsolatedApp from './IsolatedApp';
 import reportWebVitals from './reportWebVitals';
+import { appDataAttributes } from './types';
 
 const elements = document.querySelectorAll('.event-calendar-embed');
 
@@ -10,19 +11,7 @@ const elements = document.querySelectorAll('.event-calendar-embed');
 elements.forEach((currentElement) => {
   if (!(currentElement instanceof HTMLElement)) return;
 
-  const data: Record<string, string> = JSON.parse(JSON.stringify(currentElement.dataset));
-
-  // const data: Record<string, string> = Object.fromEntries(
-  //   Object.keys(currentElement.dataset)
-  //     .filter(key => {
-  //       console.log('key', key);
-  //       return currentElement.dataset[key] !== undefined
-  //     })
-  //     .map((key) => {
-  //       console.log('currentElement.dataset[key]', currentElement.dataset[key]);
-  //       return [[key], currentElement.dataset[key]]
-  //     })
-  // );
+  const data: appDataAttributes = JSON.parse(JSON.stringify(currentElement.dataset));
 
   ReactDOM.render(
     <React.StrictMode>

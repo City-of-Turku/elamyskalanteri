@@ -4,18 +4,21 @@ import React, { useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import EventContent from './components/pages/events/EventContent';
 import EventList from './components/pages/events/EventList';
+import { checkUsedAttributes } from './functions/checkUsedAttributes';
 import { getTheme } from './functions/getTheme';
 import { useAppDispatch } from './hooks/rtkHooks';
 import filterSlice from './redux/slices/filterSlice';
 import optionsSlice from './redux/slices/optionsSlice';
 import TranslationProvider from './translations/TranslationProvider';
+import { appDataAttributes } from './types';
 
-export interface AppProps {
-  data: Record<string, string>;
-}
+type AppProps = {
+  data: appDataAttributes;
+};
 
 const App = (props: AppProps) => {
   const dispatch = useAppDispatch();
+  const { data } = props;
   const {
     setTitle,
     setDescription,
@@ -36,7 +39,8 @@ const App = (props: AppProps) => {
     // addAudience,
     setTypeId,
   } = bindActionCreators(filterSlice.actions, dispatch);
-  const data = props.data;
+
+  checkUsedAttributes(data);
 
   useEffect(() => {
     setEventTypes([data.keywords]);
