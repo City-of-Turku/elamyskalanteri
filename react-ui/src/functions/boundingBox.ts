@@ -60,9 +60,6 @@ export const getCoords = (pos: IPos, d: number): ICoords => {
       Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2W),
     );
 
-  //console.log("original: ", pos.coords.latitude, pos.coords.longitude)
-  //console.log("N: ",rad2Deg(lat2N), " E: ", rad2Deg(lng2E ), " S: ", rad2Deg(lat2S), " W: ", rad2Deg(lng2W))
-
   return {
     west: rad2Deg(lng2W),
     south: rad2Deg(lat2S),
