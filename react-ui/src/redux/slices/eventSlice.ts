@@ -1,19 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { GetEventResponse } from "../types/Event";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  eventID: "",
-}
+  eventID: '',
+};
 
 const eventSlice = createSlice({
-  name: "events",
+  name: 'events',
   initialState,
   reducers: {
     setEventID: (state, action) => {
-      state.eventID = action.payload
-    }
-  }
+      state.eventID = action.payload;
+    },
+  },
 });
 
 export const { setEventID } = eventSlice.actions;
-export default eventSlice
+export default eventSlice;

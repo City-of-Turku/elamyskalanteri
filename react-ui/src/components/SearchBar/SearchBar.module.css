@@ -1,61 +1,59 @@
 .searchBar {
-    position: absolute;
-    top: 95%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 58px;
-    background: white;
-    box-sizing: border-box;
-    border-radius: 29px;
-    border: 6px solid white;
-    padding: 5px;
-    width: 370px;
-    /* cursor: pointer; */
-    box-shadow: 0px 20px 52px rgba(25, 55, 115, 0.2);
-
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 58px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 29px;
+  border: 6px solid white;
+  padding: 5px;
+  width: 370px;
+  /* cursor: pointer; */
+  box-shadow: 0px 20px 52px rgba(25, 55, 115, 0.2);
 }
 
 .searchInput {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 45px;
-    line-height: 30px;
-    outline: 0;
-    border: 0;
-    font-size: 1em;
-    border-radius: 20px;
-    padding: 0 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
 }
 
 .searchInput::placeholder {
-    font-family: 'halogen';
-    color: #193773;
-    font-size: 14px;
-    letter-spacing: 1;
-    font-weight: 900;
+  font-family: 'halogen', sans-serif;
+  color: #193773;
+  font-size: 14px;
+  letter-spacing: 1;
+  font-weight: 900;
 }
 
 .searchIcon {
-    /* box-sizing: border-box; */
-    padding: 10px;
-    width: 45px;
-    height: 45px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 1.2em;
+  /* box-sizing: border-box; */
+  padding: 10px;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .searchBar .searchInput {
-    display: block;
+  display: block;
 }
 
-
 .searchBar .searchIcon {
-    background: #F26835;
-    color: white;
+  background: #f26835;
+  color: white;
 }

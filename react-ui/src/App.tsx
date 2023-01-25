@@ -1,90 +1,83 @@
-import { bindActionCreators } from "@reduxjs/toolkit";
-import { ThemeProvider } from "@mui/material/styles";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  HashRouter,
-} from "react-router-dom";
-import EventContent from "./components/pages/events/EventContent";
-import EventList from "./components/pages/events/EventList";
-import filterSlice from "./redux/slices/filterSlice";
-import optionsSlice from './redux/slices/optionsSlice'
-import { useAppDispatch, useAppSelector } from './hooks/rtkHooks';
-import {
-  whiteLabelTheme,
-  vinkTheme,
-  naantaliTheme,
-  raisioTheme,
-  kaarinaTheme,
-  taiTheme,
-} from "./styles/styles";
-import "./translations/i18n";
-import { useEffect } from "react";
+import { ThemeProvider } from '@mui/material/styles';
+import { bindActionCreators } from '@reduxjs/toolkit';
+import dayjs from 'dayjs';
+import React, { useEffect } from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import EventContent from './components/pages/events/EventContent';
+import EventList from './components/pages/events/EventList';
+import { checkUsedAttributes } from './functions/checkUsedAttributes';
+import { getTheme } from './functions/getTheme';
+import { useAppDispatch } from './hooks/rtkHooks';
+import filterSlice from './redux/slices/filterSlice';
+import optionsSlice from './redux/slices/optionsSlice';
+import TranslationProvider from './translations/TranslationProvider';
+import { appDataAttributes } from './types';
 
-export interface AppProps {
-  data: {
-    [key: string]: string;
-  };
-}
+type AppProps = {
+  data: appDataAttributes;
+};
 
 const App = (props: AppProps) => {
-  const dispatch = useAppDispatch()
-  const { setTitle, setDescription, setStyle, setListView, setNumOfView, setHideSearchCriteria, setLanguageSelection, setLinkContainer, setLinkText } = bindActionCreators(optionsSlice.actions, dispatch)
-  const { setSearch, setEventTypes, setFeatures, setStartTime, setEndTime, addAudience, setTypeId } = bindActionCreators(filterSlice.actions, dispatch)
-  const data = props.data;
+  const dispatch = useAppDispatch();
+  const { data } = props;
+  const {
+    setDescription,
+    setLanguageSelection,
+    setLinkContainer,
+    setLinkText,
+    setListView,
+    setNumOfView,
+    setShowSearch,
+    setTheme,
+    setTitle,
+  } = bindActionCreators(optionsSlice.actions, dispatch);
+  const {
+    setAudience,
+    setEndTime,
+    setEventTypes,
+    setFeatures,
+    setSearch,
+    setStartTime,
+    setTypeId,
+  } = bindActionCreators(filterSlice.actions, dispatch);
+
+  checkUsedAttributes(data);
 
   useEffect(() => {
-    setTypeId(data.typeid);
-    setSearch(data.search);
-    setTitle(data.title);
+    setAudience(data.audience ? [data.audience] : []);
     setDescription(data.description);
-    setStyle(data.style);
-    setListView(data.listview);
-    setNumOfView(isNaN(parseInt(data.numofview)) ? null : parseInt(data.numofview));
-    setHideSearchCriteria(data.hidesearchcriteria === "true" ? true : false);
-    setLanguageSelection(data.languageselection);
-    setLinkContainer(data.linkcontainer);
-    setLinkText (data.linktext);
-   })
-
-  let theme;
-  switch(data.style) {
-    case "whitelabel":
-      theme = whiteLabelTheme
-      break
-    case "vink":
-      theme = vinkTheme
-      break
-    case "naantali":
-      theme = naantaliTheme
-      break
-    case "raisio":
-      theme = raisioTheme
-      break
-    case "kaarina":
-      theme = kaarinaTheme
-      break
-    case "tai":
-      theme = taiTheme
-      break
-    default:
-      theme = vinkTheme
-  }
+    setEndTime(data.timeEnd ? dayjs(data.timeEnd).format('YYYY-MM-DD') : null);
+    setEventTypes(data.keywords ? [data.keywords] : []);
+    setFeatures(data.features ? [data.features] : []);
+    setLanguageSelection(data.language);
+    setLinkContainer(data.linkUrl);
+    setLinkText(data.linkText);
+    setListView(data.layout);
+    setNumOfView(
+      isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
+    );
+    setSearch(data.search);
+    setShowSearch(data.showSearch === 'true' ? true : false);
+    setStartTime(data.timeStart ? dayjs(data.timeStart).format('YYYY-MM-DD') : null);
+    setTheme(data.theme);
+    setTitle(data.title);
+    setTypeId(data.typeId);
+    // TODO
+    // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
+    // setshowEmbedTool(data.showEmbedTool === 'true' ? true : false);
+  });
 
   return (
-    <ThemeProvider theme={theme}>
-      <HashRouter hashType={"noslash"}>
-        <Switch>
-          <Route exact path={"/"}>
-            <EventList />
-          </Route>
-          <Route path="/eventlist/:id" component={EventContent} />
-          <Route path="/hobbies"  />
-          <Route path="/educations"  />
-        </Switch>
-      </HashRouter>
-    </ThemeProvider>
+    <TranslationProvider selectedLanguage={data.language}>
+      <ThemeProvider theme={getTheme(data.theme)}>
+        <HashRouter hashType={'noslash'}>
+          <Switch>
+            <Route exact path={'/'} component={EventList} />
+            <Route path="/event/:id" component={EventContent} />
+          </Switch>
+        </HashRouter>
+      </ThemeProvider>
+    </TranslationProvider>
   );
 };
 

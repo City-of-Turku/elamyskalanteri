@@ -1,17 +1,17 @@
 .title {
-    font-family: 'Forma DJR Micro' !important;
-    font-weight: 500;
+  font-family: 'Forma DJR Micro', sans-serif !important;
+  font-weight: 500;
 }
 
 .listGroup {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1200px) {
-    .listGroup {
-        display: flex;
-        flex-direction: column;
-    }
+  .listGroup {
+    display: flex;
+    flex-direction: column;
+  }
 }

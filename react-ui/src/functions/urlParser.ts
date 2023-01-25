@@ -3,40 +3,39 @@
  */
 
 export const parseQuery = (filters: any) => {
-  let validQueries: any[] = []
+  let validQueries: any[] = [];
 
   if (filters.search) {
-    validQueries = validQueries.concat(`text=${filters.search}`)
+    validQueries = validQueries.concat(`text=${filters.search}`);
   }
 
   if (filters.startTime) {
-    validQueries = validQueries.concat(`start_time=${filters.startTime}`)
+    validQueries = validQueries.concat(`start_time=${filters.startTime}`);
   }
 
   if (filters.endTime) {
-    validQueries = validQueries.concat(`end_time=${filters.endTime}`)
+    validQueries = validQueries.concat(`end_time=${filters.endTime}`);
   }
 
   if (filters.eventTypes.length) {
-    validQueries = validQueries.concat(`keywords=${filters.eventTypes.join(",")}`)
+    validQueries = validQueries.concat(`keywords=${filters.eventTypes.join(',')}`);
   }
 
   if (filters.eventFeatures.length) {
-    validQueries = validQueries.concat(`features=${filters.eventFeatures.join(",")}`)
+    validQueries = validQueries.concat(`features=${filters.eventFeatures.join(',')}`);
   }
 
   if (filters.audiences.length) {
-    validQueries = validQueries.concat(`audiences=${filters.audiences.join(",")}`)
+    validQueries = validQueries.concat(`audiences=${filters.audiences.join(',')}`);
   }
 
   if (filters.typeId) {
-    validQueries = validQueries.concat(`type_id=${filters.typeId}`)
+    validQueries = validQueries.concat(`type_id=${filters.typeId}`);
   }
 
   if (validQueries.length) {
-    return(`?${validQueries.join("&")}`)
+    return `?${validQueries.join('&')}`;
+  } else {
+    return '';
   }
-  else {
-    return("")
-  }
-}
+};

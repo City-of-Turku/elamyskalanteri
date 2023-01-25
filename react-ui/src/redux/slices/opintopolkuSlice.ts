@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  opintopolkuID: "",
-}
+  opintopolkuID: '',
+};
 
 const opintopolkuSlice = createSlice({
-  name: "events",
+  name: 'events',
   initialState,
   reducers: {
     setOpintopolkuID: (state, action) => {
-      state.opintopolkuID = action.payload
-    }
-  }
+      state.opintopolkuID = action.payload;
+    },
+  },
 });
 
 export const { setOpintopolkuID } = opintopolkuSlice.actions;
-export default opintopolkuSlice
+export default opintopolkuSlice;
