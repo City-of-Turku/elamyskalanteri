@@ -8,6 +8,7 @@
   "copyButton": "Kopioi leikepöydälle",
   "educations": "koulutukset",
   "errorWhenCopying": "Virhe kopioinnissa",
+  "errorWhileLoadingEvents": "Tapahtumien latauksessa tapahtui virhe",
   "eventType": "Tapahtuman tyyppi",
   "events": "tapahtumat",
   "feature": "ominaisuus",

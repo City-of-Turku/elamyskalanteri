@@ -9,7 +9,7 @@ export interface OptionsState {
   theme: string;
   listView: string;
   numOfView: number | null;
-  showSearch: boolean;
+  showSearch: boolean | null;
   languageSelection: string;
   linkContainer: string | null;
   linkText: string | null;
@@ -21,7 +21,7 @@ const initialState: OptionsState = {
   theme: THEMES.VINK,
   listView: 'grid',
   numOfView: null,
-  showSearch: false,
+  showSearch: null,
   languageSelection: DEFAULT_LANGUAGE,
   linkContainer: null,
   linkText: null,
@@ -62,6 +62,16 @@ export const optionsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-//export const { setTitle, setDescription, setTheme, setListView, setNumOfView, setShowSearch } = optionsSlice.actions
+export const {
+  setTitle,
+  setDescription,
+  setTheme,
+  setListView,
+  setNumOfView,
+  setShowSearch,
+  setLanguageSelection,
+  setLinkContainer,
+  setLinkText,
+} = optionsSlice.actions;
 
 export default optionsSlice;

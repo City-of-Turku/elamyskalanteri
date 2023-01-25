@@ -27,12 +27,11 @@ interface EventListProps {
 
 const EventList = (props: EventListProps) => {
   const theme: any = useTheme();
-  const { t, i18n } = useTranslation();
-  const options = useAppSelector((state) => state.options);
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const history = useHistory();
-
-  const { filters } = useAppSelector((state) => state);
+  const { typeId } = props;
+  const { filters, options, appState } = useAppSelector((state) => state);
   const {
     setSearch,
     setEventTypes,
@@ -43,88 +42,176 @@ const EventList = (props: EventListProps) => {
     setTypeId,
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
+  const { attributesLoaded } = appState;
+  const { listView, numOfView, showSearch } = options;
+  const shouldUpdateUrl = showSearch;
+  const allowPagination = showSearch;
 
+  // This useEffect is meant to update filters based on browser's query parameters in the URL.
+  // When the user lands on the page and query parameters are set, it will use those instead
+  // of the ones set as data-attributes
   useEffect(() => {
+    // Don't do anything if we are not supposed to update the URL or if the data attribute
+    // filters are not yet applied
+    if (shouldUpdateUrl === null || shouldUpdateUrl === undefined || !attributesLoaded) return;
+
+    // Check if first load is not yet done
     if (!firstLoadDone) {
+      // Early exit if shouldUpdateUrl is set as "false"
+      if (!shouldUpdateUrl) return setFirstLoadDone(true);
+
+      // Get query object from window location hash
       const query = queryString.parse(window.location.hash.replaceAll('?', ''));
 
-      if (Object.keys(query).includes('text')) {
+      const queryHasValue = (value: string): boolean => {
+        if (Object.keys(query).includes(value)) {
+          return true;
+        }
+        return false;
+      };
+
+      const arrayFromCommaList = (value: unknown): [] | string[] => {
+        if (typeof value === 'string') {
+          return value?.split(',');
+        }
+        return [];
+      };
+
+      if (queryHasValue('text')) {
         setSearch(query.text);
       }
-      if (Object.keys(query).includes('keywords')) {
-        const keywordArray = typeof query.keywords === 'string' ? query.keywords?.split(',') : [];
-        setEventTypes(keywordArray);
+      if (queryHasValue('keywords')) {
+        setEventTypes(arrayFromCommaList(query.keywords));
       }
-      if (Object.keys(query).includes('features')) {
-        const featureArray = typeof query.features === 'string' ? query.features?.split(',') : [];
-        setFeatures(featureArray);
+      if (queryHasValue('features')) {
+        setFeatures(arrayFromCommaList(query.features));
       }
-
-      if (Object.keys(query).includes('start_time')) {
+      if (queryHasValue('start_time')) {
         setStartTime(query.start_time);
       }
-
-      if (Object.keys(query).includes('end_time')) {
+      if (queryHasValue('end_time')) {
         setEndTime(query.end_time);
       }
-
-      if (Object.keys(query).includes('audiences')) {
-        const audienceArray =
-          typeof query.audiences === 'string' ? query.audiences?.split(',') : [];
+      if (queryHasValue('audiences')) {
+        const audienceArray = arrayFromCommaList(query.audiences);
         audienceArray.forEach((item: string) => addAudience(item));
       }
-
-      if (Object.keys(query).includes('type_id')) {
+      if (queryHasValue('type_id')) {
         setTypeId(query.type_id);
-      } else if (props.typeId) {
-        setTypeId(props.typeId);
+      } else if (typeId) {
+        setTypeId(typeId);
       }
 
       setFirstLoadDone(true);
     }
-  }, []);
+  }, [
+    addAudience,
+    firstLoadDone,
+    attributesLoaded,
+    setEndTime,
+    setEventTypes,
+    setFeatures,
+    setSearch,
+    setStartTime,
+    setTypeId,
+    shouldUpdateUrl,
+    typeId,
+  ]);
 
+  // Replace URL with new filters
   useEffect(() => {
-    if (!firstLoadDone) return;
-    history.push(parseQuery(filters));
-  }, [filters]);
+    // Wait until first load is done and data-attributes are in place.
+    // See if we should update the url
+    if (!firstLoadDone || !shouldUpdateUrl || !attributesLoaded) return;
+    history.replace(parseQuery(filters));
+  }, [firstLoadDone, filters, history, attributesLoaded, shouldUpdateUrl]);
 
   const [page, setPage] = useState(1);
-  const { data, error, isLoading, isFetching } = useEventsQuery({
-    page: page,
-    searchTerm: filters.search || '',
-    keyword: filters.eventTypes,
-    features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join('&') : '',
-    bbox: filters.bbox.north ? Object.values(filters.bbox).join(',') : '',
-    start_time: filters.startTime ? dayjs(filters.startTime).format('YYYY-MM-DD') : '',
-    end_time: filters.endTime ? dayjs(filters.endTime).format('YYYY-MM-DD') : '',
-    audiences: filters.audiences,
-    type_id: filters.typeId ? filters.typeId : '',
-  });
+  const {
+    data: events,
+    error,
+    isLoading,
+    isFetching,
+  } = useEventsQuery(
+    {
+      page: page,
+      searchTerm: filters.search || '',
+      keyword: filters.eventTypes,
+      features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join('&') : '',
+      bbox: filters.bbox.north ? Object.values(filters.bbox).join(',') : '',
+      start_time: filters.startTime ? dayjs(filters.startTime).format('YYYY-MM-DD') : '',
+      end_time: filters.endTime ? dayjs(filters.endTime).format('YYYY-MM-DD') : '',
+      audiences: filters.audiences,
+      type_id: filters.typeId ? filters.typeId : '',
+    },
+    { skip: !firstLoadDone },
+  );
 
+  let visibleEvents = events?.data;
+  const hasRestrictedAmountOfResults =
+    visibleEvents && numOfView && visibleEvents.length > numOfView;
+
+  if (hasRestrictedAmountOfResults) {
+    visibleEvents = events?.data.slice(0, numOfView);
+  }
+
+  const eventsMeta = events?.meta;
+  const hasNextPage = !!eventsMeta?.next;
+  const hasEvents = !!visibleEvents && !!visibleEvents.length;
+
+  // Reset page number back to #1 when updating any filters
   useEffect(() => {
     setPage(1);
-  }, [filters.search, filters.eventTypes]);
+  }, [filters]);
 
-  let listComponent;
-  switch (options.listView) {
+  let renderListComponent = <GridList events={visibleEvents} />;
+  switch (listView) {
     case 'grid':
-      listComponent = <GridList events={data?.data} />;
+      renderListComponent = <GridList events={visibleEvents} />;
       break;
     case 'vertical':
-      listComponent = <VerticalList events={data?.data} />;
+      renderListComponent = <VerticalList events={visibleEvents} />;
       break;
     case 'horizontal':
-      listComponent = <HorizontalList events={data?.data} />;
+      renderListComponent = <HorizontalList events={visibleEvents} />;
       break;
-    default:
-      listComponent = <GridList events={data?.data} />;
   }
+
+  const renderSpinner = (
+    <Box>
+      <CircularProgress />
+    </Box>
+  );
+
+  const renderLoadMoreButton = (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '8px 0 24px 0',
+      }}
+    >
+      <Button
+        onClick={() => setPage(page + 1)}
+        sx={{
+          backgroundColor: theme.palette.primary.dark,
+          '&:hover': { backgroundColor: theme.palette.primary.main },
+        }}
+        variant="contained"
+      >
+        {t('loadMore')}
+      </Button>
+    </div>
+  );
+
+  const renderError = <h2>{t('errorWhileLoadingEvents')}</h2>;
+
+  const renderNoResults = <h2>{t('noEventsFound')}</h2>;
 
   return (
     <Box sx={{ p: 2 }}>
       <Title />
-      {options.showSearch && (
+      {showSearch && (
         <>
           <FilterContainer />
           <EmbedCode />
@@ -140,31 +227,16 @@ const EventList = (props: EventListProps) => {
         container
       >
         {isLoading || isFetching ? (
-          <Box sx={{ position: 'absolute', left: '50%', top: '50%' }}>
-            <CircularProgress />
-          </Box>
+          renderSpinner
         ) : error ? (
-          <h2>{`${t('noEventsFound')}`}</h2>
+          renderError
+        ) : hasEvents ? (
+          <>
+            {renderListComponent}
+            {allowPagination && hasNextPage && renderLoadMoreButton}
+          </>
         ) : (
-          <div>
-            {listComponent}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                margin: '8px 0 24px 0',
-              }}
-            >
-              <Button
-                onClick={() => setPage(page + 1)}
-                sx={{
-                  backgroundColor: theme.palette.primary.dark,
-                  '&:hover': { backgroundColor: theme.palette.primary.main },
-                }}
-                variant="contained"
-              >{`${t('loadMore')}`}</Button>
-            </div>
-          </div>
+          renderNoResults
         )}
       </Grid>
       <LinkContainer />
