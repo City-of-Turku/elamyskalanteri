@@ -1,5 +1,5 @@
 import { Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
 
 const LocationContainer = () => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
   const { t } = useTranslation();

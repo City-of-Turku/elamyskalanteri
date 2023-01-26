@@ -3,21 +3,14 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { alpha, useTheme } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 import dayjs from 'dayjs';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { GetEventResponse } from '../../../redux/types/Event';
 import { date } from '../events/EventCard';
-
-const useStyles = makeStyles({
-  root: {
-    width: 990,
-  },
-});
 
 const List = ({
   id,
@@ -28,9 +21,7 @@ const List = ({
   images,
   end_time,
 }: GetEventResponse) => {
-  const classes = useStyles();
   const { i18n } = useTranslation();
-  const theme = useTheme();
   const defaultImage2 =
     'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
 
@@ -38,10 +29,10 @@ const List = ({
   return (
     <Link to={`/event/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
       <Card
-        className={classes.root}
         sx={{
           overflow: 'hidden',
           display: 'flex',
+          width: '100%',
           maxWidth: { xs: 465, md: 990 },
           m: 1,
           '&:hover': {

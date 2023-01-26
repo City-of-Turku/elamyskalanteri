@@ -4,7 +4,7 @@ import { Icon } from '@mui/material';
 import Accordions from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import styles from './Accordion.module.css';
 
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const Accordion = ({ title, children, icon }: IProps) => {
-  const theme: any = useTheme();
+  const theme = useTheme();
 
   return (
     <div>

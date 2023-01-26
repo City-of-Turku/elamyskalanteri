@@ -1,7 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import FormGroup from '@mui/material/FormGroup';
+import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import { useTheme } from '@mui/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +21,7 @@ import styles from './SearchBox.module.css';
  */
 
 const SearchBox = () => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const { t } = useTranslation();
 
   // debouncing timeout in ms

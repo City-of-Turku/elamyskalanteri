@@ -6,7 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 import dayjs from 'dayjs';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,13 +17,6 @@ import styles from './Event.module.css';
 require('dayjs/locale/fi');
 const date = 'dd DD.MM.YYYY | HH:mm';
 
-const useStyles = makeStyles({
-  root: {
-    width: 350,
-    height: 450,
-  },
-});
-
 const EventCard = ({
   id,
   name,
@@ -35,7 +27,6 @@ const EventCard = ({
   images,
 }: GetEventResponse) => {
   const { i18n } = useTranslation();
-  const classes = useStyles();
 
   const defaultImage = 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c';
   const defaultImage2 =
@@ -47,9 +38,10 @@ const EventCard = ({
     <Box sx={{ padding: 2 }}>
       <Card
         component="div"
-        className={classes.root}
         style={{ border: 'none', overflow: 'hidden' }}
         sx={{
+          width: 350,
+          height: 450,
           flexWrap: 'wrap',
           display: 'flex',
           maxWidth: { xs: 365, md: 990 },

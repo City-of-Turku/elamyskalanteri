@@ -1,5 +1,5 @@
 import { Chip, Typography } from '@mui/material';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import styles from './FilterChip.module.css';
 
@@ -16,7 +16,7 @@ interface IProps {
  */
 
 const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
-  const theme: any = useTheme();
+  const theme = useTheme();
 
   return (
     <>

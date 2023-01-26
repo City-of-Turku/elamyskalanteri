@@ -11,7 +11,6 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import 'dayjs/locale/fi';
@@ -22,14 +21,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useEventQuery } from '../../../redux/services/eventApi';
 import { date } from '../events/EventCard';
 
-const useStyles = makeStyles({
+const styles = {
   root: {
     border: 'none',
     boxShadow: 'none',
   },
   media: {
     maxWidth: '100%',
-    //height: 400,
     boxShadow: '0px 40px 40px -40px rgba(25, 55, 115, 0.4)',
     borderRadius: '2px',
   },
@@ -39,14 +37,13 @@ const useStyles = makeStyles({
     padding: '3px 8px 3px 8px',
     borderRadius: '2px',
   },
-});
+};
 
 const EventContent = () => {
   const { t, i18n } = useTranslation();
   const params: any = useParams();
   const history = useHistory();
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
-  const classes = useStyles();
   const defaultImage2 =
     'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
 
@@ -58,7 +55,7 @@ const EventContent = () => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <CardMedia
             style={{ width: 983 }}
-            className={classes.media}
+            sx={{ ...styles.media }}
             component="img"
             src={imageUrl}
             alt={data?.images[0]?.alt_text?.fi}
@@ -70,7 +67,7 @@ const EventContent = () => {
         p={4}
         justifyContent="center"
         component="div"
-        className={classes.root}
+        sx={{ ...styles.root }}
         spacing={8}
       >
         <Grid component="div" item xs={5} sx={{ display: 'inline-table' }}>
@@ -183,11 +180,11 @@ const EventContent = () => {
               </ul>
             </Typography>
             <Box sx={{ display: 'flex', paddingBottom: 25 }}>
-              <LinkIcon className={classes.box} sx={{ color: 'primary.dark' }} />
-              <WhatsAppIcon className={classes.box} sx={{ color: 'primary.dark' }} />
-              <FacebookIcon className={classes.box} sx={{ color: 'primary.dark' }} />
-              <TwitterIcon className={classes.box} sx={{ color: 'primary.dark' }} />
-              <LinkedInIcon className={classes.box} sx={{ color: 'primary.dark' }} />
+              <LinkIcon sx={{ ...styles.box, color: 'primary.dark' }} />
+              <WhatsAppIcon sx={{ ...styles.box, color: 'primary.dark' }} />
+              <FacebookIcon sx={{ ...styles.box, color: 'primary.dark' }} />
+              <TwitterIcon sx={{ ...styles.box, color: 'primary.dark' }} />
+              <LinkedInIcon sx={{ ...styles.box, color: 'primary.dark' }} />
             </Box>
           </Grid>
         </Grid>

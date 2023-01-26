@@ -2,7 +2,7 @@ import { FilterOptionsState } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import { matchSorter } from 'match-sorter';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import { Organization } from '../../../redux/types/Organizations';
 
 const OrganizationContainer = (props: any) => {
   const { t } = useTranslation();
-  const theme: any = useTheme();
+  const theme = useTheme();
 
   const { data } = useOrganizationsQuery();
 

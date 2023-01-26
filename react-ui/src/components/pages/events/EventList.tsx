@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import queryString from 'query-string';
@@ -26,7 +26,7 @@ interface EventListProps {
 }
 
 const EventList = (props: EventListProps) => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const history = useHistory();
