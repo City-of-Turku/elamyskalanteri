@@ -10,8 +10,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { GetEventResponse } from '../../../redux/types/Event';
-import default2 from '../../../svg/default1.svg';
+import { Event } from '../../../types';
 import styles from './Event.module.css';
 
 require('dayjs/locale/fi');
@@ -25,7 +24,7 @@ const EventCard = ({
   end_time,
   provider,
   images,
-}: GetEventResponse) => {
+}: Event) => {
   const { i18n } = useTranslation();
 
   const defaultImage = 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c';

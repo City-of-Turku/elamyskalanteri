@@ -9,18 +9,10 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { GetEventResponse } from '../../../redux/types/Event';
+import { Event } from '../../../types';
 import { date } from '../events/EventCard';
 
-const List = ({
-  id,
-  name,
-  short_description,
-  start_time,
-  provider,
-  images,
-  end_time,
-}: GetEventResponse) => {
+const List = ({ id, name, short_description, start_time, provider, images, end_time }: Event) => {
   const { i18n } = useTranslation();
   const defaultImage2 =
     'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
