@@ -5,7 +5,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { CardMedia } from '@mui/material';
+import { CardMedia, CircularProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -17,7 +17,7 @@ import 'dayjs/locale/fi';
 import 'dayjs/locale/sv';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEventQuery } from '../../../redux/services/eventApi';
 import { date } from '../events/EventCard';
 
@@ -42,12 +42,23 @@ const styles = {
 const EventContent = () => {
   const { t, i18n } = useTranslation();
   const params: any = useParams();
-  const history = useHistory();
   const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
   const defaultImage2 =
     'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
 
   const imageUrl = data?.images[0]?.url ? data?.images[0]?.url : defaultImage2;
+
+  if (isLoading || isFetching) {
+    return (
+      <Box sx={{ position: 'relative', left: '50%' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (!isLoading && !isFetching && error) {
+    return <p>Error!</p>;
+  }
 
   return (
     <div>
