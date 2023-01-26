@@ -297,11 +297,7 @@ const WhatContainer = () => {
           </FormGroup>
         </div>
         <div className={styles.rowWrap}>
-          <OrganizationContainer
-            onChange={(newId: string | null) => {
-              handleOrganizerChange(newId);
-            }}
-          />
+          <OrganizationContainer onChange={(newId) => handleOrganizerChange(newId)} />
         </div>
       </Accordion>
     </div>
