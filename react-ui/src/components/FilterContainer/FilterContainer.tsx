@@ -1,5 +1,5 @@
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import CalendarContainer from '../Calendar/CalendarContainer';
@@ -9,7 +9,7 @@ import WhatContainer from './WhatContainer/WhatContainer';
 import WhereContainer from './WhereContainer/WhereContainer';
 
 const FilterContainer = () => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const { t } = useTranslation();
 
   return (

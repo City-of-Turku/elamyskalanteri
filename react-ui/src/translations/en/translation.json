@@ -8,6 +8,7 @@
   "copyButton": "Copy to clipboard",
   "educations": "educations",
   "errorWhenCopying": "Error with clipboard",
+  "errorWhileLoadingEvents": "Error while loading events",
   "eventType": "Type of event",
   "events": "events",
   "feature": "feature",

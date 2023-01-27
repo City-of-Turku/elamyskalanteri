@@ -8,6 +8,7 @@
   "copyButton": "Kopiera till urklipp",
   "educations": "utbildningar",
   "errorWhenCopying": "Fel vid kopiering",
+  "errorWhileLoadingEvents": "Fel vid laddning av händelser",
   "eventType": "Händelsens typ",
   "events": "evenemang",
   "feature": "egenskap",

@@ -1,17 +1,21 @@
 import { FilterOptionsState } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormGroup from '@mui/material/FormGroup';
+import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import { useTheme } from '@mui/styles';
 import { matchSorter } from 'match-sorter';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useOrganizationsQuery } from '../../../redux/services/organizationApi';
-import { Organization } from '../../../redux/types/Organizations';
+import { Organization } from '../../../types';
 
-const OrganizationContainer = (props: any) => {
+type IProps = {
+  onChange: (newId: string | null) => void;
+};
+
+const OrganizationContainer = ({ onChange }: IProps): JSX.Element => {
   const { t } = useTranslation();
-  const theme: any = useTheme();
+  const theme = useTheme();
 
   const { data } = useOrganizationsQuery();
 
@@ -40,8 +44,11 @@ const OrganizationContainer = (props: any) => {
       <FormGroup row>
         <Autocomplete
           filterOptions={filterOptions}
-          onChange={(event: any, newValue: Organization | null) => {
-            props.onChange(newValue ? newValue.id : null);
+          onChange={(
+            event: React.SyntheticEvent<Element, Event>,
+            newValue: Organization | null,
+          ) => {
+            onChange(newValue ? newValue.id : null);
           }}
           disablePortal
           clearOnBlur

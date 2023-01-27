@@ -40,27 +40,15 @@ const ListView = () => {
           onChange={handleListViewChange}
         >
           <div className={styles.listGroup}>
-            <FormControlLabel
-              value="grid"
-              control={<Radio />}
-              label={t('grid')}
-            />
+            <FormControlLabel value="grid" control={<Radio />} label={t('grid')} />
             <ViewModuleIcon />
           </div>
           <div className={styles.listGroup}>
-            <FormControlLabel
-              value="vertical"
-              control={<Radio />}
-              label={t('verticalList')}
-            />
+            <FormControlLabel value="vertical" control={<Radio />} label={t('verticalList')} />
             <ViewListIcon />
           </div>
           <div className={styles.listGroup}>
-            <FormControlLabel
-              value="horizontal"
-              control={<Radio />}
-              label={t('horizontalList')}
-            />
+            <FormControlLabel value="horizontal" control={<Radio />} label={t('horizontalList')} />
             <ViewColumnIcon />
           </div>
         </RadioGroup>

@@ -48,7 +48,7 @@ const initialState: filterState = {
 };
 
 export const filterSlice = createSlice({
-  name: 'event',
+  name: 'filters',
   initialState,
   reducers: {
     setEventTypes: (state, action) => {

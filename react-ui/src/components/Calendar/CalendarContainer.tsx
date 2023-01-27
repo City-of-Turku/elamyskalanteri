@@ -1,9 +1,9 @@
-import { makeStyles, useTheme } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { useContext, useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
+import Calendar, { CalendarProps } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import 'react-day-picker/dist/style.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/rtkHooks';
@@ -12,17 +12,12 @@ import { CurrentLanguageContext } from '../../translations/TranslationProvider';
 import './CalendarStyle.css';
 dayjs.extend(customParseFormat);
 
+const StyledCalendar = styled(Calendar)<CalendarProps>(({ theme }) => ({
+  color: theme.palette.primary.dark,
+}));
+
 const CalendarContainer = () => {
-  const theme: any = useTheme();
-
-  const useStyles = makeStyles({
-    root: {
-      color: theme.palette.primary.dark,
-    },
-  });
-
   const currentLang = useContext(CurrentLanguageContext);
-  const classes = useStyles();
   const { filters } = useAppSelector((state) => state);
   const [date, setDate] = useState<any>([filters.startTime, filters.endTime]);
   const dispatch = useAppDispatch();
@@ -54,13 +49,7 @@ const CalendarContainer = () => {
 
   return (
     <>
-      <Calendar
-        className={classes.root}
-        onChange={setDate}
-        value={date}
-        locale={currentLang}
-        selectRange
-      />
+      <StyledCalendar onChange={setDate} value={date} locale={currentLang} selectRange />
     </>
   );
 };

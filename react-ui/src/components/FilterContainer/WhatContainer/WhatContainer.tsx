@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +32,7 @@ type Feature = {
 };
 
 const WhatContainer = () => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const { t, i18n } = useTranslation();
 
   const { data, isLoading } = useTopicsQuery();
@@ -297,11 +297,7 @@ const WhatContainer = () => {
           </FormGroup>
         </div>
         <div className={styles.rowWrap}>
-          <OrganizationContainer
-            onChange={(newId: string | null) => {
-              handleOrganizerChange(newId);
-            }}
-          />
+          <OrganizationContainer onChange={(newId) => handleOrganizerChange(newId)} />
         </div>
       </Accordion>
     </div>

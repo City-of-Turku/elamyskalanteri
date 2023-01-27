@@ -1,5 +1,5 @@
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Accordion from '../../Accordion/Accordion';
@@ -8,7 +8,7 @@ import LocationContainer from '../LocationContainer/LocationContainer';
 import styles from './WhereContainer.module.css';
 
 const WhereContainer = () => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const { t } = useTranslation();
 
   const places = [

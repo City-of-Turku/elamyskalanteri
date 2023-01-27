@@ -8,6 +8,7 @@ import EventList from './components/pages/events/EventList';
 import { checkUsedAttributes } from './functions/checkUsedAttributes';
 import { getTheme } from './functions/getTheme';
 import { useAppDispatch } from './hooks/rtkHooks';
+import { setAttributesLoaded } from './redux/slices/appStateSlice';
 import filterSlice from './redux/slices/filterSlice';
 import optionsSlice from './redux/slices/optionsSlice';
 import TranslationProvider from './translations/TranslationProvider';
@@ -44,11 +45,8 @@ const App = (props: AppProps) => {
   checkUsedAttributes(data);
 
   useEffect(() => {
-    setAudience(data.audience ? [data.audience] : []);
+    // Apply options
     setDescription(data.description);
-    setEndTime(data.timeEnd ? dayjs(data.timeEnd).format('YYYY-MM-DD') : null);
-    setEventTypes(data.keywords ? [data.keywords] : []);
-    setFeatures(data.features ? [data.features] : []);
     setLanguageSelection(data.language);
     setLinkContainer(data.linkUrl);
     setLinkText(data.linkText);
@@ -56,15 +54,24 @@ const App = (props: AppProps) => {
     setNumOfView(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
-    setSearch(data.search);
     setShowSearch(data.showSearch === 'true' ? true : false);
-    setStartTime(data.timeStart ? dayjs(data.timeStart).format('YYYY-MM-DD') : null);
     setTheme(data.theme);
     setTitle(data.title);
-    setTypeId(data.typeId);
     // TODO
     // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
     // setshowEmbedTool(data.showEmbedTool === 'true' ? true : false);
+
+    // Apply filters
+    setAudience(data.audience ? [data.audience] : []);
+    setEndTime(data.timeEnd ? dayjs(data.timeEnd).format('YYYY-MM-DD') : null);
+    setEventTypes(data.keywords ? [data.keywords] : []);
+    setFeatures(data.features ? [data.features] : []);
+    setSearch(data.search);
+    setStartTime(data.timeStart ? dayjs(data.timeStart).format('YYYY-MM-DD') : null);
+    setTypeId(data.typeId);
+
+    // Set attribute state as loaded
+    dispatch(setAttributesLoaded(true));
   });
 
   return (

@@ -1,5 +1,5 @@
 import { CircularProgress } from '@mui/material';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import FilterChip from '../FilterChip/FilterChip';
@@ -25,7 +25,7 @@ interface ICategorySelectorProps {
 
 export const CategorySelector = (props: ICategorySelectorProps) => {
   const { i18n } = useTranslation();
-  const theme: any = useTheme();
+  const theme = useTheme();
 
   return (
     <>
