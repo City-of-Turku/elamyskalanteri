@@ -37,8 +37,7 @@ const FilterChip = ({ label, active, handleClick, handleDelete }: IProps) => {
           className={styles.chip}
           sx={{
             color: theme.palette.secondary.main,
-            // backgroundColor: 'rgba(242, 202, 153, 0.2);',
-            backgroundColor: (theme) => alpha(theme.palette.primary.light, 0.08),
+            backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.05),
             fontSize: 16,
           }}
         />
