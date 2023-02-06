@@ -27,7 +27,6 @@ const EventCard = ({
 }: Event) => {
   const { i18n } = useTranslation();
 
-  const defaultImage = 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c';
   const defaultImage2 =
     'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
 
@@ -68,7 +67,7 @@ const EventCard = ({
                 className={styles.date}
                 sx={{
                   p: 0.5,
-                  backgroundColor: (theme) => alpha(theme.palette.primary.dark, 0.1),
+                  backgroundColor: (theme) => alpha(theme.palette.secondary.dark, 0.1),
                   '& svg': { fontSize: 21 },
                 }}
               >
