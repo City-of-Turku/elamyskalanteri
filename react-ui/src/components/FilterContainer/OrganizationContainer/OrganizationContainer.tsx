@@ -1,7 +1,6 @@
-import { FilterOptionsState } from '@mui/material';
+import { FilterOptionsState, Typography } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormGroup from '@mui/material/FormGroup';
-import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { matchSorter } from 'match-sorter';
 import React from 'react';
@@ -15,7 +14,6 @@ type IProps = {
 
 const OrganizationContainer = ({ onChange }: IProps): JSX.Element => {
   const { t } = useTranslation();
-  const theme = useTheme();
 
   const { data } = useOrganizationsQuery();
 
@@ -28,19 +26,10 @@ const OrganizationContainer = ({ onChange }: IProps): JSX.Element => {
   };
 
   return (
-    <div>
-      <p
-        style={{
-          margin: '0 16px 16px 0',
-          color: theme.palette.primary.dark,
-          fontSize: 18,
-          fontFamily: 'halogen, sans-serif',
-          fontWeight: 900,
-          textTransform: 'capitalize',
-        }}
-      >
-        <b>{t('organizer')}:</b>
-      </p>
+    <div style={{ width: '100%' }}>
+      <Typography variant="h3" style={{ margin: '16px 0' }}>
+        {t('organizer')}
+      </Typography>
       <FormGroup row>
         <Autocomplete
           filterOptions={filterOptions}
@@ -57,10 +46,17 @@ const OrganizationContainer = ({ onChange }: IProps): JSX.Element => {
           options={data ? data : []}
           getOptionLabel={(option) => option.name}
           sx={{
-            width: 500,
+            maxWidth: 500,
+            width: '100%',
           }}
           noOptionsText={t('noOptions')}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => (
+            <TextField
+              aria-label={t('organizer')}
+              placeholder={t('searchOrganizerByName')}
+              {...params}
+            />
+          )}
         />
       </FormGroup>
     </div>
