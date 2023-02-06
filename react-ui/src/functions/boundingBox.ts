@@ -1,11 +1,11 @@
-interface IPos {
+export interface Position {
   coords: {
     latitude: number;
     longitude: number;
   };
 }
 
-interface ICoords {
+export interface BBox {
   west: number;
   south: number;
   east: number;
@@ -19,7 +19,7 @@ interface ICoords {
  * Corners of the square are sqrt(2d^2) KM from the midpoint.
  */
 
-export const getCoords = (pos: IPos, d: number): ICoords => {
+export const getCoords = (pos: Position, d: number): BBox => {
   const R = 6378.1; // Radius of the Earth, KM
   const bearingN = 0; // Bearing North
   const bearingE = deg2Rad(90); // Bearing East
