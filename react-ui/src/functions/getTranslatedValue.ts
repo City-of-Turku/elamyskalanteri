@@ -9,9 +9,9 @@ import { DEFAULT_LANGUAGE } from '../translations/TranslationProvider';
 export const getTranslatedValue = (
   obj: Record<string, unknown>,
   langCode: string = DEFAULT_LANGUAGE,
-): string | null => {
+): string | undefined => {
   // Check if obj has a property with key of langCode
-  let translated = Object.prototype.hasOwnProperty.call(obj, 'langCode') && obj[langCode];
+  let translated = Object.prototype.hasOwnProperty.call(obj, langCode) && obj[langCode];
 
   // If obj does not have a property with key of langCode
   if (!translated) {
@@ -26,5 +26,5 @@ export const getTranslatedValue = (
   }
 
   // Return the value of translated if it's a string, otherwise return null
-  return typeof translated === 'string' ? translated : null;
+  return typeof translated === 'string' ? translated : undefined;
 };

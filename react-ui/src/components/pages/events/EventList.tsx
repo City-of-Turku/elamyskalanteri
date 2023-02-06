@@ -1,8 +1,7 @@
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import queryString from 'query-string';
@@ -13,6 +12,7 @@ import { parseQuery } from '../../../functions/urlParser';
 import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
 import { useEventsQuery } from '../../../redux/services/eventApi';
 import filterSlice from '../../../redux/slices/filterSlice';
+import { Event } from '../../../types';
 import GridList from '../../EventList/GridList';
 import HorizontalList from '../../EventList/HorizontalList';
 import VerticalList from '../../EventList/VerticalList';
@@ -26,7 +26,6 @@ interface EventListProps {
 }
 
 const EventList = (props: EventListProps) => {
-  const theme = useTheme();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const history = useHistory();
@@ -157,25 +156,23 @@ const EventList = (props: EventListProps) => {
 
   const eventsMeta = events?.meta;
   const hasNextPage = !!eventsMeta?.next;
-  const hasEvents = !!visibleEvents && !!visibleEvents.length;
 
   // Reset page number back to #1 when updating any filters
   useEffect(() => {
     setPage(1);
   }, [filters]);
 
-  let renderListComponent = <GridList events={visibleEvents} />;
-  switch (listView) {
-    case 'grid':
-      renderListComponent = <GridList events={visibleEvents} />;
-      break;
-    case 'vertical':
-      renderListComponent = <VerticalList events={visibleEvents} />;
-      break;
-    case 'horizontal':
-      renderListComponent = <HorizontalList events={visibleEvents} />;
-      break;
-  }
+  const renderEvents = (events: Event[]) => {
+    switch (listView) {
+      case 'grid':
+        return <GridList events={events} />;
+      case 'vertical':
+        return <VerticalList events={events} />;
+      case 'horizontal':
+        return <HorizontalList events={events} />;
+    }
+    return <GridList events={events} />;
+  };
 
   const renderSpinner = (
     <Box>
@@ -191,22 +188,15 @@ const EventList = (props: EventListProps) => {
         margin: '8px 0 24px 0',
       }}
     >
-      <Button
-        onClick={() => setPage(page + 1)}
-        sx={{
-          backgroundColor: theme.palette.primary.dark,
-          '&:hover': { backgroundColor: theme.palette.primary.main },
-        }}
-        variant="contained"
-      >
+      <Button onClick={() => setPage(page + 1)} variant="contained" color="secondary">
         {t('loadMore')}
       </Button>
     </div>
   );
 
-  const renderError = <h2>{t('errorWhileLoadingEvents')}</h2>;
+  const renderError = <Typography variant="h2">{t('errorWhileLoadingEvents')}</Typography>;
 
-  const renderNoResults = <h2>{t('noEventsFound')}</h2>;
+  const renderNoResults = <Typography variant="h2">{t('noEventsFound')}</Typography>;
 
   return (
     <Box sx={{ p: 2 }}>
@@ -230,9 +220,9 @@ const EventList = (props: EventListProps) => {
           renderSpinner
         ) : error ? (
           renderError
-        ) : hasEvents ? (
+        ) : visibleEvents && !!visibleEvents.length ? (
           <>
-            {renderListComponent}
+            {renderEvents(visibleEvents)}
             {allowPagination && hasNextPage && renderLoadMoreButton}
           </>
         ) : (

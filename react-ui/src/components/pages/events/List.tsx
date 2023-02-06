@@ -44,9 +44,9 @@ const List = ({ id, name, short_description, start_time, provider, images, end_t
             variant="subtitle2"
             sx={{
               p: 0.5,
-              backgroundColor: (theme) => alpha(theme.palette.primary.dark, 0.1),
+              backgroundColor: (theme) => alpha(theme.palette.secondary.main, 0.1),
               borderRadius: '5px',
-              color: 'primary.dark',
+              color: 'secondary.main',
               display: 'flex',
               alignItems: 'center',
               '& svg': {

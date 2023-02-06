@@ -1,3 +1,5 @@
+import { Feature } from './types';
+
 export const THEMES = {
   WHITELABEL: 'whitelabel',
   VINK: 'vink',
@@ -31,3 +33,22 @@ export const DATA_ATTRIBUTES = [
 ] as const;
 
 export type DataAttributes = (typeof DATA_ATTRIBUTES)[number];
+
+export const features: Feature[] = [
+  {
+    label: {
+      fi: 'ilmainen',
+      sv: 'gratis',
+      en: 'free',
+    },
+    value: 'is_free=true',
+  },
+  {
+    label: {
+      fi: 'virtuaalinen',
+      sv: 'virtuell',
+      en: 'virtual',
+    },
+    value: 'internet_based=true',
+  },
+];

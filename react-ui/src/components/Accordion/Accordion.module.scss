@@ -1,0 +1,31 @@
+.accordion {
+  h2, h3 {
+    text-transform: capitalize;
+    line-height: normal;
+  }
+}
+
+.accordionSummary {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.childContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 24px 16px;
+  gap: 16px;
+}
+
+.iconWrapper {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.title {
+  align-self: center;
+  padding-left: 20px;
+}

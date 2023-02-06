@@ -12,7 +12,7 @@ const AdditionalCategories = () => {
   const dispatch = useAppDispatch();
   const { addEventType, removeEventTypes } = bindActionCreators(filterSlice.actions, dispatch);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       addEventType(e.target.value);
     } else {
@@ -23,22 +23,19 @@ const AdditionalCategories = () => {
     <FormGroup sx={{ padding: 2 }}>
       <p>{`${t('additionalCategories')}`}</p>
       <FormControlLabel
-        control={<Checkbox />}
+        control={<Checkbox onChange={(event) => handleChange(event)} />}
         label="MiHi"
         value="system:extra:mihi"
-        onChange={(event) => handleChange(event)}
       />
       <FormControlLabel
-        control={<Checkbox />}
+        control={<Checkbox onChange={(event) => handleChange(event)} />}
         label="Kivakesä"
         value="system:extra:kivakesa"
-        onChange={(event) => handleChange(event)}
       />
       <FormControlLabel
-        control={<Checkbox />}
+        control={<Checkbox onChange={(event) => handleChange(event)} />}
         label="Kivaloma"
         value="system:extra:kivaloma"
-        onChange={(event) => handleChange(event)}
       />
     </FormGroup>
   );

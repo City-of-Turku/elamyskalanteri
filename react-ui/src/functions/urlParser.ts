@@ -1,9 +1,10 @@
+import { FilterState } from '../redux/slices/filterSlice';
+
 /*
  * Parses query from all possible filters
  */
-
-export const parseQuery = (filters: any) => {
-  let validQueries: any[] = [];
+export const parseQuery = (filters: FilterState) => {
+  let validQueries: string[] = [];
 
   if (filters.search) {
     validQueries = validQueries.concat(`text=${filters.search}`);

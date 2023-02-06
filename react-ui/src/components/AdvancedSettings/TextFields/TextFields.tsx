@@ -11,13 +11,13 @@ const TextFields = () => {
   const dispatch = useAppDispatch();
   const { setEmbedTitle, setEmbedDesc } = bindActionCreators(filterSlice.actions, dispatch);
 
-  const handleTitleChange = (e: any) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.trim().length >= 0) {
       setEmbedTitle(e.target.value.trim());
     }
   };
 
-  const handleDescChange = (e: any) => {
+  const handleDescChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.trim().length >= 0) {
       setEmbedDesc(e.target.value.trim());
     }
@@ -34,14 +34,14 @@ const TextFields = () => {
       autoComplete="off"
     >
       <TextField
-        onChange={(title) => handleTitleChange(title)}
+        onChange={handleTitleChange}
         id="outlined-basic"
         label={`${t('title')}`}
         variant="outlined"
         margin="normal"
       />
       <TextField
-        onChange={(desc) => handleDescChange(desc)}
+        onChange={handleDescChange}
         id="outlined-multiline-static"
         label={`${t('shortDecription')}`}
         multiline

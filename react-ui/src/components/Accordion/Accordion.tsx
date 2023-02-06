@@ -1,12 +1,12 @@
 import { SvgIconComponent } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Icon } from '@mui/material';
+import { Icon, Typography } from '@mui/material';
 import Accordions from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
-import styles from './Accordion.module.css';
+import styles from './Accordion.module.scss';
 
 interface IProps {
   title: string;
@@ -21,10 +21,11 @@ const Accordion = ({ title, children, icon }: IProps) => {
     <div>
       <Accordions elevation={0} className={styles.accordion}>
         <AccordionSummary
-          sx={{ padding: '24px 16px' }}
+          sx={{ padding: '8px' }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          className={styles.accordionSummary}
         >
           {icon && (
             <div
@@ -34,12 +35,9 @@ const Accordion = ({ title, children, icon }: IProps) => {
               <Icon component={icon} style={{ fontSize: 32, color: '#ffffff' }} />
             </div>
           )}
-          <div
-            style={{ fontFamily: 'halogen, sans-serif', color: theme.palette.primary.dark }}
-            className={styles.title}
-          >
+          <Typography variant="h2" className={styles.title}>
             {title}
-          </div>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <div className={styles.childContainer}>{children}</div>

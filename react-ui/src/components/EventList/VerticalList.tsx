@@ -1,9 +1,14 @@
 import React from 'react';
+import { Event } from '../../types';
 import List from '../pages/events/List';
 
-const VerticalList = ({ events }: any) => (
+type IProps = {
+  events: Event[];
+};
+
+const VerticalList = ({ events }: IProps) => (
   <div>
-    {events.map((event: any) => (
+    {events.map((event) => (
       <List key={event.id} {...event} />
     ))}
   </div>

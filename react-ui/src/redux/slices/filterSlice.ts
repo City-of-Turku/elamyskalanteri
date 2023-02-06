@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { THEMES } from '../../constants';
 import { DEFAULT_LANGUAGE } from '../../translations/TranslationProvider';
 
-interface filterState {
+export interface FilterState {
   eventTypes: string[];
   search: string;
   eventFeatures: string[];
@@ -27,7 +27,7 @@ interface filterState {
   linkText: string;
 }
 
-const initialState: filterState = {
+const initialState: FilterState = {
   eventTypes: [],
   eventFeatures: [],
   audiences: [],

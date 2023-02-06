@@ -14,5 +14,5 @@ app.get('/events/', function (req, res) {
 });
 
 const server = app.listen(8001, () => {
-    console.log("Listening on port 8001");
+    console.log("Listening on http://localhost:8001");
 });

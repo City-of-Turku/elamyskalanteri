@@ -6,26 +6,28 @@ import styles from './Title.module.css';
 const Title = () => {
   const options = useAppSelector((state) => state.options);
 
-  return (
-    <>
+  if (options.title || options.description) {
+    return (
       <div className={styles.sloganContainer}>
-        <div>
-          {options.title && (
+        {options.title && (
+          <div>
             <Typography className={styles.sloganTitle} variant="h2">
               {options.title}
             </Typography>
-          )}
-        </div>
-        <div>
-          {options.description && (
-            <Typography className={styles.sloganDesc} variant="subtitle2">
+          </div>
+        )}
+        {options.description && (
+          <div>
+            <Typography className={styles.sloganDesc} variant="body1">
               {options.description}
             </Typography>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    </>
-  );
+    );
+  }
+
+  return null;
 };
 
 export default Title;

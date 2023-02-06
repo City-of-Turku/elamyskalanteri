@@ -13,7 +13,7 @@ const Theme = () => {
   const dispatch = useAppDispatch();
   const { setTheme } = bindActionCreators(filterSlice.actions, dispatch);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setTheme(e.target.value);
     }
@@ -26,43 +26,14 @@ const Theme = () => {
         aria-labelledby="radio-buttons-group-label"
         defaultValue="vink"
         name="radio-buttons-group"
+        onChange={handleChange}
       >
-        <FormControlLabel
-          value="vink"
-          control={<Radio />}
-          label="Vink"
-          onChange={(event) => handleChange(event)}
-        />
-        <FormControlLabel
-          value="naantali"
-          control={<Radio />}
-          label={`${t('naantali')}`}
-          onChange={(event) => handleChange(event)}
-        />
-        <FormControlLabel
-          value="raisio"
-          control={<Radio />}
-          label={`${t('raisio')}`}
-          onChange={(event) => handleChange(event)}
-        />
-        <FormControlLabel
-          value="kaarina"
-          control={<Radio />}
-          label={`${t('kaarina')}`}
-          onChange={(event) => handleChange(event)}
-        />
-        <FormControlLabel
-          value="tai"
-          control={<Radio />}
-          label={`${t('tai')}`}
-          onChange={(event) => handleChange(event)}
-        />
-        <FormControlLabel
-          value="whitelabel"
-          control={<Radio />}
-          label={`${t('whiteLabel')}`}
-          onChange={(event) => handleChange(event)}
-        />
+        <FormControlLabel value="vink" control={<Radio />} label="Vink" />
+        <FormControlLabel value="naantali" control={<Radio />} label={t('naantali')} />
+        <FormControlLabel value="raisio" control={<Radio />} label={t('raisio')} />
+        <FormControlLabel value="kaarina" control={<Radio />} label={t('kaarina')} />
+        <FormControlLabel value="tai" control={<Radio />} label={t('tai')} />
+        <FormControlLabel value="whitelabel" control={<Radio />} label={t('whiteLabel')} />
       </RadioGroup>
     </FormControl>
   );

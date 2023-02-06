@@ -15,9 +15,11 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import 'dayjs/locale/fi';
 import 'dayjs/locale/sv';
+import DOMPurify from 'dompurify';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { getTranslatedValue } from '../../../functions/getTranslatedValue';
 import { useEventQuery } from '../../../redux/services/eventApi';
 import { date } from '../events/EventCard';
 
@@ -41,38 +43,74 @@ const styles = {
 
 const EventContent = () => {
   const { t, i18n } = useTranslation();
-  const params: any = useParams();
-  const { data, isLoading, isFetching, error } = useEventQuery(params?.id);
-  const defaultImage2 =
-    'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
-
-  const imageUrl = data?.images[0]?.url ? data?.images[0]?.url : defaultImage2;
+  const { id } = useParams<{ id: string }>();
+  const { data: event, isLoading, isFetching, error } = useEventQuery(id, { skip: !id });
+  const currentLang = i18n.language;
 
   if (isLoading || isFetching) {
     return (
-      <Box sx={{ position: 'relative', left: '50%' }}>
+      <Box sx={{ textAlign: 'center' }}>
         <CircularProgress />
       </Box>
     );
   }
 
-  if (!isLoading && !isFetching && error) {
-    return <p>Error!</p>;
+  if (error) {
+    return <Typography variant="h2">{t('errorLoadingEvent')}</Typography>;
   }
+
+  if (!event) {
+    return <Typography variant="h2">{t('noEventData')}</Typography>;
+  }
+
+  const renderHTML = (value: string): JSX.Element | undefined => {
+    if (!value) return;
+    return (
+      <span
+        style={{ whiteSpace: 'pre-wrap' }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
+      />
+    );
+  };
+
+  const eventImageUrl = event.images[0]?.url;
+  const eventImageAltText =
+    event.images[0]?.alt_text && getTranslatedValue(event.images[0].alt_text, currentLang);
+  const eventName = event.name && getTranslatedValue(event.name, currentLang);
+  const eventProvider = event.provider && getTranslatedValue(event.provider, currentLang);
+  const eventInfoUrl = event.info_url && getTranslatedValue(event.info_url, currentLang);
+  const eventShortDescription =
+    event.short_description && getTranslatedValue(event.short_description, currentLang);
+  const eventDescription = event.description && getTranslatedValue(event.description, currentLang);
+  const eventOfferIsFree = event.offers[0]?.is_free;
+  const eventOfferPrice =
+    event.offers[0]?.price && getTranslatedValue(event.offers[0].price, currentLang);
+  const eventOfferDescription =
+    event.offers[0]?.description && getTranslatedValue(event.offers[0].description, currentLang);
+  const eventAudienceMinAge = event.audience_min_age;
 
   return (
     <div>
-      <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+      {eventImageUrl && (
+        <Grid
+          item
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            maxWidth: 1000,
+            margin: 'auto',
+          }}
+        >
           <CardMedia
-            style={{ width: 983 }}
+            style={{ width: 'auto' }}
             sx={{ ...styles.media }}
             component="img"
-            src={imageUrl}
-            alt={data?.images[0]?.alt_text?.fi}
+            src={eventImageUrl}
+            alt={eventImageAltText}
           />
-        </div>
-      </Grid>
+        </Grid>
+      )}
       <Grid
         container
         p={4}
@@ -81,13 +119,17 @@ const EventContent = () => {
         sx={{ ...styles.root }}
         spacing={8}
       >
-        <Grid component="div" item xs={5} sx={{ display: 'inline-table' }}>
+        <Grid component="div" item xs={5} sx={{ wordWrap: 'break-word' }}>
+          {eventName && (
+            <Typography variant="h2" component="h1" sx={{ mt: 2, mb: 3 }}>
+              {eventName}
+            </Typography>
+          )}
           <Typography
             variant="subtitle2"
             component="div"
             sx={{
-              mt: 1.5,
-              pb: 3,
+              pb: 2,
               borderRadius: '5px',
               fontWeight: 'bold',
               display: 'flex',
@@ -100,62 +142,54 @@ const EventContent = () => {
             }}
           >
             <EventIcon />
-            {dayjs(data?.start_time).locale(i18n.language).format(date)} -{' '}
-            {dayjs(data?.end_time).locale(i18n.language).format('HH:mm')}
+            {dayjs(event.start_time).locale(currentLang).format(date)} -{' '}
+            {dayjs(event.end_time).locale(currentLang).format('HH:mm')}
           </Typography>
-          <Typography variant="h4" component="div" sx={{ pb: 3 }}>
-            {data?.name?.fi}
-          </Typography>
-          <Typography sx={{ display: 'flex', flexDirection: 'row', pb: 1 }} variant="subtitle2">
-            <LocationOnIcon fontSize="small" />
-            &nbsp;{data?.provider?.fi}
-          </Typography>
-          <Typography
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              pb: 4,
-              cursor: 'pointer',
-            }}
-            variant="subtitle2"
-          >
-            <LinkIcon fontSize="small" />
-            &nbsp;{' '}
-            <Link
-              href={`${data?.info_url?.fi}`}
-              target="_blank"
-              rel="noopener"
-              sx={{ textDecoration: 'none', pb: 2, color: 'primary.dark' }}
+
+          {eventProvider && (
+            <Typography
+              sx={{ display: 'flex', flexDirection: 'row', pb: 2 }}
+              variant="subtitle2"
+              component="div"
             >
-              {data?.info_url?.fi}
-              {data?.info_url?.fi === null && { display: 'none' }}
-            </Link>
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: 400,
-              fontSize: 16,
-              maxWidth: 700,
-              pb: 4,
-              letterSpacing: 0.01,
-              fontStyle: 'regular',
-            }}
-            variant="body2"
-          >
-            {data?.short_description?.fi}
-          </Typography>
+              <LocationOnIcon fontSize="small" />
+              &nbsp;{eventProvider}
+            </Typography>
+          )}
+          {eventInfoUrl && (
+            <Typography
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                pb: 2,
+                cursor: 'pointer',
+              }}
+              variant="subtitle2"
+              component="div"
+            >
+              <LinkIcon fontSize="small" />
+              &nbsp;{' '}
+              <Link
+                href={eventInfoUrl}
+                target="_blank"
+                rel="noopener"
+                sx={{ textDecoration: 'none', color: 'secondary.main' }}
+              >
+                {eventInfoUrl}
+              </Link>
+            </Typography>
+          )}
+          {eventShortDescription && (
+            <Typography sx={{ fontSize: 18, pt: 2, pb: 4 }} variant="body2">
+              {renderHTML(eventShortDescription)}
+            </Typography>
+          )}
           <Divider textAlign="left" sx={{ width: 143 }} />
-          <Typography
-            sx={{
-              fontWeight: 'light',
-              fontSize: 'default',
-              maxWidth: 623,
-              pt: 4,
-            }}
-            variant="body2"
-          >
-            {data?.description?.fi}
-          </Typography>
+          {eventDescription && (
+            <Typography sx={{ pt: 3 }} variant="body1">
+              {renderHTML(eventDescription)}
+            </Typography>
+          )}
         </Grid>
         <Grid component="div" item>
           <Grid
@@ -163,39 +197,56 @@ const EventContent = () => {
             minHeight={300}
             sx={{
               p: 4,
-              backgroundColor: 'primary.dark',
               pt: 5,
+              backgroundColor: 'secondary.main',
               wordWrap: 'break-word',
             }}
           >
-            <Typography variant="h6">{`${t('price')}`}</Typography>
-            <Typography component="div" variant="subtitle1">
-              {data?.offers[0]?.price?.fi || '-'}
+            <Typography variant="subtitle1" component="h2" sx={{ color: '#fff' }}>
+              {t('price')}
             </Typography>
-            <Typography variant="h6">{`${t('age')}`}</Typography>
-            <Typography component="div" variant="subtitle1">
-              {data?.audience_min_age === null && <p>Ikärajaton</p>}
-              {data?.audience_min_age && <p>{data?.audience_min_age} vuotta</p>}
+            <Typography variant="body1" component="div" sx={{ color: '#fff' }}>
+              {eventOfferIsFree && <div>{t('free')}</div>}
+              {eventOfferPrice && <div>{eventOfferPrice}</div>}
+              {eventOfferDescription && renderHTML(eventOfferDescription)}
             </Typography>
-            <Typography variant="h6">{`${t('provider')}`}</Typography>
-            <Typography component="div" variant="subtitle1">
-              {data?.provider[i18n.language]}
+
+            <Typography variant="subtitle1" component="h2" sx={{ mt: 3, color: '#fff' }}>
+              {t('age')}
             </Typography>
-            <Typography variant="h6">{`${t('more')}`}</Typography>
-            <Typography variant="subtitle1" component="div">
-              <ul style={{ listStyle: 'none' }}>
+            <Typography variant="body1" component="div" sx={{ color: '#fff' }}>
+              {eventAudienceMinAge === null && <div>{t('noAgeRestriction')}</div>}
+              {eventAudienceMinAge && (
+                <div>
+                  {eventAudienceMinAge} {t('years')}
+                </div>
+              )}
+            </Typography>
+
+            <Typography variant="subtitle1" component="h2" sx={{ mt: 3, color: '#fff' }}>
+              {t('provider')}
+            </Typography>
+            <Typography variant="body1" component="div" sx={{ color: '#fff' }}>
+              {eventProvider || '-'}
+            </Typography>
+
+            <Typography variant="subtitle1" component="h2" sx={{ mt: 3, color: '#fff' }}>
+              {t('more')}
+            </Typography>
+            <Typography variant="body1" component="div" sx={{ color: '#fff' }}>
+              <ul>
                 <li>Facebook</li>
                 <li>Instagram</li>
                 <li>Twitter</li>
                 <li>Video</li>
               </ul>
             </Typography>
-            <Box sx={{ display: 'flex', paddingBottom: 25 }}>
-              <LinkIcon sx={{ ...styles.box, color: 'primary.dark' }} />
-              <WhatsAppIcon sx={{ ...styles.box, color: 'primary.dark' }} />
-              <FacebookIcon sx={{ ...styles.box, color: 'primary.dark' }} />
-              <TwitterIcon sx={{ ...styles.box, color: 'primary.dark' }} />
-              <LinkedInIcon sx={{ ...styles.box, color: 'primary.dark' }} />
+            <Box sx={{ display: 'flex', paddingBottom: 16 }}>
+              <LinkIcon sx={{ ...styles.box, color: 'secondary.main' }} />
+              <WhatsAppIcon sx={{ ...styles.box, color: 'secondary.main' }} />
+              <FacebookIcon sx={{ ...styles.box, color: 'secondary.main' }} />
+              <TwitterIcon sx={{ ...styles.box, color: 'secondary.main' }} />
+              <LinkedInIcon sx={{ ...styles.box, color: 'secondary.main' }} />
             </Box>
           </Grid>
         </Grid>

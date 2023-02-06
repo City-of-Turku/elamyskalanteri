@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Event, GetEventsResponse } from '../../types';
 
 interface IOptions {
   page: number;
@@ -18,19 +19,18 @@ export const eventApi = createApi({
     baseUrl: process.env.REACT_APP_LINKEDEVENTS_BASE_URL,
   }),
   endpoints: (builder) => ({
-    events: builder.query<any, IOptions>({
+    events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
         const q = `/event/?type_id=${options.type_id}&page=${options.page}&text=${
           options.searchTerm
         }&keyword_AND=${options.keyword.concat(options.audiences)}&${options.features}&bbox=${
           options.bbox
         }&start=${options.start_time}&end=${options.end_time}`;
-        console.log(q);
         return q;
       },
     }),
-    event: builder.query<any, string>({
-      query: (id: any) => `/event/${id}/?include=keywords`,
+    event: builder.query<Event, string>({
+      query: (id: string) => `/event/${id}/?include=keywords`,
     }),
   }),
 });
