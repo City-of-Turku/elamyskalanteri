@@ -1,0 +1,111 @@
+.customCalendar {
+  border: none;
+
+  button {
+    margin: 3px 0;
+    clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+
+    &:hover {
+      background-color: rgba(25, 55, 115, 0.149);
+    }
+  }
+
+  :global {
+    abbr[title] {
+      text-decoration: none;
+    }
+
+    .react-calendar__navigation {
+      span {
+        color: rgb(25, 55, 115);
+        font-family: var(--ece-headings-font);
+        text-transform: capitalize;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      button {
+        font-size: 30px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:enabled:hover {
+          background-color: rgb(25, 55, 115);
+        }
+      }
+
+      &__next-button,
+      &__prev-button {
+        color: rgb(25, 55, 115);
+
+        &:hover {
+          background-color: rgba(25, 55, 115, 0.149) !important;
+        }
+      }
+
+      &__next2-button,
+      &__prev2-button {
+        display: none !important;
+      }
+
+      &__label:hover {
+        background-color: rgba(25, 55, 115, 0.149) !important;
+      }
+    }
+
+    .react-calendar__month-view__weekdays {
+      color: rgb(25, 55, 115);
+      font-family: var(--ece-primary-font);
+      font-style: normal;
+      font-weight: 900;
+      font-size: 12px;
+      line-height: 19px;
+    }
+
+    .react-calendar__tile {
+      font-family: var(--ece-primary-font);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 29px;
+
+      &--active {
+        background: rgb(25, 55, 115);
+        color: white;
+      }
+
+      &--hasActive {
+        background: rgb(25, 55, 115);
+        color: #ffffff;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background: rgb(25, 55, 115);
+        }
+      }
+
+      &--now {
+        background-color: #FCF4EB;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background-color: rgba(25, 55, 115, 0.149);
+        }
+      }
+
+      &--rangeStart {
+        background-color: rgb(25, 55, 115) !important;
+      }
+
+      &--rangeEnd {
+        background-color: rgb(25, 55, 115) !important;
+      }
+    }
+
+    .react-calendar--selectRange .react-calendar__tile--hover {
+      background-color: rgba(25, 55, 115, 0.149);
+    }
+  }
+}
