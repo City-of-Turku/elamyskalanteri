@@ -95,6 +95,8 @@ const EmbedCode = () => {
               onClick={() => copyToClipBoard()}
               ref={copyBtnRef}
               disabled={btnDisabled}
+              className={styles.copyBtn}
+              color="secondary"
             >
               {t('copyButton')}
             </Button>
