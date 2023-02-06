@@ -1,5 +1,5 @@
-.inputWrapper {
-  padding: 24px 16px 2px;
+.titleWrapper {
+  padding: 20px 16px 8px;
   display: flex;
 }
 
@@ -12,9 +12,7 @@
 }
 
 .title {
-  padding-top: 15px;
   padding-left: 20px;
   text-transform: capitalize;
-  font-size: 22px;
-  font-weight: 900;
+  align-self: center;
 }

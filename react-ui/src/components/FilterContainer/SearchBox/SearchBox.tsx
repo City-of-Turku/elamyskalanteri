@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import { Typography } from '@mui/material';
 import FormGroup from '@mui/material/FormGroup';
 import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -71,25 +72,23 @@ const SearchBox = () => {
 
   return (
     <div>
-      <div className={styles.inputWrapper} style={{ color: theme.palette.primary.dark }}>
+      <div className={styles.titleWrapper}>
         <div className={styles.iconWrapper} style={{ backgroundColor: theme.palette.primary.main }}>
           <SearchIcon sx={{ fontSize: 32, color: '#ffffff' }} />
         </div>
-        <div
-          style={{ fontFamily: 'halogen, sans-serif', color: theme.palette.primary.dark }}
-          className={styles.title}
-        >
-          <p>{`${t('search')}`}</p>
-        </div>
+        <Typography variant="h2" className={styles.title}>
+          {`${t('search')}`}
+        </Typography>
       </div>
       <FormGroup row>
         <TextField
           aria-label={t('search')}
           value={searchTerm}
+          placeholder={t('searchEventByName')}
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
-          sx={{ paddingLeft: '90px', paddingBottom: '20px', width: 'calc(100% - 32px)' }}
-          variant="standard"
+          sx={{ paddingLeft: '84px', paddingBottom: '20px', paddingRight: '84px', width: '100%' }}
+          variant="outlined"
         />
       </FormGroup>
     </div>
