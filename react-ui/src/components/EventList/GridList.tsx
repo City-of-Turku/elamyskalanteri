@@ -1,8 +1,13 @@
 import Grid from '@mui/material/Grid';
 import React from 'react';
+import { Event } from '../../types';
 import EventCard from '../pages/events/EventCard';
 
-const GridList = ({ events }: any) => (
+type IProps = {
+  events: Event[];
+};
+
+const GridList = ({ events }: IProps) => (
   <Grid
     sx={{
       flexGrow: 1,
@@ -12,7 +17,7 @@ const GridList = ({ events }: any) => (
     }}
     container
   >
-    {events.map((event: any) => (
+    {events.map((event) => (
       <Grid key={event.id} item>
         <EventCard {...event} />
       </Grid>
