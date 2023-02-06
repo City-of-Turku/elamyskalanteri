@@ -1,10 +1,9 @@
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { styled } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { useContext } from 'react';
-import Calendar, { CalendarProps } from 'react-calendar';
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import 'react-day-picker/dist/style.css';
 import { useTranslation } from 'react-i18next';
@@ -15,10 +14,6 @@ import { CurrentLanguageContext } from '../../../translations/TranslationProvide
 import Accordion from '../../Accordion/Accordion';
 import styles from './WhenContainer.module.scss';
 dayjs.extend(customParseFormat);
-
-const StyledCalendar = styled(Calendar)<CalendarProps>(({ theme }) => ({
-  color: theme.palette.secondary.main,
-}));
 
 const WhenContainer = () => {
   const currentLang = useContext(CurrentLanguageContext);
@@ -65,7 +60,7 @@ const WhenContainer = () => {
   return (
     <div className={styles.container}>
       <Accordion title={`${t('when')}?`} icon={EventAvailableIcon}>
-        <StyledCalendar
+        <Calendar
           className={styles.customCalendar}
           onChange={handleChange}
           value={getValue()}

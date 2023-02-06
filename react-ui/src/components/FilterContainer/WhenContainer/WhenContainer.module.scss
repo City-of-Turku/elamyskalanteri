@@ -1,12 +1,14 @@
 .customCalendar {
   border: none;
+  $ece-secondary: --ece-secondary;
 
   button {
+    color: var(--ece-text-primary-color);
     margin: 3px 0;
     clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
 
     &:hover {
-      background-color: rgba(25, 55, 115, 0.149);
+      background-color: var(--ece-secondary-bg);
     }
   }
 
@@ -17,7 +19,7 @@
 
     .react-calendar__navigation {
       span {
-        color: rgb(25, 55, 115);
+        color: var(--ece-secondary);
         font-family: var(--ece-headings-font);
         text-transform: capitalize;
         font-size: 18px;
@@ -32,16 +34,16 @@
         justify-content: center;
 
         &:enabled:hover {
-          background-color: rgb(25, 55, 115);
+          background-color: var(--ece-secondary);
         }
       }
 
       &__next-button,
       &__prev-button {
-        color: rgb(25, 55, 115);
+        color: var(--ece-secondary);
 
         &:hover {
-          background-color: rgba(25, 55, 115, 0.149) !important;
+          background-color: var(--ece-secondary-bg) !important;
         }
       }
 
@@ -51,17 +53,27 @@
       }
 
       &__label:hover {
-        background-color: rgba(25, 55, 115, 0.149) !important;
+        background-color: var(--ece-secondary-bg) !important;
       }
     }
 
-    .react-calendar__month-view__weekdays {
-      color: rgb(25, 55, 115);
-      font-family: var(--ece-primary-font);
-      font-style: normal;
-      font-weight: 900;
-      font-size: 12px;
-      line-height: 19px;
+    .react-calendar__month-view {
+      &__weekdays {
+        color: var(--ece-secondary);
+        font-family: var(--ece-primary-font);
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 19px;
+      }
+
+      &__days__day--neighboringMonth {
+        color: #757575;
+      }
+
+      &__days__day--weekend {
+        color: #d10000;
+      }
     }
 
     .react-calendar__tile {
@@ -71,41 +83,55 @@
       font-size: 18px;
       line-height: 29px;
 
+      &:enabled:hover,
+      &:enabled:focus {
+        background-color: var(--ece-secondary-bg);
+      }
+
+      &--now {
+        background-color: var(--ece-primary-bg);
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background-color: var(--ece-secondary-bg);
+        }
+      }
+
       &--active {
-        background: rgb(25, 55, 115);
+        background: var(--ece-secondary);
         color: white;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background: var(--ece-secondary-dark);
+        }
       }
 
       &--hasActive {
-        background: rgb(25, 55, 115);
+        background: var(--ece-secondary-light);
         color: #ffffff;
 
         &:enabled:hover,
         &:enabled:focus {
-          background: rgb(25, 55, 115);
-        }
-      }
-
-      &--now {
-        background-color: #FCF4EB;
-
-        &:enabled:hover,
-        &:enabled:focus {
-          background-color: rgba(25, 55, 115, 0.149);
+          background: var(--ece-secondary-dark);
         }
       }
 
       &--rangeStart {
-        background-color: rgb(25, 55, 115) !important;
+        background-color: var(--ece-secondary);
       }
 
       &--rangeEnd {
-        background-color: rgb(25, 55, 115) !important;
+        background-color: var(--ece-secondary);
+      }
+
+      &--hover {
+        background-color: var(--ece-secondary-bg);
       }
     }
 
     .react-calendar--selectRange .react-calendar__tile--hover {
-      background-color: rgba(25, 55, 115, 0.149);
+      background-color: var(--ece-secondary-bg);
     }
   }
 }
