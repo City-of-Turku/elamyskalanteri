@@ -1,4 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Typography } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -20,10 +21,10 @@ const AdvancedSettings = () => {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel-content"
-          id="panel-id"
+          aria-controls="advancedSettings-panelContent"
+          id="advancedSettings-panelId"
         >
-          <p>{`${t('showAdvancedSettings')}`}</p>
+          <Typography>{t('showAdvancedSettings')}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TextFields />
