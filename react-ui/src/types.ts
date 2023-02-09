@@ -25,7 +25,7 @@ export type Organization = {
 
 export type Event = {
   id: string;
-  location: string | null;
+  location: EventLocation | null;
   keywords: EventKeyword[];
   super_event: Record<'@id', string> | null;
   event_status: string;
@@ -62,7 +62,7 @@ export type Event = {
   name: Translatable;
   provider: Translatable;
   description: Translatable;
-  location_extra_info: Translatable;
+  location_extra_info: Translatable | null;
   provider_contact_info: string | null;
   short_description: Translatable;
   info_url: Translatable;
@@ -102,6 +102,45 @@ export type EventImage = {
 
 export type EventVideo = {
   url: string;
+};
+
+export type EventLocation = {
+  address_country: unknown | null; // Todo: Fix unknown
+  address_locality: Translatable;
+  address_region: unknown | null; // Todo: Fix unknown
+  contact_type: unknown | null; // Todo: Fix unknown
+  created_time: Date | null;
+  custom_data: unknown | null; // Todo: Fix unknown
+  data_source: string;
+  deleted: boolean;
+  description: Translatable;
+  divisions: Array<{
+    type: string;
+    ocd_id: string;
+    municipality: string | null;
+    name: Translatable;
+  }>;
+  email: string | null;
+  id: string;
+  image: number | null;
+  info_url: string | null;
+  last_modified_time: Date | null;
+  n_events: number;
+  name: Translatable;
+  parent: unknown | null; // Todo: Fix unknown
+  position: {
+    type: string;
+    coordinates: [number, number];
+  };
+  post_office_box_num: unknown | null; // Todo: Fix unknown
+  postal_code: string | null;
+  publisher: string;
+  replaced_by: unknown | null; // Todo: Fix unknown
+  street_address: Translatable;
+  telephone: string | null;
+  '@context': string;
+  '@id': string;
+  '@type': string;
 };
 
 export type RelatedEventKeyWord = {
