@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { THEMES } from '../../constants';
+import { LayoutOptions, LAYOUT_OPTIONS, THEMES } from '../../constants';
 import { DEFAULT_LANGUAGE } from '../../translations/TranslationProvider';
 
 export interface FilterState {
@@ -19,7 +19,7 @@ export interface FilterState {
   embedTitle: string;
   embedDesc: string;
   theme: string;
-  listView: string;
+  listView: LayoutOptions;
   viewNum: number | null;
   searchCriteria: boolean | null;
   languageSelection: string;
@@ -39,7 +39,7 @@ const initialState: FilterState = {
   embedTitle: '',
   embedDesc: '',
   theme: THEMES.VINK,
-  listView: 'grid',
+  listView: LAYOUT_OPTIONS.LIST,
   viewNum: null,
   searchCriteria: false,
   languageSelection: DEFAULT_LANGUAGE,
