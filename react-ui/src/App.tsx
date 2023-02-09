@@ -7,6 +7,7 @@ import EventContent from './components/pages/events/EventContent';
 import EventList from './components/pages/events/EventList';
 import { checkUsedAttributes } from './functions/checkUsedAttributes';
 import { getFormattedDate } from './functions/getFormattedDate';
+import { getLayoutOption } from './functions/getLayoutOption';
 import { getTheme } from './functions/getTheme';
 import { useAppDispatch } from './hooks/rtkHooks';
 import { setAttributesLoaded } from './redux/slices/appStateSlice';
@@ -51,7 +52,7 @@ const App = (props: AppProps) => {
     setLanguageSelection(data.language);
     setLinkContainer(data.linkUrl);
     setLinkText(data.linkText);
-    setListView(data.layout);
+    setListView(getLayoutOption(data.layout));
     setNumOfView(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
