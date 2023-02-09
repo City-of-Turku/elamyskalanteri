@@ -84,7 +84,7 @@ const SearchBox = () => {
         <TextField
           aria-label={t('search')}
           value={searchTerm}
-          placeholder={t('searchEventByName')}
+          placeholder={t('searchText')}
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
           sx={{ paddingLeft: '84px', paddingBottom: '20px', paddingRight: '84px', width: '100%' }}
