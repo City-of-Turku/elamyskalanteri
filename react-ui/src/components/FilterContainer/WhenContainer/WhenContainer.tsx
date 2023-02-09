@@ -7,7 +7,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import 'react-day-picker/dist/style.css';
 import { useTranslation } from 'react-i18next';
-import { getFormattedDate } from '../../../functions/getFormattedDate';
+import { getApiFormattedDate } from '../../../functions/getFormattedDate';
 import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
 import { CurrentLanguageContext } from '../../../translations/TranslationProvider';
@@ -24,8 +24,8 @@ const WhenContainer = () => {
   const { t } = useTranslation();
 
   const handleChange = (values: [Date] | [Date, Date]) => {
-    values[0] && setStartTime(getFormattedDate(values[0]));
-    values[1] && setEndTime(getFormattedDate(values[1]));
+    values[0] && setStartTime(getApiFormattedDate(values[0]));
+    values[1] && setEndTime(getApiFormattedDate(values[1]));
   };
 
   // TODO: Leave this commented out piece of code here until we have decided how
@@ -39,9 +39,9 @@ const WhenContainer = () => {
   //     const comparisonDate = new Date(endTime);
 
   //     if (comparisonDate.getTime() < today.getTime()) {
-  //       setStartTime(getFormattedDate(comparisonDate));
+  //       setStartTime(getApiFormattedDate(comparisonDate));
   //     }
-  //     setStartTime(getFormattedDate(today));
+  //     setStartTime(getApiFormattedDate(today));
   //   }
   // }, [endTime, startTime, setStartTime]);
 

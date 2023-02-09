@@ -6,7 +6,7 @@ import CSSVariableProvider from './components/CSSVariableProvider/CSSVariablePro
 import EventContent from './components/pages/events/EventContent';
 import EventList from './components/pages/events/EventList';
 import { checkUsedAttributes } from './functions/checkUsedAttributes';
-import { getFormattedDate } from './functions/getFormattedDate';
+import { getApiFormattedDate } from './functions/getFormattedDate';
 import { getLayoutOption } from './functions/getLayoutOption';
 import { getTheme } from './functions/getTheme';
 import { useAppDispatch } from './hooks/rtkHooks';
@@ -65,11 +65,11 @@ const App = (props: AppProps) => {
 
     // Apply filters
     setAudience(data.audience ? [data.audience] : []);
-    setEndTime(getFormattedDate(data.timeEnd));
+    setEndTime(getApiFormattedDate(data.timeEnd));
     setEventTypes(data.keywords ? [data.keywords] : []);
     setFeatures(data.features ? [data.features] : []);
     setSearch(data.search);
-    setStartTime(getFormattedDate(data.timeStart));
+    setStartTime(getApiFormattedDate(data.timeStart));
     setTypeId(data.typeId);
 
     // Set attribute state as loaded
