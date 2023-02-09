@@ -1,5 +1,13 @@
 import { Feature } from './types';
 
+export const LAYOUT_OPTIONS = {
+  GRID: 'grid',
+  LIST: 'list',
+  COMPACT: 'compact',
+} as const;
+
+export type LayoutOptions = (typeof LAYOUT_OPTIONS)[keyof typeof LAYOUT_OPTIONS];
+
 export const THEMES = {
   WHITELABEL: 'whitelabel',
   VINK: 'vink',
