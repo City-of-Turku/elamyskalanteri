@@ -1,4 +1,4 @@
-import ViewColumnIcon from '@mui/icons-material/ViewColumn';
+import ViewAgendaIcon from '@mui/icons-material/ViewAgenda';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { Radio, RadioGroup } from '@mui/material';
@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { LAYOUT_OPTIONS } from '../../../constants';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
 import styles from '../AdvancedSettings.module.css';
@@ -35,21 +36,33 @@ const ListView = () => {
         <p>{t('listView')}</p>
         <RadioGroup
           aria-labelledby="radio-buttons-group-label"
-          defaultValue="grid"
+          defaultValue={LAYOUT_OPTIONS.LIST}
           name="radio-buttons-group"
           onChange={handleListViewChange}
         >
           <div className={styles.listGroup}>
-            <FormControlLabel value="grid" control={<Radio />} label={t('grid')} />
-            <ViewModuleIcon />
-          </div>
-          <div className={styles.listGroup}>
-            <FormControlLabel value="vertical" control={<Radio />} label={t('verticalList')} />
+            <FormControlLabel
+              value={LAYOUT_OPTIONS.LIST}
+              control={<Radio />}
+              label={t('layoutList')}
+            />
             <ViewListIcon />
           </div>
           <div className={styles.listGroup}>
-            <FormControlLabel value="horizontal" control={<Radio />} label={t('horizontalList')} />
-            <ViewColumnIcon />
+            <FormControlLabel
+              value={LAYOUT_OPTIONS.GRID}
+              control={<Radio />}
+              label={t('layoutGrid')}
+            />
+            <ViewModuleIcon />
+          </div>
+          <div className={styles.listGroup}>
+            <FormControlLabel
+              value={LAYOUT_OPTIONS.COMPACT}
+              control={<Radio />}
+              label={t('layoutCompact')}
+            />
+            <ViewAgendaIcon />
           </div>
         </RadioGroup>
         <TextField
