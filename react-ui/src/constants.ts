@@ -42,21 +42,25 @@ export const DATA_ATTRIBUTES = [
 
 export type DataAttributes = (typeof DATA_ATTRIBUTES)[number];
 
+export const freeTranslated = {
+  fi: 'ilmainen',
+  sv: 'gratis',
+  en: 'free',
+};
+
+export const virtualEventTranslated = {
+  fi: 'virtuaalinen',
+  sv: 'virtuell',
+  en: 'virtual',
+};
+
 export const features: Feature[] = [
   {
-    label: {
-      fi: 'ilmainen',
-      sv: 'gratis',
-      en: 'free',
-    },
+    label: freeTranslated,
     value: 'is_free=true',
   },
   {
-    label: {
-      fi: 'virtuaalinen',
-      sv: 'virtuell',
-      en: 'virtual',
-    },
-    value: 'internet_based=true',
+    label: virtualEventTranslated,
+    value: 'virtual=true',
   },
 ];
