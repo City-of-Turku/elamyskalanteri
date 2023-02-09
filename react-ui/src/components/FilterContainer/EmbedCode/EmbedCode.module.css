@@ -1,5 +1,4 @@
 .container {
-  max-width: 800px;
   width: 100%;
   margin: 24px auto;
 }
@@ -18,10 +17,6 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .container {
-    width: 100%;
-  }
-
   .innerContainer {
     display: block;
     overflow: scroll;
