@@ -9,7 +9,8 @@ Node v16 or newer
 Install required NPM packages for both React UI and Embed examples
 
 ```cd react-ui && npm install && cd ..```
-```cd embed && npm install && cd ..```
+
+```cd embed-examples && npm install && cd ..```
 
 ## Running local test environment
 ### Start React UI
@@ -17,3 +18,10 @@ Install required NPM packages for both React UI and Embed examples
 
 ### Start local server for testing embedded listings
 ```npm run start-embed```
+
+(Dev server for react must be running)
+
+
+## Setting up for production
+
+*TODO*
