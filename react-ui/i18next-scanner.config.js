@@ -13,6 +13,7 @@ module.exports = {
   options: {
     debug: false,
     sort: true,
+    removeUnusedKeys: true,
     func: {
       list: ['i18next.t', 'i18n.t', 't'],
       extensions: ['.js', '.jsx'],

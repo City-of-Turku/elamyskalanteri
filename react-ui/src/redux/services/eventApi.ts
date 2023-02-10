@@ -21,7 +21,7 @@ export const eventApi = createApi({
   endpoints: (builder) => ({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
-        const q = `/event/?type_id=${options.type_id}&page=${options.page}&text=${
+        const q = `/event/?include=location&type_id=${options.type_id}&page=${options.page}&text=${
           options.searchTerm
         }&keyword_AND=${options.keyword.concat(options.audiences)}&${options.features}&bbox=${
           options.bbox
@@ -30,7 +30,7 @@ export const eventApi = createApi({
       },
     }),
     event: builder.query<Event, string>({
-      query: (id: string) => `/event/${id}/?include=keywords`,
+      query: (id: string) => `/event/${id}/?include=location`,
     }),
   }),
 });

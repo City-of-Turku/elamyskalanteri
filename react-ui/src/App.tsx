@@ -3,10 +3,11 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import CSSVariableProvider from './components/CSSVariableProvider/CSSVariableProvider';
-import EventContent from './components/pages/events/EventContent';
-import EventList from './components/pages/events/EventList';
+import EventContent from './components/pages/EventContent';
+import EventList from './components/pages/EventList';
 import { checkUsedAttributes } from './functions/checkUsedAttributes';
-import { getFormattedDate } from './functions/getFormattedDate';
+import { getApiFormattedDate } from './functions/getFormattedDate';
+import { getLayoutOption } from './functions/getLayoutOption';
 import { getTheme } from './functions/getTheme';
 import { useAppDispatch } from './hooks/rtkHooks';
 import { setAttributesLoaded } from './redux/slices/appStateSlice';
@@ -51,7 +52,7 @@ const App = (props: AppProps) => {
     setLanguageSelection(data.language);
     setLinkContainer(data.linkUrl);
     setLinkText(data.linkText);
-    setListView(data.layout);
+    setListView(getLayoutOption(data.layout));
     setNumOfView(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
@@ -64,11 +65,11 @@ const App = (props: AppProps) => {
 
     // Apply filters
     setAudience(data.audience ? [data.audience] : []);
-    setEndTime(getFormattedDate(data.timeEnd));
+    setEndTime(getApiFormattedDate(data.timeEnd));
     setEventTypes(data.keywords ? [data.keywords] : []);
     setFeatures(data.features ? [data.features] : []);
     setSearch(data.search);
-    setStartTime(getFormattedDate(data.timeStart));
+    setStartTime(getApiFormattedDate(data.timeStart));
     setTypeId(data.typeId);
 
     // Set attribute state as loaded

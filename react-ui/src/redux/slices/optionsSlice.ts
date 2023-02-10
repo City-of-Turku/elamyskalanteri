@@ -1,13 +1,13 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { THEMES } from '../../constants';
+import { LayoutOptions, LAYOUT_OPTIONS, THEMES } from '../../constants';
 import { DEFAULT_LANGUAGE } from '../../translations/TranslationProvider';
 
 export interface OptionsState {
   title: string | null;
   description: string | null;
   theme: string;
-  listView: string;
+  listView: LayoutOptions;
   numOfView: number | null;
   showSearch: boolean | null;
   languageSelection: string;
@@ -19,7 +19,7 @@ const initialState: OptionsState = {
   title: null,
   description: null,
   theme: THEMES.VINK,
-  listView: 'grid',
+  listView: LAYOUT_OPTIONS.LIST,
   numOfView: null,
   showSearch: null,
   languageSelection: DEFAULT_LANGUAGE,
@@ -40,7 +40,7 @@ export const optionsSlice = createSlice({
     setTheme: (state, action: PayloadAction<string>) => {
       state.theme = action.payload;
     },
-    setListView: (state, action: PayloadAction<string>) => {
+    setListView: (state, action: PayloadAction<LayoutOptions>) => {
       state.listView = action.payload;
     },
     setNumOfView: (state, action: PayloadAction<number | null>) => {

@@ -7,9 +7,14 @@ import { DEFAULT_LANGUAGE } from '../translations/TranslationProvider';
  * @returns translated string or null if not found
  */
 export const getTranslatedValue = (
-  obj: Record<string, unknown>,
+  obj: Record<string, unknown> | null,
   langCode: string = DEFAULT_LANGUAGE,
 ): string | undefined => {
+  // If obj is null, return undefined
+  if (!obj) {
+    return undefined;
+  }
+
   // Check if obj has a property with key of langCode
   let translated = Object.prototype.hasOwnProperty.call(obj, langCode) && obj[langCode];
 

@@ -106,7 +106,7 @@ export const whiteLabelTheme = createTheme({
   },
   typography: {
     ...baseTypography.root,
-    fontFamily: 'Arial, Helvetica, sans-serif',
+    fontFamily: 'inherit',
     h2: {
       ...baseTypography.h2,
       color: '#505050',

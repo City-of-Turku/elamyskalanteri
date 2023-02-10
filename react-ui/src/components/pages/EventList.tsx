@@ -2,24 +2,26 @@ import { Button, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
+import { useTheme } from '@mui/system';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { parseQuery } from '../../../functions/urlParser';
-import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
-import { useEventsQuery } from '../../../redux/services/eventApi';
-import filterSlice from '../../../redux/slices/filterSlice';
-import { Event } from '../../../types';
-import GridList from '../../EventList/GridList';
-import HorizontalList from '../../EventList/HorizontalList';
-import VerticalList from '../../EventList/VerticalList';
-import EmbedCode from '../../FilterContainer/EmbedCode/EmbedCode';
-import FilterContainer from '../../FilterContainer/FilterContainer';
-import LinkContainer from '../../Link/LinkContainer';
-import Title from '../../Title/Title';
+import { LAYOUT_OPTIONS } from '../../constants';
+import { parseQuery } from '../../functions/urlParser';
+import { useAppDispatch, useAppSelector } from '../../hooks/rtkHooks';
+import { useEventsQuery } from '../../redux/services/eventApi';
+import filterSlice from '../../redux/slices/filterSlice';
+import { Event } from '../../types';
+import CompactView from '../Events/Compact/CompactView';
+import GridView from '../Events/Grid/GridView';
+import ListView from '../Events/List/ListView';
+import EmbedCode from '../FilterContainer/EmbedCode/EmbedCode';
+import FilterContainer from '../FilterContainer/FilterContainer';
+import LinkContainer from '../Link/LinkContainer';
+import Title from '../Title/Title';
 
 interface EventListProps {
   typeId?: string;
@@ -27,6 +29,7 @@ interface EventListProps {
 
 const EventList = (props: EventListProps) => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { typeId } = props;
@@ -164,14 +167,13 @@ const EventList = (props: EventListProps) => {
 
   const renderEvents = (events: Event[]) => {
     switch (listView) {
-      case 'grid':
-        return <GridList events={events} />;
-      case 'vertical':
-        return <VerticalList events={events} />;
-      case 'horizontal':
-        return <HorizontalList events={events} />;
+      case LAYOUT_OPTIONS.GRID:
+        return <GridView events={events} />;
+      case LAYOUT_OPTIONS.LIST:
+        return <ListView events={events} />;
+      case LAYOUT_OPTIONS.COMPACT:
+        return <CompactView events={events} />;
     }
-    return <GridList events={events} />;
   };
 
   const renderSpinner = (
@@ -199,18 +201,19 @@ const EventList = (props: EventListProps) => {
   const renderNoResults = <Typography variant="h2">{t('noEventsFound')}</Typography>;
 
   return (
-    <Box sx={{ p: 2 }}>
+    <>
       <Title />
       {showSearch && (
-        <>
+        <Box sx={{ maxWidth: theme.breakpoints.values.md, margin: 'auto' }}>
           <FilterContainer />
           <EmbedCode />
-        </>
+        </Box>
       )}
       <Grid
         sx={{
           flexGrow: 1,
-          alignItems: 'strech',
+          flexDirection: 'column',
+          alignItems: 'center',
           justifyContent: 'center',
           position: 'relative',
         }}
@@ -230,7 +233,7 @@ const EventList = (props: EventListProps) => {
         )}
       </Grid>
       <LinkContainer />
-    </Box>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import ShareIcon from '@mui/icons-material/Share';
-import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -47,13 +46,8 @@ const EmbedCode = () => {
 
   return (
     <div className={styles.container}>
-      <Button
-        className={styles.btn}
-        variant={'outlined'}
-        onClick={() => setOpen(!open)}
-        startIcon={<ShareIcon />}
-      >
-        <Typography>{t('share')}</Typography>
+      <Button variant={'outlined'} onClick={() => setOpen(!open)} startIcon={<ShareIcon />}>
+        {t('share')}
       </Button>
       {open && (
         <div className={styles.advancedSettings}>

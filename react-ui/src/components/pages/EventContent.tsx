@@ -11,17 +11,14 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import 'dayjs/locale/fi';
-import 'dayjs/locale/sv';
 import DOMPurify from 'dompurify';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { getTranslatedValue } from '../../../functions/getTranslatedValue';
-import { useEventQuery } from '../../../redux/services/eventApi';
-import { date } from '../events/EventCard';
+import { getFormattedDateTime } from '../../functions/getFormattedDate';
+import { getLocationTitle } from '../../functions/getLocation';
+import { getTranslatedValue } from '../../functions/getTranslatedValue';
+import { useEventQuery } from '../../redux/services/eventApi';
 
 const styles = {
   root: {
@@ -88,6 +85,18 @@ const EventContent = () => {
   const eventOfferDescription =
     event.offers[0]?.description && getTranslatedValue(event.offers[0].description, currentLang);
   const eventAudienceMinAge = event.audience_min_age;
+  const locationTitle = getLocationTitle(
+    event.location,
+    event.location_extra_info,
+    event.is_virtualevent,
+    currentLang,
+  );
+  const formattedDateTime = getFormattedDateTime(
+    event.start_time,
+    event.end_time,
+    currentLang,
+    true,
+  );
 
   return (
     <div>
@@ -125,35 +134,37 @@ const EventContent = () => {
               {eventName}
             </Typography>
           )}
-          <Typography
-            variant="subtitle2"
-            component="div"
-            sx={{
-              pb: 2,
-              borderRadius: '5px',
-              fontWeight: 'bold',
-              display: 'flex',
-              fontSize: 15,
-              alignItems: 'center',
-              '& svg': {
-                fontSize: 21,
-                mr: 0.5,
-              },
-            }}
-          >
-            <EventIcon />
-            {dayjs(event.start_time).locale(currentLang).format(date)} -{' '}
-            {dayjs(event.end_time).locale(currentLang).format('HH:mm')}
-          </Typography>
+          {formattedDateTime && (
+            <Typography
+              variant="subtitle2"
+              component="div"
+              sx={{
+                pb: 2,
+                borderRadius: '5px',
+                fontWeight: 'bold',
+                display: 'flex',
+                fontSize: 15,
+                alignItems: 'center',
+                textTransform: 'capitalize',
+                '& svg': {
+                  fontSize: 21,
+                  mr: 0.5,
+                },
+              }}
+            >
+              <EventIcon />
+              {formattedDateTime}
+            </Typography>
+          )}
 
-          {eventProvider && (
+          {locationTitle && (
             <Typography
               sx={{ display: 'flex', flexDirection: 'row', pb: 2 }}
               variant="subtitle2"
               component="div"
             >
               <LocationOnIcon fontSize="small" />
-              &nbsp;{eventProvider}
+              &nbsp;{locationTitle}
             </Typography>
           )}
           {eventInfoUrl && (

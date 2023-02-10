@@ -1,0 +1,16 @@
+.location {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  svg {
+    margin-right: 4px;
+  }
+}
