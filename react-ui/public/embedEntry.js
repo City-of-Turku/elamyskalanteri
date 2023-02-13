@@ -1,11 +1,12 @@
 const loadElamyskalenteriEmbed = () => {
   const baseUrl = 'https://elamyskalenteri.turku.fi/';
   const getEntrypoints = async () => {
-    const data =
-      await fetch(`${baseUrl}asset-manifest.json`)
-        .then(response => response.json())
-        .catch(error => { console.log(error) });
-    return data.entrypoints.map(entrypoint => `${baseUrl}${entrypoint}`);
+    const data = await fetch(`${baseUrl}asset-manifest.json`)
+      .then((response) => response.json())
+      .catch((error) => {
+        console.log(error);
+      });
+    return data.entrypoints.map((entrypoint) => `${baseUrl}${entrypoint}`);
   };
 
   const createElement = (tagName, attributes) => {
@@ -17,23 +18,24 @@ const loadElamyskalenteriEmbed = () => {
   };
 
   const createScript = (src, attrs) => {
-    return createElement('script', [['src', src], ...attrs])
+    return createElement('script', [['src', src], ...attrs]);
   };
 
   const createStyle = (src, attrs) => {
-    return createElement('link', [['rel', 'stylesheet'], ['href', src], ...attrs])
+    return createElement('link', [['rel', 'stylesheet'], ['href', src], ...attrs]);
   };
 
-  getEntrypoints().then(entrypoints => entrypoints.forEach(entrypoint => {
-    if (entrypoint.endsWith('.css')) {
-      const el = createStyle(entrypoint, []);
-      document.head.appendChild(el);
-    }
-    else if (entrypoint.endsWith('.js')) {
-      const el = createScript(entrypoint, []);
-      document.head.appendChild(el);
-    }
-  }));
-}
+  getEntrypoints().then((entrypoints) =>
+    entrypoints.forEach((entrypoint) => {
+      if (entrypoint.endsWith('.css')) {
+        const el = createStyle(entrypoint, []);
+        document.head.appendChild(el);
+      } else if (entrypoint.endsWith('.js')) {
+        const el = createScript(entrypoint, []);
+        document.head.appendChild(el);
+      }
+    }),
+  );
+};
 
 loadElamyskalenteriEmbed();
