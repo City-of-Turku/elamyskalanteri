@@ -54,7 +54,7 @@ const EmbedCode = () => {
           <div className={styles.innerContainer}>
             <div ref={codeElemRef}>
               <pre>
-                {`<script src="${process.env.REACT_APP_EMBED_URL}" type="text/javascript" defer></script>\n`}
+                {`<script src="${process.env.REACT_APP_EMBED_BASE_URL}${process.env.REACT_APP_EMBED_ENTRY_FILE}" type="text/javascript" defer></script>\n`}
                 {`<div\n`}
                 {`    class="event-calendar-embed"\n`}
                 {filters.typeId && `    data-type-id="${filters.typeId}"\n`}

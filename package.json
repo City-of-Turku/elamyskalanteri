@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-react": "cd react-ui && npm start",
-    "start-embed": "cd embed && node serve.js"
+    "start-embed": "cd embed-examples && node serve.js"
   },
   "repository": {
     "type": "git",
