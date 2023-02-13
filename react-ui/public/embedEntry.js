@@ -2,10 +2,10 @@ const loadElamyskalenteriEmbed = () => {
   const baseUrl = 'https://elamyskalenteri.turku.fi/';
   const getEntrypoints = async () => {
     const data =
-      await fetch(`${baseUrl}/asset-manifest.json`)
+      await fetch(`${baseUrl}asset-manifest.json`)
         .then(response => response.json())
         .catch(error => { console.log(error) });
-    return data.entrypoints.map(entrypoint => `${baseUrl}/${entrypoint}`);
+    return data.entrypoints.map(entrypoint => `${baseUrl}${entrypoint}`);
   };
 
   const createElement = (tagName, attributes) => {
