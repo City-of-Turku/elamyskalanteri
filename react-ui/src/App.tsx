@@ -33,6 +33,7 @@ const App = (props: AppProps) => {
     setShowSearch,
     setTheme,
     setTitle,
+    setShowEmbedTool,
   } = bindActionCreators(optionsSlice.actions, dispatch);
   const {
     setAudience,
@@ -59,9 +60,9 @@ const App = (props: AppProps) => {
     setShowSearch(data.showSearch === 'true' ? true : false);
     setTheme(data.theme);
     setTitle(data.title);
+    setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
     // TODO
     // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
-    // setshowEmbedTool(data.showEmbedTool === 'true' ? true : false);
 
     // Apply filters
     setAudience(data.audience ? [data.audience] : []);

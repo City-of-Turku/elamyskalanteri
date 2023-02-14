@@ -49,7 +49,7 @@ const EventList = (props: EventListProps) => {
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
   const { attributesLoaded } = appState;
-  const { listView, numOfVisibleResults, showSearch } = options;
+  const { listView, numOfVisibleResults, showSearch, showEmbedTool } = options;
   const shouldUpdateUrl = showSearch;
   const allowPagination = showSearch;
   const hideResultCount = !showSearch;
@@ -290,7 +290,7 @@ const EventList = (props: EventListProps) => {
       {showSearch && (
         <Box sx={{ maxWidth: theme.breakpoints.values.md, margin: 'auto' }}>
           <FilterContainer />
-          <EmbedCode />
+          {showEmbedTool && <EmbedCode />}
         </Box>
       )}
       <Grid

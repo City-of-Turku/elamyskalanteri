@@ -13,6 +13,7 @@ export interface OptionsState {
   languageSelection: string;
   linkContainer: string | null;
   linkText: string | null;
+  showEmbedTool: boolean;
 }
 
 const initialState: OptionsState = {
@@ -25,6 +26,7 @@ const initialState: OptionsState = {
   languageSelection: DEFAULT_LANGUAGE,
   linkContainer: null,
   linkText: null,
+  showEmbedTool: false,
 };
 
 export const optionsSlice = createSlice({
@@ -58,6 +60,9 @@ export const optionsSlice = createSlice({
     setLinkText: (state, action: PayloadAction<string>) => {
       state.linkText = action.payload;
     },
+    setShowEmbedTool: (state, action: PayloadAction<boolean>) => {
+      state.showEmbedTool = action.payload;
+    },
   },
 });
 
@@ -72,6 +77,7 @@ export const {
   setLanguageSelection,
   setLinkContainer,
   setLinkText,
+  setShowEmbedTool,
 } = optionsSlice.actions;
 
 export default optionsSlice;
