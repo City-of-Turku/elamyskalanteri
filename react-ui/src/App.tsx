@@ -29,7 +29,7 @@ const App = (props: AppProps) => {
     setLinkContainer,
     setLinkText,
     setListView,
-    setNumOfView,
+    setNumOfVisibleResults,
     setShowSearch,
     setTheme,
     setTitle,
@@ -53,7 +53,7 @@ const App = (props: AppProps) => {
     setLinkContainer(data.linkUrl);
     setLinkText(data.linkText);
     setListView(getLayoutOption(data.layout));
-    setNumOfView(
+    setNumOfVisibleResults(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
     setShowSearch(data.showSearch === 'true' ? true : false);

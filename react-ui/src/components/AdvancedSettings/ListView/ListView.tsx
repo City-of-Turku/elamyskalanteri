@@ -24,7 +24,7 @@ const ListView = () => {
     }
   };
 
-  const handleNumOfView = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleResultMaxCount = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target !== null) {
       setNumberOfView(e.target.value);
     }
@@ -66,7 +66,7 @@ const ListView = () => {
           </div>
         </RadioGroup>
         <TextField
-          onChange={handleNumOfView}
+          onChange={handleResultMaxCount}
           sx={{
             display: 'flex',
             flexDirection: 'column',

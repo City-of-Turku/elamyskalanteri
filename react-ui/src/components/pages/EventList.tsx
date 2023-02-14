@@ -49,11 +49,11 @@ const EventList = (props: EventListProps) => {
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
   const { attributesLoaded } = appState;
-  const { listView, numOfView, showSearch } = options;
+  const { listView, numOfVisibleResults, showSearch } = options;
   const shouldUpdateUrl = showSearch;
   const allowPagination = showSearch;
   const hideResultCount = !showSearch;
-  const resultsPerPage = numOfView || DEFAULT_PAGE_SIZE;
+  const resultsPerPage = numOfVisibleResults || DEFAULT_PAGE_SIZE;
   const resultsRef = useRef<HTMLDivElement>(null);
 
   // This useEffect is meant to update filters based on browser's query parameters in the URL.
