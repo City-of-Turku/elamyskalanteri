@@ -8,11 +8,12 @@ export interface OptionsState {
   description: string | null;
   theme: string;
   listView: LayoutOptions;
-  numOfView: number | null;
+  numOfVisibleResults: number | null;
   showSearch: boolean | null;
   languageSelection: string;
   linkContainer: string | null;
   linkText: string | null;
+  showEmbedTool: boolean;
 }
 
 const initialState: OptionsState = {
@@ -20,11 +21,12 @@ const initialState: OptionsState = {
   description: null,
   theme: THEMES.VINK,
   listView: LAYOUT_OPTIONS.LIST,
-  numOfView: null,
+  numOfVisibleResults: null,
   showSearch: null,
   languageSelection: DEFAULT_LANGUAGE,
   linkContainer: null,
   linkText: null,
+  showEmbedTool: false,
 };
 
 export const optionsSlice = createSlice({
@@ -43,8 +45,8 @@ export const optionsSlice = createSlice({
     setListView: (state, action: PayloadAction<LayoutOptions>) => {
       state.listView = action.payload;
     },
-    setNumOfView: (state, action: PayloadAction<number | null>) => {
-      state.numOfView = action.payload;
+    setNumOfVisibleResults: (state, action: PayloadAction<number | null>) => {
+      state.numOfVisibleResults = action.payload;
     },
     setShowSearch: (state, action: PayloadAction<boolean>) => {
       state.showSearch = action.payload;
@@ -58,6 +60,9 @@ export const optionsSlice = createSlice({
     setLinkText: (state, action: PayloadAction<string>) => {
       state.linkText = action.payload;
     },
+    setShowEmbedTool: (state, action: PayloadAction<boolean>) => {
+      state.showEmbedTool = action.payload;
+    },
   },
 });
 
@@ -67,11 +72,12 @@ export const {
   setDescription,
   setTheme,
   setListView,
-  setNumOfView,
+  setNumOfVisibleResults,
   setShowSearch,
   setLanguageSelection,
   setLinkContainer,
   setLinkText,
+  setShowEmbedTool,
 } = optionsSlice.actions;
 
 export default optionsSlice;

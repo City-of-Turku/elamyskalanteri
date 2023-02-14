@@ -29,10 +29,11 @@ const App = (props: AppProps) => {
     setLinkContainer,
     setLinkText,
     setListView,
-    setNumOfView,
+    setNumOfVisibleResults,
     setShowSearch,
     setTheme,
     setTitle,
+    setShowEmbedTool,
   } = bindActionCreators(optionsSlice.actions, dispatch);
   const {
     setAudience,
@@ -53,15 +54,15 @@ const App = (props: AppProps) => {
     setLinkContainer(data.linkUrl);
     setLinkText(data.linkText);
     setListView(getLayoutOption(data.layout));
-    setNumOfView(
+    setNumOfVisibleResults(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
     setShowSearch(data.showSearch === 'true' ? true : false);
     setTheme(data.theme);
     setTitle(data.title);
+    setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
     // TODO
     // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
-    // setshowEmbedTool(data.showEmbedTool === 'true' ? true : false);
 
     // Apply filters
     setAudience(data.audience ? [data.audience] : []);
