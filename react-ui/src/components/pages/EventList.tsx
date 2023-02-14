@@ -56,6 +56,15 @@ const EventList = (props: EventListProps) => {
   const resultsPerPage = numOfVisibleResults || DEFAULT_PAGE_SIZE;
   const resultsRef = useRef<HTMLDivElement>(null);
 
+  // Use a ref to store the previous filters value and determine if they have changed
+  const previousFiltersRef = useRef(filters);
+  const filtersWereUpdated = previousFiltersRef.current !== filters;
+
+  // Update the previous filters value after each render
+  useEffect(() => {
+    previousFiltersRef.current = filters;
+  });
+
   // This useEffect is meant to update filters based on browser's query parameters in the URL.
   // When the user lands on the page and query parameters are set, it will use those instead
   // of the ones set as data-attributes
@@ -145,7 +154,7 @@ const EventList = (props: EventListProps) => {
     isFetching,
   } = useEventsQuery(
     {
-      page: page,
+      page: filtersWereUpdated ? 1 : page, // Reset page to 1 if filters were updated
       searchTerm: filters.search || '',
       keyword: filters.eventTypes,
       features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join('&') : '',
