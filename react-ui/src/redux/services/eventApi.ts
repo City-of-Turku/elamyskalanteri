@@ -11,6 +11,7 @@ interface IOptions {
   end_time?: string;
   audiences: string[];
   type_id?: string;
+  page_size: number;
 }
 
 export const eventApi = createApi({
@@ -21,12 +22,21 @@ export const eventApi = createApi({
   endpoints: (builder) => ({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
-        const q = `/event/?include=location&type_id=${options.type_id}&page=${options.page}&text=${
-          options.searchTerm
-        }&keyword_AND=${options.keyword.concat(options.audiences)}&${options.features}&bbox=${
-          options.bbox
-        }&start=${options.start_time}&end=${options.end_time}`;
-        return q;
+        const {
+          audiences,
+          bbox,
+          end_time,
+          features,
+          keyword,
+          page,
+          searchTerm,
+          start_time,
+          type_id,
+          page_size,
+        } = options;
+        const keywords = keyword.concat(audiences);
+        const renderFeatures = features && `&${features}`;
+        return `/event/?include=location&type_id=${type_id}&page_size=${page_size}&page=${page}&text=${searchTerm}&keyword_AND=${keywords}&bbox=${bbox}&start=${start_time}&end=${end_time}${renderFeatures}`;
       },
     }),
     event: builder.query<Event, string>({

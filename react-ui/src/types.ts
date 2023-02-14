@@ -12,6 +12,7 @@ export type PayloadMeta = {
   count: number;
   next: string | null;
   previous: string | null;
+  total_pages: number;
 };
 
 export type Organization = {
