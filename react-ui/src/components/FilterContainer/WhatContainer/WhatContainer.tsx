@@ -234,7 +234,7 @@ const WhatContainer = () => {
   );
 
   return (
-    <div className={styles.container}>
+    <div>
       <Accordion title={`${t('what')}?`} icon={LocalActivityIcon}>
         <Typography variant="h3">{t('contentType')}</Typography>
 

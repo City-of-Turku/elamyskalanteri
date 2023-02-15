@@ -70,7 +70,10 @@ const App = (props: AppProps) => {
     setEventTypes(data.keywords ? [data.keywords] : []);
     setFeatures(data.features ? [data.features] : []);
     setSearch(data.search);
-    setStartTime(getApiFormattedDate(data.timeStart));
+    setStartTime(
+      // Always set start time to today if no start time is provided
+      data.timeStart ? getApiFormattedDate(data.timeStart) : getApiFormattedDate(new Date()),
+    );
     setTypeId(data.typeId);
 
     // Set attribute state as loaded

@@ -18,32 +18,30 @@ const Accordion = ({ title, children, icon }: IProps) => {
   const theme = useTheme();
 
   return (
-    <div>
-      <Accordions elevation={0} className={styles.accordion}>
-        <AccordionSummary
-          sx={{ padding: '8px' }}
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-          className={styles.accordionSummary}
-        >
-          {icon && (
-            <div
-              className={styles.iconWrapper}
-              style={{ backgroundColor: theme.palette.primary.main }}
-            >
-              <Icon component={icon} style={{ fontSize: 32, color: '#ffffff' }} />
-            </div>
-          )}
-          <Typography variant="h2" className={styles.title}>
-            {title}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <div className={styles.childContainer}>{children}</div>
-        </AccordionDetails>
-      </Accordions>
-    </div>
+    <Accordions elevation={0} className={styles.accordion}>
+      <AccordionSummary
+        sx={{ padding: '8px' }}
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+        className={styles.accordionSummary}
+      >
+        {icon && (
+          <div
+            className={styles.iconWrapper}
+            style={{ backgroundColor: theme.palette.primary.main }}
+          >
+            <Icon component={icon} style={{ fontSize: 32, color: '#ffffff' }} />
+          </div>
+        )}
+        <Typography variant="h2" className={styles.title}>
+          {title}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <div className={styles.childContainer}>{children}</div>
+      </AccordionDetails>
+    </Accordions>
   );
 };
 

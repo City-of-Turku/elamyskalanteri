@@ -64,3 +64,13 @@ export const features: Feature[] = [
     value: 'virtual=true',
   },
 ];
+
+export const DateShortcut = {
+  TODAY: 'today',
+  TOMORROW: 'tomorrow',
+  THIS_WEEK: 'thisWeek',
+  CURRENT_MONTH: 'currentMonth',
+  RESET: 'reset',
+} as const;
+
+export type DateShortcutType = (typeof DateShortcut)[keyof typeof DateShortcut];
