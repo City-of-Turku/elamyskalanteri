@@ -41,6 +41,7 @@ const EventList = (props: EventListProps) => {
   const { filters, options, appState } = useAppSelector((state) => state);
   const {
     setAudience,
+    setLocalities,
     setSearch,
     setEventTypes,
     setFeatures,
@@ -107,6 +108,9 @@ const EventList = (props: EventListProps) => {
       if (queryHasValue('audiences')) {
         setAudience(arrayFromCommaList(query.audiences));
       }
+      if (queryHasValue('localities')) {
+        setLocalities(arrayFromCommaList(query.localities));
+      }
       if (queryHasValue('type_id')) {
         setTypeId(query.type_id);
       } else if (typeId) {
@@ -127,6 +131,7 @@ const EventList = (props: EventListProps) => {
     shouldUpdateUrl,
     typeId,
     setAudience,
+    setLocalities,
   ]);
 
   // Replace URL with new filters
@@ -157,6 +162,7 @@ const EventList = (props: EventListProps) => {
       audiences: filters.audiences,
       type_id: filters.typeId ? filters.typeId : '',
       page_size: resultsPerPage,
+      localities: filters.localities,
     },
     { skip: !firstLoadDone },
   );
