@@ -28,6 +28,7 @@ export const DATA_ATTRIBUTES = [
   'layout',
   'linkText',
   'linkUrl',
+  'localities',
   'numOfVisibleResults',
   'openInNewWindow',
   'search',

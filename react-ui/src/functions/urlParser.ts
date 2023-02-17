@@ -30,6 +30,10 @@ export const parseQuery = (filters: FilterState) => {
     validQueries = validQueries.concat(`audiences=${filters.audiences.join(',')}`);
   }
 
+  if (filters.localities.length) {
+    validQueries = validQueries.concat(`localities=${filters.localities.join(',')}`);
+  }
+
   if (filters.typeId) {
     validQueries = validQueries.concat(`type_id=${filters.typeId}`);
   }

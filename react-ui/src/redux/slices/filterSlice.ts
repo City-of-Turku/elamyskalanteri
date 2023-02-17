@@ -25,6 +25,7 @@ export interface FilterState {
   languageSelection: string;
   linkContainer: string;
   linkText: string;
+  localities: string[];
 }
 
 const initialState: FilterState = {
@@ -45,6 +46,7 @@ const initialState: FilterState = {
   languageSelection: DEFAULT_LANGUAGE,
   linkContainer: '',
   linkText: '',
+  localities: [],
 };
 
 export const filterSlice = createSlice({
@@ -121,6 +123,15 @@ export const filterSlice = createSlice({
     },
     setLinkText: (state, action) => {
       state.linkText = action.payload;
+    },
+    setLocalities: (state, action) => {
+      state.localities = action.payload;
+    },
+    addLocalities: (state, action) => {
+      state.localities = state.localities.concat(action.payload);
+    },
+    removeLocalities: (state, action) => {
+      state.localities = state.localities.filter((item) => item !== action.payload);
     },
   },
 });
