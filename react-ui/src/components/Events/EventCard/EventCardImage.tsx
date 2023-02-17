@@ -22,8 +22,9 @@ const EventCardImage = ({ event, layout, isSmallScreen }: IProps) => {
   const eventImage = images.find((image) => image.url);
   const isGrid = layout === LAYOUT_OPTIONS.GRID;
 
-  const startDay = dayjs(start_time).locale(currentLang).format('D');
-  const startMonth = dayjs(start_time).locale(currentLang).format('MMM');
+  const startDay = dayjs(start_time).isValid() && dayjs(start_time).locale(currentLang).format('D');
+  const startMonth =
+    dayjs(start_time).isValid() && dayjs(start_time).locale(currentLang).format('MMM');
   const eventImageUrl = eventImage?.url || undefined;
 
   return (
@@ -35,22 +36,24 @@ const EventCardImage = ({ event, layout, isSmallScreen }: IProps) => {
       }}
     >
       <div className={styles.imageDateWrapper}>
-        <div className={styles.imageDate}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ color: theme.palette.secondary.main, lineHeight: 1.2, fontWeight: 900 }}
-          >
-            {startDay}
-          </Typography>
-          <Typography
-            variant="body1"
-            component="div"
-            sx={{ color: theme.palette.secondary.main, lineHeight: 1.2, fontSize: '90%' }}
-          >
-            {capitalize(startMonth)}
-          </Typography>
-        </div>
+        {startDay && startMonth && (
+          <div className={styles.imageDate}>
+            <Typography
+              variant="h3"
+              component="div"
+              sx={{ color: theme.palette.secondary.main, lineHeight: 1.2, fontWeight: 900 }}
+            >
+              {startDay}
+            </Typography>
+            <Typography
+              variant="body1"
+              component="div"
+              sx={{ color: theme.palette.secondary.main, lineHeight: 1.2, fontSize: '90%' }}
+            >
+              {capitalize(startMonth)}
+            </Typography>
+          </div>
+        )}
       </div>
     </Box>
   );
