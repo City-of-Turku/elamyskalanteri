@@ -40,12 +40,12 @@ const EventList = (props: EventListProps) => {
   const { typeId } = props;
   const { filters, options, appState } = useAppSelector((state) => state);
   const {
+    setAudience,
     setSearch,
     setEventTypes,
     setFeatures,
     setStartTime,
     setEndTime,
-    addAudience,
     setTypeId,
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
@@ -105,8 +105,7 @@ const EventList = (props: EventListProps) => {
         setEndTime(query.end_time);
       }
       if (queryHasValue('audiences')) {
-        const audienceArray = arrayFromCommaList(query.audiences);
-        audienceArray.forEach((item: string) => addAudience(item));
+        setAudience(arrayFromCommaList(query.audiences));
       }
       if (queryHasValue('type_id')) {
         setTypeId(query.type_id);
@@ -117,7 +116,6 @@ const EventList = (props: EventListProps) => {
       setFirstLoadDone(true);
     }
   }, [
-    addAudience,
     firstLoadDone,
     attributesLoaded,
     setEndTime,
@@ -128,6 +126,7 @@ const EventList = (props: EventListProps) => {
     setTypeId,
     shouldUpdateUrl,
     typeId,
+    setAudience,
   ]);
 
   // Replace URL with new filters

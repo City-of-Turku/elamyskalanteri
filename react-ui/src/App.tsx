@@ -5,6 +5,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import CSSVariableProvider from './components/CSSVariableProvider/CSSVariableProvider';
 import EventContent from './components/pages/EventContent';
 import EventList from './components/pages/EventList';
+import { arrayFromCommaList } from './functions/arrayFromCommaList';
 import { checkUsedAttributes } from './functions/checkUsedAttributes';
 import { getApiFormattedDate } from './functions/getFormattedDate';
 import { getLayoutOption } from './functions/getLayoutOption';
@@ -65,10 +66,10 @@ const App = (props: AppProps) => {
     // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
 
     // Apply filters
-    setAudience(data.audience ? [data.audience] : []);
+    setAudience(data.audience ? arrayFromCommaList(data.audience) : []);
     setEndTime(getApiFormattedDate(data.timeEnd));
-    setEventTypes(data.keywords ? [data.keywords] : []);
-    setFeatures(data.features ? [data.features] : []);
+    setEventTypes(data.keywords ? arrayFromCommaList(data.keywords) : []);
+    setFeatures(data.features ? arrayFromCommaList(data.features) : []);
     setSearch(data.search);
     setStartTime(
       // Always set start time to today if no start time is provided
