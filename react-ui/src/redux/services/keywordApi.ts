@@ -4,11 +4,11 @@ import { GetKeywordSetResponse } from '../../types';
 export const keywordApi = createApi({
   reducerPath: 'keywordApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_LINKEDEVENTS_BASE_URL}/keyword_set/`,
+    baseUrl: `${process.env.REACT_APP_LINKEDEVENTS_BASE_URL}`,
   }),
   endpoints: (builder) => ({
     keywordSet: builder.query<GetKeywordSetResponse, void>({
-      query: () => '?include=keywords',
+      query: () => '/keyword_set/?include=keywords',
     }),
   }),
 });
