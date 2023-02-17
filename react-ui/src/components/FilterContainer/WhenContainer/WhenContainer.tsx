@@ -1,72 +1,228 @@
+import ClearIcon from '@mui/icons-material/Clear';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import { alpha, Box, Button, Grid, TextField, useTheme } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import React, { useContext } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import 'react-day-picker/dist/style.css';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { DateShortcut, DateShortcutType } from '../../../constants';
+import { capitalize } from '../../../functions/capitalize';
 import { getApiFormattedDate } from '../../../functions/getFormattedDate';
 import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
-import { CurrentLanguageContext } from '../../../translations/TranslationProvider';
 import Accordion from '../../Accordion/Accordion';
 import styles from './WhenContainer.module.scss';
+
 dayjs.extend(customParseFormat);
 
 const WhenContainer = () => {
-  const currentLang = useContext(CurrentLanguageContext);
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const dispatch = useAppDispatch();
   const { filters } = useAppSelector((state) => state);
   const { startTime, endTime } = filters;
-  const dispatch = useAppDispatch();
   const { setStartTime, setEndTime } = bindActionCreators(filterSlice.actions, dispatch);
-  const { t } = useTranslation();
+  const [activeShortcut, setActiveShortcut] = useState<DateShortcutType | null>(null);
 
-  const handleChange = (values: [Date] | [Date, Date]) => {
-    values[0] && setStartTime(getApiFormattedDate(values[0]));
-    values[1] && setEndTime(getApiFormattedDate(values[1]));
+  const today = dayjs();
+  const hasActiveDateSearch = startTime !== getApiFormattedDate(today) || !!endTime;
+
+  const dateShortcuts = [
+    {
+      range: DateShortcut.TODAY,
+      label: t('today'),
+    },
+    {
+      range: DateShortcut.TOMORROW,
+      label: t('tomorrow'),
+    },
+    {
+      range: DateShortcut.THIS_WEEK,
+      label: t('thisWeek'),
+    },
+    {
+      range: DateShortcut.CURRENT_MONTH,
+      label: t('currentMonth'),
+    },
+  ];
+
+  const dateShortcutReset = {
+    range: DateShortcut.RESET,
+    label: t('resetDates'),
   };
 
-  // TODO: Leave this commented out piece of code here until we have decided how
-  // the calendar component should work
-  // useEffect(() => {
-  //   // If only endTime has been provided, also add startTime to prevent errors with
-  //   // the calendar component. Use today as the start date if the end date is not
-  //   // in the past. Otherwise assign start date to be the same as end date.
-  //   if (endTime && !startTime) {
-  //     const today = new Date();
-  //     const comparisonDate = new Date(endTime);
-
-  //     if (comparisonDate.getTime() < today.getTime()) {
-  //       setStartTime(getApiFormattedDate(comparisonDate));
-  //     }
-  //     setStartTime(getApiFormattedDate(today));
-  //   }
-  // }, [endTime, startTime, setStartTime]);
-
-  const getValue = () => {
-    if (!startTime) {
-      return null;
+  const handleShortcutClick = (shortcut: DateShortcutType) => {
+    switch (shortcut) {
+      case DateShortcut.TODAY:
+        handleStartChange(today);
+        handleEndChange(today);
+        setActiveShortcut(DateShortcut.TODAY);
+        break;
+      case DateShortcut.TOMORROW:
+        handleStartChange(today.add(1, 'day'));
+        handleEndChange(today.add(1, 'day'));
+        setActiveShortcut(DateShortcut.TOMORROW);
+        break;
+      case DateShortcut.THIS_WEEK:
+        handleStartChange(today.startOf('week'));
+        handleEndChange(today.endOf('week'));
+        setActiveShortcut(DateShortcut.THIS_WEEK);
+        break;
+      case DateShortcut.CURRENT_MONTH:
+        handleStartChange(today.startOf('month'));
+        handleEndChange(today.endOf('month'));
+        setActiveShortcut(DateShortcut.CURRENT_MONTH);
+        break;
+      case DateShortcut.RESET:
+        handleStartChange(today);
+        handleEndChange(null);
+        setActiveShortcut(null);
+        break;
+      default:
+        break;
     }
-
-    if (!endTime) {
-      return new Date(dayjs(startTime).toString());
-    }
-
-    return [new Date(dayjs(startTime).toString()), new Date(dayjs(endTime).toString())];
   };
+
+  const handleStartChange = (value: Dayjs | null) => {
+    if (!value) {
+      setActiveShortcut(null);
+      return setStartTime(null);
+    }
+    if (dayjs(value).isValid()) {
+      setActiveShortcut(null);
+      return setStartTime(getApiFormattedDate(value));
+    }
+  };
+
+  const handleEndChange = (value: Dayjs | null) => {
+    if (!value) {
+      setActiveShortcut(null);
+      return setEndTime(null);
+    }
+    if (dayjs(value).isValid()) {
+      setActiveShortcut(null);
+      return setEndTime(getApiFormattedDate(value));
+    }
+  };
+
+  const getStartValue = (): Dayjs | null => {
+    if (startTime) {
+      return dayjs(startTime);
+    }
+    return null;
+  };
+
+  const getEndValue = (): Dayjs | null => {
+    if (endTime) {
+      return dayjs(endTime);
+    }
+    return null;
+  };
+
+  const renderShortcutButtons = () =>
+    dateShortcuts.map(({ range, label }) => (
+      <Button
+        key={range}
+        onClick={() => handleShortcutClick(range)}
+        variant="contained"
+        color="secondary"
+        sx={{
+          borderRadius: 0,
+          clipPath: 'polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)',
+          fontWeight: 'normal',
+          textTransform: 'unset',
+          fontSize: '1em',
+          backgroundColor:
+            activeShortcut === range
+              ? theme.palette.secondary.main
+              : alpha(theme.palette.primary.light, 0.1),
+          color:
+            activeShortcut === range
+              ? theme.palette.getContrastText(theme.palette.secondary.main)
+              : theme.palette.secondary.main,
+          '&:hover, &:focus': {
+            color: theme.palette.getContrastText(theme.palette.primary.dark),
+            backgroundColor: theme.palette.secondary.main,
+          },
+        }}
+      >
+        {activeShortcut === range && (
+          <Box component="span" sx={visuallyHidden}>
+            {t('activeShortcut')}:{' '}
+          </Box>
+        )}
+        {capitalize(label)}
+      </Button>
+    ));
 
   return (
-    <div className={styles.container}>
+    <div>
       <Accordion title={`${t('when')}?`} icon={EventAvailableIcon}>
-        <Calendar
-          className={styles.customCalendar}
-          onChange={handleChange}
-          value={getValue()}
-          locale={currentLang}
-          selectRange
-        />
+        <Box display="flex" flexWrap="wrap" rowGap={1} mb={1}>
+          {renderShortcutButtons()}
+        </Box>
+        <Grid container spacing={3} sx={{ paddingTop: 2 }}>
+          <Grid item component="div" sx={{ flexGrow: 1 }}>
+            <DatePicker
+              label={t('startDate')}
+              value={getStartValue()}
+              onChange={(newValue) => handleStartChange(newValue)}
+              className={styles.datePicker}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="eceStartDate"
+                  variant="outlined"
+                  helperText={`${t('useFormatOf')} ${params?.inputProps?.placeholder}`}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item component="div" sx={{ flexGrow: 1 }}>
+            <DatePicker
+              label={t('endDate')}
+              value={getEndValue()}
+              onChange={(newValue) => handleEndChange(newValue)}
+              className={styles.datePicker}
+              minDate={getStartValue()}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="eceEndDate"
+                  variant="outlined"
+                  helperText={`${t('useFormatOf')} ${params?.inputProps?.placeholder}`}
+                />
+              )}
+            />
+          </Grid>
+        </Grid>
+        {hasActiveDateSearch && (
+          <Box sx={{ marginTop: 1 }}>
+            <Button
+              onClick={() => handleShortcutClick(dateShortcutReset.range)}
+              variant="text"
+              color="inherit"
+              startIcon={<ClearIcon />}
+              sx={{
+                borderRadius: 0,
+                clipPath: 'polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)',
+                textTransform: 'unset',
+                fontWeight: 'normal',
+                fontSize: '1em',
+                paddingX: 2,
+                color: theme.palette.secondary.main,
+                '&:hover, &:focus': {
+                  color: theme.palette.secondary.dark,
+                },
+              }}
+            >
+              {capitalize(dateShortcutReset.label)}
+            </Button>
+          </Box>
+        )}
       </Accordion>
     </div>
   );

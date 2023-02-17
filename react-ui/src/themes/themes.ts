@@ -1,4 +1,5 @@
-import { createTheme } from '@mui/material/styles';
+import { alpha, createTheme } from '@mui/material/styles';
+import type {} from '@mui/x-date-pickers/themeAugmentation';
 
 const baseTypography = {
   root: {
@@ -40,6 +41,25 @@ const baseTypography = {
   body2: {
     lineHeight: 1.5,
     fontSize: 18,
+  },
+};
+
+const baseMuiCalendarPickerRoot = {
+  '& .MuiPickersDay-root': {
+    borderRadius: 0,
+    margin: 0,
+    width: '40px',
+    clipPath: 'polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%)',
+  },
+};
+
+const baseFormHelperText = {
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: {
+        fontSize: 16,
+      },
+    },
   },
 };
 
@@ -89,6 +109,27 @@ export const vinkTheme = createTheme({
       color: '#2B2B2B',
     },
   },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+            backgroundColor: '#193773',
+            '&:hover, &:focus': {
+              backgroundColor: '#112650',
+            },
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#F26835', 0.1),
+            border: 'none',
+          },
+        },
+      },
+    },
+  },
 });
 
 export const whiteLabelTheme = createTheme({
@@ -136,6 +177,23 @@ export const whiteLabelTheme = createTheme({
       color: '#202020',
     },
   },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#202020', 0.1),
+            border: 'none',
+          },
+        },
+      },
+    },
+  },
 });
 
 export const naantaliTheme = createTheme({
@@ -176,6 +234,23 @@ export const naantaliTheme = createTheme({
     },
     body2: {
       color: '#2c2a29',
+    },
+  },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#1D6052', 0.1),
+            border: 'none',
+          },
+        },
+      },
     },
   },
 });
@@ -226,6 +301,23 @@ export const raisioTheme = createTheme({
       color: '#2c2a29',
     },
   },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#003C71', 0.1),
+            border: 'none',
+          },
+        },
+      },
+    },
+  },
 });
 
 export const taiTheme = createTheme({
@@ -270,6 +362,23 @@ export const taiTheme = createTheme({
     body2: {
       ...baseTypography.body2,
       color: '#1d1d1a',
+    },
+  },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#ed1a3b', 0.1),
+            border: 'none',
+          },
+        },
+      },
     },
   },
 });
@@ -318,6 +427,23 @@ export const kaarinaTheme = createTheme({
     body2: {
       ...baseTypography.body2,
       color: '#151515',
+    },
+  },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#0071B4', 0.1),
+            border: 'none',
+          },
+        },
+      },
     },
   },
 });

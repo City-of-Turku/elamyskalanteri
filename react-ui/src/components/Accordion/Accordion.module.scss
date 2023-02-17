@@ -1,4 +1,6 @@
 .accordion {
+  background-color: transparent !important;
+
   h2, h3 {
     text-transform: capitalize;
     line-height: normal;
@@ -13,8 +15,11 @@
 .childContainer {
   display: flex;
   flex-direction: column;
-  padding: 0 16px 24px 16px;
   gap: 16px;
+
+  @media only screen and (min-width: 500px) {
+    padding: 0 16px 24px 16px;
+  }
 }
 
 .iconWrapper {
