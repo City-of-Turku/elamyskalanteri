@@ -12,6 +12,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { LAYOUT_OPTIONS } from '../../constants';
+import { arrayFromCommaList } from '../../functions/arrayFromCommaList';
 import { parseQuery } from '../../functions/urlParser';
 import { useAppDispatch, useAppSelector } from '../../hooks/rtkHooks';
 import { useEventsQuery } from '../../redux/services/eventApi';
@@ -86,13 +87,6 @@ const EventList = (props: EventListProps) => {
           return true;
         }
         return false;
-      };
-
-      const arrayFromCommaList = (value: unknown): [] | string[] => {
-        if (typeof value === 'string') {
-          return value?.split(',');
-        }
-        return [];
       };
 
       if (queryHasValue('text')) {
