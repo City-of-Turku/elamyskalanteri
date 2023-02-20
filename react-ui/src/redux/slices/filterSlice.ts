@@ -7,11 +7,10 @@ export interface FilterState {
   search: string;
   eventFeatures: string[];
   audiences: string[];
-  bbox: {
-    west: number | null;
-    south: number | null;
-    east: number | null;
-    north: number | null;
+  maxDistance: {
+    latitude: number | null;
+    longitude: number | null;
+    radius: number | null;
   };
   startTime: Date | null;
   endTime: Date | null;
@@ -28,12 +27,16 @@ export interface FilterState {
   localities: string[];
 }
 
-const initialState: FilterState = {
+export const initialState: FilterState = {
   eventTypes: [],
   eventFeatures: [],
   audiences: [],
   search: '',
-  bbox: { north: null, east: null, south: null, west: null },
+  maxDistance: {
+    latitude: null,
+    longitude: null,
+    radius: null,
+  },
   startTime: null,
   endTime: null,
   typeId: '',
@@ -76,8 +79,8 @@ export const filterSlice = createSlice({
     setFeatures: (state, action) => {
       state.eventFeatures = action.payload;
     },
-    setBbox: (state, action) => {
-      state.bbox = action.payload;
+    setMaxDistance: (state, action) => {
+      state.maxDistance = action.payload;
     },
     setStartTime: (state, action) => {
       state.startTime = action.payload;
