@@ -42,6 +42,14 @@ export const DATA_ATTRIBUTES = [
 
 export type DataAttributes = (typeof DATA_ATTRIBUTES)[number];
 
+export const CONTENT_TYPES = {
+  EVENTS: 'eventgeneral',
+  HOBBIES: 'eventhobbies',
+  COURSES: 'eventcourse',
+} as const;
+
+export type ContentTypesType = (typeof CONTENT_TYPES)[keyof typeof CONTENT_TYPES];
+
 export const freeTranslated = {
   fi: 'ilmainen',
   sv: 'gratis',

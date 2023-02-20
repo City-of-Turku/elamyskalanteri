@@ -11,7 +11,7 @@ import {
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { features } from '../../../constants';
+import { CONTENT_TYPES, features } from '../../../constants';
 import { getTranslatedValue } from '../../../functions/getTranslatedValue';
 import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
 import { useKeywordSetQuery } from '../../../redux/services/keywordApi';
@@ -112,7 +112,7 @@ const WhatContainer = () => {
       };
 
       const _categoryGroups = {
-        eventgeneral: [
+        [CONTENT_TYPES.EVENTS]: [
           {
             title: t('content'),
             categories: getCategories('turku:topic_content'),
@@ -122,13 +122,13 @@ const WhatContainer = () => {
             categories: getCategories('turku:topic_type'),
           },
         ],
-        eventhobbies: [
+        [CONTENT_TYPES.HOBBIES]: [
           {
             title: t('content'),
             categories: getCategories('turku:hobbytopics'),
           },
         ],
-        eventcourse: [
+        [CONTENT_TYPES.COURSES]: [
           {
             title: t('content'),
             categories: getCategories('turku:coursetopics'),
@@ -246,9 +246,21 @@ const WhatContainer = () => {
             onChange={(e) => handleTypeIdChange(e)}
             style={{ textTransform: 'capitalize' }}
           >
-            <FormControlLabel value="eventgeneral" control={<Radio />} label={t('events')} />
-            <FormControlLabel value="eventhobbies" control={<Radio />} label={t('hobbies')} />
-            <FormControlLabel value="eventcourse" control={<Radio />} label={t('educations')} />
+            <FormControlLabel
+              value={CONTENT_TYPES.EVENTS}
+              control={<Radio />}
+              label={t('events')}
+            />
+            <FormControlLabel
+              value={CONTENT_TYPES.HOBBIES}
+              control={<Radio />}
+              label={t('hobbies')}
+            />
+            <FormControlLabel
+              value={CONTENT_TYPES.COURSES}
+              control={<Radio />}
+              label={t('educations')}
+            />
           </RadioGroup>
         </div>
 
