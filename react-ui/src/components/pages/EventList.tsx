@@ -28,16 +28,11 @@ import Title from '../Title/Title';
 
 const DEFAULT_PAGE_SIZE = 20; // number of events per page
 
-interface EventListProps {
-  typeId?: string;
-}
-
-const EventList = (props: EventListProps) => {
+const EventList = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const { typeId } = props;
   const { filters, options, appState } = useAppSelector((state) => state);
   const {
     setAudience,
@@ -113,8 +108,6 @@ const EventList = (props: EventListProps) => {
       }
       if (queryHasValue('type_id')) {
         setTypeId(query.type_id);
-      } else if (typeId) {
-        setTypeId(typeId);
       }
 
       setFirstLoadDone(true);
@@ -129,7 +122,6 @@ const EventList = (props: EventListProps) => {
     setStartTime,
     setTypeId,
     shouldUpdateUrl,
-    typeId,
     setAudience,
     setLocalities,
   ]);
