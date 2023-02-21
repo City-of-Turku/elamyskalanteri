@@ -25,13 +25,19 @@ export const eventApi = createApi({
   endpoints: (builder) => ({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
-        const s = `&text=${options.searchTerm}`;
-        const type = `&type_id=${options.type_id}`;
-        const kwds = `&keyword_AND=${options.keyword.concat(options.audiences)}`;
-        const maxDistance = `&lat=${options.latitude}&lon=${options.longitude}&radius=${options.radius}`;
+        const s = options.searchTerm ? `&text=${options.searchTerm}` : '';
+        const type = options.type_id ? `&type_id=${options.type_id}` : '';
+        const kwds =
+          options.audiences.length || options.keyword.length
+            ? `&keyword_AND=${options.keyword.concat(options.audiences)}`
+            : '';
+        const maxDistance =
+          options.radius && options.latitude && options.longitude
+            ? `&lat=${options.latitude}&lon=${options.longitude}&radius=${options.radius}`
+            : '';
         const start = `&start=${options.start_time}`;
-        const end = `&end=${options.end_time}`;
-        const loc = `&locality=${options.localities}`;
+        const end = options.end_time ? `&end=${options.end_time}` : '';
+        const loc = options.localities.length ? `&locality=${options.localities}` : '';
         const feats = options.features && `&${options.features}`;
         const pSize = `&page_size=${options.page_size}`;
         const pNum = `&page=${options.page}`;
