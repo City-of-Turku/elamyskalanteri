@@ -55,6 +55,7 @@
   "shortDecription": "Kort introduktion",
   "showAdvancedSettings": "Visa avancerade inställningar för inbäddning",
   "showLink": "Lägg till länk",
+  "showPastEvents": "Visa tidigare händelser (om inget startdatum är valt)",
   "showSearchComponent": "Visa sök-/filterkomponent",
   "siteUrl": "Url till webbplatsen",
   "startDate": "Från datum",

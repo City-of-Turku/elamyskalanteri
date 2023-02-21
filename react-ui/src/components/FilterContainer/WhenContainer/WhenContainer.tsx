@@ -22,13 +22,15 @@ const WhenContainer = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const dispatch = useAppDispatch();
-  const { filters } = useAppSelector((state) => state);
+  const { filters, options } = useAppSelector((state) => state);
   const { startTime, endTime } = filters;
   const { setStartTime, setEndTime } = bindActionCreators(filterSlice.actions, dispatch);
   const [activeShortcut, setActiveShortcut] = useState<DateShortcutType | null>(null);
-
   const today = dayjs();
-  const hasActiveDateSearch = startTime !== getApiFormattedDate(today) || !!endTime;
+  const hasActiveStartDate = options.showPastEvents
+    ? !!startTime
+    : startTime !== getApiFormattedDate(today);
+  const hasActiveDateSearch = hasActiveStartDate || !!endTime;
 
   const dateShortcuts = [
     {
@@ -77,7 +79,7 @@ const WhenContainer = () => {
         setActiveShortcut(DateShortcut.CURRENT_MONTH);
         break;
       case DateShortcut.RESET:
-        handleStartChange(today);
+        handleStartChange(options.showPastEvents ? null : today);
         handleEndChange(null);
         setActiveShortcut(null);
         break;

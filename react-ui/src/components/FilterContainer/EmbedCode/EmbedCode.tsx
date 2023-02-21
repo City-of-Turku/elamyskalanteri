@@ -62,6 +62,7 @@ const EmbedCode = () => {
       : '',
     openInNewWindow: `    data-open-in-new-window="${filters.openInNewWindow}"\n`,
     search: filters.search ? `    data-search="${filters.search}"\n` : '',
+    showPastEvents: `    data-show-past-events="${filters.showPastEvents}"\n`,
     showSearch: `    data-show-search="${filters.searchCriteria}"\n`,
     theme: `    data-theme="${filters.theme}"\n`,
     timeEnd: `    data-time-end="${filters.endTime ? filters.endTime : ''}"\n`,
@@ -97,6 +98,7 @@ const EmbedCode = () => {
                 {embedDataAttribute.keywords}
                 {embedDataAttribute.locality}
                 {embedDataAttribute.search}
+                {embedDataAttribute.showPastEvents}
                 {embedDataAttribute.timeStart}
                 {embedDataAttribute.timeEnd}
                 {embedDataAttribute.typeId}

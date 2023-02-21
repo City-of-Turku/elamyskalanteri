@@ -33,6 +33,7 @@ const App = (props: AppProps) => {
     setNumOfVisibleResults,
     setOpenInNewWindow,
     setShowEmbedTool,
+    setShowPastEvents,
     setShowSearch,
     setTheme,
     setTitle,
@@ -51,6 +52,10 @@ const App = (props: AppProps) => {
   checkUsedAttributes(data);
 
   useEffect(() => {
+    const showPastEvents = data.showPastEvents === 'true' ? true : false;
+    const startTime = getApiFormattedDate(data.timeStart);
+    const endTime = getApiFormattedDate(data.timeEnd);
+
     // Apply options
     setDescription(data.description);
     setLanguageSelection(data.language);
@@ -62,21 +67,20 @@ const App = (props: AppProps) => {
     );
     setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
     setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
+    setShowPastEvents(showPastEvents);
     setShowSearch(data.showSearch === 'true' ? true : false);
     setTheme(data.theme);
     setTitle(data.title);
 
     // Apply filters
     setAudience(data.audience ? arrayFromCommaList(data.audience) : []);
-    setEndTime(getApiFormattedDate(data.timeEnd));
+    setEndTime(endTime);
     setEventTypes(data.keywords ? arrayFromCommaList(data.keywords) : []);
     setFeatures(data.features ? arrayFromCommaList(data.features) : []);
     setLocalities(data.localities ? arrayFromCommaList(data.localities) : []);
     setSearch(data.search);
-    setStartTime(
-      // Always set start time to today if no start time is provided
-      data.timeStart ? getApiFormattedDate(data.timeStart) : getApiFormattedDate(new Date()),
-    );
+    // Always set start time to today if no start time is provided and if showPastEvents is false
+    setStartTime(startTime ? startTime : !showPastEvents && getApiFormattedDate(new Date()));
     setTypeId(data.typeId);
 
     // Set attribute state as loaded

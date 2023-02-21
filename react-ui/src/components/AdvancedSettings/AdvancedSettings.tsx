@@ -12,6 +12,7 @@ import LinkContainer from './LinkContainer/LinkContainer';
 import ListView from './ListView/ListView';
 import OpenInNewWindow from './OpenInNewWindow/OpenInNewWindow';
 import SearchCriteria from './SearchCriteria/SearchCriteria';
+import ShowPastEvents from './ShowPastEvents/ShowPastEvents';
 import TextFields from './TextFields/TextFields';
 import Theme from './Theme/Theme';
 
@@ -31,6 +32,7 @@ const AdvancedSettings = () => {
           <TextFields />
           <Theme />
           <ListView />
+          <ShowPastEvents />
           <SearchCriteria />
           <OpenInNewWindow />
           <LanguageSelect />

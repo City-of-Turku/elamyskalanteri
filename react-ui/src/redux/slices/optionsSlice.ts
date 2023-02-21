@@ -15,6 +15,7 @@ export interface OptionsState {
   linkText: string | null;
   showEmbedTool: boolean;
   openInNewWindow: boolean;
+  showPastEvents: boolean;
 }
 
 const initialState: OptionsState = {
@@ -29,6 +30,7 @@ const initialState: OptionsState = {
   linkText: null,
   showEmbedTool: false,
   openInNewWindow: false,
+  showPastEvents: false,
 };
 
 export const optionsSlice = createSlice({
@@ -68,6 +70,9 @@ export const optionsSlice = createSlice({
     setOpenInNewWindow: (state, action: PayloadAction<boolean>) => {
       state.openInNewWindow = action.payload;
     },
+    setShowPastEvents: (state, action: PayloadAction<boolean>) => {
+      state.showPastEvents = action.payload;
+    },
   },
 });
 
@@ -84,6 +89,7 @@ export const {
   setLinkText,
   setShowEmbedTool,
   setOpenInNewWindow,
+  setShowPastEvents,
 } = optionsSlice.actions;
 
 export default optionsSlice;

@@ -33,6 +33,7 @@ export const DATA_ATTRIBUTES = [
   'openInNewWindow',
   'search',
   'showEmbedTool',
+  'showPastEvents',
   'showSearch',
   'theme',
   'timeEnd',

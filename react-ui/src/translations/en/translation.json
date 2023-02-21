@@ -55,6 +55,7 @@
   "shortDecription": "Short description",
   "showAdvancedSettings": "Show advanced embedding options",
   "showLink": "Add link",
+  "showPastEvents": "Show past events (if no start date is selected)",
   "showSearchComponent": "Include search/filter component",
   "siteUrl": "Url to the site",
   "startDate": "Start date",
