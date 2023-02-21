@@ -12,6 +12,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { LAYOUT_OPTIONS } from '../../constants';
+import { arrayFromCommaList } from '../../functions/arrayFromCommaList';
 import { parseQuery } from '../../functions/urlParser';
 import { useAppDispatch, useAppSelector } from '../../hooks/rtkHooks';
 import { useEventsQuery } from '../../redux/services/eventApi';
@@ -39,12 +40,13 @@ const EventList = (props: EventListProps) => {
   const { typeId } = props;
   const { filters, options, appState } = useAppSelector((state) => state);
   const {
+    setAudience,
+    setLocalities,
     setSearch,
     setEventTypes,
     setFeatures,
     setStartTime,
     setEndTime,
-    addAudience,
     setTypeId,
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
@@ -88,13 +90,6 @@ const EventList = (props: EventListProps) => {
         return false;
       };
 
-      const arrayFromCommaList = (value: unknown): [] | string[] => {
-        if (typeof value === 'string') {
-          return value?.split(',');
-        }
-        return [];
-      };
-
       if (queryHasValue('text')) {
         setSearch(query.text);
       }
@@ -111,8 +106,10 @@ const EventList = (props: EventListProps) => {
         setEndTime(query.end_time);
       }
       if (queryHasValue('audiences')) {
-        const audienceArray = arrayFromCommaList(query.audiences);
-        audienceArray.forEach((item: string) => addAudience(item));
+        setAudience(arrayFromCommaList(query.audiences));
+      }
+      if (queryHasValue('localities')) {
+        setLocalities(arrayFromCommaList(query.localities));
       }
       if (queryHasValue('type_id')) {
         setTypeId(query.type_id);
@@ -123,7 +120,6 @@ const EventList = (props: EventListProps) => {
       setFirstLoadDone(true);
     }
   }, [
-    addAudience,
     firstLoadDone,
     attributesLoaded,
     setEndTime,
@@ -134,6 +130,8 @@ const EventList = (props: EventListProps) => {
     setTypeId,
     shouldUpdateUrl,
     typeId,
+    setAudience,
+    setLocalities,
   ]);
 
   // Replace URL with new filters
@@ -158,12 +156,15 @@ const EventList = (props: EventListProps) => {
       searchTerm: filters.search || '',
       keyword: filters.eventTypes,
       features: Array.isArray(filters.eventFeatures) ? filters.eventFeatures.join('&') : '',
-      bbox: filters.bbox.north ? Object.values(filters.bbox).join(',') : '',
+      latitude: filters.maxDistance.latitude ? filters.maxDistance.latitude.toString() : '',
+      longitude: filters.maxDistance.longitude ? filters.maxDistance.longitude.toString() : '',
+      radius: filters.maxDistance.radius ? filters.maxDistance.radius.toString() : '',
       start_time: filters.startTime ? dayjs(filters.startTime).format('YYYY-MM-DD') : '',
       end_time: filters.endTime ? dayjs(filters.endTime).format('YYYY-MM-DD') : '',
       audiences: filters.audiences,
       type_id: filters.typeId ? filters.typeId : '',
       page_size: resultsPerPage,
+      localities: filters.localities,
     },
     { skip: !firstLoadDone },
   );

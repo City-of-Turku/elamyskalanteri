@@ -197,6 +197,8 @@ export type Category = {
   yso: string;
 };
 
+export type Locality = Translatable;
+
 export type GetOrganizationsResponse = {
   meta: PayloadMeta;
   data: Organization[];
@@ -210,4 +212,9 @@ export type GetEventsResponse = {
 export type GetKeywordSetResponse = {
   meta: PayloadMeta;
   data: KeywordSet[];
+};
+
+export type GetLocalitiesResponse = {
+  count: number;
+  data: Locality[];
 };

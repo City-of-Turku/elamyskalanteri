@@ -28,6 +28,7 @@ export const DATA_ATTRIBUTES = [
   'layout',
   'linkText',
   'linkUrl',
+  'localities',
   'numOfVisibleResults',
   'openInNewWindow',
   'search',
@@ -41,6 +42,14 @@ export const DATA_ATTRIBUTES = [
 ] as const;
 
 export type DataAttributes = (typeof DATA_ATTRIBUTES)[number];
+
+export const CONTENT_TYPES = {
+  EVENTS: 'eventgeneral',
+  HOBBIES: 'eventhobbies',
+  COURSES: 'eventcourse',
+} as const;
+
+export type ContentTypesType = (typeof CONTENT_TYPES)[keyof typeof CONTENT_TYPES];
 
 export const freeTranslated = {
   fi: 'ilmainen',

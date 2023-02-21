@@ -7,11 +7,10 @@ export interface FilterState {
   search: string;
   eventFeatures: string[];
   audiences: string[];
-  bbox: {
-    west: number | null;
-    south: number | null;
-    east: number | null;
-    north: number | null;
+  maxDistance: {
+    latitude: number | null;
+    longitude: number | null;
+    radius: number | null;
   };
   startTime: Date | null;
   endTime: Date | null;
@@ -25,14 +24,19 @@ export interface FilterState {
   languageSelection: string;
   linkContainer: string;
   linkText: string;
+  localities: string[];
 }
 
-const initialState: FilterState = {
+export const initialState: FilterState = {
   eventTypes: [],
   eventFeatures: [],
   audiences: [],
   search: '',
-  bbox: { north: null, east: null, south: null, west: null },
+  maxDistance: {
+    latitude: null,
+    longitude: null,
+    radius: null,
+  },
   startTime: null,
   endTime: null,
   typeId: '',
@@ -45,6 +49,7 @@ const initialState: FilterState = {
   languageSelection: DEFAULT_LANGUAGE,
   linkContainer: '',
   linkText: '',
+  localities: [],
 };
 
 export const filterSlice = createSlice({
@@ -74,8 +79,8 @@ export const filterSlice = createSlice({
     setFeatures: (state, action) => {
       state.eventFeatures = action.payload;
     },
-    setBbox: (state, action) => {
-      state.bbox = action.payload;
+    setMaxDistance: (state, action) => {
+      state.maxDistance = action.payload;
     },
     setStartTime: (state, action) => {
       state.startTime = action.payload;
@@ -121,6 +126,15 @@ export const filterSlice = createSlice({
     },
     setLinkText: (state, action) => {
       state.linkText = action.payload;
+    },
+    setLocalities: (state, action) => {
+      state.localities = action.payload;
+    },
+    addLocalities: (state, action) => {
+      state.localities = state.localities.concat(action.payload);
+    },
+    removeLocalities: (state, action) => {
+      state.localities = state.localities.filter((item) => item !== action.payload);
     },
   },
 });

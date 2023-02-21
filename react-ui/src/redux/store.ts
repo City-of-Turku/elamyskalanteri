@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { eventApi } from './services/eventApi';
 import { keywordApi } from './services/keywordApi';
+import { localitiesApi } from './services/localityApi';
 import { organizationApi } from './services/organizationApi';
 import appStateReducer from './slices/appStateSlice';
 import filterSlice from './slices/filterSlice';
@@ -12,6 +13,7 @@ export const store = () =>
       [eventApi.reducerPath]: eventApi.reducer,
       [keywordApi.reducerPath]: keywordApi.reducer,
       [organizationApi.reducerPath]: organizationApi.reducer,
+      [localitiesApi.reducerPath]: localitiesApi.reducer,
       appState: appStateReducer.reducer,
       filters: filterSlice.reducer,
       options: optionsSlice.reducer,
@@ -21,6 +23,7 @@ export const store = () =>
         eventApi.middleware,
         keywordApi.middleware,
         organizationApi.middleware,
+        localitiesApi.middleware,
       ),
   });
 

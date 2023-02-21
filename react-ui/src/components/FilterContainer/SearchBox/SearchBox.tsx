@@ -1,6 +1,4 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Typography } from '@mui/material';
-import FormGroup from '@mui/material/FormGroup';
 import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { bindActionCreators } from '@reduxjs/toolkit';
@@ -8,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
-import styles from './SearchBox.module.css';
+import styles from './SearchBox.module.scss';
 /*
  * Renders an input box with borders and padding. (The style is very specific...)
  * When the user stops typing (aka "debounce"), dispatches the search query to the redux store
@@ -71,26 +69,19 @@ const SearchBox = () => {
   }, [searchTerm, setSearch]);
 
   return (
-    <div>
-      <div className={styles.titleWrapper}>
-        <div className={styles.iconWrapper} style={{ backgroundColor: theme.palette.primary.main }}>
-          <SearchIcon sx={{ fontSize: 32, color: '#ffffff' }} />
-        </div>
-        <Typography variant="h2" className={styles.title}>
-          {`${t('search')}`}
-        </Typography>
+    <div className={styles.searchWrapper}>
+      <div className={styles.iconWrapper} style={{ backgroundColor: theme.palette.primary.main }}>
+        <SearchIcon sx={{ fontSize: 32, color: '#ffffff' }} />
       </div>
-      <FormGroup row>
-        <TextField
-          aria-label={t('search')}
-          value={searchTerm}
-          placeholder={t('searchText')}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          type="text"
-          sx={{ paddingLeft: '84px', paddingBottom: '20px', paddingRight: '84px', width: '100%' }}
-          variant="outlined"
-        />
-      </FormGroup>
+      <TextField
+        aria-label={t('search')}
+        value={searchTerm}
+        placeholder={t('searchText')}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        type="text"
+        variant="outlined"
+        className={styles.searchInput}
+      />
     </div>
   );
 };
