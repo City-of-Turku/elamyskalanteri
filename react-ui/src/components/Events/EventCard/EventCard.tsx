@@ -1,12 +1,15 @@
 import { Card, useMediaQuery, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { LayoutOptions, LAYOUT_OPTIONS } from '../../../constants';
+import { useAppSelector } from '../../../hooks/rtkHooks';
 import { Event } from '../../../types';
 import styles from './EventCard.module.scss';
 import EventCardContent from './EventCardContent';
 import EventCardImage from './EventCardImage';
+
+const baseUrl =
+  process.env.REACT_APP_EVENT_DETAIL_BASE_URL || 'https://elamyskalenteri.turku.fi/event/';
 
 type IProps = {
   event: Event;
@@ -20,6 +23,8 @@ const EventCard = ({ event, layout }: IProps) => {
   const isCompact = layout === LAYOUT_OPTIONS.COMPACT;
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const { options } = useAppSelector((state) => state);
+  const { openInNewWindow } = options;
 
   const renderContent = () => {
     const defaultLayout = (
@@ -53,8 +58,8 @@ const EventCard = ({ event, layout }: IProps) => {
     return defaultLayout;
   };
 
-  return (
-    <Link to={`/event/${id}`} className={styles.link}>
+  return openInNewWindow ? (
+    <a href={`${baseUrl}${id}`} target="_blank" rel="noreferrer" className={styles.link}>
       <Card
         variant="elevation"
         elevation={0}
@@ -66,7 +71,21 @@ const EventCard = ({ event, layout }: IProps) => {
       >
         {renderContent()}
       </Card>
-    </Link>
+    </a>
+  ) : (
+    <a href={`${baseUrl}${id}`} className={styles.link}>
+      <Card
+        variant="elevation"
+        elevation={0}
+        sx={{
+          width: '100%',
+          borderRadius: 1,
+          overflow: 'visible',
+        }}
+      >
+        {renderContent()}
+      </Card>
+    </a>
   );
 };
 

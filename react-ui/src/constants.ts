@@ -23,6 +23,7 @@ export const DATA_ATTRIBUTES = [
   'audience',
   'description',
   'features',
+  'isDetailView',
   'keywords',
   'language',
   'layout',

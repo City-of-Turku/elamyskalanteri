@@ -1,7 +1,6 @@
 import { ThemeProvider } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useEffect } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
 import CSSVariableProvider from './components/CSSVariableProvider/CSSVariableProvider';
 import EventContent from './components/pages/EventContent';
 import EventList from './components/pages/EventList';
@@ -91,12 +90,7 @@ const App = (props: AppProps) => {
     <TranslationProvider selectedLanguage={data.language}>
       <ThemeProvider theme={getTheme(data.theme)}>
         <CSSVariableProvider>
-          <HashRouter hashType={'noslash'}>
-            <Switch>
-              <Route exact path={'/'} component={EventList} />
-              <Route path="/event/:id" component={EventContent} />
-            </Switch>
-          </HashRouter>
+          {data.isDetailView === 'true' ? <EventContent /> : <EventList />}
         </CSSVariableProvider>
       </ThemeProvider>
     </TranslationProvider>
