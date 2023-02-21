@@ -9,6 +9,11 @@ const baseTypography = {
     fontWeightMedium: 700,
     fontWeightRegular: 400,
   },
+  h1: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    lineHeight: 'normal',
+  },
   h2: {
     fontSize: 22,
     fontWeight: 'bold',
@@ -79,6 +84,13 @@ export const vinkTheme = createTheme({
   typography: {
     ...baseTypography.root,
     fontFamily: 'forma-djr-micro, sans-serif',
+    h1: {
+      ...baseTypography.h1,
+      fontFamily: 'halogen, sans-serif',
+      color: '#193773', // blue
+      fontWeight: 900,
+      letterSpacing: 1,
+    },
     h2: {
       ...baseTypography.h2,
       fontFamily: 'halogen, sans-serif',
@@ -148,6 +160,10 @@ export const whiteLabelTheme = createTheme({
   typography: {
     ...baseTypography.root,
     fontFamily: 'inherit',
+    h1: {
+      ...baseTypography.h1,
+      color: '#505050',
+    },
     h2: {
       ...baseTypography.h2,
       color: '#505050',
@@ -212,6 +228,10 @@ export const naantaliTheme = createTheme({
   typography: {
     ...baseTypography.root,
     fontFamily: 'Myriad Pro, myriad-pro, Arial, Helvetica, sans-serif',
+    h1: {
+      ...baseTypography.h1,
+      color: '#2c2a29',
+    },
     h2: {
       ...baseTypography.h2,
       color: '#2c2a29',
@@ -275,6 +295,10 @@ export const raisioTheme = createTheme({
     fontWeightMedium: 700,
     fontWeightRegular: 500,
     fontFamily: 'museo-sans, sans-serif',
+    h1: {
+      ...baseTypography.h1,
+      color: '#001C35',
+    },
     h2: {
       ...baseTypography.h2,
       color: '#001C35',
@@ -340,6 +364,9 @@ export const taiTheme = createTheme({
     fontWeightLight: 300,
     fontWeightMedium: 600,
     fontWeightRegular: 400,
+    h1: {
+      ...baseTypography.h1,
+    },
     h2: {
       ...baseTypography.h2,
     },
@@ -403,6 +430,10 @@ export const kaarinaTheme = createTheme({
     fontWeightLight: 400,
     fontWeightMedium: 700,
     fontWeightRegular: 400,
+    h1: {
+      ...baseTypography.h1,
+      color: '#0071B4',
+    },
     h2: {
       ...baseTypography.h2,
       color: '#0071B4', // main
