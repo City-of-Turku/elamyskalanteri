@@ -16,7 +16,7 @@ const ListView = ({ events }: IProps) => {
       component="ul"
       sx={{
         paddingLeft: 0,
-        listStyle: 'none',
+        listStyle: 'none !important',
         py: 4,
         maxWidth: theme.breakpoints.values.md,
         width: '100%',

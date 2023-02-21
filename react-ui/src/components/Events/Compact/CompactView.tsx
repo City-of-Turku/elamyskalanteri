@@ -13,7 +13,7 @@ const CompactView = ({ events }: IProps) => (
     component="ul"
     sx={{
       paddingLeft: 0,
-      listStyle: 'none',
+      listStyle: 'none !important',
       py: 2,
       maxWidth: '700px',
       width: '100%',
