@@ -31,10 +31,11 @@ const App = (props: AppProps) => {
     setLinkText,
     setListView,
     setNumOfVisibleResults,
+    setOpenInNewWindow,
+    setShowEmbedTool,
     setShowSearch,
     setTheme,
     setTitle,
-    setShowEmbedTool,
   } = bindActionCreators(optionsSlice.actions, dispatch);
   const {
     setAudience,
@@ -59,12 +60,11 @@ const App = (props: AppProps) => {
     setNumOfVisibleResults(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
+    setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
+    setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
     setShowSearch(data.showSearch === 'true' ? true : false);
     setTheme(data.theme);
     setTitle(data.title);
-    setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
-    // TODO
-    // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
 
     // Apply filters
     setAudience(data.audience ? arrayFromCommaList(data.audience) : []);

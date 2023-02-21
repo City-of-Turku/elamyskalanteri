@@ -10,6 +10,7 @@ import styles from './AdvancedSettings.module.css';
 import LanguageSelect from './LanguageSelect/LanguageSelect';
 import LinkContainer from './LinkContainer/LinkContainer';
 import ListView from './ListView/ListView';
+import OpenInNewWindow from './OpenInNewWindow/OpenInNewWindow';
 import SearchCriteria from './SearchCriteria/SearchCriteria';
 import TextFields from './TextFields/TextFields';
 import Theme from './Theme/Theme';
@@ -31,6 +32,7 @@ const AdvancedSettings = () => {
           <Theme />
           <ListView />
           <SearchCriteria />
+          <OpenInNewWindow />
           <LanguageSelect />
           <AdditionalCategories />
           <LinkContainer />
