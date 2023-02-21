@@ -28,8 +28,8 @@ const SearchCriteria = () => {
           name="row-radio-buttons-group"
           onChange={handleChange}
         >
-          <FormControlLabel value="false" control={<Radio />} label={`${t('no')}`} />
           <FormControlLabel value="true" control={<Radio />} label={`${t('yes')}`} />
+          <FormControlLabel value="false" control={<Radio />} label={`${t('no')}`} />
         </RadioGroup>
       </FormControl>
     </div>
