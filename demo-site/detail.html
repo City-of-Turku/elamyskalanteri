@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Elämyskalenteri" />
+    <link rel="stylesheet" href="https://use.typekit.net/qjp6osq.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Tapahtuma - Elämyskalenteri (Beta)</title>
+  </head>
+
+  <body>
+    <header class="vink-header mb-5">
+      <div class="container">
+        <div class="d-flex pt-3 pb-4 align-items-center">
+          <div class="vink-beta">Testisivusto</div>
+          <div class="vink-languages ms-auto text-end d-flex">
+            <a href="#" class="vink-language">FI</a>
+            <a href="#" class="vink-language">EN</a>
+            <a href="#" class="vink-language">SV</a>
+          </div>
+        </div>
+        <header class="text-center d-flex flex-column">
+          <div
+            class="d-flex flex-no-wrap justify-content-center align-items-center mb-3 mx-auto vink-header-title"
+          >
+            <a href="#" class="vink-logo"><img src="./images/vink-logo-orange.svg" alt="Vink" /></a>
+            <span class="text-start ms-2">&ndash; ja löydä tekemistä.</span>
+          </div>
+          <div class="vink-header-links align-items-center justify-content-center pb-4 nav">
+            <a href="#link-scroll" class="nav-link vink-nav-link">Tapahtumat</a>
+            <a href="#link-scroll" class="nav-link vink-nav-link">Harrastukset</a>
+            <a href="#link-scroll" class="nav-link vink-nav-link">Koulutukset</a>
+          </ul>
+        </header>
+      </div>
+    </header>
+
+    <div class="container pt-2 pb-5">
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div
+        class="event-calendar-embed"
+        data-is-detail-view="true"
+        data-language="fi"
+      ></div>
+    </div>
+
+    <footer class="vink-footer mt-5">
+      <div class="vink-footer-top">
+        <div class="container">
+          <div class="d-flex align-items-center justify-content-between">
+            <img src="./images/vink-logo-pattern.svg" alt="Vink">
+            <div class="ms-auto d-flex">
+              <div class="vink-footer-top-nav nav me-3 align-items-center">
+                <a href="#link-scroll" class="nav-link vink-footer-nav-link">Tapahtumat</a>
+                <a href="#link-scroll" class="nav-link vink-footer-nav-link">Harrastukset</a>
+                <a href="#link-scroll" class="nav-link vink-footer-nav-link">Koulutukset</a>
+              </div>
+              <a href="http://testilinkedevents.turku.fi" target="_blank" class="vink-footer-add-btn">Lisää tapahtuma</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vink-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+              <h2>Alueellista yhteistyötä</h2>
+              <ul class="list-inline d-flex flex-wrap">
+                <li class="me-3">Turku</li>
+                <li class="me-3">Naantali</li>
+                <li class="me-3">Raisio</li>
+                <li class="me-3">Kaarina</li>
+              </ul>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+              <h2>Yhteystiedot</h2>
+              <p>info@example.com</p>
+              <p>(02) 123 123 12</p>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+              <p>Vink-kalenteri ei vastaa kalenteriin ilmoitettujen tietojen oikeellisuudesta</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center text-light vink-footer-demo-text mt-5">
+          <p>Elämyskalenterin testisivusto</p>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://elamyskalenteri.turku.fi/embedEntry.js"
+      type="text/javascript"
+      defer
+    ></script>
+  </body>
+</html>
