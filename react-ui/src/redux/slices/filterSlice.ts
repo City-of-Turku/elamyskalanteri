@@ -25,6 +25,8 @@ export interface FilterState {
   linkContainer: string;
   linkText: string;
   localities: string[];
+  openInNewWindow: boolean;
+  showPastEvents: boolean;
 }
 
 export const initialState: FilterState = {
@@ -50,6 +52,8 @@ export const initialState: FilterState = {
   linkContainer: '',
   linkText: '',
   localities: [],
+  openInNewWindow: true,
+  showPastEvents: false,
 };
 
 export const filterSlice = createSlice({
@@ -135,6 +139,12 @@ export const filterSlice = createSlice({
     },
     removeLocalities: (state, action) => {
       state.localities = state.localities.filter((item) => item !== action.payload);
+    },
+    setOpenInNewWindow: (state, action) => {
+      state.openInNewWindow = action.payload;
+    },
+    setShowPastEvents: (state, action) => {
+      state.showPastEvents = action.payload;
     },
   },
 });

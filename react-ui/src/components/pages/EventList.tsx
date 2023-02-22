@@ -7,10 +7,10 @@ import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/system';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
+import { createBrowserHistory } from 'history';
 import queryString from 'query-string';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import { LAYOUT_OPTIONS } from '../../constants';
 import { arrayFromCommaList } from '../../functions/arrayFromCommaList';
 import { parseQuery } from '../../functions/urlParser';
@@ -28,16 +28,11 @@ import Title from '../Title/Title';
 
 const DEFAULT_PAGE_SIZE = 20; // number of events per page
 
-interface EventListProps {
-  typeId?: string;
-}
-
-const EventList = (props: EventListProps) => {
+const EventList = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const dispatch = useAppDispatch();
-  const history = useHistory();
-  const { typeId } = props;
+  const history = createBrowserHistory();
   const { filters, options, appState } = useAppSelector((state) => state);
   const {
     setAudience,
@@ -80,8 +75,8 @@ const EventList = (props: EventListProps) => {
       // Early exit if shouldUpdateUrl is set as "false"
       if (!shouldUpdateUrl) return setFirstLoadDone(true);
 
-      // Get query object from window location hash
-      const query = queryString.parse(window.location.hash.replaceAll('?', ''));
+      // Get query object from window location search
+      const query = queryString.parse(window.location.search);
 
       const queryHasValue = (value: string): boolean => {
         if (Object.keys(query).includes(value)) {
@@ -93,28 +88,33 @@ const EventList = (props: EventListProps) => {
       if (queryHasValue('text')) {
         setSearch(query.text);
       }
+
       if (queryHasValue('keywords')) {
         setEventTypes(arrayFromCommaList(query.keywords));
       }
+
       if (queryHasValue('features')) {
         setFeatures(arrayFromCommaList(query.features));
       }
+
       if (queryHasValue('start_time')) {
         setStartTime(query.start_time);
       }
+
       if (queryHasValue('end_time')) {
         setEndTime(query.end_time);
       }
+
       if (queryHasValue('audiences')) {
         setAudience(arrayFromCommaList(query.audiences));
       }
+
       if (queryHasValue('localities')) {
         setLocalities(arrayFromCommaList(query.localities));
       }
+
       if (queryHasValue('type_id')) {
         setTypeId(query.type_id);
-      } else if (typeId) {
-        setTypeId(typeId);
       }
 
       setFirstLoadDone(true);
@@ -129,7 +129,6 @@ const EventList = (props: EventListProps) => {
     setStartTime,
     setTypeId,
     shouldUpdateUrl,
-    typeId,
     setAudience,
     setLocalities,
   ]);

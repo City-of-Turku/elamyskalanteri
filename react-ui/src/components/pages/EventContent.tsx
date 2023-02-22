@@ -14,7 +14,6 @@ import Typography from '@mui/material/Typography';
 import DOMPurify from 'dompurify';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { getFormattedDateTime } from '../../functions/getFormattedDate';
 import { getLocationTitle } from '../../functions/getLocation';
 import { getTranslatedValue } from '../../functions/getTranslatedValue';
@@ -40,9 +39,12 @@ const styles = {
 
 const EventContent = () => {
   const { t, i18n } = useTranslation();
-  const { id } = useParams<{ id: string }>();
-  const { data: event, isLoading, isFetching, error } = useEventQuery(id, { skip: !id });
   const currentLang = i18n.language;
+
+  // Get the event ID from the URL path by splitting the path using the forward slash as a separator,
+  // and getting the last element of the resulting array.
+  const eventId = window.location.pathname.split('/').pop() || '';
+  const { data: event, isLoading, isFetching, error } = useEventQuery(eventId, { skip: !eventId });
 
   if (isLoading || isFetching) {
     return (

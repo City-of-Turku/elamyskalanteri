@@ -8,24 +8,23 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
 import filterSlice from '../../../redux/slices/filterSlice';
 
-const SearchCriteria = () => {
+const ShowPastEvents = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setSearchCriteria } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setShowPastEvents } = bindActionCreators(filterSlice.actions, dispatch);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchCriteria((event.target as HTMLInputElement).value);
+    setShowPastEvents((event.target as HTMLInputElement).value);
   };
 
   return (
     <div>
       <FormControl sx={{ padding: 2 }}>
-        <p>{`${t('showSearchComponent')}`}</p>
+        <p>{`${t('showPastEvents')}`}</p>
         <RadioGroup
           row
-          aria-labelledby="demo-row-radio-buttons-group-label"
           defaultValue="false"
-          name="row-radio-buttons-group"
+          name="show-past-events-radio-buttons"
           onChange={handleChange}
         >
           <FormControlLabel value="true" control={<Radio />} label={`${t('yes')}`} />
@@ -36,4 +35,4 @@ const SearchCriteria = () => {
   );
 };
 
-export default SearchCriteria;
+export default ShowPastEvents;

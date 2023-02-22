@@ -9,10 +9,10 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-app.get('/events/', function (req, res) {
+app.get('/event/:id', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/event_detail.html'));
 });
 
-const server = app.listen(8001, () => {
-    console.log("Listening on http://localhost:8001");
+const server = app.listen(3001, () => {
+    console.log("Listening on http://localhost:3001");
 });

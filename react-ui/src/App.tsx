@@ -1,7 +1,6 @@
 import { ThemeProvider } from '@mui/material/styles';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import React, { useEffect } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
 import CSSVariableProvider from './components/CSSVariableProvider/CSSVariableProvider';
 import EventContent from './components/pages/EventContent';
 import EventList from './components/pages/EventList';
@@ -31,10 +30,12 @@ const App = (props: AppProps) => {
     setLinkText,
     setListView,
     setNumOfVisibleResults,
+    setOpenInNewWindow,
+    setShowEmbedTool,
+    setShowPastEvents,
     setShowSearch,
     setTheme,
     setTitle,
-    setShowEmbedTool,
   } = bindActionCreators(optionsSlice.actions, dispatch);
   const {
     setAudience,
@@ -50,6 +51,10 @@ const App = (props: AppProps) => {
   checkUsedAttributes(data);
 
   useEffect(() => {
+    const showPastEvents = data.showPastEvents === 'true' ? true : false;
+    const startTime = getApiFormattedDate(data.timeStart);
+    const endTime = getApiFormattedDate(data.timeEnd);
+
     // Apply options
     setDescription(data.description);
     setLanguageSelection(data.language);
@@ -59,24 +64,22 @@ const App = (props: AppProps) => {
     setNumOfVisibleResults(
       isNaN(parseInt(data.numOfVisibleResults)) ? null : parseInt(data.numOfVisibleResults),
     );
+    setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
+    setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
+    setShowPastEvents(showPastEvents);
     setShowSearch(data.showSearch === 'true' ? true : false);
     setTheme(data.theme);
     setTitle(data.title);
-    setShowEmbedTool(data.showEmbedTool === 'true' ? true : false);
-    // TODO
-    // setOpenInNewWindow(data.openInNewWindow === 'true' ? true : false);
 
     // Apply filters
     setAudience(data.audience ? arrayFromCommaList(data.audience) : []);
-    setEndTime(getApiFormattedDate(data.timeEnd));
+    setEndTime(endTime);
     setEventTypes(data.keywords ? arrayFromCommaList(data.keywords) : []);
     setFeatures(data.features ? arrayFromCommaList(data.features) : []);
     setLocalities(data.localities ? arrayFromCommaList(data.localities) : []);
     setSearch(data.search);
-    setStartTime(
-      // Always set start time to today if no start time is provided
-      data.timeStart ? getApiFormattedDate(data.timeStart) : getApiFormattedDate(new Date()),
-    );
+    // Always set start time to today if no start time is provided and if showPastEvents is false
+    setStartTime(startTime ? startTime : !showPastEvents && getApiFormattedDate(new Date()));
     setTypeId(data.typeId);
 
     // Set attribute state as loaded
@@ -87,12 +90,7 @@ const App = (props: AppProps) => {
     <TranslationProvider selectedLanguage={data.language}>
       <ThemeProvider theme={getTheme(data.theme)}>
         <CSSVariableProvider>
-          <HashRouter hashType={'noslash'}>
-            <Switch>
-              <Route exact path={'/'} component={EventList} />
-              <Route path="/event/:id" component={EventContent} />
-            </Switch>
-          </HashRouter>
+          {data.isDetailView === 'true' ? <EventContent /> : <EventList />}
         </CSSVariableProvider>
       </ThemeProvider>
     </TranslationProvider>

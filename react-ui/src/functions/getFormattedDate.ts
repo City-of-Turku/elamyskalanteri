@@ -11,6 +11,7 @@ import 'dayjs/locale/sv';
 export const getApiFormattedDate = (
   date: string | number | Date | Dayjs | null | undefined,
 ): string | null => {
+  if (!date) return null;
   if (!dayjs(date).isValid()) return null;
   return dayjs(date).format('YYYY-MM-DD');
 };

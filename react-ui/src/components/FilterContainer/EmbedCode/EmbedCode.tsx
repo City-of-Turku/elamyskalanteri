@@ -44,6 +44,32 @@ const EmbedCode = () => {
       });
   };
 
+  const embedDataAttribute = {
+    audience: filters.audiences.length ? `    data-audiences="${filters.audiences.join()}"\n` : '',
+    embedDescription: `    data-description="${filters.embedDesc}"\n`,
+    embedLinkText: filters.linkText ? `    data-link-text="${filters.linkText}"\n` : '',
+    embedLinkUrl: filters.linkContainer ? `    data-link-url="${filters.linkContainer}"\n` : '',
+    embedTitle: `    data-title="${filters.embedTitle}"\n`,
+    features: filters.eventFeatures.length ? `    data-features="${filters.eventFeatures}"\n` : '',
+    keywords: filters.eventTypes.length ? `    data-keywords="${filters.eventTypes.join()}"\n` : '',
+    language: `    data-language="${filters.languageSelection}"\n`,
+    layout: `    data-layout="${filters.listView}"\n`,
+    locality: filters.localities.length
+      ? `    data-localities="${filters.localities.join()}"\n`
+      : '',
+    numOfVisibleResults: filters.viewNum
+      ? `    data-num-of-visible-results="${filters.viewNum}"\n`
+      : '',
+    openInNewWindow: `    data-open-in-new-window="${filters.openInNewWindow}"\n`,
+    search: filters.search ? `    data-search="${filters.search}"\n` : '',
+    showPastEvents: `    data-show-past-events="${filters.showPastEvents}"\n`,
+    showSearch: `    data-show-search="${filters.searchCriteria}"\n`,
+    theme: `    data-theme="${filters.theme}"\n`,
+    timeEnd: `    data-time-end="${filters.endTime ? filters.endTime : ''}"\n`,
+    timeStart: `    data-time-start="${filters.startTime ? filters.startTime : ''}"\n`,
+    typeId: filters.typeId ? `    data-type-id="${filters.typeId}"\n` : '',
+  };
+
   return (
     <div className={styles.container}>
       <Button variant={'outlined'} onClick={() => setOpen(!open)} startIcon={<ShareIcon />}>
@@ -57,28 +83,25 @@ const EmbedCode = () => {
                 {`<script src="${process.env.REACT_APP_EMBED_BASE_URL}${process.env.REACT_APP_EMBED_ENTRY_FILE}" type="text/javascript" defer></script>\n`}
                 {`<div\n`}
                 {`    class="event-calendar-embed"\n`}
-                {filters.typeId && `    data-type-id="${filters.typeId}"\n`}
-                {filters.search && `    data-search="${filters.search}"\n`}
-                {!!filters.eventTypes.length &&
-                  `    data-keywords="${filters.eventTypes.join()}"\n`}
-                {!!filters.audiences.length && `    data-audiences="${filters.audiences.join()}"\n`}
-                {filters.startTime &&
-                  filters.endTime &&
-                  `    data-time-start="${filters.startTime}\n`.concat(
-                    `    data-time-end="${filters.endTime}"\n`,
-                  )}
-                {filters.eventFeatures && `    data-features="${filters.eventFeatures}"\n`}
-                {`    data-title="${filters.embedTitle}"\n`}
-                {`    data-description="${filters.embedDesc}"\n`}
-                {`    data-theme="${filters.theme}"\n`}
-                {`    data-layout="${filters.listView}"\n`}
-                {`    data-num-of-visible-results="${filters.viewNum}"\n`}
-                {`    data-show-search="${filters.searchCriteria}"\n`}
-                {`    data-language="${filters.languageSelection}"\n`}
-                {`    data-link-url="${filters.linkContainer}"\n`}
-                {`    data-link-text="${filters.linkText}"\n`}
-                {`    data-open-in-new-window=""\n`}
-                {`    data-show-embed-tool=""\n`}
+                {embedDataAttribute.language}
+                {embedDataAttribute.theme}
+                {embedDataAttribute.layout}
+                {embedDataAttribute.embedTitle}
+                {embedDataAttribute.embedDescription}
+                {embedDataAttribute.embedLinkText}
+                {embedDataAttribute.embedLinkUrl}
+                {embedDataAttribute.numOfVisibleResults}
+                {embedDataAttribute.openInNewWindow}
+                {embedDataAttribute.showSearch}
+                {embedDataAttribute.audience}
+                {embedDataAttribute.features}
+                {embedDataAttribute.keywords}
+                {embedDataAttribute.locality}
+                {embedDataAttribute.search}
+                {embedDataAttribute.showPastEvents}
+                {embedDataAttribute.timeStart}
+                {embedDataAttribute.timeEnd}
+                {embedDataAttribute.typeId}
                 {`></div>\n`}
               </pre>
             </div>
