@@ -24,17 +24,17 @@ const Theme = () => {
       <p>{`${t('style')}`}</p>
       <RadioGroup
         aria-labelledby="radio-buttons-group-label"
-        defaultValue="vink"
+        defaultValue="whitelabel"
         name="radio-buttons-group"
         onChange={handleChange}
       >
+        <FormControlLabel value="whitelabel" control={<Radio />} label={t('whiteLabel')} />
         <FormControlLabel value="vink" control={<Radio />} label="Vink" />
         <FormControlLabel value="turku" control={<Radio />} label={t('turku')} />
         <FormControlLabel value="naantali" control={<Radio />} label={t('naantali')} />
         <FormControlLabel value="raisio" control={<Radio />} label={t('raisio')} />
         <FormControlLabel value="kaarina" control={<Radio />} label={t('kaarina')} />
         <FormControlLabel value="tai" control={<Radio />} label={t('tai')} />
-        <FormControlLabel value="whitelabel" control={<Radio />} label={t('whiteLabel')} />
       </RadioGroup>
     </FormControl>
   );

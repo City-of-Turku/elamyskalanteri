@@ -44,7 +44,7 @@ export const initialState: FilterState = {
   typeId: '',
   embedTitle: '',
   embedDesc: '',
-  theme: THEMES.VINK,
+  theme: THEMES.WHITELABEL,
   listView: LAYOUT_OPTIONS.LIST,
   viewNum: null,
   searchCriteria: false,
