@@ -29,6 +29,7 @@ const Theme = () => {
         onChange={handleChange}
       >
         <FormControlLabel value="vink" control={<Radio />} label="Vink" />
+        <FormControlLabel value="turku" control={<Radio />} label={t('turku')} />
         <FormControlLabel value="naantali" control={<Radio />} label={t('naantali')} />
         <FormControlLabel value="raisio" control={<Radio />} label={t('raisio')} />
         <FormControlLabel value="kaarina" control={<Radio />} label={t('kaarina')} />

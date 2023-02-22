@@ -5,6 +5,7 @@ import {
   naantaliTheme,
   raisioTheme,
   taiTheme,
+  turkuTheme,
   vinkTheme,
   whiteLabelTheme,
 } from '../themes/themes';
@@ -23,6 +24,8 @@ export const getTheme = (theme: string): Theme => {
       return kaarinaTheme;
     case THEMES.TAI:
       return taiTheme;
+    case THEMES.TURKU:
+      return turkuTheme;
     default:
       return vinkTheme;
   }
