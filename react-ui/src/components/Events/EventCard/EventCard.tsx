@@ -21,6 +21,7 @@ const EventCard = ({ event, layout }: IProps) => {
   const theme = useTheme();
   const isList = layout === LAYOUT_OPTIONS.LIST;
   const isCompact = layout === LAYOUT_OPTIONS.COMPACT;
+  const extraSmallScreen = useMediaQuery('@media (max-width:475px)');
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { options } = useAppSelector((state) => state);
@@ -34,27 +35,31 @@ const EventCard = ({ event, layout }: IProps) => {
       </>
     );
 
-    if (isList || isCompact) {
-      if (!smallScreen) {
-        return (
-          <Box sx={{ width: '100%', display: 'flex' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexShrink: 0,
-                width: isCompact ? 180 : mediumScreen ? 200 : 275,
-              }}
-            >
-              <EventCardImage event={event} layout={layout} isSmallScreen={smallScreen} />
-            </Box>
-            <Box sx={{ minWidth: 0, alignSelf: 'center' }}>
-              <EventCardContent event={event} layout={layout} isSmallScreen={smallScreen} />
-            </Box>
-          </Box>
-        );
-      }
-      return defaultLayout;
+    const smallLayout = (
+      <Box sx={{ width: '100%', display: 'flex' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexShrink: 0,
+            width: isCompact ? 135 : mediumScreen ? 200 : 275,
+          }}
+        >
+          <EventCardImage event={event} layout={layout} isSmallScreen={smallScreen} />
+        </Box>
+        <Box sx={{ minWidth: 0, alignSelf: 'center' }}>
+          <EventCardContent event={event} layout={layout} isSmallScreen={smallScreen} />
+        </Box>
+      </Box>
+    );
+
+    if (isList && !smallScreen) {
+      return smallLayout;
     }
+
+    if (isCompact && !extraSmallScreen) {
+      return smallLayout;
+    }
+
     return defaultLayout;
   };
 

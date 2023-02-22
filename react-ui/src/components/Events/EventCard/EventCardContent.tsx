@@ -54,8 +54,10 @@ const EventCardContent = ({ event, layout, isSmallScreen }: IProps) => {
   );
   const formattedDateTime = getFormattedDateTime(start_time, end_time, currentLang);
 
+  const cardContentPaddingY = isSmallScreen || isCompact ? '16px !important' : '24px !important';
+
   return (
-    <CardContent sx={{ paddingX: isSmallScreen ? 1 : 2, paddingY: isSmallScreen ? 2 : 3 }}>
+    <CardContent sx={{ paddingX: isSmallScreen ? 1 : 2, paddingY: cardContentPaddingY }}>
       {formattedDateTime && (
         <Typography
           sx={{ paddingBottom: 1, color: theme.palette.secondary.main, fontSize: '0.92em' }}
