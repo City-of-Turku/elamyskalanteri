@@ -21,6 +21,7 @@ const EventCardImage = ({ event, layout, isSmallScreen }: IProps) => {
   const { images, start_time } = event;
   const eventImage = images.find((image) => image.url);
   const isGrid = layout === LAYOUT_OPTIONS.GRID;
+  const isCompact = layout === LAYOUT_OPTIONS.COMPACT;
 
   const startDay = dayjs(start_time).isValid() && dayjs(start_time).locale(currentLang).format('D');
   const startMonth =
@@ -36,7 +37,7 @@ const EventCardImage = ({ event, layout, isSmallScreen }: IProps) => {
       }}
     >
       <div className={styles.imageDateWrapper}>
-        {startDay && startMonth && (
+        {!isCompact && startDay && startMonth && (
           <div className={styles.imageDate}>
             <Typography
               variant="h3"

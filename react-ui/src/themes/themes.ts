@@ -212,6 +212,69 @@ export const whiteLabelTheme = createTheme({
   },
 });
 
+export const turkuTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#006bb6',
+    },
+    secondary: {
+      main: '#006bb6',
+    },
+    text: {
+      primary: '#1d1d1a',
+    },
+    contrastThreshold: 4.5,
+  },
+  typography: {
+    ...baseTypography.root,
+    fontFamily: 'Open Sans, sans-serif',
+    h1: {
+      ...baseTypography.h1,
+      color: '#1d1d1a',
+    },
+    h2: {
+      ...baseTypography.h2,
+      color: '#1d1d1a',
+    },
+    h3: {
+      ...baseTypography.h3,
+      color: '#1d1d1a',
+    },
+    h4: {
+      ...baseTypography.h4,
+    },
+    h5: {
+      ...baseTypography.h5,
+    },
+    h6: {
+      ...baseTypography.h6,
+    },
+    body1: {
+      ...baseTypography.body1,
+    },
+    body2: {
+      ...baseTypography.body2,
+    },
+  },
+  components: {
+    ...baseFormHelperText,
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          ...baseMuiCalendarPickerRoot,
+          '& .MuiButtonBase-root.Mui-selected': {
+            color: '#fff',
+          },
+          '& .MuiPickersDay-today:not(.Mui-selected)': {
+            background: alpha('#006bb6', 0.1),
+            border: 'none',
+          },
+        },
+      },
+    },
+  },
+});
+
 export const naantaliTheme = createTheme({
   palette: {
     primary: {

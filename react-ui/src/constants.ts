@@ -15,6 +15,7 @@ export const THEMES = {
   RAISIO: 'raisio',
   KAARINA: 'kaarina',
   TAI: 'tai',
+  TURKU: 'turku',
 } as const;
 
 export type Themes = (typeof THEMES)[keyof typeof THEMES];
