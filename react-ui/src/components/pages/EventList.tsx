@@ -44,6 +44,7 @@ const EventList = () => {
     setEndTime,
     setTypeId,
     setExtraKeyword,
+    setOrganization,
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
   const { attributesLoaded } = appState;
@@ -122,6 +123,10 @@ const EventList = () => {
         setExtraKeyword(query.extra_keyword);
       }
 
+      if (queryHasValue('organization')) {
+        setOrganization(query.organization);
+      }
+
       setFirstLoadDone(true);
     }
   }, [
@@ -137,6 +142,7 @@ const EventList = () => {
     setAudience,
     setLocalities,
     setExtraKeyword,
+    setOrganization,
   ]);
 
   // Replace URL with new filters
@@ -171,6 +177,7 @@ const EventList = () => {
       page_size: resultsPerPage,
       localities: filters.localities,
       extraKeyword: filters.extraKeyword || '',
+      organization: filters.organization || '',
     },
     { skip: !firstLoadDone },
   );

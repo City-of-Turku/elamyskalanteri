@@ -15,6 +15,7 @@ export interface FilterState {
   typeId: string | null;
   localities: string[];
   extraKeyword: string | null;
+  organization: string | null;
 }
 
 export const initialState: FilterState = {
@@ -32,6 +33,7 @@ export const initialState: FilterState = {
   typeId: '',
   localities: [],
   extraKeyword: null,
+  organization: null,
 };
 
 export const filterSlice = createSlice({
@@ -93,6 +95,9 @@ export const filterSlice = createSlice({
     },
     setExtraKeyword: (state, action) => {
       state.extraKeyword = action.payload;
+    },
+    setOrganization: (state, action) => {
+      state.organization = action.payload;
     },
   },
 });

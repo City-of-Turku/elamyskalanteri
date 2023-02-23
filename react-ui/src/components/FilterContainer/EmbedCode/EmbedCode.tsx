@@ -64,6 +64,7 @@ const EmbedCode = () => {
       ? `    data-num-of-visible-results="${embedSettings.viewNum}"\n`
       : '',
     openInNewWindow: `    data-open-in-new-window="${embedSettings.openInNewWindow}"\n`,
+    organization: filters.organization ? `    data-organization="${filters.organization}"\n` : '',
     search: filters.search ? `    data-search="${filters.search}"\n` : '',
     showPastEvents: `    data-show-past-events="${embedSettings.showPastEvents}"\n`,
     showSearch: `    data-show-search="${embedSettings.searchCriteria}"\n`,
@@ -100,6 +101,7 @@ const EmbedCode = () => {
                 {embedDataAttribute.features}
                 {embedDataAttribute.keywords}
                 {embedDataAttribute.extraKeyword}
+                {embedDataAttribute.organization}
                 {embedDataAttribute.locality}
                 {embedDataAttribute.search}
                 {embedDataAttribute.showPastEvents}

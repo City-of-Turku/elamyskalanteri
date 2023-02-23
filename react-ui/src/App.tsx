@@ -44,6 +44,7 @@ const App = (props: AppProps) => {
     setExtraKeyword,
     setFeatures,
     setLocalities,
+    setOrganization,
     setSearch,
     setStartTime,
     setTypeId,
@@ -79,6 +80,7 @@ const App = (props: AppProps) => {
     setExtraKeyword(data.extraKeyword ? data.extraKeyword : null);
     setFeatures(data.features ? arrayFromCommaList(data.features) : []);
     setLocalities(data.localities ? arrayFromCommaList(data.localities) : []);
+    setOrganization(data.organization ? data.organization : null);
     setSearch(data.search);
     // Always set start time to today if no start time is provided and if showPastEvents is false
     setStartTime(startTime ? startTime : !showPastEvents && getApiFormattedDate(new Date()));

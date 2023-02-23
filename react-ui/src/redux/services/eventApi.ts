@@ -16,6 +16,7 @@ interface IOptions {
   page_size: number;
   localities: string[];
   extraKeyword: string;
+  organization: string;
 }
 
 export const eventApi = createApi({
@@ -27,13 +28,27 @@ export const eventApi = createApi({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
         const kwds = () => {
-          if (options.audiences.length || options.keyword.length || options.extraKeyword) {
-            const keywordsAndAudiences = options.keyword.concat(options.audiences);
-            if (options.extraKeyword) {
-              return `&keyword_AND=${keywordsAndAudiences.concat(options.extraKeyword)}`;
-            } else {
-              return `&keyword_AND=${keywordsAndAudiences}`;
+          if (
+            options.audiences.length ||
+            options.keyword.length ||
+            options.extraKeyword ||
+            options.organization
+          ) {
+            let keywordArray: string[] = [];
+            if (options.keyword) {
+              keywordArray = keywordArray.concat(options.keyword);
             }
+            if (options.audiences) {
+              keywordArray = keywordArray.concat(options.audiences);
+            }
+            if (options.extraKeyword) {
+              keywordArray = keywordArray.concat(options.extraKeyword);
+            }
+            if (options.organization) {
+              keywordArray = keywordArray.concat(options.organization);
+            }
+            console.log(keywordArray);
+            return `&keyword_AND=${keywordArray}`;
           } else {
             return '';
           }

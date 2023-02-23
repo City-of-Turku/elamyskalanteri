@@ -34,6 +34,7 @@ export const DATA_ATTRIBUTES = [
   'localities',
   'numOfVisibleResults',
   'openInNewWindow',
+  'organization',
   'search',
   'showEmbedTool',
   'showPastEvents',
