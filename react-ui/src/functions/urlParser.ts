@@ -38,6 +38,10 @@ export const parseQuery = (filters: FilterState) => {
     validQueries = validQueries.concat(`type_id=${filters.typeId}`);
   }
 
+  if (filters.extraKeyword) {
+    validQueries = validQueries.concat(`extra_keyword=${filters.extraKeyword}`);
+  }
+
   if (validQueries.length) {
     return `?${validQueries.join('&')}`;
   } else {

@@ -41,6 +41,7 @@ const App = (props: AppProps) => {
     setAudience,
     setEndTime,
     setEventTypes,
+    setExtraKeyword,
     setFeatures,
     setLocalities,
     setSearch,
@@ -75,6 +76,7 @@ const App = (props: AppProps) => {
     setAudience(data.audience ? arrayFromCommaList(data.audience) : []);
     setEndTime(endTime);
     setEventTypes(data.keywords ? arrayFromCommaList(data.keywords) : []);
+    setExtraKeyword(data.extraKeyword ? data.extraKeyword : null);
     setFeatures(data.features ? arrayFromCommaList(data.features) : []);
     setLocalities(data.localities ? arrayFromCommaList(data.localities) : []);
     setSearch(data.search);

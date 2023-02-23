@@ -15,6 +15,7 @@ interface IOptions {
   type_id?: string;
   page_size: number;
   localities: string[];
+  extraKeyword: string;
 }
 
 export const eventApi = createApi({
@@ -25,12 +26,20 @@ export const eventApi = createApi({
   endpoints: (builder) => ({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
+        const kwds = () => {
+          if (options.audiences.length || options.keyword.length || options.extraKeyword) {
+            const keywordsAndAudiences = options.keyword.concat(options.audiences);
+            if (options.extraKeyword) {
+              return `&keyword_AND=${keywordsAndAudiences.concat(options.extraKeyword)}`;
+            } else {
+              return `&keyword_AND=${keywordsAndAudiences}`;
+            }
+          } else {
+            return '';
+          }
+        };
         const s = options.searchTerm ? `&text=${options.searchTerm}` : '';
         const type = options.type_id ? `&type_id=${options.type_id}` : '';
-        const kwds =
-          options.audiences.length || options.keyword.length
-            ? `&keyword_AND=${options.keyword.concat(options.audiences)}`
-            : '';
         const maxDistance =
           options.radius && options.latitude && options.longitude
             ? `&lat=${options.latitude}&lon=${options.longitude}&radius=${options.radius}`
@@ -42,7 +51,7 @@ export const eventApi = createApi({
         const pSize = `&page_size=${options.page_size}`;
         const pNum = `&page=${options.page}`;
 
-        return `/event/?include=location${s}${type}${kwds}${maxDistance}${start}${end}${loc}${feats}${pSize}${pNum}`;
+        return `/event/?include=location${s}${type}${kwds()}${maxDistance}${start}${end}${loc}${feats}${pSize}${pNum}`;
       },
     }),
     event: builder.query<Event, string>({

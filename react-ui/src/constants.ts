@@ -23,6 +23,7 @@ export type Themes = (typeof THEMES)[keyof typeof THEMES];
 export const DATA_ATTRIBUTES = [
   'audience',
   'description',
+  'extraKeyword',
   'features',
   'isDetailView',
   'keywords',

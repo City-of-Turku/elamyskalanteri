@@ -52,6 +52,7 @@ const EmbedCode = () => {
       ? `    data-link-url="${embedSettings.linkContainer}"\n`
       : '',
     embedTitle: `    data-title="${embedSettings.embedTitle}"\n`,
+    extraKeyword: filters.extraKeyword ? `    data-extra-keyword="${filters.extraKeyword}"\n` : '',
     features: filters.eventFeatures.length ? `    data-features="${filters.eventFeatures}"\n` : '',
     keywords: filters.eventTypes.length ? `    data-keywords="${filters.eventTypes.join()}"\n` : '',
     language: `    data-language="${embedSettings.languageSelection}"\n`,
@@ -98,6 +99,7 @@ const EmbedCode = () => {
                 {embedDataAttribute.audience}
                 {embedDataAttribute.features}
                 {embedDataAttribute.keywords}
+                {embedDataAttribute.extraKeyword}
                 {embedDataAttribute.locality}
                 {embedDataAttribute.search}
                 {embedDataAttribute.showPastEvents}
