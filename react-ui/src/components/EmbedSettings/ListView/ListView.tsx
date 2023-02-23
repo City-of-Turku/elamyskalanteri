@@ -10,13 +10,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LAYOUT_OPTIONS } from '../../../constants';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
-import filterSlice from '../../../redux/slices/filterSlice';
-import styles from '../AdvancedSettings.module.css';
+import embedSettingsSlice from '../../../redux/slices/embedSettingsSlice';
+import styles from '../EmbedSettings.module.css';
 
 const ListView = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setListView, setNumberOfView } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setListView, setNumberOfView } = bindActionCreators(embedSettingsSlice.actions, dispatch);
 
   const handleListViewChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {

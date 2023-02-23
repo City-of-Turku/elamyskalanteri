@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../hooks/rtkHooks';
-import AdvancedSettings from '../../AdvancedSettings/AdvancedSettings';
+import EmbedSettings from '../../EmbedSettings/EmbedSettings';
 import styles from './EmbedCode.module.css';
 
 const EmbedCode = () => {
@@ -13,7 +13,7 @@ const EmbedCode = () => {
   const copyBtnRef = useRef<HTMLButtonElement>(null);
   const codeElemRef = useRef<HTMLDivElement>(null);
 
-  const { filters } = useAppSelector((state) => state);
+  const { filters, embedSettings } = useAppSelector((state) => state);
 
   const copyToClipBoard = () => {
     setBtnDisabled(true);
@@ -46,25 +46,27 @@ const EmbedCode = () => {
 
   const embedDataAttribute = {
     audience: filters.audiences.length ? `    data-audiences="${filters.audiences.join()}"\n` : '',
-    embedDescription: `    data-description="${filters.embedDesc}"\n`,
-    embedLinkText: filters.linkText ? `    data-link-text="${filters.linkText}"\n` : '',
-    embedLinkUrl: filters.linkContainer ? `    data-link-url="${filters.linkContainer}"\n` : '',
-    embedTitle: `    data-title="${filters.embedTitle}"\n`,
+    embedDescription: `    data-description="${embedSettings.embedDesc}"\n`,
+    embedLinkText: embedSettings.linkText ? `    data-link-text="${embedSettings.linkText}"\n` : '',
+    embedLinkUrl: embedSettings.linkContainer
+      ? `    data-link-url="${embedSettings.linkContainer}"\n`
+      : '',
+    embedTitle: `    data-title="${embedSettings.embedTitle}"\n`,
     features: filters.eventFeatures.length ? `    data-features="${filters.eventFeatures}"\n` : '',
     keywords: filters.eventTypes.length ? `    data-keywords="${filters.eventTypes.join()}"\n` : '',
-    language: `    data-language="${filters.languageSelection}"\n`,
-    layout: `    data-layout="${filters.listView}"\n`,
+    language: `    data-language="${embedSettings.languageSelection}"\n`,
+    layout: `    data-layout="${embedSettings.listView}"\n`,
     locality: filters.localities.length
       ? `    data-localities="${filters.localities.join()}"\n`
       : '',
-    numOfVisibleResults: filters.viewNum
-      ? `    data-num-of-visible-results="${filters.viewNum}"\n`
+    numOfVisibleResults: embedSettings.viewNum
+      ? `    data-num-of-visible-results="${embedSettings.viewNum}"\n`
       : '',
-    openInNewWindow: `    data-open-in-new-window="${filters.openInNewWindow}"\n`,
+    openInNewWindow: `    data-open-in-new-window="${embedSettings.openInNewWindow}"\n`,
     search: filters.search ? `    data-search="${filters.search}"\n` : '',
-    showPastEvents: `    data-show-past-events="${filters.showPastEvents}"\n`,
-    showSearch: `    data-show-search="${filters.searchCriteria}"\n`,
-    theme: `    data-theme="${filters.theme}"\n`,
+    showPastEvents: `    data-show-past-events="${embedSettings.showPastEvents}"\n`,
+    showSearch: `    data-show-search="${embedSettings.searchCriteria}"\n`,
+    theme: `    data-theme="${embedSettings.theme}"\n`,
     timeEnd: `    data-time-end="${filters.endTime ? filters.endTime : ''}"\n`,
     timeStart: `    data-time-start="${filters.startTime ? filters.startTime : ''}"\n`,
     typeId: filters.typeId ? `    data-type-id="${filters.typeId}"\n` : '',
@@ -119,7 +121,7 @@ const EmbedCode = () => {
             </Button>
           </div>
           <div className={styles.advancedSettings}>
-            <AdvancedSettings />
+            <EmbedSettings />
           </div>
         </div>
       )}

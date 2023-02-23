@@ -4,12 +4,12 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
-import filterSlice from '../../../redux/slices/filterSlice';
+import embedSettingsSlice from '../../../redux/slices/embedSettingsSlice';
 
 const TextFields = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setEmbedTitle, setEmbedDesc } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setEmbedTitle, setEmbedDesc } = bindActionCreators(embedSettingsSlice.actions, dispatch);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.trim().length >= 0) {

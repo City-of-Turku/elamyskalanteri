@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { LayoutOptions, LAYOUT_OPTIONS, THEMES } from '../../constants';
-import { DEFAULT_LANGUAGE } from '../../translations/TranslationProvider';
 
 export interface FilterState {
   eventTypes: string[];
@@ -15,18 +13,7 @@ export interface FilterState {
   startTime: Date | null;
   endTime: Date | null;
   typeId: string | null;
-  embedTitle: string;
-  embedDesc: string;
-  theme: string;
-  listView: LayoutOptions;
-  viewNum: number | null;
-  searchCriteria: boolean | null;
-  languageSelection: string;
-  linkContainer: string;
-  linkText: string;
   localities: string[];
-  openInNewWindow: boolean;
-  showPastEvents: boolean;
 }
 
 export const initialState: FilterState = {
@@ -42,18 +29,7 @@ export const initialState: FilterState = {
   startTime: null,
   endTime: null,
   typeId: '',
-  embedTitle: '',
-  embedDesc: '',
-  theme: THEMES.WHITELABEL,
-  listView: LAYOUT_OPTIONS.LIST,
-  viewNum: null,
-  searchCriteria: false,
-  languageSelection: DEFAULT_LANGUAGE,
-  linkContainer: '',
-  linkText: '',
   localities: [],
-  openInNewWindow: true,
-  showPastEvents: false,
 };
 
 export const filterSlice = createSlice({
@@ -104,33 +80,6 @@ export const filterSlice = createSlice({
     setTypeId: (state, action) => {
       state.typeId = action.payload;
     },
-    setEmbedTitle: (state, action) => {
-      state.embedTitle = action.payload;
-    },
-    setEmbedDesc: (state, action) => {
-      state.embedDesc = action.payload;
-    },
-    setTheme: (state, action) => {
-      state.theme = action.payload;
-    },
-    setListView: (state, action) => {
-      state.listView = action.payload;
-    },
-    setNumberOfView: (state, action) => {
-      state.viewNum = action.payload;
-    },
-    setSearchCriteria: (state, action) => {
-      state.searchCriteria = action.payload;
-    },
-    setLanguageSelection: (state, action) => {
-      state.languageSelection = action.payload;
-    },
-    setLinkContainer: (state, action) => {
-      state.linkContainer = action.payload;
-    },
-    setLinkText: (state, action) => {
-      state.linkText = action.payload;
-    },
     setLocalities: (state, action) => {
       state.localities = action.payload;
     },
@@ -139,12 +88,6 @@ export const filterSlice = createSlice({
     },
     removeLocalities: (state, action) => {
       state.localities = state.localities.filter((item) => item !== action.payload);
-    },
-    setOpenInNewWindow: (state, action) => {
-      state.openInNewWindow = action.payload;
-    },
-    setShowPastEvents: (state, action) => {
-      state.showPastEvents = action.payload;
     },
   },
 });

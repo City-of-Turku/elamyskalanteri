@@ -4,6 +4,7 @@ import { keywordApi } from './services/keywordApi';
 import { localitiesApi } from './services/localityApi';
 import { organizationApi } from './services/organizationApi';
 import appStateReducer from './slices/appStateSlice';
+import embedSettingsSlice from './slices/embedSettingsSlice';
 import filterSlice from './slices/filterSlice';
 import optionsSlice from './slices/optionsSlice';
 
@@ -17,6 +18,7 @@ export const store = () =>
       appState: appStateReducer.reducer,
       filters: filterSlice.reducer,
       options: optionsSlice.reducer,
+      embedSettings: embedSettingsSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(

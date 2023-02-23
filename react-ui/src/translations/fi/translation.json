@@ -53,7 +53,7 @@
   "searchText": "Hae nimen, paikan, aiheen mukaan",
   "share": "jaa",
   "shortDecription": "Lyhyt esittely",
-  "showAdvancedSettings": "Näytä laajennetut upotusasetukset",
+  "showEmbedSettings": "Näytä laajennetut upotusasetukset",
   "showLink": "Lisää linkki",
   "showPastEvents": "Näytä menneet tapahtumat (jos alkupäivämäärä ei ole määritelty)",
   "showSearchComponent": "Sisällytä haku-/suodatuskomponentti",

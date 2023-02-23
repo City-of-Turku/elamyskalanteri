@@ -6,12 +6,12 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
-import filterSlice from '../../../redux/slices/filterSlice';
+import embedSettingsSlice from '../../../redux/slices/embedSettingsSlice';
 
 const SearchCriteria = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setSearchCriteria } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setSearchCriteria } = bindActionCreators(embedSettingsSlice.actions, dispatch);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchCriteria((event.target as HTMLInputElement).value);

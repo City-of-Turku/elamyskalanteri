@@ -53,7 +53,7 @@
   "searchText": "Sök på namn, plats, ämne",
   "share": "dela",
   "shortDecription": "Kort introduktion",
-  "showAdvancedSettings": "Visa avancerade inställningar för inbäddning",
+  "showEmbedSettings": "Visa avancerade inställningar för inbäddning",
   "showLink": "Lägg till länk",
   "showPastEvents": "Visa tidigare händelser (om inget startdatum är valt)",
   "showSearchComponent": "Visa sök-/filterkomponent",

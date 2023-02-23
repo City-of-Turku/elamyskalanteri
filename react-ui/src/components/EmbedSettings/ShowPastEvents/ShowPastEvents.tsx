@@ -6,25 +6,25 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
-import filterSlice from '../../../redux/slices/filterSlice';
+import embedSettingsSlice from '../../../redux/slices/embedSettingsSlice';
 
-const OpenInNewWindow = () => {
+const ShowPastEvents = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setOpenInNewWindow } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setShowPastEvents } = bindActionCreators(embedSettingsSlice.actions, dispatch);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setOpenInNewWindow((event.target as HTMLInputElement).value);
+    setShowPastEvents((event.target as HTMLInputElement).value);
   };
 
   return (
     <div>
       <FormControl sx={{ padding: 2 }}>
-        <p>{`${t('openEventDetailsInNewWindow')}`}</p>
+        <p>{`${t('showPastEvents')}`}</p>
         <RadioGroup
           row
-          defaultValue="true"
-          name="open-in-new-window-radio-buttons"
+          defaultValue="false"
+          name="show-past-events-radio-buttons"
           onChange={handleChange}
         >
           <FormControlLabel value="true" control={<Radio />} label={`${t('yes')}`} />
@@ -35,4 +35,4 @@ const OpenInNewWindow = () => {
   );
 };
 
-export default OpenInNewWindow;
+export default ShowPastEvents;

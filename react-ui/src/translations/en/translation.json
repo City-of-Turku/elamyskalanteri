@@ -53,7 +53,7 @@
   "searchText": "Search by name, place, subject",
   "share": "share",
   "shortDecription": "Short description",
-  "showAdvancedSettings": "Show advanced embedding options",
+  "showEmbedSettings": "Show advanced embedding options",
   "showLink": "Add link",
   "showPastEvents": "Show past events (if no start date is selected)",
   "showSearchComponent": "Include search/filter component",
