@@ -47,7 +47,6 @@ export const eventApi = createApi({
             if (options.organization) {
               keywordArray = keywordArray.concat(options.organization);
             }
-            console.log(keywordArray);
             return `&keyword_AND=${keywordArray}`;
           } else {
             return '';
