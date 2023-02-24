@@ -6,12 +6,12 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
-import filterSlice from '../../../redux/slices/filterSlice';
+import embedSettingsSlice from '../../../redux/slices/embedSettingsSlice';
 
 const Theme = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setTheme } = bindActionCreators(filterSlice.actions, dispatch);
+  const { setTheme } = bindActionCreators(embedSettingsSlice.actions, dispatch);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {

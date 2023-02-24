@@ -6,7 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import AdditionalCategories from './AdditionalCategories/AdditionalCategories';
-import styles from './AdvancedSettings.module.css';
+import styles from './EmbedSettings.module.css';
 import LanguageSelect from './LanguageSelect/LanguageSelect';
 import LinkContainer from './LinkContainer/LinkContainer';
 import ListView from './ListView/ListView';
@@ -16,17 +16,17 @@ import ShowPastEvents from './ShowPastEvents/ShowPastEvents';
 import TextFields from './TextFields/TextFields';
 import Theme from './Theme/Theme';
 
-const AdvancedSettings = () => {
+const EmbedSettings = () => {
   const { t } = useTranslation();
   return (
     <div className={styles.title}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="advancedSettings-panelContent"
-          id="advancedSettings-panelId"
+          aria-controls="embedSettings-panelContent"
+          id="embedSettings-panelId"
         >
-          <Typography>{t('showAdvancedSettings')}</Typography>
+          <Typography>{t('showEmbedSettings')}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TextFields />
@@ -44,4 +44,4 @@ const AdvancedSettings = () => {
   );
 };
 
-export default AdvancedSettings;
+export default EmbedSettings;

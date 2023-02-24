@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CONTENT_TYPES, features } from '../../../constants';
 import { getTranslatedValue } from '../../../functions/getTranslatedValue';
@@ -51,9 +51,6 @@ const WhatContainer = () => {
     [key: string]: Array<CategoryDescriptor>;
   }>({});
   const [audiences, setAudiences] = useState<Array<Category> | null>(null);
-  const [organizer, setOrganizer] = useState<string | null>(null);
-
-  const prevOrganizerRef = useRef<string | null>(null);
 
   const handleTypeIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val = event.target.value;
@@ -83,10 +80,6 @@ const WhatContainer = () => {
     } else {
       removeAudience(e.target.value);
     }
-  };
-
-  const handleOrganizerChange = (organizerId: string | null) => {
-    setOrganizer(organizerId);
   };
 
   const addSelectedCategory = (yso: string) => {
@@ -148,18 +141,6 @@ const WhatContainer = () => {
       setTypeIdState(filters.typeId);
     }
   }, [filters.typeId]);
-
-  useEffect(() => {
-    if (organizer !== prevOrganizerRef.current) {
-      if (prevOrganizerRef.current !== null) {
-        removeEventTypes([prevOrganizerRef.current]);
-      }
-      if (organizer != null) {
-        addEventType(organizer);
-      }
-      prevOrganizerRef.current = organizer;
-    }
-  }, [organizer, addEventType, removeEventTypes]);
 
   const renderCategories = () => {
     if (!typeIdState) return null;
@@ -279,7 +260,7 @@ const WhatContainer = () => {
         {renderFeatures()}
 
         <div className={styles.rowWrap}>
-          <OrganizationContainer onChange={(newId) => handleOrganizerChange(newId)} />
+          <OrganizationContainer />
         </div>
       </Accordion>
     </div>
