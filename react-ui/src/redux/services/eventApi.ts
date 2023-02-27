@@ -62,7 +62,7 @@ export const eventApi = createApi({
       },
     }),
     event: builder.query<Event, string>({
-      query: (id: string) => `/event/${id}/?include=location`,
+      query: (id: string) => `/event/${id}/?include=keywords,location,audience,in_language`,
     }),
   }),
 });

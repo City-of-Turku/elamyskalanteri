@@ -38,8 +38,8 @@ export type Event = {
   sub_events: Record<'@id', string>[];
   images: EventImage[];
   videos: EventVideo[];
-  in_language: Record<'@id', string>[];
-  audience: Record<'@id', string>[];
+  in_language: EventInLanguage[];
+  audience: EventAudience[];
   created_time: Date | null;
   last_modified_time: Date | null;
   date_published: Date | null;
@@ -72,6 +72,37 @@ export type Event = {
   '@type': string;
 };
 
+export type EventAudience = {
+  id: string;
+  alt_labels: string[];
+  created_time: Date | null;
+  last_modified_time: Date | null;
+  parents: EventAudience[];
+  children: EventAudience[];
+  ontology_type: string;
+  aggregate: boolean;
+  deprecated: boolean;
+  n_events: number;
+  is_hidden: boolean;
+  image: unknown | null; // Todo: Fix unknown
+  data_source: string;
+  publisher: string;
+  replaced_by: unknown | null; // Todo: Fix unknown
+  name: Translatable;
+  '@id': string;
+  '@context': string;
+  '@type': string;
+};
+
+export type EventInLanguage = {
+  id: string;
+  translation_available: boolean;
+  name: Translatable;
+  '@id': string;
+  '@context': string;
+  '@type': string;
+};
+
 export type EventExternalLink = {
   name: string;
   link: string;
@@ -79,11 +110,19 @@ export type EventExternalLink = {
 };
 
 export type EventOffer = {
-  payment_methods: string[];
+  payment_methods: EventOfferPaymentMethod[];
   is_free: boolean;
   description: Translatable | null;
   price: Translatable | null;
-  info_url: string | null;
+  info_url: Translatable | null;
+};
+
+export type EventOfferPaymentMethod = {
+  id: string;
+  name: Translatable;
+  '@id': string;
+  '@context': string;
+  '@type': string;
 };
 
 export type EventImage = {
@@ -103,6 +142,8 @@ export type EventImage = {
 
 export type EventVideo = {
   url: string;
+  name: Translatable;
+  alt_text: Translatable;
 };
 
 export type EventLocation = {
