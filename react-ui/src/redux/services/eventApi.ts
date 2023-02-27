@@ -28,12 +28,7 @@ export const eventApi = createApi({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
         const kwds = () => {
-          if (
-            options.audiences.length ||
-            options.keyword.length ||
-            options.extraKeyword ||
-            options.organization
-          ) {
+          if (options.audiences.length || options.keyword.length || options.extraKeyword) {
             let keywordArray: string[] = [];
             if (options.keyword) {
               keywordArray = keywordArray.concat(options.keyword);
@@ -43,9 +38,6 @@ export const eventApi = createApi({
             }
             if (options.extraKeyword) {
               keywordArray = keywordArray.concat(options.extraKeyword);
-            }
-            if (options.organization) {
-              keywordArray = keywordArray.concat(options.organization);
             }
             return `&keyword_AND=${keywordArray}`;
           } else {
@@ -62,10 +54,11 @@ export const eventApi = createApi({
         const end = options.end_time ? `&end=${options.end_time}` : '';
         const loc = options.localities.length ? `&locality=${options.localities}` : '';
         const feats = options.features && `&${options.features}`;
+        const org = options.organization ? `&publisher=${options.organization}` : '';
         const pSize = `&page_size=${options.page_size}`;
         const pNum = `&page=${options.page}`;
 
-        return `/event/?include=location${s}${type}${kwds()}${maxDistance}${start}${end}${loc}${feats}${pSize}${pNum}`;
+        return `/event/?include=location${s}${type}${kwds()}${maxDistance}${start}${end}${loc}${feats}${org}${pSize}${pNum}`;
       },
     }),
     event: builder.query<Event, string>({
