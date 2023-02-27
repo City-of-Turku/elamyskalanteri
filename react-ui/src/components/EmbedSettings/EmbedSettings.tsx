@@ -6,7 +6,6 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import AdditionalCategories from './AdditionalCategories/AdditionalCategories';
-import styles from './EmbedSettings.module.css';
 import LanguageSelect from './LanguageSelect/LanguageSelect';
 import LinkContainer from './LinkContainer/LinkContainer';
 import ListView from './ListView/ListView';
@@ -19,7 +18,7 @@ import Theme from './Theme/Theme';
 const EmbedSettings = () => {
   const { t } = useTranslation();
   return (
-    <div className={styles.title}>
+    <div>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
