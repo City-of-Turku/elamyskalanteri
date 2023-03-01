@@ -1,7 +1,7 @@
 import ViewAgendaIcon from '@mui/icons-material/ViewAgenda';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
-import { Radio, RadioGroup } from '@mui/material';
+import { Box, Radio, RadioGroup } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { LAYOUT_OPTIONS } from '../../../constants';
 import { useAppDispatch } from '../../../hooks/rtkHooks';
 import embedSettingsSlice from '../../../redux/slices/embedSettingsSlice';
-import styles from '../EmbedSettings.module.css';
+import styles from './ListView.module.css';
 
 const ListView = () => {
   const { t } = useTranslation();
@@ -65,19 +65,17 @@ const ListView = () => {
             <ViewAgendaIcon />
           </div>
         </RadioGroup>
+        <Box component="p" sx={{ marginTop: 3, marginBottom: 1 }}>
+          {t('numberOfViewsTitle')}
+        </Box>
         <TextField
           onChange={handleResultMaxCount}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            '& .MuiTextField-root': { width: '15ch' },
-          }}
           type="number"
           margin="normal"
           InputProps={{
             inputProps: {
               max: 100,
-              min: 0,
+              min: 1,
             },
           }}
           label={t('numberOfViews')}

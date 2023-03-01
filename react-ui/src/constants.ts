@@ -88,3 +88,9 @@ export const DateShortcut = {
 } as const;
 
 export type DateShortcutType = (typeof DateShortcut)[keyof typeof DateShortcut];
+
+export const EVENT_EXTERNAL_LINKS = {
+  FACEBOOK: 'extlink_facebook',
+  INSTAGRAM: 'extlink_instagram',
+  TWITTER: 'extlink_twitter',
+} as const;
