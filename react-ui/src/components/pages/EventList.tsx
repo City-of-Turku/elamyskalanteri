@@ -46,6 +46,7 @@ const EventList = () => {
     setExtraKeyword,
     setOrganization,
     setSuitableFor,
+    setSearchedKeywords,
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
   const { attributesLoaded } = appState;
@@ -131,6 +132,11 @@ const EventList = () => {
       if (queryHasValue('suitable_for')) {
         setSuitableFor(arrayFromCommaList(query.suitable_for));
       }
+
+      if (queryHasValue('searched_keywords')) {
+        setSearchedKeywords(arrayFromCommaList(query.searched_keywords));
+      }
+
       setFirstLoadDone(true);
     }
   }, [
@@ -148,6 +154,7 @@ const EventList = () => {
     setExtraKeyword,
     setOrganization,
     setSuitableFor,
+    setSearchedKeywords,
   ]);
 
   // Replace URL with new filters
@@ -184,6 +191,7 @@ const EventList = () => {
       extraKeyword: filters.extraKeyword || '',
       organization: filters.organization || '',
       suitable_for: filters.suitableFor.join(','),
+      searched_keywords: filters.searchedKeywords,
     },
     { skip: !firstLoadDone },
   );

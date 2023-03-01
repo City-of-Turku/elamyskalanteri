@@ -1,0 +1,63 @@
+.keywordSelectorWrapper {
+  max-height: 320px;
+  overflow-y: auto;
+
+  ul {
+    margin: 0 !important;
+    list-style: none !important;
+  }
+}
+
+.keywordSelectorPaddedContent {
+  padding: 16px 8px;
+}
+
+.keywordParent {
+  .parentWrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.keywordListing {
+  padding-inline-start: 0;
+
+  > .keywordOption {
+    margin-left: 38px;
+  }
+}
+
+.keywordListingNested {
+  padding-inline-start: 20px;
+}
+
+.keywordChild {
+  display: flex;
+  align-items: flex-start;
+  font-weight: normal;
+}
+
+.keywordOption {
+  font-weight: bold;
+  margin-left: 40px;
+
+  .keywordListingNested {
+    padding-inline-start: 0;
+
+    .keywordChild {
+      button.keywordToggleButton {
+        margin-left: -10px;
+      }
+    }
+  }
+}
+
+.keywordToggleButton {
+  background-color: transparent;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

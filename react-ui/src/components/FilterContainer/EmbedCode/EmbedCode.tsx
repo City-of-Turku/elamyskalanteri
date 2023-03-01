@@ -66,6 +66,9 @@ const EmbedCode = () => {
     openInNewWindow: `    data-open-in-new-window="${embedSettings.openInNewWindow}"\n`,
     organization: filters.organization ? `    data-organization="${filters.organization}"\n` : '',
     search: filters.search ? `    data-search="${filters.search}"\n` : '',
+    searchedKeywords: filters.searchedKeywords.length
+      ? `    data-searched-keywords="${filters.searchedKeywords.join()}"\n`
+      : '',
     showPastEvents: `    data-show-past-events="${embedSettings.showPastEvents}"\n`,
     showSearch: `    data-show-search="${embedSettings.searchCriteria}"\n`,
     suitableFor: filters.suitableFor.length
@@ -103,6 +106,7 @@ const EmbedCode = () => {
                 {embedDataAttribute.audience}
                 {embedDataAttribute.features}
                 {embedDataAttribute.keywords}
+                {embedDataAttribute.searchedKeywords}
                 {embedDataAttribute.extraKeyword}
                 {embedDataAttribute.organization}
                 {embedDataAttribute.locality}

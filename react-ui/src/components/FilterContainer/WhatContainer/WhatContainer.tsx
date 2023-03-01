@@ -21,6 +21,7 @@ import { useKeywordSetQuery } from '../../../redux/services/keywordApi';
 import filterSlice from '../../../redux/slices/filterSlice';
 import { Category, EventKeyword } from '../../../types';
 import Accordion from '../../Accordion/Accordion';
+import KeywordSearch from '../KeywordSearch/KeywordSearch';
 import OrganizationContainer from '../OrganizationContainer/OrganizationContainer';
 import { CategorySelector } from './CategorySelector';
 import styles from './WhatContainer.module.css';
@@ -228,6 +229,10 @@ const WhatContainer = () => {
     ));
   };
 
+  const renderKeywordSearch = () => {
+    return <KeywordSearch />;
+  };
+
   const renderAudiences = () => {
     if (audiences === null) {
       return <CircularProgress />;
@@ -331,6 +336,12 @@ const WhatContainer = () => {
         </div>
 
         {renderCategories()}
+
+        <Typography variant="h3" style={{ margin: '16px 0 0 0' }}>
+          {t('keywords')}
+        </Typography>
+
+        {renderKeywordSearch()}
 
         <Typography variant="h3" style={{ margin: '16px 0 0 0' }}>
           {t('whom')}

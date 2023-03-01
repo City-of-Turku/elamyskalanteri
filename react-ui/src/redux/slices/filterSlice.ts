@@ -17,6 +17,7 @@ export interface FilterState {
   extraKeyword: string | null;
   organization: string | null;
   suitableFor: number[];
+  searchedKeywords: string[];
 }
 
 export const initialState: FilterState = {
@@ -36,6 +37,7 @@ export const initialState: FilterState = {
   extraKeyword: null,
   organization: null,
   suitableFor: [],
+  searchedKeywords: [],
 };
 
 export const filterSlice = createSlice({
@@ -103,6 +105,17 @@ export const filterSlice = createSlice({
     },
     setSuitableFor: (state, action) => {
       state.suitableFor = action.payload;
+    },
+    setSearchedKeywords: (state, action) => {
+      state.searchedKeywords = action.payload;
+    },
+    addSearchedKeywords: (state, action) => {
+      state.searchedKeywords = [...state.searchedKeywords, action.payload];
+    },
+    removeSearchedKeywords: (state, action) => {
+      state.searchedKeywords = state.searchedKeywords.filter(
+        (searchedKeywords) => !action.payload?.includes(searchedKeywords),
+      );
     },
   },
 });
