@@ -46,6 +46,10 @@ export const parseQuery = (filters: FilterState) => {
     validQueries = validQueries.concat(`organization=${filters.organization}`);
   }
 
+  if (filters.suitableFor?.length) {
+    validQueries = validQueries.concat(`suitable_for=${filters.suitableFor.join(',')}`);
+  }
+
   if (validQueries.length) {
     return `?${validQueries.join('&')}`;
   } else {

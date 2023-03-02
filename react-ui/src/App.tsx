@@ -48,6 +48,7 @@ const App = (props: AppProps) => {
     setSearch,
     setStartTime,
     setTypeId,
+    setSuitableFor,
   } = bindActionCreators(filterSlice.actions, dispatch);
 
   checkUsedAttributes(data);
@@ -82,6 +83,7 @@ const App = (props: AppProps) => {
     setLocalities(data.localities ? arrayFromCommaList(data.localities) : []);
     setOrganization(data.organization ? data.organization : null);
     setSearch(data.search);
+    setSuitableFor(data.suitableFor ? arrayFromCommaList(data.suitableFor) : []);
     // Always set start time to today if no start time is provided and if showPastEvents is false
     setStartTime(startTime ? startTime : !showPastEvents && getApiFormattedDate(new Date()));
     setTypeId(data.typeId);

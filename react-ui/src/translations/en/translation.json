@@ -1,6 +1,7 @@
 {
   "activeShortcut": "Active selection",
   "additionalCategories": "Additional categories",
+  "ageGroup": "Age group",
   "ageRestrictions": "Age restrictions",
   "attendeeCapacity": "Attendee capacity",
   "audience": "Target groups",
@@ -80,6 +81,7 @@
   "socialMedia": "Social media",
   "startDate": "Start date",
   "style": "Style",
+  "suitableFor": "Suitable for",
   "tai": "Turku Vocational Institute",
   "thisWeek": "This week",
   "title": "Title",
@@ -87,6 +89,7 @@
   "tomorrow": "Tomorrow",
   "turku": "Turku",
   "under": "under",
+  "useAgeFilter": "Filter by age",
   "useFormatOf": "Use the format",
   "video": "Video",
   "videos": "Videos",

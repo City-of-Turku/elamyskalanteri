@@ -1,6 +1,7 @@
 {
   "activeShortcut": "Aktiv genväg",
   "additionalCategories": "Ytterligare kategorier",
+  "ageGroup": "Åldersgrupp",
   "ageRestrictions": "Åldersbegränsningar",
   "attendeeCapacity": "Deltagarkapacitet",
   "audience": "Målgrupper",
@@ -80,6 +81,7 @@
   "socialMedia": "Sociala media",
   "startDate": "Från datum",
   "style": "stil",
+  "suitableFor": "Lämplig för",
   "tai": "Åbo yrkesinstitut",
   "thisWeek": "Denna vecka",
   "title": "Titel",
@@ -87,6 +89,7 @@
   "tomorrow": "I morgon",
   "turku": "Åbo",
   "under": "under",
+  "useAgeFilter": "Filtrera efter ålder",
   "useFormatOf": "Använd formatet",
   "video": "Video",
   "videos": "Videor",

@@ -1,6 +1,7 @@
 {
   "activeShortcut": "Aktiivinen valinta",
   "additionalCategories": "Lisäluokat",
+  "ageGroup": "Ikäryhmä",
   "ageRestrictions": "Ikärajoitukset",
   "attendeeCapacity": "Osallistujamäärät",
   "audience": "Kohderyhmät",
@@ -80,6 +81,7 @@
   "socialMedia": "Sosiaalinen media",
   "startDate": "Alkamispäivämäärä",
   "style": "Tyyli",
+  "suitableFor": "Sopivuus",
   "tai": "Turun ammatti-instituutti",
   "thisWeek": "Tällä viikolla",
   "title": "Otsikko",
@@ -87,6 +89,7 @@
   "tomorrow": "Huomenna",
   "turku": "Turku",
   "under": "alle",
+  "useAgeFilter": "Suodata iän mukaan",
   "useFormatOf": "Käytä muotoa",
   "video": "Video",
   "videos": "Videot",
