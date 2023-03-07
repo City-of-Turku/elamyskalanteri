@@ -16,6 +16,7 @@ export interface FilterState {
   localities: string[];
   extraKeyword: string | null;
   organization: string | null;
+  suitableFor: number[];
 }
 
 export const initialState: FilterState = {
@@ -34,6 +35,7 @@ export const initialState: FilterState = {
   localities: [],
   extraKeyword: null,
   organization: null,
+  suitableFor: [],
 };
 
 export const filterSlice = createSlice({
@@ -98,6 +100,9 @@ export const filterSlice = createSlice({
     },
     setOrganization: (state, action) => {
       state.organization = action.payload;
+    },
+    setSuitableFor: (state, action) => {
+      state.suitableFor = action.payload;
     },
   },
 });

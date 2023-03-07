@@ -68,6 +68,9 @@ const EmbedCode = () => {
     search: filters.search ? `    data-search="${filters.search}"\n` : '',
     showPastEvents: `    data-show-past-events="${embedSettings.showPastEvents}"\n`,
     showSearch: `    data-show-search="${embedSettings.searchCriteria}"\n`,
+    suitableFor: filters.suitableFor.length
+      ? `    data-suitable-for="${filters.suitableFor.join()}"\n`
+      : '',
     theme: `    data-theme="${embedSettings.theme}"\n`,
     timeEnd: `    data-time-end="${filters.endTime ? filters.endTime : ''}"\n`,
     timeStart: `    data-time-start="${filters.startTime ? filters.startTime : ''}"\n`,
@@ -108,6 +111,7 @@ const EmbedCode = () => {
                 {embedDataAttribute.timeStart}
                 {embedDataAttribute.timeEnd}
                 {embedDataAttribute.typeId}
+                {embedDataAttribute.suitableFor}
                 {`></div>\n`}
               </pre>
             </div>

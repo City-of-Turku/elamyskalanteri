@@ -1,15 +1,18 @@
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import {
+  Box,
   Checkbox,
   CircularProgress,
   FormControlLabel,
   FormGroup,
   Radio,
   RadioGroup,
+  Slider,
+  Switch,
   Typography,
 } from '@mui/material';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CONTENT_TYPES, features } from '../../../constants';
 import { getTranslatedValue } from '../../../functions/getTranslatedValue';
@@ -34,7 +37,7 @@ const WhatContainer = () => {
   const { data: keywordSetData, isLoading, isFetching } = useKeywordSetQuery();
   const keywordSetList = keywordSetData?.data;
   const currentLang = i18n.language;
-
+  const step = 1;
   // Bind setFeatures to dispatch, so it can be called without dispatch
   const {
     addFeature,
@@ -44,6 +47,7 @@ const WhatContainer = () => {
     addAudience,
     removeAudience,
     setTypeId,
+    setSuitableFor,
   } = bindActionCreators(filterSlice.actions, dispatch);
 
   const [typeIdState, setTypeIdState] = useState(filters.typeId);
@@ -51,7 +55,20 @@ const WhatContainer = () => {
     [key: string]: Array<CategoryDescriptor>;
   }>({});
   const [audiences, setAudiences] = useState<Array<Category> | null>(null);
+  const [minAge, maxAge] = [1, 100];
+  const [useAgeFilter, setUseAgeFilter] = useState<boolean>(!!filters.suitableFor?.length);
+  const [suitableFor, setSuitableForState] = useState<number[]>([minAge, maxAge]);
 
+  const marks = [
+    {
+      value: minAge,
+      label: `${minAge}`,
+    },
+    {
+      value: maxAge,
+      label: `${maxAge}`,
+    },
+  ];
   const handleTypeIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val = event.target.value;
     if (typeIdState) {
@@ -89,6 +106,39 @@ const WhatContainer = () => {
   const removeSelectedCategory = (yso: string) => {
     removeEventTypes([yso]);
   };
+
+  const handleAgeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    if (checked) {
+      setSuitableFor([suitableFor[0], suitableFor[1]]);
+    } else {
+      setSuitableFor([]);
+    }
+    setUseAgeFilter(checked);
+  };
+
+  const handeAgeGroupChange = useCallback(
+    (event: Event, newValue: number | number[], activeThumb: number) => {
+      if (!Array.isArray(newValue)) {
+        return;
+      }
+
+      if (activeThumb === 0) {
+        const age = suitableFor[1];
+        const minAge = Math.min(newValue[0], age - step),
+          newAgeRange = [minAge, age];
+        setSuitableFor(newAgeRange);
+        setSuitableForState(newAgeRange);
+      } else {
+        const age = suitableFor[0];
+        const maxAge = Math.max(newValue[1], age + step),
+          newAgeRange = [age, maxAge];
+        setSuitableFor(newAgeRange);
+        setSuitableForState(newAgeRange);
+      }
+    },
+    [suitableFor, setSuitableFor, setSuitableForState],
+  );
 
   useEffect(() => {
     if (keywordSetList) {
@@ -141,6 +191,14 @@ const WhatContainer = () => {
       setTypeIdState(filters.typeId);
     }
   }, [filters.typeId]);
+
+  useEffect(() => {
+    if (filters.suitableFor.length) {
+      const suitableFor = filters.suitableFor;
+      setSuitableForState(suitableFor);
+      setUseAgeFilter(true);
+    }
+  }, [useAgeFilter, filters.suitableFor]);
 
   const renderCategories = () => {
     if (!typeIdState) return null;
@@ -214,6 +272,33 @@ const WhatContainer = () => {
     </FormGroup>
   );
 
+  const renderAgeFilter = () => (
+    <FormGroup row>
+      <FormControlLabel
+        control={<Switch onChange={(e) => handleAgeFilter(e)} checked={Boolean(useAgeFilter)} />}
+        label={t('useAgeFilter')}
+        value={useAgeFilter}
+      />
+    </FormGroup>
+  );
+
+  const renderAgeSlider = () => (
+    <Box sx={{ width: 400 }}>
+      <Typography variant="body1">{t('ageGroup')}</Typography>
+      <Slider
+        getAriaLabel={() => t('ageGroup')}
+        valueLabelDisplay="on"
+        value={suitableFor.map((val) => +val)}
+        min={minAge}
+        max={maxAge}
+        size="medium"
+        onChange={handeAgeGroupChange}
+        disableSwap
+        marks={marks}
+      />
+    </Box>
+  );
+
   return (
     <div>
       <Accordion title={`${t('what')}?`} icon={LocalActivityIcon}>
@@ -252,6 +337,14 @@ const WhatContainer = () => {
         </Typography>
 
         {renderAudiences()}
+
+        <Typography variant="h3" style={{ margin: '16px 0 0 0' }}>
+          {t('suitableFor')}
+        </Typography>
+
+        {renderAgeFilter()}
+
+        {useAgeFilter && renderAgeSlider()}
 
         <Typography variant="h3" style={{ margin: '16px 0 0 0' }}>
           {t('features')}

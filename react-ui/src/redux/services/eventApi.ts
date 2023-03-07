@@ -17,6 +17,7 @@ interface IOptions {
   localities: string[];
   extraKeyword: string;
   organization: string;
+  suitable_for: string;
 }
 
 export const eventApi = createApi({
@@ -57,8 +58,9 @@ export const eventApi = createApi({
         const org = options.organization ? `&publisher=${options.organization}` : '';
         const pSize = `&page_size=${options.page_size}`;
         const pNum = `&page=${options.page}`;
+        const suitableFor = options.suitable_for && `&suitable_for=${options.suitable_for}`;
 
-        return `/event/?include=location${s}${type}${kwds()}${maxDistance}${start}${end}${loc}${feats}${org}${pSize}${pNum}`;
+        return `/event/?include=location${s}${type}${kwds()}${maxDistance}${start}${end}${loc}${feats}${org}${pSize}${pNum}${suitableFor}`;
       },
     }),
     event: builder.query<Event, string>({

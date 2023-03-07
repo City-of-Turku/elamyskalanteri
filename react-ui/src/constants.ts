@@ -44,6 +44,7 @@ export const DATA_ATTRIBUTES = [
   'timeStart',
   'title',
   'typeId',
+  'suitableFor',
 ] as const;
 
 export type DataAttributes = (typeof DATA_ATTRIBUTES)[number];

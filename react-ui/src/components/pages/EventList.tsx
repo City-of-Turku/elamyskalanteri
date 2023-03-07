@@ -45,6 +45,7 @@ const EventList = () => {
     setTypeId,
     setExtraKeyword,
     setOrganization,
+    setSuitableFor,
   } = bindActionCreators(filterSlice.actions, dispatch);
   const [firstLoadDone, setFirstLoadDone] = useState(false);
   const { attributesLoaded } = appState;
@@ -127,6 +128,9 @@ const EventList = () => {
         setOrganization(query.organization);
       }
 
+      if (queryHasValue('suitable_for')) {
+        setSuitableFor(arrayFromCommaList(query.suitable_for));
+      }
       setFirstLoadDone(true);
     }
   }, [
@@ -143,6 +147,7 @@ const EventList = () => {
     setLocalities,
     setExtraKeyword,
     setOrganization,
+    setSuitableFor,
   ]);
 
   // Replace URL with new filters
@@ -178,6 +183,7 @@ const EventList = () => {
       localities: filters.localities,
       extraKeyword: filters.extraKeyword || '',
       organization: filters.organization || '',
+      suitable_for: filters.suitableFor.join(','),
     },
     { skip: !firstLoadDone },
   );
