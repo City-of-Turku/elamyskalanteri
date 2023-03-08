@@ -36,6 +36,7 @@ export const DATA_ATTRIBUTES = [
   'openInNewWindow',
   'organization',
   'search',
+  'searchedKeywords',
   'showEmbedTool',
   'showPastEvents',
   'showSearch',

@@ -189,6 +189,7 @@ export type RelatedEventKeyWord = {
   id: EventKeyword['id'];
   ontology_type: EventKeyword['ontology_type'];
   name: EventKeyword['name'];
+  '@id': EventKeyword['@id'];
 };
 
 export type EventKeyword = {
@@ -253,6 +254,11 @@ export type GetEventsResponse = {
 export type GetKeywordSetResponse = {
   meta: PayloadMeta;
   data: KeywordSet[];
+};
+
+export type GetKeywordSearchResponse = {
+  meta: PayloadMeta;
+  data: EventKeyword[];
 };
 
 export type GetLocalitiesResponse = {

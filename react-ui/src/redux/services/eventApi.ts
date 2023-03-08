@@ -18,6 +18,7 @@ interface IOptions {
   extraKeyword: string;
   organization: string;
   suitable_for: string;
+  searched_keywords: string[];
 }
 
 export const eventApi = createApi({
@@ -29,10 +30,18 @@ export const eventApi = createApi({
     events: builder.query<GetEventsResponse, IOptions>({
       query: (options: IOptions) => {
         const kwds = () => {
-          if (options.audiences.length || options.keyword.length || options.extraKeyword) {
+          if (
+            options.audiences.length ||
+            options.keyword.length ||
+            options.searched_keywords.length ||
+            options.extraKeyword
+          ) {
             let keywordArray: string[] = [];
             if (options.keyword) {
               keywordArray = keywordArray.concat(options.keyword);
+            }
+            if (options.searched_keywords) {
+              keywordArray = keywordArray.concat(options.searched_keywords);
             }
             if (options.audiences) {
               keywordArray = keywordArray.concat(options.audiences);

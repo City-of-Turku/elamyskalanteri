@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { GetKeywordSetResponse } from '../../types';
+import { EventKeyword, GetKeywordSearchResponse, GetKeywordSetResponse } from '../../types';
+
+interface IKeywordSearch {
+  locale: string;
+  text: string;
+}
 
 export const keywordApi = createApi({
   reducerPath: 'keywordApi',
@@ -10,7 +15,14 @@ export const keywordApi = createApi({
     keywordSet: builder.query<GetKeywordSetResponse, void>({
       query: () => '/keyword_set/?include=keywords',
     }),
+    keyword: builder.query<EventKeyword, string>({
+      query: (keyword) => `/keyword/${keyword}/`,
+    }),
+    keywordSearch: builder.query<GetKeywordSearchResponse, IKeywordSearch>({
+      query: (search) =>
+        `/keyword/?data_source=yso&show_all_keywords=1&locale=${search.locale}&text=${search.text}`,
+    }),
   }),
 });
 
-export const { useKeywordSetQuery } = keywordApi;
+export const { useKeywordSetQuery, useKeywordQuery, useKeywordSearchQuery } = keywordApi;

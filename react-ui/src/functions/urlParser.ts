@@ -50,6 +50,10 @@ export const parseQuery = (filters: FilterState) => {
     validQueries = validQueries.concat(`suitable_for=${filters.suitableFor.join(',')}`);
   }
 
+  if (filters.searchedKeywords.length) {
+    validQueries = validQueries.concat(`searched_keywords=${filters.searchedKeywords.join(',')}`);
+  }
+
   if (validQueries.length) {
     return `?${validQueries.join('&')}`;
   } else {
